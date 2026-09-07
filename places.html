@@ -1,1 +1,3792 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
 
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
+
+<meta name="theme-color" content="#08745a">
+
+<title>Wildlife Explorer • Places</title>
+
+<style>
+
+/* =========================================================
+   WILDLIFE EXPLORER
+   PLACES DIRECTORY
+   LIGHT PREMIUM MOBILE APP UI
+========================================================= */
+
+:root{
+
+ --bg:#f4f8f5;
+ --card:#ffffff;
+ --card2:#f8fbf9;
+
+ --primary:#08755a;
+ --primary2:#0a936d;
+ --primary3:#dff4eb;
+
+ --text:#15231d;
+ --text2:#56675f;
+ --muted:#819089;
+
+ --line:#e2ebe6;
+
+ --gold:#c89232;
+ --goldbg:#fff7e7;
+
+ --blue:#3877c8;
+ --bluebg:#edf5ff;
+
+ --red:#d95b57;
+ --redbg:#fff0ef;
+
+ --shadow:
+  0 12px 35px rgba(25,65,48,.075);
+
+ --shadow2:
+  0 20px 50px rgba(17,70,48,.13);
+
+ --radius:24px;
+
+}
+
+*{
+ box-sizing:border-box;
+ -webkit-tap-highlight-color:transparent;
+}
+
+html{
+ scroll-behavior:smooth;
+}
+
+body{
+
+ margin:0;
+
+ background:
+ radial-gradient(
+  circle at 90% 0%,
+  rgba(13,142,105,.09),
+  transparent 28%
+ ),
+ linear-gradient(
+  180deg,
+  #f8fbf9 0%,
+  #f1f6f3 100%
+ );
+
+ color:var(--text);
+
+ font-family:
+ system-ui,
+ -apple-system,
+ BlinkMacSystemFont,
+ "Noto Sans Bengali",
+ "Noto Sans",
+ sans-serif;
+
+ overflow-x:hidden;
+}
+
+/* =========================================================
+   APP CONTAINER
+========================================================= */
+
+.app{
+
+ width:100%;
+ max-width:760px;
+ min-height:100vh;
+
+ margin:auto;
+
+ background:
+ linear-gradient(
+  180deg,
+  rgba(255,255,255,.40),
+  rgba(245,249,246,.55)
+ );
+
+}
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.icon{
+
+ width:21px;
+ height:21px;
+
+ fill:none;
+
+ stroke:currentColor;
+ stroke-width:1.9;
+
+ stroke-linecap:round;
+ stroke-linejoin:round;
+
+}
+
+.icon.sm{
+ width:15px;
+ height:15px;
+}
+
+.icon.lg{
+ width:28px;
+ height:28px;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+ position:relative;
+
+ overflow:hidden;
+
+ padding:
+  22px
+  20px
+  26px;
+
+ color:#fff;
+
+ background:
+
+ radial-gradient(
+  circle at 90% 10%,
+  rgba(255,255,255,.16),
+  transparent 24%
+ ),
+
+ radial-gradient(
+  circle at 10% 100%,
+  rgba(255,255,255,.07),
+  transparent 25%
+ ),
+
+ linear-gradient(
+  145deg,
+  #07543e,
+  #08745a 52%,
+  #0a906b
+ );
+
+ border-radius:
+  0
+  0
+  34px
+  34px;
+
+ box-shadow:
+  0 18px 40px rgba(5,88,63,.18);
+
+}
+
+.hero-orbit{
+
+ position:absolute;
+
+ width:260px;
+ height:260px;
+
+ right:-130px;
+ top:-145px;
+
+ border:
+  1px solid
+  rgba(255,255,255,.13);
+
+ border-radius:50%;
+
+ animation:
+ orbit 18s linear infinite;
+
+}
+
+.hero-orbit:after{
+
+ content:"";
+
+ position:absolute;
+
+ inset:35px;
+
+ border:
+  1px solid
+  rgba(255,255,255,.09);
+
+ border-radius:50%;
+
+}
+
+.hero-leaf{
+
+ position:absolute;
+
+ right:30px;
+ bottom:22px;
+
+ opacity:.08;
+
+ transform:rotate(-15deg);
+
+}
+
+.hero-leaf .icon{
+
+ width:100px;
+ height:100px;
+
+}
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand{
+
+ position:relative;
+ z-index:2;
+
+ display:flex;
+
+ align-items:center;
+
+ gap:12px;
+
+}
+
+.brand-icon{
+
+ width:48px;
+ height:48px;
+
+ display:grid;
+ place-items:center;
+
+ border-radius:16px;
+
+ background:
+ rgba(255,255,255,.12);
+
+ border:
+ 1px solid
+ rgba(255,255,255,.18);
+
+ backdrop-filter:blur(12px);
+
+ box-shadow:
+ inset 0 1px rgba(255,255,255,.12);
+
+}
+
+.brand-name{
+
+ font-size:15px;
+ font-weight:850;
+
+ letter-spacing:.2px;
+
+}
+
+.brand-sub{
+
+ margin-top:3px;
+
+ font-size:10px;
+
+ color:
+ rgba(255,255,255,.67);
+
+}
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
+
+.hero-content{
+
+ position:relative;
+ z-index:2;
+
+ margin-top:27px;
+
+}
+
+.hero-chip{
+
+ display:inline-flex;
+
+ align-items:center;
+
+ gap:7px;
+
+ padding:
+  7px
+  11px;
+
+ border-radius:999px;
+
+ background:
+ rgba(255,255,255,.10);
+
+ border:
+  1px solid
+  rgba(255,255,255,.12);
+
+ font-size:9px;
+
+ font-weight:800;
+
+ letter-spacing:.8px;
+
+}
+
+.status-dot{
+
+ width:6px;
+ height:6px;
+
+ border-radius:50%;
+
+ background:#7ff0c3;
+
+ box-shadow:
+  0 0 0 5px
+  rgba(127,240,195,.10);
+
+ animation:pulse 1.7s infinite;
+
+}
+
+.hero h1{
+
+ margin:
+  14px
+  0
+  6px;
+
+ font-size:33px;
+
+ line-height:1.04;
+
+ letter-spacing:-1.5px;
+
+}
+
+.hero p{
+
+ margin:0;
+
+ max-width:570px;
+
+ font-size:12px;
+
+ line-height:1.7;
+
+ color:
+ rgba(255,255,255,.76);
+
+}
+
+/* =========================================================
+   HERO STATS
+========================================================= */
+
+.hero-stats{
+
+ position:relative;
+ z-index:2;
+
+ display:grid;
+
+ grid-template-columns:
+ repeat(3,1fr);
+
+ gap:7px;
+
+ margin-top:21px;
+
+}
+
+.hero-stat{
+
+ padding:
+  10px
+  8px;
+
+ border-radius:15px;
+
+ background:
+ rgba(255,255,255,.09);
+
+ border:
+  1px solid
+  rgba(255,255,255,.10);
+
+ text-align:center;
+
+ backdrop-filter:blur(8px);
+
+}
+
+.hero-stat strong{
+
+ display:block;
+
+ font-size:16px;
+
+}
+
+.hero-stat span{
+
+ display:block;
+
+ margin-top:2px;
+
+ font-size:8px;
+
+ color:
+ rgba(255,255,255,.62);
+
+}
+
+/* =========================================================
+   CONTROL AREA
+========================================================= */
+
+.controls{
+
+ padding:
+  16px
+  18px
+  0;
+
+}
+
+/* =========================================================
+   MAIN TABS
+========================================================= */
+
+.main-tabs{
+
+ display:grid;
+
+ grid-template-columns:
+ repeat(2,1fr);
+
+ gap:7px;
+
+ padding:4px;
+
+ background:#e8efeb;
+
+ border-radius:18px;
+
+}
+
+.main-tab{
+
+ border:0;
+
+ padding:12px 10px;
+
+ border-radius:14px;
+
+ background:transparent;
+
+ color:#66766e;
+
+ font-size:11px;
+
+ font-weight:800;
+
+ transition:.25s;
+
+}
+
+.main-tab.active{
+
+ background:#fff;
+
+ color:var(--primary);
+
+ box-shadow:
+  0 5px 16px
+  rgba(20,60,42,.08);
+
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search{
+
+ position:relative;
+
+ margin-top:11px;
+
+}
+
+.search .icon{
+
+ position:absolute;
+
+ left:15px;
+
+ top:50%;
+
+ transform:
+ translateY(-50%);
+
+ color:#8a9892;
+
+}
+
+.search input{
+
+ width:100%;
+
+ border:
+  1px solid
+  var(--line);
+
+ outline:none;
+
+ border-radius:17px;
+
+ background:#fff;
+
+ padding:
+  14px
+  14px
+  14px
+  44px;
+
+ font-size:12px;
+
+ color:var(--text);
+
+ box-shadow:
+  0 7px 22px
+  rgba(20,60,40,.045);
+
+}
+
+.search input:focus{
+
+ border-color:
+ #9bcdbb;
+
+ box-shadow:
+  0 0 0 4px
+  rgba(8,117,90,.06);
+
+}
+
+/* =========================================================
+   CATEGORY SCROLL
+========================================================= */
+
+.categories{
+
+ display:flex;
+
+ gap:7px;
+
+ overflow-x:auto;
+
+ padding:
+  11px
+  0
+  2px;
+
+ scrollbar-width:none;
+
+}
+
+.categories::-webkit-scrollbar{
+ display:none;
+}
+
+.category{
+
+ flex:0 0 auto;
+
+ border:
+  1px solid
+  var(--line);
+
+ background:#fff;
+
+ color:#697971;
+
+ border-radius:999px;
+
+ padding:
+  8px
+  12px;
+
+ font-size:9px;
+
+ font-weight:800;
+
+ transition:.25s;
+
+}
+
+.category.active{
+
+ background:
+ var(--primary);
+
+ border-color:
+ var(--primary);
+
+ color:#fff;
+
+ box-shadow:
+  0 7px 17px
+  rgba(8,117,90,.18);
+
+}
+
+/* =========================================================
+   FEATURED
+========================================================= */
+
+.featured{
+
+ margin:
+  16px
+  18px
+  0;
+
+ padding:19px;
+
+ position:relative;
+
+ overflow:hidden;
+
+ border-radius:24px;
+
+ color:#fff;
+
+ background:
+
+ radial-gradient(
+  circle at 92% 8%,
+  rgba(255,255,255,.17),
+  transparent 25%
+ ),
+
+ linear-gradient(
+  135deg,
+  #07523c,
+  #08785c
+ );
+
+ box-shadow:
+  var(--shadow2);
+
+ animation:
+  fadeUp .6s ease both;
+
+}
+
+.featured:before{
+
+ content:"";
+
+ position:absolute;
+
+ width:160px;
+ height:160px;
+
+ right:-75px;
+ bottom:-90px;
+
+ border:
+  1px solid
+  rgba(255,255,255,.13);
+
+ border-radius:50%;
+
+}
+
+.featured-label{
+
+ font-size:8px;
+
+ font-weight:900;
+
+ letter-spacing:1px;
+
+ opacity:.68;
+
+ text-transform:uppercase;
+
+}
+
+.featured h2{
+
+ margin:
+  7px
+  0
+  5px;
+
+ font-size:21px;
+
+ letter-spacing:-.5px;
+
+}
+
+.featured p{
+
+ margin:0;
+
+ max-width:500px;
+
+ font-size:10px;
+
+ line-height:1.7;
+
+ color:
+ rgba(255,255,255,.73);
+
+}
+
+.featured-badge{
+
+ position:absolute;
+
+ right:17px;
+ top:18px;
+
+ width:39px;
+ height:39px;
+
+ display:grid;
+ place-items:center;
+
+ border-radius:13px;
+
+ background:
+ rgba(255,255,255,.10);
+
+}
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-head{
+
+ display:flex;
+
+ align-items:end;
+
+ justify-content:space-between;
+
+ margin:
+  24px
+  18px
+  11px;
+
+}
+
+.section-title{
+
+ margin:0;
+
+ font-size:19px;
+
+ letter-spacing:-.5px;
+
+}
+
+.section-sub{
+
+ margin-top:3px;
+
+ font-size:9px;
+
+ color:var(--muted);
+
+}
+
+.result-count{
+
+ color:
+ var(--primary);
+
+ font-size:9px;
+
+ font-weight:850;
+
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.grid{
+
+ display:grid;
+
+ grid-template-columns:
+ repeat(2,1fr);
+
+ gap:11px;
+
+ padding:
+  0
+  18px
+  35px;
+
+}
+
+/* =========================================================
+   DESTINATION CARD
+========================================================= */
+
+.destination{
+
+ position:relative;
+
+ min-width:0;
+
+ padding:14px;
+
+ background:#fff;
+
+ border:
+  1px solid
+  var(--line);
+
+ border-radius:21px;
+
+ box-shadow:
+  0 8px 26px
+  rgba(20,60,40,.055);
+
+ transition:
+  transform .23s,
+  box-shadow .23s;
+
+ animation:
+  fadeUp .48s ease both;
+
+}
+
+.destination:active{
+
+ transform:
+ scale(.975);
+
+}
+
+.card-top{
+
+ display:flex;
+
+ justify-content:space-between;
+
+ align-items:start;
+
+}
+
+.destination-icon{
+
+ width:43px;
+ height:43px;
+
+ display:grid;
+ place-items:center;
+
+ border-radius:14px;
+
+ background:
+ linear-gradient(
+  145deg,
+  #e8f8f0,
+  #d9f0e5
+ );
+
+ color:
+ var(--primary);
+
+}
+
+.destination-icon .icon{
+
+ width:22px;
+ height:22px;
+
+}
+
+.number{
+
+ min-width:23px;
+ height:23px;
+
+ padding:0 6px;
+
+ display:grid;
+ place-items:center;
+
+ border-radius:8px;
+
+ background:
+ #f2f6f3;
+
+ color:
+ #83918a;
+
+ font-size:8px;
+
+ font-weight:900;
+
+}
+
+.destination h3{
+
+ margin:
+  11px
+  0
+  2px;
+
+ font-size:13px;
+
+ line-height:1.35;
+
+}
+
+.destination .english{
+
+ color:
+ var(--muted);
+
+ font-size:8px;
+
+ white-space:nowrap;
+
+ overflow:hidden;
+
+ text-overflow:ellipsis;
+
+}
+
+.tag-row{
+
+ display:flex;
+
+ gap:5px;
+
+ flex-wrap:wrap;
+
+ margin-top:9px;
+
+}
+
+.tag{
+
+ padding:
+  4px
+  6px;
+
+ border-radius:6px;
+
+ background:
+ #f4f7f5;
+
+ color:
+ #68766f;
+
+ font-size:7px;
+
+ font-weight:800;
+
+}
+
+.tag.green{
+
+ background:
+ var(--primary3);
+
+ color:
+ var(--primary);
+
+}
+
+.tag.gold{
+
+ background:
+ var(--goldbg);
+
+ color:
+ #a5761e;
+
+}
+
+.tag.blue{
+
+ background:
+ var(--bluebg);
+
+ color:
+ var(--blue);
+
+}
+
+.card-description{
+
+ margin-top:9px;
+
+ color:
+ #6b7972;
+
+ font-size:9px;
+
+ line-height:1.65;
+
+ display:
+ -webkit-box;
+
+ -webkit-line-clamp:3;
+
+ -webkit-box-orient:vertical;
+
+ overflow:hidden;
+
+}
+
+.card-action{
+
+ display:flex;
+
+ align-items:center;
+
+ justify-content:space-between;
+
+ margin-top:12px;
+
+ padding-top:10px;
+
+ border-top:
+  1px solid
+  #edf1ef;
+
+ color:
+ var(--primary);
+
+ font-size:8px;
+
+ font-weight:850;
+
+}
+
+.card-action .icon{
+
+ width:14px;
+ height:14px;
+
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty{
+
+ display:none;
+
+ padding:
+  45px
+  20px;
+
+ text-align:center;
+
+ color:
+ var(--muted);
+
+}
+
+.empty .icon{
+
+ width:35px;
+ height:35px;
+
+ margin-bottom:8px;
+
+}
+
+.empty strong{
+
+ display:block;
+
+ color:
+ var(--text);
+
+ font-size:13px;
+
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+
+ position:fixed;
+
+ inset:0;
+
+ z-index:1000;
+
+ display:none;
+
+ background:
+ rgba(11,30,23,.48);
+
+ backdrop-filter:
+ blur(10px);
+
+ align-items:end;
+
+ justify-content:center;
+
+}
+
+.modal.show{
+
+ display:flex;
+
+ animation:
+  modalIn .25s ease both;
+
+}
+
+.modal-sheet{
+
+ width:100%;
+
+ max-width:760px;
+
+ max-height:
+  88vh;
+
+ overflow-y:auto;
+
+ background:
+ #f7faf8;
+
+ border-radius:
+  29px
+  29px
+  0
+  0;
+
+ box-shadow:
+  0 -20px 70px
+  rgba(0,0,0,.18);
+
+ animation:
+  sheetUp .35s cubic-bezier(.2,.8,.2,1);
+
+}
+
+.modal-head{
+
+ position:sticky;
+
+ top:0;
+
+ z-index:2;
+
+ display:flex;
+
+ align-items:center;
+
+ justify-content:space-between;
+
+ padding:
+  16px
+  18px;
+
+ background:
+ rgba(247,250,248,.92);
+
+ backdrop-filter:
+ blur(15px);
+
+ border-bottom:
+  1px solid
+  var(--line);
+
+}
+
+.modal-title-area{
+
+ display:flex;
+
+ gap:11px;
+
+ align-items:center;
+
+}
+
+.modal-icon{
+
+ width:43px;
+ height:43px;
+
+ display:grid;
+ place-items:center;
+
+ border-radius:14px;
+
+ color:
+ var(--primary);
+
+ background:
+ var(--primary3);
+
+}
+
+.modal-head h2{
+
+ margin:0;
+
+ font-size:16px;
+
+}
+
+.modal-head span{
+
+ display:block;
+
+ margin-top:2px;
+
+ font-size:9px;
+
+ color:
+ var(--muted);
+
+}
+
+.close{
+
+ width:36px;
+ height:36px;
+
+ display:grid;
+ place-items:center;
+
+ border:0;
+
+ border-radius:12px;
+
+ background:#edf2ef;
+
+ color:#5f6e67;
+
+}
+
+.modal-content{
+
+ padding:
+  18px;
+
+}
+
+.detail-hero{
+
+ padding:18px;
+
+ border-radius:21px;
+
+ background:#fff;
+
+ border:
+  1px solid
+  var(--line);
+
+ box-shadow:
+  var(--shadow);
+
+}
+
+.detail-description{
+
+ color:
+ #65736c;
+
+ font-size:11px;
+
+ line-height:1.75;
+
+}
+
+.detail-grid{
+
+ display:grid;
+
+ grid-template-columns:
+ repeat(2,1fr);
+
+ gap:8px;
+
+ margin-top:13px;
+
+}
+
+.detail-box{
+
+ padding:12px;
+
+ border-radius:14px;
+
+ background:
+ #f5f8f6;
+
+ border:
+ 1px solid
+  #e7eee9;
+
+}
+
+.detail-box-label{
+
+ font-size:8px;
+
+ color:
+ var(--muted);
+
+ font-weight:800;
+
+}
+
+.detail-box-value{
+
+ margin-top:4px;
+
+ font-size:10px;
+
+ font-weight:750;
+
+ color:
+ var(--text);
+
+ line-height:1.45;
+
+}
+
+.notice{
+
+ margin-top:10px;
+
+ padding:13px;
+
+ display:flex;
+
+ gap:9px;
+
+ border-radius:15px;
+
+ background:
+ var(--goldbg);
+
+ border:
+ 1px solid
+ #f1e3c3;
+
+ color:
+ #756035;
+
+ font-size:9px;
+
+ line-height:1.65;
+
+}
+
+/* =========================================================
+   SOURCE NOTE
+========================================================= */
+
+.data-note{
+
+ margin:
+  0
+  18px
+  35px;
+
+ padding:14px;
+
+ border-radius:17px;
+
+ background:#fff;
+
+ border:
+  1px solid
+  var(--line);
+
+ color:
+ #7a8781;
+
+ font-size:8px;
+
+ line-height:1.7;
+
+}
+
+.data-note strong{
+
+ color:
+ #4c5d55;
+
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes fadeUp{
+
+ from{
+
+  opacity:0;
+
+  transform:
+   translateY(14px);
+
+ }
+
+ to{
+
+  opacity:1;
+
+  transform:
+   translateY(0);
+
+ }
+
+}
+
+@keyframes pulse{
+
+ 0%,100%{
+  opacity:.55;
+ }
+
+ 50%{
+  opacity:1;
+ }
+
+}
+
+@keyframes orbit{
+
+ from{
+  transform:rotate(0deg);
+ }
+
+ to{
+  transform:rotate(360deg);
+ }
+
+}
+
+@keyframes sheetUp{
+
+ from{
+
+  transform:
+   translateY(100%);
+
+ }
+
+ to{
+
+  transform:
+   translateY(0);
+
+ }
+
+}
+
+@keyframes modalIn{
+
+ from{
+  opacity:0;
+ }
+
+ to{
+  opacity:1;
+ }
+
+}
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media(min-width:700px){
+
+ body{
+  padding-bottom:30px;
+ }
+
+ .app{
+
+  box-shadow:
+   0 0 80px
+   rgba(20,60,40,.08);
+
+ }
+
+ .grid{
+
+  grid-template-columns:
+   repeat(3,1fr);
+
+ }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header class="hero">
+
+ <div class="hero-orbit"></div>
+
+ <div class="hero-leaf">
+
+  <svg class="icon" viewBox="0 0 24 24">
+
+   <path d="M20 4C11 4 5 8 5 14c0 3 2 5 5 5 6 0 10-6 10-15Z"/>
+
+   <path d="M4 21c4-5 7-8 13-12"/>
+
+  </svg>
+
+ </div>
+
+
+ <div class="brand">
+
+  <div class="brand-icon">
+
+   <svg class="icon" viewBox="0 0 24 24">
+
+    <path d="M12 21s7-4.5 7-10.5A7 7 0 0 0 5 10.5C5 16.5 12 21 12 21Z"/>
+
+    <path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+
+   </svg>
+
+  </div>
+
+  <div>
+
+   <div class="brand-name">
+    Wildlife Explorer
+   </div>
+
+   <div class="brand-sub">
+    Gazipur • Bangladesh Travel Guide
+   </div>
+
+  </div>
+
+ </div>
+
+
+ <div class="hero-content">
+
+  <div class="hero-chip">
+
+   <span class="status-dot"></span>
+
+   CURATED TRAVEL DIRECTORY
+
+  </div>
+
+  <h1>
+   Explore Places
+  </h1>
+
+  <p>
+   গাজীপুরের প্রকৃতি ও heritage থেকে শুরু করে
+   বাংলাদেশের সমুদ্র, পাহাড়, বন, হাওর ও ঐতিহাসিক
+   destination—সব এক জায়গায়।
+  </p>
+
+ </div>
+
+
+ <div class="hero-stats">
+
+  <div class="hero-stat">
+
+   <strong>20</strong>
+
+   <span>Gazipur Places</span>
+
+  </div>
+
+  <div class="hero-stat">
+
+   <strong>30</strong>
+
+   <span>Bangladesh Places</span>
+
+  </div>
+
+  <div class="hero-stat">
+
+   <strong>50</strong>
+
+   <span>Total Guide</span>
+
+  </div>
+
+ </div>
+
+</header>
+
+
+<!-- =====================================================
+     CONTROLS
+===================================================== -->
+
+<section class="controls">
+
+
+ <div class="main-tabs">
+
+  <button
+   class="main-tab active"
+   data-region="gazipur">
+
+   📍 Gazipur
+   <br>
+   <small>২০টি স্থান</small>
+
+  </button>
+
+  <button
+   class="main-tab"
+   data-region="bangladesh">
+
+   🇧🇩 Bangladesh
+   <br>
+   <small>৩০টি স্থান</small>
+
+  </button>
+
+ </div>
+
+
+ <div class="search">
+
+  <svg class="icon" viewBox="0 0 24 24">
+
+   <circle cx="11" cy="11" r="7"/>
+
+   <path d="m20 20-4-4"/>
+
+  </svg>
+
+  <input
+   id="searchInput"
+   type="search"
+   autocomplete="off"
+   placeholder="স্থান, জেলা বা attraction খুঁজুন...">
+
+ </div>
+
+
+ <div
+  class="categories"
+  id="categories">
+
+  <button
+   class="category active"
+   data-category="all">
+
+   সব
+
+  </button>
+
+  <button
+   class="category"
+   data-category="nature">
+
+   Nature
+
+  </button>
+
+  <button
+   class="category"
+   data-category="wildlife">
+
+   Wildlife
+
+  </button>
+
+  <button
+   class="category"
+   data-category="beach">
+
+   Beach
+
+  </button>
+
+  <button
+   class="category"
+   data-category="hill">
+
+   Hill
+
+  </button>
+
+  <button
+   class="category"
+   data-category="heritage">
+
+   Heritage
+
+  </button>
+
+  <button
+   class="category"
+   data-category="water">
+
+   Water
+
+  </button>
+
+ </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURED
+===================================================== -->
+
+<section class="featured">
+
+ <div class="featured-label">
+  WILDLIFE EXPLORER • FEATURED
+ </div>
+
+ <h2 id="featuredTitle">
+  Gazipur Safari Park
+ </h2>
+
+ <p id="featuredText">
+  Wildlife-focused destination in Sreepur,
+  Gazipur. Safari experience, wildlife viewing
+  and large natural landscape.
+ </p>
+
+ <div class="featured-badge">
+
+  <svg class="icon" viewBox="0 0 24 24">
+
+   <path d="M5 20c1-5 3-8 7-8s6 3 7 8"/>
+
+   <path d="M8 11c-2-1-2-4 0-5"/>
+
+   <path d="M16 11c2-1 2-4 0-5"/>
+
+   <circle cx="9" cy="9" r=".7"/>
+
+   <circle cx="15" cy="9" r=".7"/>
+
+  </svg>
+
+ </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECTION HEADER
+===================================================== -->
+
+<div class="section-head">
+
+ <div>
+
+  <h2
+   class="section-title"
+   id="sectionTitle">
+
+   Gazipur Destinations
+
+  </h2>
+
+  <div
+   class="section-sub"
+   id="sectionSubtitle">
+
+   Popular & curated places to explore
+
+  </div>
+
+ </div>
+
+ <div
+  class="result-count"
+  id="resultCount">
+
+  20 places
+
+ </div>
+
+</div>
+
+
+<!-- =====================================================
+     CARDS
+===================================================== -->
+
+<main
+ id="placesGrid"
+ class="grid">
+</main>
+
+
+<div
+ id="emptyState"
+ class="empty">
+
+ <svg
+  class="icon"
+  viewBox="0 0 24 24">
+
+  <circle cx="11" cy="11" r="7"/>
+
+  <path d="m20 20-4-4"/>
+
+ </svg>
+
+ <strong>
+  কোনো জায়গা পাওয়া যায়নি
+ </strong>
+
+ <span>
+  Search বা category পরিবর্তন করে আবার চেষ্টা করুন।
+ </span>
+
+</div>
+
+
+<!-- =====================================================
+     DATA NOTE
+===================================================== -->
+
+<div class="data-note">
+
+ <strong>Travel information</strong><br>
+
+ এই directory-র “popular” তালিকা কোনো সরকারি ranking
+ নয়। এটি Wildlife Explorer-এর জন্য একটি curated travel
+ directory। Opening hours, ticket price, road condition,
+ entry permission, seasonal access এবং কোনো destination-এর
+ current status পরিবর্তিত হতে পারে। ভ্রমণের আগে সংশ্লিষ্ট
+ কর্তৃপক্ষের সর্বশেষ তথ্য যাচাই করুন।
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     DETAIL MODAL
+===================================================== -->
+
+<div
+ id="modal"
+ class="modal">
+
+ <div class="modal-sheet">
+
+  <div class="modal-head">
+
+   <div class="modal-title-area">
+
+    <div
+     class="modal-icon"
+     id="modalIcon">
+
+     <svg
+      class="icon"
+      viewBox="0 0 24 24">
+
+      <path d="M12 21s7-4.5 7-10.5A7 7 0 0 0 5 10.5C5 16.5 12 21 12 21Z"/>
+
+      <circle cx="12" cy="10" r="2"/>
+
+     </svg>
+
+    </div>
+
+    <div>
+
+     <h2 id="modalTitle">
+      Destination
+     </h2>
+
+     <span id="modalEnglish">
+      Destination
+     </span>
+
+    </div>
+
+   </div>
+
+   <button
+    class="close"
+    id="closeModal">
+
+    <svg
+     class="icon"
+     viewBox="0 0 24 24">
+
+     <path d="M6 6l12 12"/>
+
+     <path d="M18 6 6 18"/>
+
+    </svg>
+
+   </button>
+
+  </div>
+
+
+  <div class="modal-content">
+
+   <div class="detail-hero">
+
+    <div
+     class="detail-description"
+     id="modalDescription">
+    </div>
+
+
+    <div
+     class="detail-grid">
+
+     <div class="detail-box">
+
+      <div class="detail-box-label">
+       LOCATION
+      </div>
+
+      <div
+       class="detail-box-value"
+       id="modalLocation">
+      </div>
+
+     </div>
+
+
+     <div class="detail-box">
+
+      <div class="detail-box-label">
+       TYPE
+      </div>
+
+      <div
+       class="detail-box-value"
+       id="modalType">
+      </div>
+
+     </div>
+
+
+     <div class="detail-box">
+
+      <div class="detail-box-label">
+       BEST FOR
+      </div>
+
+      <div
+       class="detail-box-value"
+       id="modalBest">
+      </div>
+
+     </div>
+
+
+     <div class="detail-box">
+
+      <div class="detail-box-label">
+       EXPERIENCE
+      </div>
+
+      <div
+       class="detail-box-value"
+       id="modalExperience">
+      </div>
+
+     </div>
+
+
+     <div class="detail-box">
+
+      <div class="detail-box-label">
+       TRIP STYLE
+      </div>
+
+      <div
+       class="detail-box-value"
+       id="modalTrip">
+      </div>
+
+     </div>
+
+
+     <div class="detail-box">
+
+      <div class="detail-box-label">
+       ACCESS
+      </div>
+
+      <div
+       class="detail-box-value"
+       id="modalAccess">
+      </div>
+
+     </div>
+
+    </div>
+
+
+    <div class="notice">
+
+     <svg
+      class="icon sm"
+      viewBox="0 0 24 24">
+
+      <circle cx="12" cy="12" r="9"/>
+
+      <path d="M12 8v5"/>
+
+      <path d="M12 16h.01"/>
+
+     </svg>
+
+     <span id="modalNotice">
+      Visit information can change.
+     </span>
+
+    </div>
+
+   </div>
+
+  </div>
+
+ </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   WILDLIFE EXPLORER
+   50 DESTINATION DATABASE
+========================================================= */
+
+const destinations = [
+
+/* =========================================================
+   GAZIPUR 01
+========================================================= */
+
+{
+ region:"gazipur",
+ name:"গাজীপুর সাফারি পার্ক",
+ en:"Gazipur Safari Park",
+ location:"Sreepur / Pirujali, Gazipur",
+ type:"Wildlife • Nature",
+ category:["wildlife","nature"],
+ icon:"animal",
+
+ desc:"গাজীপুরের অন্যতম প্রধান wildlife destination। বড় প্রাকৃতিক landscape-এর মধ্যে বিভিন্ন wildlife viewing ও safari-oriented experience-এর জন্য পরিচিত।",
+ best:"Wildlife • Family • Photography",
+ experience:"Safari-style wildlife viewing",
+ trip:"Half day • Full day",
+ access:"Public attraction; current access ও ticket আগে যাচাই করুন",
+ notice:"Park zone, transport, ticket এবং visitor rules সময়ের সঙ্গে পরিবর্তিত হতে পারে।",
+
+},
+
+/* 02 */
+
+{
+ region:"gazipur",
+ name:"ভাওয়াল জাতীয় উদ্যান",
+ en:"Bhawal National Park",
+ location:"Gazipur Sadar • Sreepur",
+ type:"National Park • Forest",
+ category:["nature","wildlife"],
+ icon:"tree",
+
+ desc:"ভাওয়াল শালবনের সবুজ পরিবেশ, বনভূমি ও recreation facilities-এর জন্য গাজীপুরের অন্যতম পরিচিত nature destination।",
+ best:"Nature • Picnic • Family",
+ experience:"Sal forest • Green landscape",
+ trip:"Half day",
+ access:"Road access; park rules অনুসরণ করুন",
+ notice:"Picnic spot, rest-house ও booking-এর নিয়ম কর্তৃপক্ষ নির্ধারণ করে।",
+
+},
+
+/* 03 */
+
+{
+ region:"gazipur",
+ name:"নুহাশ পল্লী",
+ en:"Nuhash Polli",
+ location:"Pirojoli, Gazipur",
+ type:"Culture • Nature",
+ category:["nature","heritage"],
+ icon:"house",
+
+ desc:"হুমায়ূন আহমেদের স্মৃতিবিজড়িত পরিচিত destination। সবুজ landscape, garden, pond ও সাংস্কৃতিক স্মৃতির কারণে আলাদা আকর্ষণ তৈরি করেছে।",
+ best:"Culture • Photography • Quiet trip",
+ experience:"Garden • Memory • Landscape",
+ trip:"Half day",
+ access:"Access/opening status আগে যাচাই করুন",
+ notice:"Private/managed property হলে visitor access ও সময় পরিবর্তিত হতে পারে।",
+
+},
+
+/* 04 */
+
+{
+ region:"gazipur",
+ name:"ভাওয়াল রাজবাড়ী",
+ en:"Bhawal Rajbari",
+ location:"Joydebpur, Gazipur",
+ type:"Heritage • Architecture",
+ category:["heritage"],
+ icon:"castle",
+
+ desc:"ভাওয়াল Estate ও রাজপরিবারের ইতিহাসের সঙ্গে সম্পর্কিত গাজীপুরের অন্যতম পরিচিত heritage attraction।",
+ best:"History • Architecture",
+ experience:"Historic architecture",
+ trip:"Short stop",
+ access:"Public surroundings; specific building access যাচাই করুন",
+ notice:"Heritage site-এর বর্তমান ব্যবহার ও visitor access স্থানীয়ভাবে যাচাই করুন।",
+
+},
+
+/* 05 */
+
+{
+ region:"gazipur",
+ name:"ভাওয়াল রাজার বাড়ি ও দীঘি",
+ en:"Bhawal King's House & Dighi",
+ location:"Pirbari area, Gazipur",
+ type:"Heritage • Water",
+ category:["heritage","water"],
+ icon:"castle",
+
+ desc:"ভাওয়াল রাজপরিবারের ইতিহাসের সঙ্গে সম্পর্কিত বাড়ি ও বড় জলাশয়ভিত্তিক ঐতিহাসিক স্থান।",
+ best:"History • Photography",
+ experience:"Heritage • Dighi",
+ trip:"Short stop",
+ access:"Local access; verify before visit",
+ notice:"স্থানের বর্তমান অবস্থা ও প্রবেশাধিকার পরিবর্তিত হতে পারে।",
+
+},
+
+/* 06 */
+
+{
+ region:"gazipur",
+ name:"জাগ্রত চৌরঙ্গী",
+ en:"Jagrata Chowrangi",
+ location:"Chandana Chowrasta, Gazipur",
+ type:"Memorial • Landmark",
+ category:["heritage"],
+ icon:"monument",
+
+ desc:"গাজীপুরের পরিচিত public landmark ও মুক্তিযুদ্ধ-স্মৃতির সঙ্গে সম্পর্কিত স্থাপনা।",
+ best:"History • Landmark",
+ experience:"Memorial visit",
+ trip:"Short stop",
+ access:"Roadside landmark",
+ notice:"স্মৃতিস্তম্ভে স্থানীয় visitor etiquette অনুসরণ করুন।",
+
+},
+
+/* 07 */
+
+{
+ region:"gazipur",
+ name:"শালনা বনভোজন কেন্দ্র",
+ en:"Shalna Forest Picnic Centre",
+ location:"Gazipur–Mymensingh Road",
+ type:"Nature • Picnic",
+ category:["nature"],
+ icon:"tree",
+
+ desc:"শালবন ও সবুজ পরিবেশকে কেন্দ্র করে পরিচিত বনভোজন এলাকা।",
+ best:"Family • Picnic",
+ experience:"Forest greenery",
+ trip:"Half day",
+ access:"Road access",
+ notice:"Picnic booking বা forest rules আগে যাচাই করুন।",
+
+},
+
+/* 08 */
+
+{
+ region:"gazipur",
+ name:"বেলাই বিল",
+ en:"Belai Beel",
+ location:"Gazipur",
+ type:"Wetland • Nature",
+ category:["nature","water"],
+ icon:"water",
+
+ desc:"গাজীপুরের পরিচিত প্রাকৃতিক জলাভূমি। বর্ষাকালে জলভূমির landscape ও rural environment আলাদা আকর্ষণ তৈরি করে।",
+ best:"Nature • Photography",
+ experience:"Wetland • Rural landscape",
+ trip:"Short / Half day",
+ access:"Local roads; seasonal conditions matter",
+ notice:"বর্ষায় রাস্তা ও নৌযাতায়াতের অবস্থা পরিবর্তিত হতে পারে।",
+
+},
+
+/* 09 */
+
+{
+ region:"gazipur",
+ name:"Baliadi Jamidar Bari",
+ en:"Baliadi Zamindar Bari",
+ location:"Kaliakair area, Gazipur",
+ type:"Heritage",
+ category:["heritage"],
+ icon:"castle",
+
+ desc:"গাজীপুরের পরিচিত ঐতিহাসিক জমিদারবাড়িগুলোর একটি। পুরনো স্থাপত্য ও heritage atmosphere-এর জন্য পরিচিত।",
+ best:"History • Architecture",
+ experience:"Historic building",
+ trip:"Short stop",
+ access:"Verify current access",
+ notice:"ব্যক্তিগত/সীমিত property হলে অনুমতি ছাড়া প্রবেশ করবেন না।",
+
+},
+
+/* 10 */
+
+{
+ region:"gazipur",
+ name:"শ্রীফলতলী জমিদার বাড়ি",
+ en:"Sreefoltoli Zamindar Bari",
+ location:"Gazipur",
+ type:"Heritage • Architecture",
+ category:["heritage"],
+ icon:"castle",
+
+ desc:"গাজীপুরের জমিদারবাড়ি ও স্থানীয় ইতিহাসভিত্তিক destination-এর মধ্যে উল্লেখযোগ্য।",
+ best:"Heritage • Photography",
+ experience:"Architecture",
+ trip:"Short stop",
+ access:"Local access",
+ notice:"বর্তমান স্থাপনা ও visitor access আগে যাচাই করুন।",
+
+},
+
+/* 11 */
+
+{
+ region:"gazipur",
+ name:"কাশিমপুর রাজবাড়ী",
+ en:"Kashimpur Rajbari",
+ location:"Kashimpur, Gazipur",
+ type:"Heritage",
+ category:["heritage"],
+ icon:"castle",
+
+ desc:"কাশিমপুর এলাকার ঐতিহাসিক স্থাপনা হিসেবে পরিচিত। স্থানীয় heritage itinerary-তে যোগ করা যায়।",
+ best:"History • Architecture",
+ experience:"Heritage exploration",
+ trip:"Short stop",
+ access:"Verify locally",
+ notice:"Historical property-এর বর্তমান ব্যবহার পরিবর্তিত হতে পারে।",
+
+},
+
+/* 12 */
+
+{
+ region:"gazipur",
+ name:"সেন্ট নিকোলাস চার্চ",
+ en:"St. Nicholas Tolentino Church",
+ location:"Kaliganj, Gazipur",
+ type:"Religious Heritage",
+ category:["heritage"],
+ icon:"church",
+
+ desc:"কালীগঞ্জ এলাকার পরিচিত Christian heritage attraction। ঐতিহাসিক স্থাপত্য ও ধর্মীয় heritage-এর জন্য গুরুত্বপূর্ণ।",
+ best:"Architecture • Heritage",
+ experience:"Religious heritage",
+ trip:"Short stop",
+ access:"Respect religious rules",
+ notice:"প্রার্থনা/ধর্মীয় কার্যক্রম চলাকালে visitor rules মেনে চলুন।",
+
+},
+
+/* 13 */
+
+{
+ region:"gazipur",
+ name:"টোক মসজিদ",
+ en:"Tok Mosque",
+ location:"Kapasia, Gazipur",
+ type:"Religious Heritage",
+ category:["heritage"],
+ icon:"mosque",
+
+ desc:"গাজীপুরের ঐতিহাসিক ধর্মীয় স্থাপনার তালিকায় থাকা একটি mosque heritage destination।",
+ best:"History • Architecture",
+ experience:"Mosque architecture",
+ trip:"Short stop",
+ access:"Respect prayer times",
+ notice:"Active religious site হলে স্থানীয় etiquette অনুসরণ করুন।",
+
+},
+
+/* 14 */
+
+{
+ region:"gazipur",
+ name:"সুলতানপুর দরগাপাড়া শাহী মসজিদ",
+ en:"Sultanpur Dargapara Shahi Mosque",
+ location:"Gazipur",
+ type:"Religious Heritage",
+ category:["heritage"],
+ icon:"mosque",
+
+ desc:"গাজীপুরের ঐতিহাসিক mosque ও religious heritage-এর একটি উল্লেখযোগ্য নাম।",
+ best:"Heritage • Architecture",
+ experience:"Historic mosque",
+ trip:"Short stop",
+ access:"Verify local access",
+ notice:"ধর্মীয় স্থানে শালীন পোশাক ও স্থানীয় নিয়ম মেনে চলুন।",
+
+},
+
+/* 15 */
+
+{
+ region:"gazipur",
+ name:"প্রাচীন ইন্দ্রাকপুর",
+ en:"Ancient Indrakpur",
+ location:"Sreepur, Gazipur",
+ type:"Ancient Heritage",
+ category:["heritage"],
+ icon:"ruins",
+
+ desc:"শ্রীপুর অঞ্চলের প্রাচীন ইতিহাসের সঙ্গে সম্পর্কিত একটি ঐতিহাসিক স্থান হিসেবে পরিচিত।",
+ best:"History • Exploration",
+ experience:"Ancient heritage",
+ trip:"Short stop",
+ access:"Local verification recommended",
+ notice:"দৃশ্যমান archaeological remains ও access সম্পর্কে আগে খোঁজ নিন।",
+
+},
+
+/* 16 */
+
+{
+ region:"gazipur",
+ name:"হোতাপাড়া Shooting Spot",
+ en:"Hotapara Shooting Spot",
+ location:"Hotapara, Gazipur",
+ type:"Film • Culture",
+ category:["nature","heritage"],
+ icon:"camera",
+
+ desc:"বাংলাদেশের চলচ্চিত্র ও নাট্যপ্রযোজনার সঙ্গে সম্পর্কিত পরিচিত shooting-location area।",
+ best:"Culture • Photography",
+ experience:"Film-location atmosphere",
+ trip:"Short visit",
+ access:"Permission may be required",
+ notice:"Shooting চললে restricted area থাকতে পারে।",
+
+},
+
+/* 17 */
+
+{
+ region:"gazipur",
+ name:"জল ও জঙ্গলের কাব্য",
+ en:"Jol O Jongoler Kabbo",
+ location:"Gazipur",
+ type:"Resort • Nature",
+ category:["nature"],
+ icon:"leaf",
+
+ desc:"জল ও সবুজকে কেন্দ্র করে তৈরি recreation/resort experience-এর জন্য পরিচিত।",
+ best:"Relaxation • Family",
+ experience:"Greenery • Water",
+ trip:"Half day / Day stay",
+ access:"Private property",
+ notice:"Entry, booking ও facility availability আগে যাচাই করুন।",
+
+},
+
+/* 18 */
+
+{
+ region:"gazipur",
+ name:"সারাহ রিসোর্ট",
+ en:"Sarah Resort",
+ location:"Gazipur",
+ type:"Resort • Nature",
+ category:["nature"],
+ icon:"resort",
+
+ desc:"গাজীপুরের resort destinations-এর মধ্যে পরিচিত একটি leisure-oriented property।",
+ best:"Relaxation • Family",
+ experience:"Resort recreation",
+ trip:"Day trip / Stay",
+ access:"Booking recommended",
+ notice:"Rates, availability ও facilities পরিবর্তিত হতে পারে।",
+
+},
+
+/* 19 */
+
+{
+ region:"gazipur",
+ name:"ছুটি রিসোর্ট",
+ en:"Chuti Resort",
+ location:"Gazipur",
+ type:"Resort • Nature",
+ category:["nature"],
+ icon:"resort",
+
+ desc:"সবুজ পরিবেশে leisure ও day-trip experience-এর জন্য পরিচিত resort destination।",
+ best:"Family • Relaxation",
+ experience:"Resort • Nature",
+ trip:"Day trip / Stay",
+ access:"Private property",
+ notice:"Advance booking ও current package যাচাই করুন।",
+
+},
+
+/* 20 */
+
+{
+ region:"gazipur",
+ name:"মেঘ বাড়ি রিসোর্ট",
+ en:"Megh Bari Resort",
+ location:"Gazipur",
+ type:"Resort • Nature",
+ category:["nature"],
+ icon:"resort",
+
+ desc:"গাজীপুরের জনপ্রিয় resort belt-এর একটি leisure destination।",
+ best:"Family • Relaxation",
+ experience:"Resort recreation",
+ trip:"Day trip / Stay",
+ access:"Private property",
+ notice:"Booking ও facility availability আগে নিশ্চিত করুন।",
+
+},
+
+
+/* =========================================================
+   BANGLADESH 01
+========================================================= */
+
+{
+ region:"bangladesh",
+ name:"কক্সবাজার সমুদ্র সৈকত",
+ en:"Cox's Bazar Beach",
+ location:"Cox's Bazar",
+ type:"Beach • Sea",
+ category:["beach","water"],
+ icon:"beach",
+
+ desc:"বাংলাদেশের সবচেয়ে পরিচিত সমুদ্রভ্রমণ destination। দীর্ঘ sandy coastline, sunset ও coastal tourism-এর জন্য বিখ্যাত।",
+ best:"Beach • Family • Sunset",
+ experience:"Sea • Sand • Sunset",
+ trip:"2–3 days",
+ access:"Major tourist destination",
+ notice:"Sea conditions ও weather দেখে সমুদ্রভ্রমণ করুন।",
+
+},
+
+/* 22 */
+
+{
+ region:"bangladesh",
+ name:"সেন্ট মার্টিন দ্বীপ",
+ en:"Saint Martin's Island",
+ location:"Teknaf / Bay of Bengal",
+ type:"Island • Coral",
+ category:["beach","water"],
+ icon:"island",
+
+ desc:"বাংলাদেশের একমাত্র coral-bearing island হিসেবে পরিচিত। নীল জল, দ্বীপের landscape ও coastal experience-এর জন্য জনপ্রিয়।",
+ best:"Island • Photography",
+ experience:"Island • Sea",
+ trip:"2 days",
+ access:"Seasonal/regulated access",
+ notice:"Travel season ও vessel operation পরিবর্তিত হতে পারে।",
+
+},
+
+/* 23 */
+
+{
+ region:"bangladesh",
+ name:"সুন্দরবন",
+ en:"The Sundarbans",
+ location:"Khulna • Bagerhat • Satkhira",
+ type:"Mangrove • Wildlife",
+ category:["wildlife","nature","water"],
+ icon:"mangrove",
+
+ desc:"বিশ্বের বৃহত্তম mangrove forest ecosystem। Bengal tiger, wildlife, rivers, creeks ও unique coastal ecology-এর জন্য বিশ্বখ্যাত।",
+ best:"Wildlife • Nature",
+ experience:"Mangrove • Boat • Wildlife",
+ trip:"2–4 days",
+ access:"Permit/organized tour",
+ notice:"Forest entry, permit ও route rules অনুসরণ করা বাধ্যতামূলক।",
+
+},
+
+/* 24 */
+
+{
+ region:"bangladesh",
+ name:"সাজেক ভ্যালি",
+ en:"Sajek Valley",
+ location:"Rangamati",
+ type:"Hill • Cloud",
+ category:["hill","nature"],
+ icon:"mountain",
+
+ desc:"পাহাড়, মেঘ ও valley landscape-এর জন্য বাংলাদেশের সবচেয়ে জনপ্রিয় hill destinations-এর একটি।",
+ best:"Mountain • Photography",
+ experience:"Cloud • Hills • Sunrise",
+ trip:"2–3 days",
+ access:"Road journey",
+ notice:"Weather ও road condition আগে যাচাই করুন।",
+
+},
+
+/* 25 */
+
+{
+ region:"bangladesh",
+ name:"বান্দরবান",
+ en:"Bandarban",
+ location:"Chattogram Hill Tracts",
+ type:"Hill • Adventure",
+ category:["hill","nature"],
+ icon:"mountain",
+
+ desc:"পাহাড়ি landscape, viewpoint, indigenous culture ও adventure routes-এর জন্য বাংলাদেশের অন্যতম জনপ্রিয় mountain destination।",
+ best:"Adventure • Nature",
+ experience:"Mountain • Viewpoint",
+ trip:"2–4 days",
+ access:"Road",
+ notice:"Remote route-এর জন্য স্থানীয় guide ও current route status যাচাই করুন।",
+
+},
+
+/* 26 */
+
+{
+ region:"bangladesh",
+ name:"নীলগিরি",
+ en:"Nilgiri",
+ location:"Bandarban",
+ type:"Mountain • Viewpoint",
+ category:["hill"],
+ icon:"mountain",
+
+ desc:"উঁচু পাহাড়ি viewpoint, cloudscape ও sunrise/sunset experience-এর জন্য পরিচিত।",
+ best:"View • Photography",
+ experience:"Mountain cloudscape",
+ trip:"1–2 days",
+ access:"Hill road",
+ notice:"Weather ও road safety গুরুত্বপূর্ণ।",
+
+},
+
+/* 27 */
+
+{
+ region:"bangladesh",
+ name:"বগা লেক",
+ en:"Boga Lake",
+ location:"Bandarban",
+ type:"Lake • Mountain",
+ category:["hill","water"],
+ icon:"lake",
+
+ desc:"পাহাড়ঘেরা প্রাকৃতিক lake destination। Trekking ও adventure travel-এর জন্য জনপ্রিয়।",
+ best:"Adventure • Trekking",
+ experience:"Trek • Lake",
+ trip:"2–3 days",
+ access:"Trekking route",
+ notice:"স্থানীয় guide ও route condition যাচাই করুন।",
+
+},
+
+/* 28 */
+
+{
+ region:"bangladesh",
+ name:"নাফাখুম",
+ en:"Nafakhum Waterfall",
+ location:"Thanchi, Bandarban",
+ type:"Waterfall • Adventure",
+ category:["hill","water"],
+ icon:"waterfall",
+
+ desc:"দুর্গম পাহাড়ি অঞ্চলের waterfall destination; trekking ও river journey-এর জন্য পরিচিত।",
+ best:"Adventure • Nature",
+ experience:"Trekking • Waterfall",
+ trip:"2–3 days",
+ access:"Remote route",
+ notice:"Local permission, guide এবং weather condition নিশ্চিত করুন।",
+
+},
+
+/* 29 */
+
+{
+ region:"bangladesh",
+ name:"রাঙামাটি কাপ্তাই লেক",
+ en:"Kaptai Lake",
+ location:"Rangamati",
+ type:"Lake • Hill",
+ category:["hill","water"],
+ icon:"lake",
+
+ desc:"পাহাড় ও বিশাল জলরাশির মিলনে তৈরি scenic destination। Boat ride ও lake-view experience-এর জন্য জনপ্রিয়।",
+ best:"Family • Boat • Photography",
+ experience:"Lake • Hills • Boat",
+ trip:"2 days",
+ access:"Road + boat",
+ notice:"Boat safety rules মেনে চলুন।",
+
+},
+
+/* 30 */
+
+{
+ region:"bangladesh",
+ name:"জাফলং",
+ en:"Jaflong",
+ location:"Sylhet",
+ type:"River • Hill",
+ category:["hill","water"],
+ icon:"mountain",
+
+ desc:"পাহাড়, পাথর, নদী ও সীমান্ত landscape-এর জন্য সিলেটের অন্যতম পরিচিত tourist destination।",
+ best:"Nature • Photography",
+ experience:"River • Hills",
+ trip:"1–2 days",
+ access:"Road",
+ notice:"Border-area rules ও local safety নির্দেশনা মেনে চলুন।",
+
+},
+
+/* 31 */
+
+{
+ region:"bangladesh",
+ name:"রাতারগুল সোয়াম্প ফরেস্ট",
+ en:"Ratargul Swamp Forest",
+ location:"Sylhet",
+ type:"Swamp Forest",
+ category:["nature","water"],
+ icon:"tree",
+
+ desc:"বাংলাদেশের পরিচিত freshwater swamp forest destination। বর্ষায় নৌকা ভ্রমণ বিশেষ আকর্ষণ।",
+ best:"Nature • Photography",
+ experience:"Boat • Wetland forest",
+ trip:"Half day",
+ access:"Boat route",
+ notice:"Water level ও boat availability seasonal হতে পারে।",
+
+},
+
+/* 32 */
+
+{
+ region:"bangladesh",
+ name:"বিছানাকান্দি",
+ en:"Bichanakandi",
+ location:"Sylhet",
+ type:"River • Stones",
+ category:["water","hill"],
+ icon:"water",
+
+ desc:"পাহাড়ি নদী, পাথর ও freshwater landscape-এর জন্য জনপ্রিয় Sylhet destination।",
+ best:"Nature • Photography",
+ experience:"River • Stones • Hills",
+ trip:"Half day",
+ access:"Road + local transport",
+ notice:"বর্ষায় পানির স্রোত ও পাথরের slippery surface সম্পর্কে সতর্ক থাকুন।",
+
+},
+
+/* 33 */
+
+{
+ region:"bangladesh",
+ name:"শ্রীমঙ্গল চা বাগান",
+ en:"Sreemangal Tea Gardens",
+ location:"Moulvibazar",
+ type:"Tea • Nature",
+ category:["nature"],
+ icon:"tea",
+
+ desc:"বাংলাদেশের tea country-এর অন্যতম পরিচিত অঞ্চল। rolling tea gardens ও সবুজ landscape-এর জন্য বিখ্যাত।",
+ best:"Nature • Photography",
+ experience:"Tea gardens",
+ trip:"1–2 days",
+ access:"Road / rail",
+ notice:"Private tea garden access আগে অনুমতি নিয়ে করুন।",
+
+},
+
+/* 34 */
+
+{
+ region:"bangladesh",
+ name:"লাওয়াছড়া জাতীয় উদ্যান",
+ en:"Lawachara National Park",
+ location:"Moulvibazar",
+ type:"Rainforest • Wildlife",
+ category:["nature","wildlife"],
+ icon:"tree",
+
+ desc:"চিরসবুজ forest ecosystem, wildlife ও nature trails-এর জন্য পরিচিত national park।",
+ best:"Wildlife • Nature walk",
+ experience:"Forest • Trail",
+ trip:"Half day",
+ access:"Park rules",
+ notice:"Wildlife habitat-এ শব্দ ও littering এড়িয়ে চলুন।",
+
+},
+
+/* 35 */
+
+{
+ region:"bangladesh",
+ name:"তাঙ্গুয়ার হাওর",
+ en:"Tanguar Haor",
+ location:"Sunamganj",
+ type:"Wetland • Haor",
+ category:["water","nature"],
+ icon:"water",
+
+ desc:"হাওর ecosystem, বর্ষার জলরাশি ও migratory birds-এর জন্য পরিচিত বিশাল wetland landscape।",
+ best:"Nature • Birdwatching",
+ experience:"Boat • Wetland",
+ trip:"2–3 days",
+ access:"Boat-based",
+ notice:"Season, water level ও boat route আগে যাচাই করুন।",
+
+},
+
+/* 36 */
+
+{
+ region:"bangladesh",
+ name:"কুয়াকাটা সমুদ্র সৈকত",
+ en:"Kuakata Beach",
+ location:"Patuakhali",
+ type:"Beach • Sea",
+ category:["beach","water"],
+ icon:"beach",
+
+ desc:"বাংলাদেশের দক্ষিণ উপকূলের পরিচিত beach destination; sunrise ও sunset দুটিই দেখার সুযোগের জন্য জনপ্রিয়।",
+ best:"Beach • Sunset • Sunrise",
+ experience:"Sea • Sunrise • Sunset",
+ trip:"1–2 days",
+ access:"Road",
+ notice:"Weather ও coastal conditions দেখে ভ্রমণ করুন।",
+
+},
+
+/* 37 */
+
+{
+ region:"bangladesh",
+ name:"নিঝুম দ্বীপ",
+ en:"Nijhum Dwip",
+ location:"Noakhali",
+ type:"Island • Nature",
+ category:["nature","water"],
+ icon:"island",
+
+ desc:"Coastal island landscape, deer habitat ও quiet nature experience-এর জন্য পরিচিত।",
+ best:"Nature • Wildlife",
+ experience:"Island • Mangrove",
+ trip:"2–3 days",
+ access:"Boat-dependent",
+ notice:"Tide, weather ও boat schedule আগে নিশ্চিত করুন।",
+
+},
+
+/* 38 */
+
+{
+ region:"bangladesh",
+ name:"সোনাদিয়া দ্বীপ",
+ en:"Sonadia Island",
+ location:"Maheshkhali, Cox's Bazar",
+ type:"Island • Coastal",
+ category:["beach","water"],
+ icon:"island",
+
+ desc:"Coastal ecology, sandy landscape ও relatively quiet island experience-এর জন্য পরিচিত।",
+ best:"Nature • Photography",
+ experience:"Island • Coastal landscape",
+ trip:"Day trip",
+ access:"Boat",
+ notice:"Local boat availability ও weather যাচাই করুন।",
+
+},
+
+/* 39 */
+
+{
+ region:"bangladesh",
+ name:"মহেশখালী",
+ en:"Maheshkhali",
+ location:"Cox's Bazar",
+ type:"Island • Heritage",
+ category:["water","heritage"],
+ icon:"island",
+
+ desc:"দ্বীপভিত্তিক landscape, hills এবং religious heritage-এর জন্য পরিচিত Cox's Bazar region-এর destination।",
+ best:"Culture • Nature",
+ experience:"Island • Hill • Heritage",
+ trip:"1 day",
+ access:"Road + boat",
+ notice:"Ferry/boat schedule আগে যাচাই করুন।",
+
+},
+
+/* 40 */
+
+{
+ region:"bangladesh",
+ name:"পতেঙ্গা সমুদ্র সৈকত",
+ en:"Patenga Beach",
+ location:"Chattogram",
+ type:"Beach • City",
+ category:["beach","water"],
+ icon:"beach",
+
+ desc:"চট্টগ্রাম শহরের কাছাকাছি জনপ্রিয় coastal leisure destination। Sea view, sunset ও city trip-এর সঙ্গে সহজে যুক্ত করা যায়।",
+ best:"Family • Sunset",
+ experience:"Sea • City",
+ trip:"Half day",
+ access:"Road",
+ notice:"Peak hours-এ ভিড় ও weather conditions বিবেচনা করুন।",
+
+},
+
+/* 41 */
+
+{
+ region:"bangladesh",
+ name:"সীতাকুণ্ড চন্দ্রনাথ পাহাড়",
+ en:"Chandranath Hill",
+ location:"Sitakunda, Chattogram",
+ type:"Hill • Temple",
+ category:["hill","heritage"],
+ icon:"mountain",
+
+ desc:"চট্টগ্রামের পরিচিত hill destination; trekking এবং religious heritage-এর জন্য জনপ্রিয়।",
+ best:"Trekking • Culture",
+ experience:"Hill climb • Temple",
+ trip:"1 day",
+ access:"Road + hike",
+ notice:"Trekking route-এ পানি, জুতা ও আবহাওয়া বিবেচনা করুন।",
+
+},
+
+/* 42 */
+
+{
+ region:"bangladesh",
+ name:"পুঠিয়া রাজবাড়ী",
+ en:"Puthia Temple & Palace Complex",
+ location:"Rajshahi",
+ type:"Heritage • Architecture",
+ category:["heritage"],
+ icon:"castle",
+
+ desc:"বাংলাদেশের অন্যতম সুন্দর historic temple-palace complexes-এর একটি; terracotta architecture-এর জন্য পরিচিত।",
+ best:"History • Architecture",
+ experience:"Temple • Palace",
+ trip:"Half day",
+ access:"Road",
+ notice:"Religious sites-এর visitor etiquette মেনে চলুন।",
+
+},
+
+/* 43 */
+
+{
+ region:"bangladesh",
+ name:"সোমপুর মহাবিহার",
+ en:"Somapura Mahavihara",
+ location:"Naogaon",
+ type:"Archaeological Heritage",
+ category:["heritage"],
+ icon:"ruins",
+
+ desc:"Paharpur-এর সোমপুর মহাবিহার UNESCO World Heritage Site এবং দক্ষিণ এশিয়ার গুরুত্বপূর্ণ archaeological monument।",
+ best:"History • Archaeology",
+ experience:"Ancient monastery",
+ trip:"Half day",
+ access:"Museum/site rules",
+ notice:"Archaeological site-এ নির্ধারিত পথ ও সংরক্ষণ নিয়ম মেনে চলুন।",
+
+},
+
+/* 44 */
+
+{
+ region:"bangladesh",
+ name:"মহাস্থানগড়",
+ en:"Mahasthangarh",
+ location:"Bogura",
+ type:"Archaeological Heritage",
+ category:["heritage"],
+ icon:"ruins",
+
+ desc:"বাংলাদেশের অন্যতম প্রাচীন নগর archaeological site। Ancient Pundranagara-এর সঙ্গে সম্পর্কিত ঐতিহাসিক নিদর্শন এখানে রয়েছে।",
+ best:"History • Archaeology",
+ experience:"Ancient ruins • Museum",
+ trip:"Half day",
+ access:"Road",
+ notice:"Museum/site opening schedule যাচাই করুন।",
+
+},
+
+/* 45 */
+
+{
+ region:"bangladesh",
+ name:"কান্তজিউ মন্দির",
+ en:"Kantajew Temple",
+ location:"Dinajpur",
+ type:"Temple • Heritage",
+ category:["heritage"],
+ icon:"temple",
+
+ desc:"Dinajpur-এর বিখ্যাত terracotta Hindu temple এবং বাংলাদেশের অন্যতম গুরুত্বপূর্ণ historic architecture।",
+ best:"Architecture • History",
+ experience:"Terracotta art",
+ trip:"Half day",
+ access:"Road",
+ notice:"Active religious site হলে স্থানীয় নিয়ম অনুসরণ করুন।",
+
+},
+
+/* 46 */
+
+{
+ region:"bangladesh",
+ name:"পানাম নগর",
+ en:"Panam City",
+ location:"Sonargaon, Narayanganj",
+ type:"Historic City",
+ category:["heritage"],
+ icon:"castle",
+
+ desc:"সোনারগাঁওয়ের ঐতিহাসিক নগর এলাকা; colonial-era merchant buildings ও পুরনো urban architecture-এর জন্য পরিচিত।",
+ best:"History • Photography",
+ experience:"Historic street",
+ trip:"Half day",
+ access:"Road",
+ notice:"Historic structures স্পর্শ/ক্ষতি করা থেকে বিরত থাকুন।",
+
+},
+
+/* 47 */
+
+{
+ region:"bangladesh",
+ name:"আহসান মঞ্জিল",
+ en:"Ahsan Manzil",
+ location:"Old Dhaka",
+ type:"Palace • Museum",
+ category:["heritage"],
+ icon:"castle",
+
+ desc:"ঢাকার iconic pink palace ও museum। Dhaka Nawab family-এর ইতিহাসের সঙ্গে সম্পর্কিত।",
+ best:"History • Architecture",
+ experience:"Palace • Museum",
+ trip:"2–3 hours",
+ access:"Museum rules",
+ notice:"Museum opening day/time আগে যাচাই করুন।",
+
+},
+
+/* 48 */
+
+{
+ region:"bangladesh",
+ name:"লালবাগ কেল্লা",
+ en:"Lalbagh Fort",
+ location:"Old Dhaka",
+ type:"Mughal Heritage",
+ category:["heritage"],
+ icon:"fort",
+
+ desc:"ঢাকার সবচেয়ে পরিচিত Mughal-era historic monuments-এর একটি। Fort complex, gardens ও historic structures রয়েছে।",
+ best:"History • Architecture",
+ experience:"Mughal fort",
+ trip:"2–3 hours",
+ access:"Museum/site rules",
+ notice:"Entry schedule ও ticket information পরিবর্তিত হতে পারে।",
+
+},
+
+/* 49 */
+
+{
+ region:"bangladesh",
+ name:"শালবন বিহার",
+ en:"Shalban Vihara",
+ location:"Mainamati, Cumilla",
+ type:"Archaeological Heritage",
+ category:["heritage"],
+ icon:"ruins",
+
+ desc:"Mainamati archaeological zone-এর গুরুত্বপূর্ণ Buddhist monastery complex। প্রাচীন Bengal-এর Buddhist heritage বোঝার জন্য গুরুত্বপূর্ণ।",
+ best:"History • Archaeology",
+ experience:"Ancient monastery",
+ trip:"Half day",
+ access:"Road + museum",
+ notice:"Archaeological preservation rules অনুসরণ করুন।",
+
+},
+
+/* 50 */
+
+{
+ region:"bangladesh",
+ name:"জাতীয় স্মৃতিসৌধ",
+ en:"National Martyrs' Memorial",
+ location:"Savar, Dhaka",
+ type:"National Monument",
+ category:["heritage"],
+ icon:"monument",
+
+ desc:"বাংলাদেশের মুক্তিযুদ্ধের শহীদদের স্মরণে নির্মিত জাতীয় স্মৃতিসৌধ। বাংলাদেশের অন্যতম গুরুত্বপূর্ণ national landmark।",
+ best:"History • National heritage",
+ experience:"Monument • Memorial",
+ trip:"2–3 hours",
+ access:"Public landmark; rules apply",
+ notice:"জাতীয় স্মৃতিসৌধে শালীনতা ও নির্ধারিত visitor rules অনুসরণ করুন।",
+
+}
+
+];
+
+
+/* =========================================================
+   ICON LIBRARY
+========================================================= */
+
+const icons={
+
+ animal:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M5 20c1-5 3-8 7-8s6 3 7 8"/>
+  <path d="M8 11c-2-1-2-4 0-5"/>
+  <path d="M16 11c2-1 2-4 0-5"/>
+  <circle cx="9" cy="9" r=".7"/>
+  <circle cx="15" cy="9" r=".7"/>
+ </svg>`,
+
+ tree:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M12 21V9"/>
+  <path d="M12 13 7 9"/>
+  <path d="M12 16 17 12"/>
+  <path d="M12 9 15 6"/>
+  <path d="M7 9 5 6"/>
+ </svg>`,
+
+ house:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M3 20h18"/>
+  <path d="M5 20v-8l7-5 7 5v8"/>
+  <path d="M9 20v-4h6v4"/>
+ </svg>`,
+
+ castle:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M3 21h18"/>
+  <path d="M5 21V9l7-6 7 6v12"/>
+  <path d="M8 21v-7h3v7"/>
+  <path d="M13 14h3v7"/>
+ </svg>`,
+
+ monument:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M5 21h14"/>
+  <path d="M7 21V9h10v12"/>
+  <path d="M5 9h14"/>
+  <path d="M12 3l5 6H7l5-6Z"/>
+ </svg>`,
+
+ water:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M3 15c3 0 3-2 6-2s3 2 6 2 3-2 6-2"/>
+  <path d="M3 19c3 0 3-2 6-2s3 2 6 2 3-2 6-2"/>
+  <path d="M12 3s4 4 4 7a4 4 0 0 1-8 0c0-3 4-7 4-7Z"/>
+ </svg>`,
+
+ church:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M12 3v18"/>
+  <path d="M8 7h8"/>
+  <path d="M5 21h14"/>
+  <path d="M7 21v-7h10v7"/>
+ </svg>`,
+
+ mosque:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M3 21h18"/>
+  <path d="M5 21v-8h14v8"/>
+  <path d="M4 13h16"/>
+  <path d="M8 13V9l4-4 4 4v4"/>
+  <path d="M12 5V3"/>
+ </svg>`,
+
+ ruins:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M4 20h16"/>
+  <path d="M6 20V8l12 3v9"/>
+  <path d="M9 13h3"/>
+  <path d="M14 15h2"/>
+ </svg>`,
+
+ camera:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M4 7h4l2-2h4l2 2h4v12H4Z"/>
+  <circle cx="12" cy="13" r="3"/>
+ </svg>`,
+
+ leaf:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M20 4C11 4 5 8 5 14c0 3 2 5 5 5 6 0 10-6 10-15Z"/>
+  <path d="M4 21c4-5 7-8 13-12"/>
+ </svg>`,
+
+ resort:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M4 21h16"/>
+  <path d="M6 21V8h12v13"/>
+  <path d="M9 8V5h6v3"/>
+  <path d="M9 12h2"/>
+  <path d="M13 12h2"/>
+  <path d="M9 16h2"/>
+  <path d="M13 16h2"/>
+ </svg>`,
+
+ beach:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M3 19c3-2 6-2 9 0s6 2 9 0"/>
+  <path d="M5 15c3-2 6-2 9 0s4 2 5 1"/>
+  <path d="M8 4v10"/>
+  <path d="M8 5c3 0 5 1 7 3-3 0-5-1-7-3Z"/>
+ </svg>`,
+
+ island:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M3 19c3-2 5-2 8 0s5 2 10 0"/>
+  <path d="M7 17c2-5 5-8 8-9 0 4-2 7-5 9"/>
+  <path d="M9 13 7 8"/>
+  <path d="M7 8h4"/>
+ </svg>`,
+
+ mountain:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="m3 20 7-12 4 6 2-3 5 9H3Z"/>
+  <path d="m10 8 2 3 2-3"/>
+ </svg>`,
+
+ lake:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M3 17c3-2 5-2 8 0s5 2 10 0"/>
+  <path d="M3 21c3-2 5-2 8 0s5 2 10 0"/>
+  <path d="M8 14c2-4 4-6 7-7"/>
+ </svg>`,
+
+ waterfall:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M7 4v8"/>
+  <path d="M12 3v13"/>
+  <path d="M17 5v7"/>
+  <path d="M4 18c3-2 5-2 8 0s5 2 8 0"/>
+  <path d="M4 21c3-2 5-2 8 0s5 2 8 0"/>
+ </svg>`,
+
+ mangrove:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M12 21v-8"/>
+  <path d="M12 15 7 11"/>
+  <path d="M12 17 17 12"/>
+  <path d="M7 11 5 7"/>
+  <path d="M17 12 19 8"/>
+  <path d="M5 7h4"/>
+  <path d="M15 8h4"/>
+ </svg>`,
+
+ tea:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M6 12c5-2 9 0 12 5-6 1-10-1-12-5Z"/>
+  <path d="M5 19c3-4 6-7 11-10"/>
+  <path d="M16 5c2 1 3 3 2 5-2 0-3-2-2-5Z"/>
+ </svg>`,
+
+ temple:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M4 21h16"/>
+  <path d="M6 21V9h12v12"/>
+  <path d="M4 9h16"/>
+  <path d="m6 9 6-5 6 5"/>
+  <path d="M9 21v-7h6v7"/>
+ </svg>`,
+
+ fort:`
+ <svg class="icon" viewBox="0 0 24 24">
+  <path d="M3 21h18"/>
+  <path d="M5 21V8h3V6h3v2h2V6h3v2h3v13"/>
+  <path d="M9 21v-6h6v6"/>
+ </svg>`
+
+};
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentRegion="gazipur";
+
+let currentCategory="all";
+
+let currentSearch="";
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const grid=
+ document.getElementById("placesGrid");
+
+const empty=
+ document.getElementById("emptyState");
+
+const resultCount=
+ document.getElementById("resultCount");
+
+const sectionTitle=
+ document.getElementById("sectionTitle");
+
+const sectionSubtitle=
+ document.getElementById("sectionSubtitle");
+
+const searchInput=
+ document.getElementById("searchInput");
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function render(){
+
+ const filtered=
+  destinations.filter(item=>{
+
+   const regionOK=
+    item.region===currentRegion;
+
+   const categoryOK=
+    currentCategory==="all" ||
+    item.category.includes(currentCategory);
+
+   const searchText=(
+    item.name+" "+
+    item.en+" "+
+    item.location+" "+
+    item.type+" "+
+    item.desc
+   ).toLowerCase();
+
+   const searchOK=
+    !currentSearch ||
+    searchText.includes(currentSearch);
+
+   return(
+    regionOK &&
+    categoryOK &&
+    searchOK
+   );
+
+  });
+
+
+ grid.innerHTML="";
+
+
+ filtered.forEach((item,index)=>{
+
+  const originalIndex=
+   destinations.indexOf(item)+1;
+
+  const card=
+   document.createElement("article");
+
+  card.className="destination";
+
+  card.style.animationDelay=
+   Math.min(index*.035,.4)+"s";
+
+
+  const tags=
+   item.category
+   .slice(0,2)
+   .map((tag,i)=>{
+
+    const cls=
+     i===0
+      ? "green"
+      : "gold";
+
+    return`
+     <span class="tag ${cls}">
+      ${tag}
+     </span>
+    `;
+
+   })
+   .join("");
+
+
+  card.innerHTML=`
+
+   <div class="card-top">
+
+    <div class="destination-icon">
+
+     ${icons[item.icon] || icons.leaf}
+
+    </div>
+
+    <div class="number">
+     ${String(originalIndex).padStart(2,"0")}
+    </div>
+
+   </div>
+
+
+   <h3>
+    ${item.name}
+   </h3>
+
+   <div class="english">
+    ${item.en}
+   </div>
+
+
+   <div class="tag-row">
+
+    ${tags}
+
+   </div>
+
+
+   <div class="card-description">
+
+    ${item.desc}
+
+   </div>
+
+
+   <div class="card-action">
+
+    <span>
+     View details
+    </span>
+
+    <svg
+     class="icon"
+     viewBox="0 0 24 24">
+
+     <path d="M5 12h13"/>
+
+     <path d="m13 6 6 6-6 6"/>
+
+    </svg>
+
+   </div>
+
+  `;
+
+
+  card.addEventListener(
+   "click",
+   ()=>openModal(item)
+  );
+
+
+  grid.appendChild(card);
+
+ });
+
+
+ resultCount.textContent=
+  filtered.length+
+  (currentRegion==="gazipur"
+   ?" places"
+   :" destinations");
+
+
+ empty.style.display=
+  filtered.length
+   ? "none"
+   :"block";
+
+}
+
+
+/* =========================================================
+   REGION TABS
+========================================================= */
+
+document
+ .querySelectorAll(".main-tab")
+ .forEach(button=>{
+
+  button.addEventListener(
+   "click",
+   ()=>{
+
+    document
+     .querySelectorAll(".main-tab")
+     .forEach(b=>
+      b.classList.remove("active")
+     );
+
+    button.classList.add("active");
+
+    currentRegion=
+     button.dataset.region;
+
+    currentCategory="all";
+
+    document
+     .querySelectorAll(".category")
+     .forEach(c=>
+      c.classList.remove("active")
+     );
+
+    document
+     .querySelector(".category[data-category='all']")
+     .classList.add("active");
+
+
+    if(currentRegion==="gazipur"){
+
+     sectionTitle.textContent=
+      "Gazipur Destinations";
+
+     sectionSubtitle.textContent=
+      "Popular & curated places around Gazipur";
+
+     document
+      .getElementById("featuredTitle")
+      .textContent=
+      "Gazipur Safari Park";
+
+     document
+      .getElementById("featuredText")
+      .textContent=
+      "Wildlife-focused destination in Sreepur, Gazipur. Safari experience, wildlife viewing and large natural landscape.";
+
+    }else{
+
+     sectionTitle.textContent=
+      "Bangladesh Destinations";
+
+     sectionSubtitle.textContent=
+      "Popular destinations across Bangladesh";
+
+     document
+      .getElementById("featuredTitle")
+      .textContent=
+      "Explore Bangladesh";
+
+     document
+      .getElementById("featuredText")
+      .textContent=
+      "From beaches and islands to hills, forests, wetlands and archaeological heritage.";
+
+    }
+
+
+    searchInput.value="";
+
+    currentSearch="";
+
+    render();
+
+    window.scrollTo({
+     top:0,
+     behavior:"smooth"
+    });
+
+   }
+  );
+
+ });
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+document
+ .querySelectorAll(".category")
+ .forEach(button=>{
+
+  button.addEventListener(
+   "click",
+   ()=>{
+
+    document
+     .querySelectorAll(".category")
+     .forEach(b=>
+      b.classList.remove("active")
+     );
+
+    button.classList.add("active");
+
+    currentCategory=
+     button.dataset.category;
+
+    render();
+
+   }
+  );
+
+ });
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+searchInput.addEventListener(
+ "input",
+ ()=>{
+
+  currentSearch=
+   searchInput.value
+   .trim()
+   .toLowerCase();
+
+  render();
+
+ }
+);
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+const modal=
+ document.getElementById("modal");
+
+const modalTitle=
+ document.getElementById("modalTitle");
+
+const modalEnglish=
+ document.getElementById("modalEnglish");
+
+const modalDescription=
+ document.getElementById("modalDescription");
+
+const modalLocation=
+ document.getElementById("modalLocation");
+
+const modalType=
+ document.getElementById("modalType");
+
+const modalBest=
+ document.getElementById("modalBest");
+
+const modalExperience=
+ document.getElementById("modalExperience");
+
+const modalTrip=
+ document.getElementById("modalTrip");
+
+const modalAccess=
+ document.getElementById("modalAccess");
+
+const modalNotice=
+ document.getElementById("modalNotice");
+
+const modalIcon=
+ document.getElementById("modalIcon");
+
+
+function openModal(item){
+
+ modalTitle.textContent=
+  item.name;
+
+ modalEnglish.textContent=
+  item.en;
+
+ modalDescription.textContent=
+  item.desc;
+
+ modalLocation.textContent=
+  item.location;
+
+ modalType.textContent=
+  item.type;
+
+ modalBest.textContent=
+  item.best;
+
+ modalExperience.textContent=
+  item.experience;
+
+ modalTrip.textContent=
+  item.trip;
+
+ modalAccess.textContent=
+  item.access;
+
+ modalNotice.textContent=
+  item.notice;
+
+ modalIcon.innerHTML=
+  icons[item.icon] ||
+  icons.leaf;
+
+ modal.classList.add("show");
+
+ document.body.style.overflow="hidden";
+
+}
+
+
+function closeModal(){
+
+ modal.classList.remove("show");
+
+ document.body.style.overflow="";
+
+}
+
+
+document
+ .getElementById("closeModal")
+ .addEventListener(
+  "click",
+  closeModal
+ );
+
+
+modal.addEventListener(
+ "click",
+ e=>{
+
+  if(e.target===modal){
+
+   closeModal();
+
+  }
+
+ }
+);
+
+
+/* =========================================================
+   ESCAPE
+========================================================= */
+
+document.addEventListener(
+ "keydown",
+ e=>{
+
+  if(e.key==="Escape"){
+
+   closeModal();
+
+  }
+
+ });
+
+
+/* =========================================================
+   INITIAL RENDER
+========================================================= */
+
+render();
+
+</script>
+
+</body>
+</html>
