@@ -1,100 +1,932 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Entry & Tickets</title>
+<title>Entry & Tickets | Gazipur Wildlife Guide</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: #f7f3e9;
-            font-family: Arial, sans-serif;
-            color: #004d3c;
-        }
+:root{
+    --green:#005844;
+    --green2:#00745b;
+    --light:#f7f3e9;
+    --card:#fffdf7;
+    --text:#111;
+    --muted:#686868;
+    --gold:#e8b94f;
+    --danger:#c94b3b;
+}
 
-        .header {
-            background: #004d3c;
-            color: white;
-            padding: 28px 20px;
-            border-radius: 0 0 28px 28px;
-        }
+body{
+    margin:0;
+    background:var(--light);
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
+}
 
-        .header h1 {
-            margin: 0;
-            font-size: 30px;
-        }
+/* HEADER */
 
-        .header p {
-            margin: 8px 0 0;
-            font-size: 16px;
-            opacity: .85;
-        }
+.header{
+    background:linear-gradient(145deg,#004c3a,#006750);
+    color:white;
+    padding:28px 20px 34px;
+    border-radius:0 0 30px 30px;
+    position:relative;
+    overflow:hidden;
+}
 
-        .content {
-            padding: 20px;
-        }
+.header:before{
+    content:"";
+    position:absolute;
+    width:220px;
+    height:220px;
+    right:-100px;
+    top:-110px;
+    border-radius:50%;
+    background:rgba(255,255,255,.07);
+}
 
-        .card {
-            background: white;
-            padding: 22px;
-            margin-bottom: 16px;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,.06);
-        }
+.header:after{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    left:-80px;
+    bottom:-100px;
+    border-radius:50%;
+    background:rgba(255,255,255,.06);
+}
 
-        .card h2 {
-            margin: 0 0 8px;
-            color: #004d3c;
-        }
+.back{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    color:white;
+    text-decoration:none;
+    font-size:15px;
+    opacity:.9;
+    margin-bottom:25px;
+}
 
-        .card p {
-            margin: 0;
-            color: #555;
-            line-height: 1.6;
-        }
-    </style>
+.header h1{
+    margin:0;
+    font-size:34px;
+    line-height:1.1;
+    position:relative;
+    z-index:2;
+}
+
+.header p{
+    margin:10px 0 0;
+    color:#d9eee8;
+    font-size:16px;
+    position:relative;
+    z-index:2;
+}
+
+/* ONLINE STATUS */
+
+.status{
+    margin:15px;
+    padding:12px 15px;
+    border-radius:15px;
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    animation:slideDown .45s ease;
+}
+
+.status.online{
+    background:#e5f7ee;
+    color:#08734f;
+}
+
+.status.offline{
+    background:#fff0ec;
+    color:#a53b2e;
+}
+
+.status-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:currentColor;
+}
+
+/* CONTENT */
+
+.container{
+    padding:0 15px 40px;
+}
+
+/* HERO */
+
+.hero{
+    margin-top:-18px;
+    background:linear-gradient(135deg,#fffdf7,#f3ead8);
+    border-radius:24px;
+    padding:22px;
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
+    position:relative;
+    z-index:3;
+}
+
+.hero-icon{
+    width:58px;
+    height:58px;
+    border-radius:18px;
+    background:var(--green);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:29px;
+    margin-bottom:14px;
+}
+
+.hero h2{
+    margin:0;
+    font-size:25px;
+}
+
+.hero p{
+    margin:8px 0 0;
+    color:var(--muted);
+    line-height:1.55;
+    font-size:15px;
+}
+
+/* LANGUAGE */
+
+.language{
+    display:flex;
+    justify-content:flex-end;
+    margin:16px 2px 5px;
+}
+
+.lang-btn{
+    border:1px solid #d7d1c5;
+    background:white;
+    color:var(--green);
+    border-radius:30px;
+    padding:9px 15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* SECTION */
+
+.section-title{
+    margin:27px 4px 12px;
+    font-size:20px;
+    font-weight:800;
+}
+
+/* TICKET CARD */
+
+.ticket{
+    background:var(--card);
+    border-radius:20px;
+    padding:18px;
+    margin-bottom:12px;
+    box-shadow:0 5px 18px rgba(0,0,0,.055);
+    display:flex;
+    align-items:center;
+    gap:15px;
+    animation:fadeUp .55s ease both;
+}
+
+.ticket:nth-child(2){animation-delay:.05s}
+.ticket:nth-child(3){animation-delay:.1s}
+.ticket:nth-child(4){animation-delay:.15s}
+.ticket:nth-child(5){animation-delay:.2s}
+
+.ticket-icon{
+    min-width:50px;
+    height:50px;
+    border-radius:15px;
+    background:#e6f2ed;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+}
+
+.ticket-info{
+    flex:1;
+}
+
+.ticket-info h3{
+    margin:0 0 4px;
+    font-size:17px;
+}
+
+.ticket-info p{
+    margin:0;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.price{
+    color:var(--green);
+    font-size:21px;
+    font-weight:800;
+    white-space:nowrap;
+}
+
+/* FEATURE CARD */
+
+.feature{
+    background:linear-gradient(135deg,#005844,#00745b);
+    color:white;
+    border-radius:22px;
+    padding:22px;
+    margin-top:15px;
+    position:relative;
+    overflow:hidden;
+}
+
+.feature:after{
+    content:"🐅";
+    position:absolute;
+    right:-5px;
+    bottom:-18px;
+    font-size:90px;
+    opacity:.09;
+}
+
+.feature h2{
+    margin:0 0 7px;
+    font-size:23px;
+}
+
+.feature p{
+    margin:0;
+    color:#d8eee7;
+    line-height:1.5;
+}
+
+/* INFO GRID */
+
+.info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:15px;
+}
+
+.info{
+    background:white;
+    border-radius:18px;
+    padding:17px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.info .icon{
+    font-size:25px;
+}
+
+.info h3{
+    margin:8px 0 4px;
+    font-size:16px;
+}
+
+.info p{
+    margin:0;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.4;
+}
+
+/* TIPS */
+
+.tip{
+    background:#fff7df;
+    border-left:4px solid var(--gold);
+    border-radius:15px;
+    padding:16px;
+    margin-top:15px;
+}
+
+.tip strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.tip p{
+    margin:0;
+    color:#645631;
+    font-size:14px;
+    line-height:1.5;
+}
+
+/* NOTICE */
+
+.notice{
+    margin-top:18px;
+    padding:17px;
+    border-radius:17px;
+    background:#f1f1ed;
+    color:#666;
+    font-size:13px;
+    line-height:1.5;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    padding:25px 10px;
+    color:#777;
+    font-size:12px;
+}
+
+/* OFFLINE SCREEN */
+
+.offline-box{
+    display:none;
+    margin:15px;
+    padding:25px 20px;
+    background:white;
+    border-radius:22px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.offline-box .big{
+    font-size:45px;
+}
+
+.offline-box h2{
+    margin:10px 0 7px;
+}
+
+.offline-box p{
+    color:#666;
+    line-height:1.5;
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(18px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes slideDown{
+    from{
+        opacity:0;
+        transform:translateY(-10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+button{
+    font-family:inherit;
+}
+</style>
 </head>
 
 <body>
 
-    <div class="header">
-        <h1>🎟️ Entry & Tickets</h1>
-        <p>Ticket prices & entry information</p>
-    </div>
+<header class="header">
 
-    <div class="content">
+<a href="index.html" class="back">
+    ← <span data-en="Back to Home" data-bn="হোমে ফিরে যান">Back to Home</span>
+</a>
 
-        <div class="card">
-            <h2>🎫 Entry Information</h2>
-            <p>
-                Find important information about entry,
-                tickets and visiting the park.
-            </p>
-        </div>
+<h1 data-en="Entry & Tickets" data-bn="প্রবেশ ও টিকিট">
+    Entry & Tickets
+</h1>
 
-        <div class="card">
-            <h2>💳 Ticket Prices</h2>
-            <p>
-                Ticket pricing information will be displayed here.
-            </p>
-        </div>
+<p data-en="Everything you need to know before visiting Safari Park, Gazipur."
+   data-bn="সাফারি পার্ক, গাজীপুর ভ্রমণের আগে প্রয়োজনীয় সকল তথ্য।">
+   Everything you need to know before visiting Safari Park, Gazipur.
+</p>
 
-        <div class="card">
-            <h2>🕐 Visiting Information</h2>
-            <p>
-                Check visiting hours and other useful information
-                before planning your trip.
-            </p>
-        </div>
+</header>
 
-    </div>
+
+<!-- INTERNET STATUS -->
+
+<div id="status" class="status online">
+    <span class="status-dot"></span>
+    <span id="statusText">Online • Information is up to date</span>
+</div>
+
+
+<!-- OFFLINE MESSAGE -->
+
+<div id="offlineBox" class="offline-box">
+
+    <div class="big">📡</div>
+
+    <h2 data-en="You're Offline"
+        data-bn="আপনার ইন্টারনেট সংযোগ নেই">
+        You're Offline
+    </h2>
+
+    <p data-en="Don't worry. This page may still work if it was previously loaded and saved by your browser."
+       data-bn="চিন্তা করবেন না। পেজটি আগে লোড করা থাকলে সংরক্ষিত তথ্য এখনো দেখা যেতে পারে।">
+       Don't worry. This page may still work if it was previously loaded and saved by your browser.
+    </p>
+
+</div>
+
+
+<main class="container">
+
+<section class="hero">
+
+<div class="hero-icon">🎟️</div>
+
+<h2 data-en="Plan Your Visit"
+    data-bn="আপনার ভ্রমণ পরিকল্পনা করুন">
+    Plan Your Visit
+</h2>
+
+<p data-en="Check entrance fees, Core Safari charges, visiting hours and important visitor information before you start your journey."
+   data-bn="ভ্রমণের আগে প্রবেশ মূল্য, কোর সাফারি, সময়সূচি এবং গুরুত্বপূর্ণ তথ্য দেখে নিন।">
+Check entrance fees, Core Safari charges, visiting hours and important visitor information before you start your journey.
+</p>
+
+</section>
+
+
+<!-- LANGUAGE BUTTON -->
+
+<div class="language">
+<button class="lang-btn" onclick="toggleLanguage()" id="langButton">
+🇧🇩 বাংলা
+</button>
+</div>
+
+
+<!-- ENTRY -->
+
+<div class="section-title"
+data-en="🎫 Entry Tickets"
+data-bn="🎫 প্রবেশ টিকিট">
+🎫 Entry Tickets
+</div>
+
+
+<div class="ticket">
+
+<div class="ticket-icon">👤</div>
+
+<div class="ticket-info">
+<h3 data-en="Adult — Bangladeshi"
+    data-bn="প্রাপ্তবয়স্ক — বাংলাদেশি">
+Adult — Bangladeshi
+</h3>
+
+<p data-en="General park entrance"
+   data-bn="সাধারণ পার্ক প্রবেশ">
+General park entrance
+</p>
+</div>
+
+<div class="price">৳50</div>
+
+</div>
+
+
+<div class="ticket">
+
+<div class="ticket-icon">🧒</div>
+
+<div class="ticket-info">
+<h3 data-en="Under 12"
+    data-bn="১২ বছরের নিচে">
+Under 12
+</h3>
+
+<p data-en="General entrance"
+   data-bn="সাধারণ প্রবেশ">
+General entrance
+</p>
+</div>
+
+<div class="price">৳20</div>
+
+</div>
+
+
+<div class="ticket">
+
+<div class="ticket-icon">🎓</div>
+
+<div class="ticket-info">
+<h3 data-en="Student"
+    data-bn="শিক্ষার্থী">
+Student
+</h3>
+
+<p data-en="Valid student ID required"
+   data-bn="বৈধ শিক্ষার্থী পরিচয়পত্র প্রয়োজন">
+Valid student ID required
+</p>
+</div>
+
+<div class="price">৳10</div>
+
+</div>
+
+
+<div class="ticket">
+
+<div class="ticket-icon">👶</div>
+
+<div class="ticket-info">
+<h3 data-en="Children under 6"
+    data-bn="৬ বছরের নিচে শিশু">
+Children under 6
+</h3>
+
+<p data-en="Entrance fee"
+   data-bn="প্রবেশ মূল্য">
+Entrance fee
+</p>
+</div>
+
+<div class="price">FREE</div>
+
+</div>
+
+
+<!-- CORE SAFARI -->
+
+<div class="feature">
+
+<h2 data-en="🐅 Core Safari"
+    data-bn="🐅 কোর সাফারি">
+🐅 Core Safari
+</h2>
+
+<p data-en="Experience wildlife from a protected safari vehicle inside the designated safari area."
+   data-bn="নিরাপদ সাফারি গাড়িতে চড়ে নির্ধারিত সাফারি এলাকায় বন্যপ্রাণী দেখার অভিজ্ঞতা নিন।">
+Experience wildlife from a protected safari vehicle inside the designated safari area.
+</p>
+
+</div>
+
+
+<div class="ticket">
+
+<div class="ticket-icon">🚌</div>
+
+<div class="ticket-info">
+
+<h3 data-en="Adult Core Safari"
+    data-bn="প্রাপ্তবয়স্ক কোর সাফারি">
+Adult Core Safari
+</h3>
+
+<p data-en="Safari vehicle ticket"
+   data-bn="সাফারি গাড়ির টিকিট">
+Safari vehicle ticket
+</p>
+
+</div>
+
+<div class="price">৳150</div>
+
+</div>
+
+
+<div class="ticket">
+
+<div class="ticket-icon">🎓</div>
+
+<div class="ticket-info">
+
+<h3 data-en="Student / Minor"
+    data-bn="শিক্ষার্থী / অপ্রাপ্তবয়স্ক">
+Student / Minor
+</h3>
+
+<p data-en="Core Safari"
+   data-bn="কোর সাফারি">
+Core Safari
+</p>
+
+</div>
+
+<div class="price">৳50</div>
+
+</div>
+
+
+<!-- OPENING -->
+
+<div class="section-title"
+data-en="🕘 Opening Hours"
+data-bn="🕘 খোলার সময়">
+🕘 Opening Hours
+</div>
+
+
+<div class="info-grid">
+
+<div class="info">
+
+<div class="icon">🕘</div>
+
+<h3 data-en="Opening Time"
+    data-bn="খোলার সময়">
+Opening Time
+</h3>
+
+<p data-en="9:00 AM – 5:00 PM"
+   data-bn="সকাল ৯টা – বিকেল ৫টা">
+9:00 AM – 5:00 PM
+</p>
+
+</div>
+
+
+<div class="info">
+
+<div class="icon">📅</div>
+
+<h3 data-en="Weekly Holiday"
+    data-bn="সাপ্তাহিক বন্ধ">
+Weekly Holiday
+</h3>
+
+<p data-en="Tuesday"
+   data-bn="মঙ্গলবার">
+Tuesday
+</p>
+
+</div>
+
+</div>
+
+
+<!-- OTHER INFO -->
+
+<div class="section-title"
+data-en="✨ Other Facilities"
+data-bn="✨ অন্যান্য সুবিধা">
+✨ Other Facilities
+</div>
+
+
+<div class="info-grid">
+
+<div class="info">
+
+<div class="icon">🦜</div>
+
+<h3 data-en="Bird Areas"
+    data-bn="পাখির এলাকা">
+Bird Areas
+</h3>
+
+<p data-en="Macaw, Parrot & Aviary areas"
+   data-bn="ম্যাকাও, প্যারট ও এভিয়ারি">
+Macaw, Parrot & Aviary areas
+</p>
+
+</div>
+
+
+<div class="info">
+
+<div class="icon">🦋</div>
+
+<h3 data-en="Butterfly Center"
+    data-bn="প্রজাপতি কেন্দ্র">
+Butterfly Center
+</h3>
+
+<p data-en="Explore butterflies and nature"
+   data-bn="প্রজাপতি ও প্রকৃতি উপভোগ করুন">
+Explore butterflies and nature
+</p>
+
+</div>
+
+
+<div class="info">
+
+<div class="icon">🐊</div>
+
+<h3 data-en="Wildlife Attractions"
+    data-bn="বন্যপ্রাণী আকর্ষণ">
+Wildlife Attractions
+</h3>
+
+<p data-en="Different animal viewing areas"
+   data-bn="বিভিন্ন প্রাণী দেখার এলাকা">
+Different animal viewing areas
+</p>
+
+</div>
+
+
+<div class="info">
+
+<div class="icon">🍽️</div>
+
+<h3 data-en="Food Facilities"
+    data-bn="খাবারের সুবিধা">
+Food Facilities
+</h3>
+
+<p data-en="Food courts and restaurants"
+   data-bn="ফুডকোর্ট ও রেস্টুরেন্ট">
+Food courts and restaurants
+</p>
+
+</div>
+
+</div>
+
+
+<!-- TIPS -->
+
+<div class="section-title"
+data-en="💡 Visitor Tips"
+data-bn="💡 দর্শনার্থীদের পরামর্শ">
+💡 Visitor Tips
+</div>
+
+
+<div class="tip">
+
+<strong data-en="Arrive early"
+        data-bn="সকালে দ্রুত পৌঁছান">
+Arrive early
+</strong>
+
+<p data-en="The park is large. Arriving early gives you more time to explore different attractions comfortably."
+   data-bn="পার্কটি অনেক বড়। সকালে পৌঁছালে আরাম করে বিভিন্ন আকর্ষণ ঘুরে দেখার জন্য বেশি সময় পাবেন।">
+The park is large. Arriving early gives you more time to explore different attractions comfortably.
+</p>
+
+</div>
+
+
+<div class="tip">
+
+<strong data-en="Keep your ticket safe"
+        data-bn="টিকিট নিরাপদে রাখুন">
+Keep your ticket safe
+</strong>
+
+<p data-en="Some attractions inside the park may require separate tickets."
+   data-bn="পার্কের কিছু আকর্ষণের জন্য আলাদা টিকিট প্রয়োজন হতে পারে।">
+Some attractions inside the park may require separate tickets.
+</p>
+
+</div>
+
+
+<div class="tip">
+
+<strong data-en="Follow wildlife safety rules"
+        data-bn="বন্যপ্রাণী নিরাপত্তা মেনে চলুন">
+Follow wildlife safety rules
+</strong>
+
+<p data-en="Never feed, disturb or approach wild animals. Follow instructions from park staff."
+   data-bn="বন্যপ্রাণীকে খাবার দেবেন না, বিরক্ত করবেন না বা কাছে যাওয়ার চেষ্টা করবেন না। পার্ক কর্তৃপক্ষের নির্দেশনা মেনে চলুন।">
+Never feed, disturb or approach wild animals. Follow instructions from park staff.
+</p>
+
+</div>
+
+
+<!-- PRICE NOTICE -->
+
+<div class="notice">
+
+⚠️
+
+<strong data-en="Important:"
+        data-bn="গুরুত্বপূর্ণ:">
+Important:
+</strong>
+
+<span data-en="Ticket prices, opening hours and attraction availability may change. Please confirm the latest price and availability at the park ticket counter before your visit."
+      data-bn="টিকিটের মূল্য, খোলার সময় এবং বিভিন্ন আকর্ষণের ব্যবস্থা পরিবর্তিত হতে পারে। ভ্রমণের আগে পার্কের টিকিট কাউন্টার থেকে সর্বশেষ তথ্য যাচাই করুন।">
+Ticket prices, opening hours and attraction availability may change. Please confirm the latest price and availability at the park ticket counter before your visit.
+</span>
+
+</div>
+
+
+</main>
+
+
+<footer class="footer">
+
+Gazipur Wildlife Guide<br>
+Explore Wildlife • Discover Nature • Travel
+
+</footer>
+
+
+<script>
+
+/* LANGUAGE */
+
+let currentLanguage = "en";
+
+function toggleLanguage(){
+
+    currentLanguage =
+        currentLanguage === "en" ? "bn" : "en";
+
+    document.querySelectorAll("[data-en]").forEach(function(el){
+
+        el.innerText =
+            currentLanguage === "en"
+            ? el.getAttribute("data-en")
+            : el.getAttribute("data-bn");
+
+    });
+
+    document.getElementById("langButton").innerText =
+        currentLanguage === "en"
+        ? "🇧🇩 বাংলা"
+        : "🇬🇧 English";
+}
+
+
+/* INTERNET STATUS */
+
+function updateNetworkStatus(){
+
+    const status = document.getElementById("status");
+    const text = document.getElementById("statusText");
+    const offline = document.getElementById("offlineBox");
+
+    if(navigator.onLine){
+
+        status.className = "status online";
+
+        text.innerText =
+            currentLanguage === "en"
+            ? "Online • Internet connection available"
+            : "অনলাইন • ইন্টারনেট সংযোগ পাওয়া গেছে";
+
+        offline.style.display = "none";
+
+    }else{
+
+        status.className = "status offline";
+
+        text.innerText =
+            currentLanguage === "en"
+            ? "Offline • No internet connection"
+            : "অফলাইন • ইন্টারনেট সংযোগ নেই";
+
+        offline.style.display = "block";
+    }
+}
+
+window.addEventListener("online", updateNetworkStatus);
+
+window.addEventListener("offline", updateNetworkStatus);
+
+updateNetworkStatus();
+
+
+/* PAGE ERROR MESSAGE */
+
+window.addEventListener("error", function(){
+
+    const status =
+        document.getElementById("status");
+
+    status.className = "status offline";
+
+    document.getElementById("statusText").innerText =
+        "⚠️ Some content could not be loaded.";
+
+});
+
+</script>
 
 </body>
 </html>
