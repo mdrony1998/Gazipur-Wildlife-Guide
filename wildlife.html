@@ -1,1 +1,1924 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
+<title>Wildlife Explorer • Gazipur Wildlife Guide</title>
+
+<style>
+:root{
+  --green:#005b47;
+  --green2:#00765b;
+  --deep:#003f32;
+  --mint:#e8f5ef;
+  --cream:#f7f5ed;
+  --white:#ffffff;
+  --text:#101714;
+  --muted:#68736f;
+  --line:#e3e9e5;
+  --shadow:0 12px 35px rgba(0,67,52,.10);
+  --radius:24px;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--text);
+  font-family:
+    "Noto Sans Bengali",
+    "Noto Sans",
+    Arial,
+    sans-serif;
+  overflow-x:hidden;
+}
+
+/* ==============================
+   APP SHELL
+============================== */
+
+.app{
+  max-width:720px;
+  margin:auto;
+  min-height:100vh;
+  background:var(--cream);
+}
+
+/* ==============================
+   HEADER
+============================== */
+
+.header{
+  position:relative;
+  padding:22px 20px 28px;
+  color:white;
+  background:
+    radial-gradient(circle at 90% 5%,rgba(255,255,255,.13),transparent 28%),
+    radial-gradient(circle at 0% 80%,rgba(0,255,170,.08),transparent 30%),
+    linear-gradient(145deg,#004f3e,#003d31);
+  overflow:hidden;
+}
+
+.header:before{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:50%;
+  right:-60px;
+  top:-80px;
+  animation:rotate 18s linear infinite;
+}
+
+.header:after{
+  content:"";
+  position:absolute;
+  width:120px;
+  height:120px;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:50%;
+  left:-65px;
+  bottom:-75px;
+}
+
+.header-top{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.brand-icon{
+  width:43px;
+  height:43px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.13);
+  backdrop-filter:blur(10px);
+}
+
+.brand-title{
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:-.3px;
+}
+
+.brand-sub{
+  font-size:11px;
+  opacity:.65;
+  margin-top:2px;
+}
+
+.lang{
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.10);
+  color:white;
+  border-radius:30px;
+  padding:8px 12px;
+  font-weight:700;
+  font-size:12px;
+}
+
+.hero{
+  position:relative;
+  z-index:2;
+  margin-top:28px;
+}
+
+.hero-label{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:7px 11px;
+  border-radius:30px;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.12);
+  font-size:11px;
+  font-weight:700;
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#72e7b7;
+  box-shadow:0 0 12px #72e7b7;
+  animation:pulse 1.8s infinite;
+}
+
+.hero h1{
+  margin:15px 0 7px;
+  font-size:34px;
+  line-height:1.08;
+  letter-spacing:-1.2px;
+}
+
+.hero p{
+  margin:0;
+  max-width:530px;
+  color:rgba(255,255,255,.70);
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* ==============================
+   HERO VISUAL
+============================== */
+
+.hero-art{
+  height:170px;
+  margin-top:25px;
+  border-radius:25px;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(160deg,rgba(0,64,49,.1),rgba(0,61,47,.65)),
+    linear-gradient(135deg,#b9dfc7,#4f9475 55%,#164f42);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+}
+
+.sun{
+  position:absolute;
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:rgba(255,226,143,.8);
+  top:25px;
+  right:55px;
+  filter:blur(1px);
+  animation:float 5s ease-in-out infinite;
+}
+
+.mountain{
+  position:absolute;
+  bottom:-35px;
+  width:0;
+  height:0;
+  border-left:150px solid transparent;
+  border-right:150px solid transparent;
+  border-bottom:145px solid rgba(255,255,255,.14);
+}
+
+.m1{left:-80px}
+.m2{left:130px;bottom:-45px}
+.m3{right:-100px;bottom:-30px}
+
+.tree{
+  position:absolute;
+  bottom:0;
+  width:14px;
+  height:85px;
+  background:#174f3d;
+  border-radius:10px;
+}
+
+.tree:before{
+  content:"";
+  position:absolute;
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:#1f654d;
+  left:-33px;
+  top:-42px;
+}
+
+.t1{left:42px}
+.t2{left:115px;height:105px}
+.t3{right:65px;height:95px}
+
+.animal-silhouette{
+  position:absolute;
+  bottom:19px;
+  right:130px;
+  opacity:.68;
+  animation:animalMove 6s ease-in-out infinite;
+}
+
+/* ==============================
+   CONTENT
+============================== */
+
+.content{
+  padding:18px 16px 35px;
+}
+
+/* ==============================
+   QUICK STATS
+============================== */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-bottom:18px;
+}
+
+.stat{
+  padding:15px 10px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 5px 20px rgba(0,50,40,.05);
+}
+
+.stat strong{
+  display:block;
+  font-size:18px;
+  color:var(--green);
+}
+
+.stat span{
+  display:block;
+  font-size:10px;
+  color:var(--muted);
+  margin-top:3px;
+}
+
+/* ==============================
+   SEARCH
+============================== */
+
+.search{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:12px 14px;
+  margin-bottom:18px;
+}
+
+.search input{
+  border:0;
+  outline:0;
+  width:100%;
+  background:transparent;
+  font-size:14px;
+  color:var(--text);
+}
+
+/* ==============================
+   SECTION TITLE
+============================== */
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin:24px 3px 12px;
+}
+
+.section-title{
+  font-size:22px;
+  font-weight:850;
+  letter-spacing:-.6px;
+}
+
+.section-sub{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px;
+}
+
+/* ==============================
+   ZONE CARDS
+============================== */
+
+.zone{
+  background:white;
+  border-radius:24px;
+  border:1px solid var(--line);
+  margin-bottom:13px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  animation:fadeUp .65s both;
+}
+
+.zone-top{
+  padding:19px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.zone-icon{
+  flex:0 0 52px;
+  height:52px;
+  border-radius:17px;
+  display:grid;
+  place-items:center;
+  background:var(--mint);
+  color:var(--green);
+}
+
+.zone-info{
+  flex:1;
+}
+
+.zone-info h3{
+  margin:0;
+  font-size:18px;
+  letter-spacing:-.4px;
+}
+
+.zone-info p{
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.45;
+}
+
+.chevron{
+  color:var(--green);
+  transition:.3s;
+}
+
+.zone.open .chevron{
+  transform:rotate(180deg);
+}
+
+.zone-body{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .45s ease;
+  border-top:1px solid transparent;
+}
+
+.zone.open .zone-body{
+  max-height:650px;
+  border-top-color:var(--line);
+}
+
+.zone-content{
+  padding:16px 19px 20px;
+}
+
+.info-row{
+  display:flex;
+  gap:11px;
+  padding:11px 0;
+  border-bottom:1px dashed #e5ebe7;
+}
+
+.info-row:last-child{
+  border-bottom:0;
+}
+
+.info-icon{
+  color:var(--green);
+  flex:0 0 20px;
+}
+
+.info-text strong{
+  display:block;
+  font-size:13px;
+}
+
+.info-text span{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.5;
+  margin-top:2px;
+}
+
+/* ==============================
+   ATTRACTIONS
+============================== */
+
+.attractions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.attraction{
+  position:relative;
+  min-height:155px;
+  border-radius:22px;
+  padding:17px;
+  overflow:hidden;
+  background:linear-gradient(145deg,#fff,#edf7f1);
+  border:1px solid var(--line);
+  transition:.3s;
+}
+
+.attraction:active{
+  transform:scale(.97);
+}
+
+.attraction-icon{
+  width:43px;
+  height:43px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:#dff1e9;
+  color:var(--green);
+}
+
+.attraction h3{
+  margin:18px 0 5px;
+  font-size:14px;
+}
+
+.attraction p{
+  margin:0;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.5;
+}
+
+.attraction .number{
+  position:absolute;
+  right:12px;
+  top:12px;
+  font-size:9px;
+  color:#94a19c;
+}
+
+/* ==============================
+   ANIMAL GRID
+============================== */
+
+.animals{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.animal{
+  background:white;
+  border-radius:21px;
+  padding:15px;
+  border:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
+}
+
+.animal-top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.animal-icon{
+  width:43px;
+  height:43px;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  background:#eef7f2;
+  color:var(--green);
+}
+
+.animal h4{
+  margin:0;
+  font-size:13px;
+}
+
+.animal span{
+  color:var(--muted);
+  font-size:9px;
+}
+
+.tag{
+  display:inline-block;
+  margin-top:12px;
+  padding:5px 8px;
+  border-radius:20px;
+  background:#f1f5f3;
+  color:#52605a;
+  font-size:9px;
+}
+
+/* ==============================
+   VISITOR GUIDE
+============================== */
+
+.guide{
+  background:linear-gradient(145deg,#004f3e,#006b53);
+  color:white;
+  border-radius:26px;
+  padding:22px;
+  position:relative;
+  overflow:hidden;
+  margin-top:18px;
+}
+
+.guide:after{
+  content:"";
+  position:absolute;
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.08);
+  right:-50px;
+  bottom:-80px;
+}
+
+.guide h2{
+  margin:0 0 6px;
+  font-size:21px;
+}
+
+.guide p{
+  color:rgba(255,255,255,.70);
+  font-size:11px;
+  line-height:1.6;
+}
+
+.guide-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:15px;
+}
+
+.guide-item{
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  padding:12px;
+}
+
+.guide-item strong{
+  display:block;
+  font-size:12px;
+}
+
+.guide-item span{
+  display:block;
+  margin-top:3px;
+  font-size:9px;
+  color:rgba(255,255,255,.62);
+}
+
+/* ==============================
+   NOTE
+============================== */
+
+.note{
+  margin-top:15px;
+  padding:14px 15px;
+  border-radius:17px;
+  background:#fff8df;
+  border:1px solid #f1e4b9;
+  color:#63572e;
+  font-size:10px;
+  line-height:1.55;
+}
+
+/* ==============================
+   LANGUAGE
+============================== */
+
+.en{
+  display:none;
+}
+
+body.english .bn{
+  display:none;
+}
+
+body.english .en{
+  display:inline;
+}
+
+/* ==============================
+   ANIMATIONS
+============================== */
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(18px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.5);opacity:.6}
+}
+
+@keyframes rotate{
+  to{transform:rotate(360deg)}
+}
+
+@keyframes animalMove{
+  0%,100%{transform:translateX(0)}
+  50%{transform:translateX(-12px)}
+}
+
+/* ==============================
+   SMALL DEVICES
+============================== */
+
+@media(max-width:370px){
+  .hero h1{
+    font-size:29px;
+  }
+
+  .attractions{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="app">
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+  <div class="header-top">
+
+    <div class="brand">
+
+      <div class="brand-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M12 21s-7-4.6-7-11a7 7 0 0 1 14 0c0 6.4-7 11-7 11Z"/>
+          <circle cx="12" cy="10" r="2.5"/>
+        </svg>
+      </div>
+
+      <div>
+        <div class="brand-title">Wildlife Explorer</div>
+        <div class="brand-sub">Gazipur Wildlife Guide</div>
+      </div>
+
+    </div>
+
+    <button class="lang" onclick="toggleLanguage()">
+      <span class="bn">EN</span>
+      <span class="en">বাংলা</span>
+    </button>
+
+  </div>
+
+
+  <div class="hero">
+
+    <div class="hero-label">
+      <span class="dot"></span>
+
+      <span class="bn">বন্যপ্রাণী ও প্রকৃতি</span>
+      <span class="en">Wildlife & Nature</span>
+    </div>
+
+    <h1>
+      <span class="bn">পার্কের ভেতরটা<br>ঘুরে দেখুন</span>
+      <span class="en">Explore the<br>Wild Side</span>
+    </h1>
+
+    <p>
+      <span class="bn">
+        কোন জোনে কী আছে, কোথায় কীভাবে যেতে হয় এবং
+        কোন প্রাণী ও আকর্ষণ দেখতে পারেন—সব এক জায়গায়।
+      </span>
+
+      <span class="en">
+        Discover the zones, wildlife, attractions and
+        visitor facilities across the park.
+      </span>
+    </p>
+
+    <div class="hero-art">
+
+      <div class="sun"></div>
+
+      <div class="mountain m1"></div>
+      <div class="mountain m2"></div>
+      <div class="mountain m3"></div>
+
+      <div class="tree t1"></div>
+      <div class="tree t2"></div>
+      <div class="tree t3"></div>
+
+      <svg class="animal-silhouette"
+           width="120"
+           height="85"
+           viewBox="0 0 120 85"
+           fill="none">
+
+        <path d="M20 65
+                 C24 48 39 43 57 49
+                 C67 43 76 44 86 50
+                 L101 50
+                 C106 50 108 54 104 58
+                 L96 60
+                 L91 72
+                 L84 72
+                 L82 60
+                 L54 60
+                 L49 74
+                 L42 74
+                 L42 59
+                 L27 61
+                 L20 65Z"
+              fill="#153f34"/>
+
+        <circle cx="92" cy="43" r="8" fill="#153f34"/>
+
+        <path d="M95 36l7-8M91 36l-1-9"
+              stroke="#153f34"
+              stroke-width="3"
+              stroke-linecap="round"/>
+
+      </svg>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main class="content">
+
+
+<!-- =========================
+     STATS
+========================= -->
+
+<div class="stats">
+
+  <div class="stat">
+    <strong>05+</strong>
+    <span>
+      <span class="bn">প্রধান জোন</span>
+      <span class="en">Main Zones</span>
+    </span>
+  </div>
+
+  <div class="stat">
+    <strong>20+</strong>
+    <span>
+      <span class="bn">আকর্ষণ</span>
+      <span class="en">Attractions</span>
+    </span>
+  </div>
+
+  <div class="stat">
+    <strong>∞</strong>
+    <span>
+      <span class="bn">প্রকৃতি</span>
+      <span class="en">Nature</span>
+    </span>
+  </div>
+
+</div>
+
+
+<!-- =========================
+     SEARCH
+========================= -->
+
+<div class="search">
+
+  <svg width="19" height="19"
+       viewBox="0 0 24 24"
+       fill="none"
+       stroke="#68736f"
+       stroke-width="2">
+
+    <circle cx="11" cy="11" r="7"/>
+    <path d="m20 20-4-4"/>
+
+  </svg>
+
+  <input id="search"
+         type="text"
+         oninput="filterCards()"
+         placeholder="Search wildlife, zone, attraction...">
+
+</div>
+
+
+<!-- =========================
+     ZONES
+========================= -->
+
+<div class="section-head">
+
+  <div>
+    <div class="section-title">
+      <span class="bn">Explore Zones</span>
+      <span class="en">Explore Zones</span>
+    </div>
+
+    <div class="section-sub">
+      <span class="bn">পার্কের প্রধান অংশগুলো</span>
+      <span class="en">Major areas of the park</span>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- CORE SAFARI -->
+
+<div class="zone searchable">
+
+  <div class="zone-top" onclick="toggleZone(this.parentElement)">
+
+    <div class="zone-icon">
+
+      <svg width="27" height="27"
+           viewBox="0 0 24 24"
+           fill="none"
+           stroke="currentColor"
+           stroke-width="1.8">
+
+        <path d="M4 17h16M5 17l1-6h12l1 6"/>
+        <circle cx="8" cy="18" r="1.5"/>
+        <circle cx="16" cy="18" r="1.5"/>
+        <path d="M8 11V8h7l2 3"/>
+
+      </svg>
+
+    </div>
+
+    <div class="zone-info">
+
+      <h3>
+        <span class="bn">Core Safari</span>
+        <span class="en">Core Safari</span>
+      </h3>
+
+      <p>
+        <span class="bn">
+          বড় ও বিপজ্জনক বন্যপ্রাণীর Safari zone
+        </span>
+        <span class="en">
+          Safari zone for large and dangerous wildlife
+        </span>
+      </p>
+
+    </div>
+
+    <svg class="chevron"
+         width="21" height="21"
+         viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="2">
+      <path d="m6 9 6 6 6-6"/>
+    </svg>
+
+  </div>
+
+
+  <div class="zone-body">
+
+    <div class="zone-content">
+
+      <div class="info-row">
+
+        <div class="info-icon">
+          <svg width="19" height="19"
+               viewBox="0 0 24 24"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="1.8">
+            <path d="M5 16V8l7-4 7 4v8l-7 4-7-4Z"/>
+            <path d="M5 8l7 4 7-4"/>
+          </svg>
+        </div>
+
+        <div class="info-text">
+          <strong>
+            <span class="bn">কীভাবে ঘুরবেন?</span>
+            <span class="en">How to explore?</span>
+          </strong>
+
+          <span>
+            <span class="bn">
+              নির্ধারিত Safari vehicle/মিনিবাসের মাধ্যমে
+              Core Safari দেখার ব্যবস্থা রয়েছে।
+            </span>
+
+            <span class="en">
+              The Core Safari is explored using designated
+              safari vehicles/minibuses.
+            </span>
+          </span>
+        </div>
+
+      </div>
+
+
+      <div class="info-row">
+
+        <div class="info-icon">
+          <svg width="19" height="19"
+               viewBox="0 0 24 24"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="1.8">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+          </svg>
+        </div>
+
+        <div class="info-text">
+          <strong>
+            <span class="bn">দেখতে পারেন</span>
+            <span class="en">Wildlife highlights</span>
+          </strong>
+
+          <span>
+            Tiger, Lion, Bear, Giraffe, Zebra,
+            Deer এবং African wildlife সহ বিভিন্ন প্রাণী।
+          </span>
+        </div>
+
+      </div>
+
+
+      <div class="info-row">
+
+        <div class="info-icon">
+          <svg width="19" height="19"
+               viewBox="0 0 24 24"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="1.8">
+            <path d="M4 19h16"/>
+            <path d="M6 19V9l6-4 6 4v10"/>
+            <path d="M9 13h6"/>
+          </svg>
+        </div>
+
+        <div class="info-text">
+          <strong>
+            <span class="bn">গুরুত্বপূর্ণ</span>
+            <span class="en">Important</span>
+          </strong>
+
+          <span>
+            <span class="bn">
+              প্রাণীদের কাছে গিয়ে হাঁটার পরিবর্তে
+              designated route ও vehicle rules অনুসরণ করুন।
+            </span>
+
+            <span class="en">
+              Follow designated routes and vehicle safety
+              rules rather than approaching wildlife on foot.
+            </span>
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- SAFARI KINGDOM -->
+
+<div class="zone searchable">
+
+  <div class="zone-top" onclick="toggleZone(this.parentElement)">
+
+    <div class="zone-icon">
+
+      <svg width="27" height="27"
+           viewBox="0 0 24 24"
+           fill="none"
+           stroke="currentColor"
+           stroke-width="1.8">
+
+        <path d="M12 20V10"/>
+        <path d="M12 10c-5 1-7-2-7-5 4 0 7 1 7 5Z"/>
+        <path d="M12 10c5 1 7-2 7-5-4 0-7 1-7 5Z"/>
+
+      </svg>
+
+    </div>
+
+    <div class="zone-info">
+
+      <h3>
+        <span class="bn">Safari Kingdom</span>
+        <span class="en">Safari Kingdom</span>
+      </h3>
+
+      <p>
+        <span class="bn">
+          হাঁটা পথে বিভিন্ন attraction ও animal zone
+        </span>
+
+        <span class="en">
+          Walk-through attractions and animal zones
+        </span>
+      </p>
+
+    </div>
+
+    <svg class="chevron"
+         width="21" height="21"
+         viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="2">
+      <path d="m6 9 6 6 6-6"/>
+    </svg>
+
+  </div>
+
+
+  <div class="zone-body">
+
+    <div class="zone-content">
+
+      <div class="info-row">
+
+        <div class="info-icon">
+          <svg width="19" height="19"
+               viewBox="0 0 24 24"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="1.8">
+            <circle cx="12" cy="12" r="8"/>
+            <path d="M8 14c1.5 2 6.5 2 8 0"/>
+            <circle cx="9" cy="10" r="1"/>
+            <circle cx="15" cy="10" r="1"/>
+          </svg>
+        </div>
+
+        <div class="info-text">
+
+          <strong>
+            <span class="bn">Bird & Macaw Areas</span>
+            <span class="en">Bird & Macaw Areas</span>
+          </strong>
+
+          <span>
+            Macaw, Parrot এবং বিভিন্ন bird aviary/area।
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="info-row">
+
+        <div class="info-icon">
+          <svg width="19" height="19"
+               viewBox="0 0 24 24"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="1.8">
+            <path d="M4 17h16"/>
+            <path d="M6 17V9h12v8"/>
+            <circle cx="9" cy="13" r="1"/>
+            <circle cx="15" cy="13" r="1"/>
+          </svg>
+        </div>
+
+        <div class="info-text">
+
+          <strong>
+            <span class="bn">Aquarium</span>
+            <span class="en">Aquarium</span>
+          </strong>
+
+          <span>
+            বিভিন্ন প্রজাতির মাছ ও aquatic life দেখার সুযোগ।
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="info-row">
+
+        <div class="info-icon">
+
+          <svg width="19" height="19"
+               viewBox="0 0 24 24"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="1.8">
+
+            <path d="M12 3c-3 4-7 7-7 11a7 7 0 0 0 14 0c0-4-4-7-7-11Z"/>
+            <path d="M9 15c.5 2 2 3 3 3"/>
+          </svg>
+
+        </div>
+
+        <div class="info-text">
+
+          <strong>
+            <span class="bn">Butterfly Area</span>
+            <span class="en">Butterfly Area</span>
+          </strong>
+
+          <span>
+            প্রজাপতি ও nature-focused viewing area।
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     ATTRACTIONS
+========================= -->
+
+<div class="section-head">
+
+  <div>
+
+    <div class="section-title">
+      <span class="bn">কী কী দেখতে পাবেন?</span>
+      <span class="en">What Can You Explore?</span>
+    </div>
+
+    <div class="section-sub">
+      <span class="bn">প্রধান attraction গুলো</span>
+      <span class="en">Selected park attractions</span>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="attractions">
+
+
+  <div class="attraction searchable">
+
+    <div class="number">01</div>
+
+    <div class="attraction-icon">
+
+      <svg width="23" height="23"
+           viewBox="0 0 24 24"
+           fill="none"
+           stroke="currentColor"
+           stroke-width="1.8">
+
+        <circle cx="12" cy="12" r="7"/>
+        <path d="M5 12h14"/>
+        <path d="M12 5c2 2 3 4 3 7s-1 5-3 7"/>
+        <path d="M12 5c-2 2-3 4-3 7s1 5 3 7"/>
+
+      </svg>
+
+    </div>
+
+    <h3>Nature Observation</h3>
+
+    <p>
+      <span class="bn">
+        প্রকৃতি ও park landscape পর্যবেক্ষণের সুযোগ।
+      </span>
+
+      <span class="en">
+        Nature and landscape observation areas.
+      </span>
+    </p>
+
+  </div>
+
+
+  <div class="attraction searchable">
+
+    <div class="number">02</div>
+
+    <div class="attraction-icon">
+
+      <svg width="23" height="23"
+           viewBox="0 0 24 24"
+           fill="none"
+           stroke="currentColor"
+           stroke-width="1.8">
+
+        <path d="M4 18h16"/>
+        <path d="M6 18V9l6-5 6 5v9"/>
+        <path d="M9 13h6"/>
+
+      </svg>
+
+    </div>
+
+    <h3>Nature History</h3>
+
+    <p>
+      <span class="bn">
+        Wildlife ও nature সম্পর্কে শেখার সুযোগ।
+      </span>
+
+      <span class="en">
+        Learn about wildlife and natural history.
+      </span>
+    </p>
+
+  </div>
+
+
+  <div class="attraction searchable">
+
+    <div class="number">03</div>
+
+    <div class="attraction-icon">
+
+      <svg width="23" height="23"
+           viewBox="0 0 24 24"
+           fill="none"
+           stroke="currentColor"
+           stroke-width="1.8">
+
+        <path d="M5 17c2-5 5-7 7-7s5 2 7 7"/>
+        <circle cx="8" cy="8" r="2"/>
+        <circle cx="16" cy="8" r="2"/>
+
+      </svg>
+
+    </div>
+
+    <h3>Bird Aviaries</h3>
+
+    <p>
+      Macaw, parrot, hornbill ও অন্যান্য পাখির
+      বিভিন্ন aviary/areas।
+    </p>
+
+  </div>
+
+
+  <div class="attraction searchable">
+
+    <div class="number">04</div>
+
+    <div class="attraction-icon">
+
+      <svg width="23" height="23"
+           viewBox="0 0 24 24"
+           fill="none"
+           stroke="currentColor"
+           stroke-width="1.8">
+
+        <path d="M4 16c4-5 12-5 16 0"/>
+        <path d="M6 16v3h12v-3"/>
+        <circle cx="8" cy="11" r="2"/>
+        <circle cx="16" cy="11" r="2"/>
+
+      </svg>
+
+    </div>
+
+    <h3>Aquarium</h3>
+
+    <p>
+      <span class="bn">
+        বিভিন্ন aquatic species দেখার সুযোগ।
+      </span>
+
+      <span class="en">
+        Explore aquatic species and aquarium exhibits.
+      </span>
+    </p>
+
+  </div>
+
+
+  <div class="attraction searchable">
+
+    <div class="number">05</div>
+
+    <div class="attraction-icon">
+
+      <svg width="23" height="23"
+           viewBox="0 0 24 24"
+           fill="none"
+           stroke="currentColor"
+           stroke-width="1.8">
+
+        <path d="M12 4v16"/>
+        <path d="M5 8h14"/>
+        <path d="M6 8c0 5 2 7 6 7s6-2 6-7"/>
+
+      </svg>
+
+    </div>
+
+    <h3>Lake & Boating</h3>
+
+    <p>
+      <span class="bn">
+        Lake zone ও boating-related attraction।
+      </span>
+
+      <span class="en">
+        Lake zone and boating-related attractions.
+      </span>
+    </p>
+
+  </div>
+
+
+  <div class="attraction searchable">
+
+    <div class="number">06</div>
+
+    <div class="attraction-icon">
+
+      <svg width="23" height="23"
+           viewBox="0 0 24 24"
+           fill="none"
+           stroke="currentColor"
+           stroke-width="1.8">
+
+        <path d="M4 17h16"/>
+        <path d="M6 17V8h12v9"/>
+        <path d="M9 12h6"/>
+
+      </svg>
+
+    </div>
+
+    <h3>Giraffe Area</h3>
+
+    <p>
+      <span class="bn">
+        Giraffe viewing/feeding-related area।
+      </span>
+
+      <span class="en">
+        Giraffe viewing and feeding-related area.
+      </span>
+    </p>
+
+  </div>
+
+
+</div>
+
+
+<!-- =========================
+     ANIMALS
+========================= -->
+
+<div class="section-head">
+
+  <div>
+
+    <div class="section-title">
+      <span class="bn">Wildlife Explorer</span>
+      <span class="en">Wildlife Explorer</span>
+    </div>
+
+    <div class="section-sub">
+      <span class="bn">যে প্রাণীগুলো সম্পর্কে খুঁজতে পারেন</span>
+      <span class="en">Wildlife you may encounter</span>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="animals">
+
+
+  <div class="animal searchable">
+
+    <div class="animal-top">
+
+      <div class="animal-icon">
+
+        <svg width="23" height="23"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="1.7">
+
+          <path d="M7 18c0-5 2-8 5-8s5 3 5 8"/>
+          <path d="M9 10 7 6l3 2"/>
+          <path d="M15 10l2-4-3 2"/>
+          <circle cx="10" cy="12" r=".7" fill="currentColor"/>
+          <circle cx="14" cy="12" r=".7" fill="currentColor"/>
+
+        </svg>
+
+      </div>
+
+      <div>
+        <h4>Tiger</h4>
+        <span>Core Safari</span>
+      </div>
+
+    </div>
+
+    <span class="tag">Predator Zone</span>
+
+  </div>
+
+
+  <div class="animal searchable">
+
+    <div class="animal-top">
+
+      <div class="animal-icon">
+
+        <svg width="23" height="23"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="1.7">
+
+          <circle cx="12" cy="12" r="7"/>
+          <path d="M8 8 6 5M16 8l2-3"/>
+          <circle cx="9.5" cy="11" r=".7" fill="currentColor"/>
+          <circle cx="14.5" cy="11" r=".7" fill="currentColor"/>
+
+        </svg>
+
+      </div>
+
+      <div>
+        <h4>Lion</h4>
+        <span>Core Safari</span>
+      </div>
+
+    </div>
+
+    <span class="tag">Predator Zone</span>
+
+  </div>
+
+
+  <div class="animal searchable">
+
+    <div class="animal-top">
+
+      <div class="animal-icon">
+
+        <svg width="23" height="23"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="1.7">
+
+          <path d="M7 17c0-5 2-9 5-9s5 4 5 9"/>
+          <circle cx="9" cy="9" r="2"/>
+          <circle cx="15" cy="9" r="2"/>
+          <path d="M8 17h8"/>
+
+        </svg>
+
+      </div>
+
+      <div>
+        <h4>Giraffe</h4>
+        <span>Safari Area</span>
+      </div>
+
+    </div>
+
+    <span class="tag">Herbivore</span>
+
+  </div>
+
+
+  <div class="animal searchable">
+
+    <div class="animal-top">
+
+      <div class="animal-icon">
+
+        <svg width="23" height="23"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="1.7">
+
+          <ellipse cx="12" cy="13" rx="7" ry="5"/>
+          <circle cx="7" cy="8" r="2"/>
+          <circle cx="17" cy="8" r="2"/>
+          <path d="M9 13h6"/>
+
+        </svg>
+
+      </div>
+
+      <div>
+        <h4>Zebra</h4>
+        <span>Safari Area</span>
+      </div>
+
+    </div>
+
+    <span class="tag">African Wildlife</span>
+
+  </div>
+
+
+  <div class="animal searchable">
+
+    <div class="animal-top">
+
+      <div class="animal-icon">
+
+        <svg width="23" height="23"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="1.7">
+
+          <circle cx="12" cy="12" r="6"/>
+          <path d="M8 8 6 5M16 8l2-3"/>
+          <path d="M9 14c2 1 4 1 6 0"/>
+
+        </svg>
+
+      </div>
+
+      <div>
+        <h4>Bear</h4>
+        <span>Core Safari</span>
+      </div>
+
+    </div>
+
+    <span class="tag">Wildlife</span>
+
+  </div>
+
+
+  <div class="animal searchable">
+
+    <div class="animal-top">
+
+      <div class="animal-icon">
+
+        <svg width="23" height="23"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="1.7">
+
+          <path d="M5 18c3-6 11-9 14-2"/>
+          <path d="M8 14c-1-4 2-7 6-7"/>
+          <path d="M14 7l3-3"/>
+
+        </svg>
+
+      </div>
+
+      <div>
+        <h4>Deer</h4>
+        <span>Core Safari</span>
+      </div>
+
+    </div>
+
+    <span class="tag">Herbivore</span>
+
+  </div>
+
+
+</div>
+
+
+<!-- =========================
+     VISITOR GUIDE
+========================= -->
+
+<section class="guide">
+
+  <h2>
+    <span class="bn">ভ্রমণের আগে জানুন</span>
+    <span class="en">Before You Explore</span>
+  </h2>
+
+  <p>
+    <span class="bn">
+      পার্কের সব attraction সবসময় একইভাবে চালু নাও থাকতে পারে।
+      maintenance, weather, animal safety বা কর্তৃপক্ষের সিদ্ধান্তের
+      কারণে কোনো zone সাময়িকভাবে বন্ধ থাকতে পারে।
+    </span>
+
+    <span class="en">
+      Attractions may not always operate in the same way.
+      Maintenance, weather, animal safety or park authority
+      decisions may temporarily affect access.
+    </span>
+  </p>
+
+
+  <div class="guide-grid">
+
+    <div class="guide-item">
+
+      <strong>
+        <span class="bn">Core Safari</span>
+        <span class="en">Core Safari</span>
+      </strong>
+
+      <span>
+        <span class="bn">Vehicle-based</span>
+        <span class="en">Vehicle based</span>
+      </span>
+
+    </div>
+
+
+    <div class="guide-item">
+
+      <strong>
+        <span class="bn">Safari Kingdom</span>
+        <span class="en">Safari Kingdom</span>
+      </strong>
+
+      <span>
+        <span class="bn">Walk & explore</span>
+        <span class="en">Walk & explore</span>
+      </span>
+
+    </div>
+
+
+    <div class="guide-item">
+
+      <strong>
+        <span class="bn">Wildlife</span>
+        <span class="en">Wildlife</span>
+      </strong>
+
+      <span>
+        <span class="bn">Keep distance</span>
+        <span class="en">Keep distance</span>
+      </span>
+
+    </div>
+
+
+    <div class="guide-item">
+
+      <strong>
+        <span class="bn">Safety</span>
+        <span class="en">Safety</span>
+      </strong>
+
+      <span>
+        <span class="bn">Follow signs</span>
+        <span class="en">Follow signs</span>
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<div class="note">
+
+  <span class="bn">
+    তথ্য নোট: প্রাণীর উপস্থিতি, attraction availability,
+    প্রবেশাধিকার ও কার্যক্রম সময়ের সঙ্গে পরিবর্তিত হতে পারে।
+    ভ্রমণের দিনে কর্তৃপক্ষের সর্বশেষ নির্দেশনা অনুসরণ করুন।
+  </span>
+
+  <span class="en">
+    Information note: Animal availability, attractions,
+    access and activities may change over time.
+    Follow the park authority's latest instructions on your visit day.
+  </span>
+
+</div>
+
+
+</main>
+
+</div>
+
+
+<script>
+
+/* =========================
+   LANGUAGE SWITCH
+========================= */
+
+function toggleLanguage(){
+
+  document.body.classList.toggle("english");
+
+  const english =
+    document.body.classList.contains("english");
+
+  localStorage.setItem(
+    "wildlife_language",
+    english ? "en" : "bn"
+  );
+}
+
+
+/* Restore language */
+
+if(
+  localStorage.getItem("wildlife_language") === "en"
+){
+  document.body.classList.add("english");
+}
+
+
+/* =========================
+   ZONE ACCORDION
+========================= */
+
+function toggleZone(zone){
+
+  const alreadyOpen =
+    zone.classList.contains("open");
+
+  document
+    .querySelectorAll(".zone.open")
+    .forEach(item=>{
+      item.classList.remove("open");
+    });
+
+  if(!alreadyOpen){
+    zone.classList.add("open");
+  }
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function filterCards(){
+
+  const query =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
+
+  document
+    .querySelectorAll(".searchable")
+    .forEach(card=>{
+
+      const text =
+        card.innerText.toLowerCase();
+
+      card.style.display =
+        text.includes(query)
+          ? ""
+          : "none";
+
+    });
+}
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const observer =
+  new IntersectionObserver(
+    entries=>{
+
+      entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+          entry.target.style.animation =
+            "fadeUp .65s both";
+
+        }
+
+      });
+
+    },
+    {
+      threshold:.08
+    }
+  );
+
+
+document
+  .querySelectorAll(
+    ".zone,.attraction,.animal,.guide,.stat"
+  )
+  .forEach(el=>observer.observe(el));
+
+
+/* =========================
+   SEARCH ENTER BEHAVIOUR
+========================= */
+
+document
+  .getElementById("search")
+  .addEventListener("focus",()=>{
+
+    document
+      .getElementById("search")
+      .scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+
+  });
+
+</script>
+
+</body>
+</html>
