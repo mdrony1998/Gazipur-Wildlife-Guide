@@ -1,928 +1,2137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>Entry & Tickets | Gazipur Wildlife Guide</title>
+<title>Tickets • Gazipur Wildlife Guide</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
+:root{
+  --green:#005844;
+  --green2:#00745c;
+  --green3:#0b8b6c;
+  --cream:#f8f6ee;
+  --card:#fffdf7;
+  --text:#111714;
+  --muted:#66716d;
+  --line:#e6e4da;
+  --gold:#d6a84f;
+  --shadow:0 12px 35px rgba(0,55,43,.10);
 }
 
-:root{
-    --green:#005844;
-    --green2:#00745b;
-    --light:#f7f3e9;
-    --card:#fffdf7;
-    --text:#111;
-    --muted:#686868;
-    --gold:#e8b94f;
-    --danger:#c94b3b;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-    margin:0;
-    background:var(--light);
-    color:var(--text);
-    font-family:Arial,Helvetica,sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans Bengali",
+    sans-serif;
+  background:var(--cream);
+  color:var(--text);
+  overflow-x:hidden;
 }
 
-/* HEADER */
-
-.header{
-    background:linear-gradient(145deg,#004c3a,#006750);
-    color:white;
-    padding:28px 20px 34px;
-    border-radius:0 0 30px 30px;
-    position:relative;
-    overflow:hidden;
-}
-
-.header:before{
-    content:"";
-    position:absolute;
-    width:220px;
-    height:220px;
-    right:-100px;
-    top:-110px;
-    border-radius:50%;
-    background:rgba(255,255,255,.07);
-}
-
-.header:after{
-    content:"";
-    position:absolute;
-    width:150px;
-    height:150px;
-    left:-80px;
-    bottom:-100px;
-    border-radius:50%;
-    background:rgba(255,255,255,.06);
-}
-
-.back{
-    display:inline-flex;
-    align-items:center;
-    gap:7px;
-    color:white;
-    text-decoration:none;
-    font-size:15px;
-    opacity:.9;
-    margin-bottom:25px;
-}
-
-.header h1{
-    margin:0;
-    font-size:34px;
-    line-height:1.1;
-    position:relative;
-    z-index:2;
-}
-
-.header p{
-    margin:10px 0 0;
-    color:#d9eee8;
-    font-size:16px;
-    position:relative;
-    z-index:2;
-}
-
-/* ONLINE STATUS */
-
-.status{
-    margin:15px;
-    padding:12px 15px;
-    border-radius:15px;
-    font-size:14px;
-    display:flex;
-    align-items:center;
-    gap:9px;
-    animation:slideDown .45s ease;
-}
-
-.status.online{
-    background:#e5f7ee;
-    color:#08734f;
-}
-
-.status.offline{
-    background:#fff0ec;
-    color:#a53b2e;
-}
-
-.status-dot{
-    width:9px;
-    height:9px;
-    border-radius:50%;
-    background:currentColor;
-}
-
-/* CONTENT */
-
-.container{
-    padding:0 15px 40px;
-}
-
-/* HERO */
+/* =========================
+   HEADER
+========================= */
 
 .hero{
-    margin-top:-18px;
-    background:linear-gradient(135deg,#fffdf7,#f3ead8);
-    border-radius:24px;
-    padding:22px;
-    box-shadow:0 8px 25px rgba(0,0,0,.07);
-    position:relative;
-    z-index:3;
+  position:relative;
+  min-height:265px;
+  padding:42px 20px 48px;
+  overflow:hidden;
+  color:white;
+  background:
+    radial-gradient(circle at 85% 15%,rgba(255,255,255,.13),transparent 25%),
+    linear-gradient(145deg,#004f3d,#006550 55%,#003e30);
+  border-radius:0 0 34px 34px;
 }
 
-.hero-icon{
-    width:58px;
-    height:58px;
-    border-radius:18px;
-    background:var(--green);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:29px;
-    margin-bottom:14px;
+.hero:before{
+  content:"";
+  position:absolute;
+  width:260px;
+  height:260px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:50%;
+  right:-90px;
+  top:-80px;
+  animation:rotateSlow 18s linear infinite;
 }
 
-.hero h2{
-    margin:0;
-    font-size:25px;
+.hero:after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:50%;
+  left:-100px;
+  bottom:-110px;
+}
+
+@keyframes rotateSlow{
+  to{transform:rotate(360deg)}
+}
+
+.header-top{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand-icon{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(10px);
+}
+
+.brand-icon svg{
+  width:27px;
+  height:27px;
+}
+
+.brand-title{
+  font-size:16px;
+  font-weight:700;
+  letter-spacing:.2px;
+}
+
+.brand-sub{
+  font-size:11px;
+  opacity:.68;
+  margin-top:2px;
+}
+
+.lang-switch{
+  position:relative;
+  z-index:3;
+  display:flex;
+  padding:4px;
+  border-radius:30px;
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(12px);
+}
+
+.lang-switch button{
+  border:0;
+  background:transparent;
+  color:white;
+  padding:7px 12px;
+  border-radius:22px;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.lang-switch button.active{
+  background:white;
+  color:var(--green);
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  margin-top:34px;
+}
+
+.hero-label{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-size:12px;
+  color:#d6f5e9;
+  margin-bottom:9px;
+}
+
+.hero h1{
+  font-size:34px;
+  line-height:1.08;
+  letter-spacing:-1px;
+  max-width:350px;
 }
 
 .hero p{
-    margin:8px 0 0;
-    color:var(--muted);
-    line-height:1.55;
-    font-size:15px;
+  margin-top:11px;
+  color:#d9eee7;
+  font-size:14px;
+  line-height:1.5;
+  max-width:350px;
 }
 
-/* LANGUAGE */
+/* =========================
+   CONTENT
+========================= */
 
-.language{
-    display:flex;
-    justify-content:flex-end;
-    margin:16px 2px 5px;
+.container{
+  width:min(100% - 28px,620px);
+  margin:auto;
 }
 
-.lang-btn{
-    border:1px solid #d7d1c5;
-    background:white;
-    color:var(--green);
-    border-radius:30px;
-    padding:9px 15px;
-    font-weight:bold;
-    cursor:pointer;
+.quick-info{
+  margin-top:-27px;
+  position:relative;
+  z-index:5;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
 }
 
-/* SECTION */
+.quick-card{
+  background:rgba(255,255,255,.96);
+  border:1px solid rgba(0,70,55,.07);
+  border-radius:18px;
+  padding:14px 8px;
+  text-align:center;
+  box-shadow:var(--shadow);
+  animation:rise .65s ease both;
+}
+
+.quick-card:nth-child(2){animation-delay:.08s}
+.quick-card:nth-child(3){animation-delay:.16s}
+
+@keyframes rise{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.quick-icon{
+  width:32px;
+  height:32px;
+  margin:auto;
+  display:grid;
+  place-items:center;
+  color:var(--green);
+}
+
+.quick-icon svg{
+  width:24px;
+  height:24px;
+}
+
+.quick-title{
+  font-size:11px;
+  font-weight:800;
+  margin-top:5px;
+}
+
+.quick-value{
+  font-size:10px;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+  margin-top:28px;
+}
+
+.section-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  margin-bottom:13px;
+}
+
+.section-kicker{
+  color:var(--green3);
+  font-size:11px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+}
 
 .section-title{
-    margin:27px 4px 12px;
-    font-size:20px;
-    font-weight:800;
+  margin-top:3px;
+  font-size:24px;
+  letter-spacing:-.6px;
 }
 
-/* TICKET CARD */
-
-.ticket{
-    background:var(--card);
-    border-radius:20px;
-    padding:18px;
-    margin-bottom:12px;
-    box-shadow:0 5px 18px rgba(0,0,0,.055);
-    display:flex;
-    align-items:center;
-    gap:15px;
-    animation:fadeUp .55s ease both;
+.section-note{
+  font-size:11px;
+  color:var(--muted);
 }
 
-.ticket:nth-child(2){animation-delay:.05s}
-.ticket:nth-child(3){animation-delay:.1s}
-.ticket:nth-child(4){animation-delay:.15s}
-.ticket:nth-child(5){animation-delay:.2s}
+/* =========================
+   TICKET CARDS
+========================= */
+
+.ticket-card{
+  position:relative;
+  overflow:hidden;
+  background:var(--card);
+  border:1px solid #ece9df;
+  border-radius:24px;
+  margin-bottom:14px;
+  box-shadow:0 8px 25px rgba(0,60,45,.07);
+  animation:cardIn .7s ease both;
+}
+
+.ticket-card:before{
+  content:"";
+  position:absolute;
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  background:rgba(0,100,75,.045);
+  right:-55px;
+  top:-55px;
+}
+
+@keyframes cardIn{
+  from{
+    opacity:0;
+    transform:translateY(25px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.ticket-head{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:19px 18px 15px;
+}
 
 .ticket-icon{
-    min-width:50px;
-    height:50px;
-    border-radius:15px;
-    background:#e6f2ed;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:25px;
+  flex:0 0 46px;
+  width:46px;
+  height:46px;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  background:#e7f4ee;
+  color:var(--green);
 }
 
-.ticket-info{
-    flex:1;
+.ticket-icon svg{
+  width:25px;
+  height:25px;
 }
 
-.ticket-info h3{
-    margin:0 0 4px;
-    font-size:17px;
+.ticket-name{
+  font-size:18px;
+  font-weight:800;
 }
 
-.ticket-info p{
-    margin:0;
-    color:var(--muted);
-    font-size:13px;
+.ticket-desc{
+  margin-top:2px;
+  color:var(--muted);
+  font-size:11px;
+}
+
+.price-list{
+  position:relative;
+  border-top:1px dashed #ddd9ce;
+}
+
+.price-row{
+  min-height:58px;
+  padding:11px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  border-bottom:1px solid #efede6;
+}
+
+.price-row:last-child{
+  border-bottom:0;
+}
+
+.person{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.person-icon{
+  width:31px;
+  height:31px;
+  border-radius:10px;
+  background:#f0f5f1;
+  color:var(--green);
+  display:grid;
+  place-items:center;
+  flex:none;
+}
+
+.person-icon svg{
+  width:17px;
+  height:17px;
+}
+
+.person-name{
+  font-size:13px;
+  font-weight:650;
+}
+
+.person-sub{
+  font-size:10px;
+  color:var(--muted);
+  margin-top:1px;
 }
 
 .price{
-    color:var(--green);
-    font-size:21px;
-    font-weight:800;
-    white-space:nowrap;
+  font-size:17px;
+  font-weight:850;
+  color:var(--green);
+  white-space:nowrap;
 }
 
-/* FEATURE CARD */
-
-.feature{
-    background:linear-gradient(135deg,#005844,#00745b);
-    color:white;
-    border-radius:22px;
-    padding:22px;
-    margin-top:15px;
-    position:relative;
-    overflow:hidden;
+.price small{
+  font-size:10px;
+  font-weight:600;
+  color:var(--muted);
 }
 
-.feature:after{
-    content:"🐅";
-    position:absolute;
-    right:-5px;
-    bottom:-18px;
-    font-size:90px;
-    opacity:.09;
+/* =========================
+   HIGHLIGHT
+========================= */
+
+.highlight{
+  margin-top:18px;
+  border-radius:22px;
+  padding:18px;
+  color:white;
+  overflow:hidden;
+  position:relative;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(255,255,255,.18),transparent 28%),
+    linear-gradient(135deg,#006c54,#004737);
+  box-shadow:0 12px 28px rgba(0,80,60,.16);
 }
 
-.feature h2{
-    margin:0 0 7px;
-    font-size:23px;
+.highlight:after{
+  content:"";
+  position:absolute;
+  width:150px;
+  height:150px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:50%;
+  right:-65px;
+  bottom:-80px;
 }
 
-.feature p{
-    margin:0;
-    color:#d8eee7;
-    line-height:1.5;
+.highlight-icon{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:rgba(255,255,255,.13);
+  display:grid;
+  place-items:center;
 }
 
-/* INFO GRID */
+.highlight-icon svg{
+  width:23px;
+  height:23px;
+}
+
+.highlight h3{
+  margin-top:12px;
+  font-size:19px;
+}
+
+.highlight p{
+  margin-top:5px;
+  font-size:12px;
+  line-height:1.6;
+  color:#d9eee7;
+}
+
+/* =========================
+   INFORMATION GRID
+========================= */
 
 .info-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-top:15px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:11px;
 }
 
-.info{
-    background:white;
-    border-radius:18px;
-    padding:17px;
-    box-shadow:0 4px 15px rgba(0,0,0,.05);
+.info-box{
+  padding:17px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:19px;
+  box-shadow:0 5px 18px rgba(0,50,40,.045);
 }
 
-.info .icon{
-    font-size:25px;
+.info-icon{
+  width:35px;
+  height:35px;
+  border-radius:11px;
+  display:grid;
+  place-items:center;
+  background:#eaf5f0;
+  color:var(--green);
 }
 
-.info h3{
-    margin:8px 0 4px;
-    font-size:16px;
+.info-icon svg{
+  width:20px;
+  height:20px;
 }
 
-.info p{
-    margin:0;
-    color:var(--muted);
-    font-size:13px;
-    line-height:1.4;
+.info-title{
+  margin-top:10px;
+  font-size:13px;
+  font-weight:800;
 }
 
-/* TIPS */
-
-.tip{
-    background:#fff7df;
-    border-left:4px solid var(--gold);
-    border-radius:15px;
-    padding:16px;
-    margin-top:15px;
+.info-text{
+  margin-top:4px;
+  font-size:11px;
+  line-height:1.5;
+  color:var(--muted);
 }
 
-.tip strong{
-    display:block;
-    margin-bottom:5px;
+/* =========================
+   RULES
+========================= */
+
+.rules{
+  background:white;
+  border-radius:23px;
+  border:1px solid var(--line);
+  overflow:hidden;
 }
 
-.tip p{
-    margin:0;
-    color:#645631;
-    font-size:14px;
-    line-height:1.5;
+.rule{
+  display:flex;
+  gap:12px;
+  padding:15px 16px;
+  border-bottom:1px solid #eeeae1;
 }
 
-/* NOTICE */
+.rule:last-child{
+  border-bottom:0;
+}
+
+.rule-icon{
+  width:34px;
+  height:34px;
+  flex:none;
+  border-radius:11px;
+  display:grid;
+  place-items:center;
+  background:#edf5f1;
+  color:var(--green);
+}
+
+.rule-icon svg{
+  width:18px;
+  height:18px;
+}
+
+.rule strong{
+  display:block;
+  font-size:12px;
+}
+
+.rule span{
+  display:block;
+  margin-top:3px;
+  font-size:11px;
+  line-height:1.5;
+  color:var(--muted);
+}
+
+/* =========================
+   FAQ
+========================= */
+
+.faq{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:21px;
+  overflow:hidden;
+}
+
+.faq-item{
+  border-bottom:1px solid #eeeae1;
+}
+
+.faq-item:last-child{
+  border-bottom:0;
+}
+
+.faq-question{
+  width:100%;
+  border:0;
+  background:transparent;
+  padding:16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  text-align:left;
+  font:inherit;
+  font-size:13px;
+  font-weight:750;
+  cursor:pointer;
+}
+
+.faq-arrow{
+  width:27px;
+  height:27px;
+  flex:none;
+  border-radius:50%;
+  background:#edf5f1;
+  color:var(--green);
+  display:grid;
+  place-items:center;
+  transition:.3s;
+}
+
+.faq-arrow svg{
+  width:15px;
+  height:15px;
+}
+
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .35s ease;
+}
+
+.faq-answer-inner{
+  padding:0 16px 16px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.65;
+}
+
+.faq-item.open .faq-answer{
+  max-height:200px;
+}
+
+.faq-item.open .faq-arrow{
+  transform:rotate(180deg);
+}
+
+/* =========================
+   NOTICE
+========================= */
 
 .notice{
-    margin-top:18px;
-    padding:17px;
-    border-radius:17px;
-    background:#f1f1ed;
-    color:#666;
-    font-size:13px;
-    line-height:1.5;
+  margin:28px 0 35px;
+  padding:17px;
+  border-radius:20px;
+  background:#fff8e8;
+  border:1px solid #f1dfae;
+  display:flex;
+  gap:12px;
 }
 
-/* FOOTER */
-
-.footer{
-    text-align:center;
-    padding:25px 10px;
-    color:#777;
-    font-size:12px;
+.notice-icon{
+  width:35px;
+  height:35px;
+  flex:none;
+  display:grid;
+  place-items:center;
+  border-radius:11px;
+  background:#f7e6b7;
+  color:#8c661d;
 }
 
-/* OFFLINE SCREEN */
-
-.offline-box{
-    display:none;
-    margin:15px;
-    padding:25px 20px;
-    background:white;
-    border-radius:22px;
-    text-align:center;
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
+.notice-icon svg{
+  width:19px;
+  height:19px;
 }
 
-.offline-box .big{
-    font-size:45px;
+.notice h4{
+  font-size:13px;
 }
 
-.offline-box h2{
-    margin:10px 0 7px;
+.notice p{
+  margin-top:4px;
+  color:#76643c;
+  font-size:11px;
+  line-height:1.55;
 }
 
-.offline-box p{
-    color:#666;
-    line-height:1.5;
+/* =========================
+   REVEAL
+========================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .65s ease,transform .65s ease;
 }
 
-/* ANIMATION */
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(18px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
-@keyframes slideDown{
-    from{
-        opacity:0;
-        transform:translateY(-10px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+/* =========================
+   ENGLISH MODE
+========================= */
+
+body.en .bn{
+  display:none;
 }
 
-button{
-    font-family:inherit;
+body:not(.en) .en{
+  display:none;
+}
+
+/* =========================
+   SMALL DEVICES
+========================= */
+
+@media(max-width:360px){
+  .hero h1{
+    font-size:30px;
+  }
+
+  .quick-card{
+    padding:12px 5px;
+  }
+
+  .price{
+    font-size:15px;
+  }
+
+  .price-row{
+    padding-left:13px;
+    padding-right:13px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header class="header">
+<!-- =========================
+     HEADER
+========================= -->
 
-</a>
+<header class="hero">
 
-<h1 data-en="Entry & Tickets" data-bn="প্রবেশ ও টিকিট">
-    Entry & Tickets
-</h1>
+  <div class="header-top">
 
-<p data-en="Everything you need to know before visiting Safari Park, Gazipur."
-   data-bn="সাফারি পার্ক, গাজীপুর ভ্রমণের আগে প্রয়োজনীয় সকল তথ্য।">
-   Everything you need to know before visiting Safari Park, Gazipur.
-</p>
+    <div class="brand">
+
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3c4.5 0 7 3.2 7 7.4 0 5.4-3.1 9.6-7 9.6s-7-4.2-7-9.6C5 6.2 7.5 3 12 3Z"/>
+          <path d="M8.5 11.5c1.2-1 2.3-1 3.5 0s2.3 1 3.5 0"/>
+          <circle cx="9.2" cy="8.4" r=".7" fill="currentColor"/>
+          <circle cx="14.8" cy="8.4" r=".7" fill="currentColor"/>
+        </svg>
+      </div>
+
+      <div>
+        <div class="brand-title">Gazipur Wildlife Guide</div>
+        <div class="brand-sub">Safari • Nature • Travel</div>
+      </div>
+
+    </div>
+
+    <div class="lang-switch">
+      <button id="bnBtn" class="active" onclick="setLanguage('bn')">বাংলা</button>
+      <button id="enBtn" onclick="setLanguage('en')">EN</button>
+    </div>
+
+  </div>
+
+  <div class="hero-content">
+
+    <div class="hero-label">
+      <svg width="15" height="15" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor"
+           stroke-width="2">
+        <path d="M4 7h16M4 12h16M4 17h16"/>
+      </svg>
+
+      <span class="bn">প্রবেশ মূল্য ও টিকিট</span>
+      <span class="en">ENTRY & TICKETS</span>
+    </div>
+
+    <h1>
+      <span class="bn">সাফারি পার্ক টিকিট</span>
+      <span class="en">Safari Park Tickets</span>
+    </h1>
+
+    <p>
+      <span class="bn">
+        টিকিটের মূল্য, পার্কিং, সাফারি ও গুরুত্বপূর্ণ ভ্রমণ তথ্য এক জায়গায়।
+      </span>
+      <span class="en">
+        Ticket prices, parking, safari experiences and essential visitor information in one place.
+      </span>
+    </p>
+
+  </div>
 
 </header>
 
 
-<!-- INTERNET STATUS -->
-
-<div id="status" class="status online">
-    <span class="status-dot"></span>
-    <span id="statusText">Online • Information is up to date</span>
-</div>
-
-
-<!-- OFFLINE MESSAGE -->
-
-<div id="offlineBox" class="offline-box">
-
-    <div class="big">📡</div>
-
-    <h2 data-en="You're Offline"
-        data-bn="আপনার ইন্টারনেট সংযোগ নেই">
-        You're Offline
-    </h2>
-
-    <p data-en="Don't worry. This page may still work if it was previously loaded and saved by your browser."
-       data-bn="চিন্তা করবেন না। পেজটি আগে লোড করা থাকলে সংরক্ষিত তথ্য এখনো দেখা যেতে পারে।">
-       Don't worry. This page may still work if it was previously loaded and saved by your browser.
-    </p>
-
-</div>
-
-
 <main class="container">
 
-<section class="hero">
+<!-- QUICK INFO -->
 
-<div class="hero-icon">🎟️</div>
+<div class="quick-info">
 
-<h2 data-en="Plan Your Visit"
-    data-bn="আপনার ভ্রমণ পরিকল্পনা করুন">
-    Plan Your Visit
-</h2>
+  <div class="quick-card">
+    <div class="quick-icon">
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M12 7v5l3 2"/>
+      </svg>
+    </div>
 
-<p data-en="Check entrance fees, Core Safari charges, visiting hours and important visitor information before you start your journey."
-   data-bn="ভ্রমণের আগে প্রবেশ মূল্য, কোর সাফারি, সময়সূচি এবং গুরুত্বপূর্ণ তথ্য দেখে নিন।">
-Check entrance fees, Core Safari charges, visiting hours and important visitor information before you start your journey.
-</p>
+    <div class="quick-title">
+      <span class="bn">সময়</span>
+      <span class="en">Hours</span>
+    </div>
+
+    <div class="quick-value">9:00 AM – 5:00 PM</div>
+  </div>
+
+
+  <div class="quick-card">
+    <div class="quick-icon">
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round">
+        <rect x="4" y="5" width="16" height="15" rx="2"/>
+        <path d="M8 3v4M16 3v4M4 10h16"/>
+      </svg>
+    </div>
+
+    <div class="quick-title">
+      <span class="bn">বন্ধ</span>
+      <span class="en">Closed</span>
+    </div>
+
+    <div class="quick-value">
+      <span class="bn">মঙ্গলবার</span>
+      <span class="en">Tuesday</span>
+    </div>
+  </div>
+
+
+  <div class="quick-card">
+    <div class="quick-icon">
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round"
+           stroke-linejoin="round">
+        <path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/>
+        <circle cx="12" cy="10" r="2.2"/>
+      </svg>
+    </div>
+
+    <div class="quick-title">
+      <span class="bn">স্থান</span>
+      <span class="en">Location</span>
+    </div>
+
+    <div class="quick-value">Sreepur, Gazipur</div>
+  </div>
+
+</div>
+
+
+<!-- MAIN GATE -->
+
+<section class="section reveal">
+
+  <div class="section-head">
+    <div>
+      <div class="section-kicker">
+        <span class="bn">প্রধান প্রবেশদ্বার</span>
+        <span class="en">MAIN GATE</span>
+      </div>
+
+      <div class="section-title">
+        <span class="bn">প্রবেশ টিকিট</span>
+        <span class="en">Entry Tickets</span>
+      </div>
+    </div>
+
+    <div class="section-note">
+      <span class="bn">প্রতি ব্যক্তি</span>
+      <span class="en">Per Person</span>
+    </div>
+  </div>
+
+
+  <div class="ticket-card">
+
+    <div class="ticket-head">
+
+      <div class="ticket-icon">
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round">
+          <path d="M4 7h16v10H4z"/>
+          <path d="M8 7v10M16 7v10"/>
+          <path d="M10 10h4M10 14h4"/>
+        </svg>
+      </div>
+
+      <div>
+        <div class="ticket-name">
+          <span class="bn">Main Gate</span>
+          <span class="en">Main Gate</span>
+        </div>
+
+        <div class="ticket-desc">
+          <span class="bn">পার্কে প্রবেশের সাধারণ টিকিট</span>
+          <span class="en">General park entry</span>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="price-list">
+
+      <div class="price-row">
+
+        <div class="person">
+
+          <div class="person-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="7" r="3"/>
+              <path d="M6 21c.5-4 2.5-6 6-6s5.5 2 6 6"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="person-name">
+              <span class="bn">প্রাপ্তবয়স্ক</span>
+              <span class="en">Adult</span>
+            </div>
+
+            <div class="person-sub">
+              <span class="bn">সাধারণ দর্শনার্থী</span>
+              <span class="en">General visitor</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="price">৳ 150 <small>/ ব্যক্তি</small></div>
+
+      </div>
+
+
+      <div class="price-row">
+
+        <div class="person">
+
+          <div class="person-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="7" r="2.5"/>
+              <path d="M7 21c.5-3.5 2-5.5 5-5.5s4.5 2 5 5.5"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="person-name">
+              <span class="bn">শিশু</span>
+              <span class="en">Child</span>
+            </div>
+
+            <div class="person-sub">
+              <span class="bn">১২ বছরের নিচে</span>
+              <span class="en">Under 12 years</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="price">৳ 80 <small>/ ব্যক্তি</small></div>
+
+      </div>
+
+
+      <div class="price-row">
+
+        <div class="person">
+
+          <div class="person-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8">
+              <path d="M5 21V5h11v16"/>
+              <path d="M16 9h3v12"/>
+              <path d="M8 8h4M8 12h4M8 16h4"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="person-name">
+              <span class="bn">বিদেশি পর্যটক</span>
+              <span class="en">Foreign Tourist</span>
+            </div>
+
+            <div class="person-sub">
+              <span class="bn">আন্তর্জাতিক দর্শনার্থী</span>
+              <span class="en">International visitor</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="price">৳ 1,000</div>
+
+      </div>
+
+
+      <div class="price-row">
+
+        <div class="person">
+
+          <div class="person-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8">
+              <path d="M4 20V5h16v15"/>
+              <path d="M8 9h8M8 13h8"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="person-name">
+              <span class="bn">শিক্ষার্থী</span>
+              <span class="en">Student</span>
+            </div>
+
+            <div class="person-sub">
+              <span class="bn">বৈধ Student ID প্রয়োজন</span>
+              <span class="en">Valid Student ID required</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="price">৳ 80</div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- LANGUAGE BUTTON -->
-
-<div class="language">
-<button class="lang-btn" onclick="toggleLanguage()" id="langButton">
-🇧🇩 বাংলা
-</button>
-</div>
-
-
-<!-- ENTRY -->
-
-<div class="section-title"
-data-en="🎫 Entry Tickets"
-data-bn="🎫 প্রবেশ টিকিট">
-🎫 Entry Tickets
-</div>
-
-
-<div class="ticket">
-
-<div class="ticket-icon">👤</div>
-
-<div class="ticket-info">
-<h3 data-en="Adult — Bangladeshi"
-    data-bn="প্রাপ্তবয়স্ক — বাংলাদেশি">
-Adult — Bangladeshi
-</h3>
-
-<p data-en="General park entrance"
-   data-bn="সাধারণ পার্ক প্রবেশ">
-General park entrance
-</p>
-</div>
-
-<div class="price">৳50</div>
-
-</div>
-
-
-<div class="ticket">
-
-<div class="ticket-icon">🧒</div>
-
-<div class="ticket-info">
-<h3 data-en="Under 12"
-    data-bn="১২ বছরের নিচে">
-Under 12
-</h3>
-
-<p data-en="General entrance"
-   data-bn="সাধারণ প্রবেশ">
-General entrance
-</p>
-</div>
-
-<div class="price">৳20</div>
-
-</div>
-
-
-<div class="ticket">
-
-<div class="ticket-icon">🎓</div>
-
-<div class="ticket-info">
-<h3 data-en="Student"
-    data-bn="শিক্ষার্থী">
-Student
-</h3>
-
-<p data-en="Valid student ID required"
-   data-bn="বৈধ শিক্ষার্থী পরিচয়পত্র প্রয়োজন">
-Valid student ID required
-</p>
-</div>
-
-<div class="price">৳10</div>
-
-</div>
-
-
-<div class="ticket">
-
-<div class="ticket-icon">👶</div>
-
-<div class="ticket-info">
-<h3 data-en="Children under 6"
-    data-bn="৬ বছরের নিচে শিশু">
-Children under 6
-</h3>
-
-<p data-en="Entrance fee"
-   data-bn="প্রবেশ মূল্য">
-Entrance fee
-</p>
-</div>
-
-<div class="price">FREE</div>
-
-</div>
-
-
 <!-- CORE SAFARI -->
 
-<div class="feature">
+<section class="section reveal">
 
-<h2 data-en="🐅 Core Safari"
-    data-bn="🐅 কোর সাফারি">
-🐅 Core Safari
-</h2>
+  <div class="section-head">
 
-<p data-en="Experience wildlife from a protected safari vehicle inside the designated safari area."
-   data-bn="নিরাপদ সাফারি গাড়িতে চড়ে নির্ধারিত সাফারি এলাকায় বন্যপ্রাণী দেখার অভিজ্ঞতা নিন।">
-Experience wildlife from a protected safari vehicle inside the designated safari area.
-</p>
+    <div>
+      <div class="section-kicker">
+        <span class="bn">সাফারি অভিজ্ঞতা</span>
+        <span class="en">SAFARI EXPERIENCE</span>
+      </div>
+
+      <div class="section-title">
+        <span class="bn">Core Safari</span>
+        <span class="en">Core Safari</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="ticket-card">
+
+    <div class="ticket-head">
+
+      <div class="ticket-icon">
+
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.7"
+             stroke-linecap="round">
+          <path d="M4 16l2-5h12l2 5"/>
+          <path d="M5 16h14v3H5z"/>
+          <circle cx="8" cy="19" r="1"/>
+          <circle cx="16" cy="19" r="1"/>
+          <path d="M7 11l1-3h8l1 3"/>
+        </svg>
+
+      </div>
+
+      <div>
+
+        <div class="ticket-name">
+          <span class="bn">Core Safari</span>
+          <span class="en">Core Safari</span>
+        </div>
+
+        <div class="ticket-desc">
+          <span class="bn">সাফারি এলাকায় প্রবেশের অতিরিক্ত টিকিট</span>
+          <span class="en">Additional safari experience ticket</span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="price-list">
+
+      <div class="price-row">
+
+        <div class="person">
+          <div class="person-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="7" r="3"/>
+              <path d="M6 21c.5-4 2.5-6 6-6s5.5 2 6 6"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="person-name">
+              <span class="bn">প্রাপ্তবয়স্ক</span>
+              <span class="en">Adult</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price">৳ 150</div>
+
+      </div>
+
+
+      <div class="price-row">
+
+        <div class="person">
+          <div class="person-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="7" r="2.5"/>
+              <path d="M7 21c.5-3.5 2-5.5 5-5.5s4.5 2 5 5.5"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="person-name">
+              <span class="bn">শিশু</span>
+              <span class="en">Child</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price">৳ 80</div>
+
+      </div>
+
+
+      <div class="price-row">
+
+        <div class="person">
+          <div class="person-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8">
+              <path d="M5 21V5h14v16"/>
+              <path d="M8 9h8M8 13h8"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="person-name">
+              <span class="bn">শিক্ষার্থী</span>
+              <span class="en">Student</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price">৳ 50</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SAFARI KINGDOM -->
+
+<section class="section reveal">
+
+  <div class="section-head">
+
+    <div>
+      <div class="section-kicker">
+        <span class="bn">অতিরিক্ত আকর্ষণ</span>
+        <span class="en">ATTRACTIONS</span>
+      </div>
+
+      <div class="section-title">
+        <span class="bn">Safari Kingdom</span>
+        <span class="en">Safari Kingdom</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="ticket-card">
+
+    <div class="ticket-head">
+
+      <div class="ticket-icon">
+
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.7"
+             stroke-linecap="round"
+             stroke-linejoin="round">
+          <path d="M4 18h16"/>
+          <path d="M6 18v-5l6-6 6 6v5"/>
+          <path d="M9 18v-4h6v4"/>
+          <path d="M12 7V4"/>
+        </svg>
+
+      </div>
+
+      <div>
+
+        <div class="ticket-name">
+          <span class="bn">Safari Kingdom</span>
+          <span class="en">Safari Kingdom</span>
+        </div>
+
+        <div class="ticket-desc">
+          <span class="bn">বিভিন্ন আকর্ষণ ও দর্শনীয় স্পট</span>
+          <span class="en">Additional attractions & experiences</span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="price-list">
+
+      <div class="price-row">
+        <div class="person">
+          <div class="person-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8">
+              <path d="M5 19h14"/>
+              <path d="M7 19v-6l5-4 5 4v6"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="person-name">
+              <span class="bn">ম্যাকাও ও পাখি</span>
+              <span class="en">Macaw & Birds</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price">৳ 40</div>
+      </div>
+
+
+      <div class="price-row">
+        <div class="person">
+          <div class="person-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="8"/>
+              <path d="M8 12h8M12 8v8"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="person-name">
+              <span class="bn">অ্যাকুরিয়াম</span>
+              <span class="en">Aquarium</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price">৳ 20</div>
+      </div>
+
+
+      <div class="price-row">
+        <div class="person">
+          <div class="person-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8">
+              <path d="M4 18h16"/>
+              <path d="M6 18l3-7 3 4 2-3 4 6"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="person-name">
+              <span class="bn">জুলন্ত সেতু</span>
+              <span class="en">Hanging Bridge</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price">৳ 20</div>
+      </div>
+
+
+      <div class="price-row">
+        <div class="person">
+          <div class="person-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8">
+              <rect x="4" y="5" width="16" height="14" rx="2"/>
+              <path d="M8 15l2-3 2 2 2-3 2 4"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="person-name">
+              <span class="bn">ন্যাচার হিস্ট্রি মিউজিয়াম</span>
+              <span class="en">Natural History Museum</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price">৳ 20</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PARKING -->
+
+<section class="section reveal">
+
+  <div class="section-head">
+
+    <div>
+      <div class="section-kicker">
+        <span class="bn">যানবাহন</span>
+        <span class="en">VEHICLES</span>
+      </div>
+
+      <div class="section-title">
+        <span class="bn">Parking Fees</span>
+        <span class="en">Parking Fees</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="ticket-card">
+
+    <div class="ticket-head">
+
+      <div class="ticket-icon">
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.7"
+             stroke-linecap="round">
+          <path d="M4 16l2-6h12l2 6"/>
+          <path d="M5 16h14v3H5z"/>
+          <circle cx="8" cy="19" r="1"/>
+          <circle cx="16" cy="19" r="1"/>
+        </svg>
+      </div>
+
+      <div>
+
+        <div class="ticket-name">
+          <span class="bn">পার্কিং</span>
+          <span class="en">Parking</span>
+        </div>
+
+        <div class="ticket-desc">
+          <span class="bn">প্রতি যানবাহন</span>
+          <span class="en">Per vehicle</span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="price-list">
+
+      <div class="price-row">
+        <div class="person">
+          <div class="person-icon">BUS</div>
+          <div>
+            <div class="person-name">
+              <span class="bn">বাস / কোচ / ট্রাক</span>
+              <span class="en">Bus / Coach / Truck</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price">৳ 400</div>
+      </div>
+
+
+      <div class="price-row">
+        <div class="person">
+          <div class="person-icon">MB</div>
+          <div>
+            <div class="person-name">
+              <span class="bn">মিনিবাস / মাইক্রোবাস</span>
+              <span class="en">Minibus / Microbus</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price">৳ 200</div>
+      </div>
+
+
+      <div class="price-row">
+        <div class="person">
+          <div class="person-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8">
+              <path d="M4 16l2-6h12l2 6"/>
+              <circle cx="8" cy="17" r="1"/>
+              <circle cx="16" cy="17" r="1"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="person-name">
+              <span class="bn">কার / জীপ / পিকআপ</span>
+              <span class="en">Car / Jeep / Pickup</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price">৳ 100</div>
+      </div>
+
+
+      <div class="price-row">
+        <div class="person">
+          <div class="person-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8">
+              <circle cx="7" cy="17" r="2"/>
+              <circle cx="17" cy="17" r="2"/>
+              <path d="M7 17l3-6h4l3 6M10 11l-2-3h4"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="person-name">
+              <span class="bn">অটোরিকশা / টেম্পু</span>
+              <span class="en">Auto-rickshaw / Tempo</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price">৳ 50</div>
+      </div>
+
+
+      <div class="price-row">
+        <div class="person">
+          <div class="person-icon">
+            <svg viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.8">
+              <circle cx="6" cy="17" r="2"/>
+              <circle cx="18" cy="17" r="2"/>
+              <path d="M6 17h12M9 12h6l3 5M9 12l-3 5"/>
+            </svg>
+          </div>
+
+          <div>
+            <div class="person-name">
+              <span class="bn">রিকশা / মোটরসাইকেল</span>
+              <span class="en">Rickshaw / Motorcycle</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price">৳ 25</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- HIGHLIGHT -->
+
+<section class="highlight reveal">
+
+  <div class="highlight-icon">
+
+    <svg viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="1.8"
+         stroke-linecap="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 7v5"/>
+      <circle cx="12" cy="16" r=".7" fill="currentColor"/>
+    </svg>
+
+  </div>
+
+  <h3>
+    <span class="bn">ভ্রমণের আগে গুরুত্বপূর্ণ</span>
+    <span class="en">Before You Visit</span>
+  </h3>
+
+  <p>
+    <span class="bn">
+      মঙ্গলবার সাপ্তাহিক বন্ধ থাকে। টিকিটের মূল্য ও পার্কের নিয়ম পরিবর্তিত হতে পারে।
+      যাত্রার আগে সর্বশেষ তথ্য যাচাই করে নেওয়া ভালো।
+    </span>
+
+    <span class="en">
+      The park remains closed on Tuesday. Ticket prices and park policies may change.
+      Please verify the latest information before travelling.
+    </span>
+  </p>
+
+</section>
+
+
+<!-- PARK INFO -->
+
+<section class="section reveal">
+
+  <div class="section-head">
+
+    <div>
+      <div class="section-kicker">
+        <span class="bn">জেনে রাখুন</span>
+        <span class="en">GOOD TO KNOW</span>
+      </div>
+
+      <div class="section-title">
+        <span class="bn">পার্ক তথ্য</span>
+        <span class="en">Park Information</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="info-grid">
+
+    <div class="info-box">
+
+      <div class="info-icon">
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 7v5l3 2"/>
+        </svg>
+      </div>
+
+      <div class="info-title">
+        <span class="bn">খোলার সময়</span>
+        <span class="en">Opening Hours</span>
+      </div>
+
+      <div class="info-text">
+        <span class="bn">সকাল ৯টা – বিকাল ৫টা</span>
+        <span class="en">9:00 AM – 5:00 PM</span>
+      </div>
+
+    </div>
+
+
+    <div class="info-box">
+
+      <div class="info-icon">
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.8">
+          <rect x="4" y="5" width="16" height="15" rx="2"/>
+          <path d="M8 3v4M16 3v4M4 10h16"/>
+        </svg>
+      </div>
+
+      <div class="info-title">
+        <span class="bn">সাপ্তাহিক বন্ধ</span>
+        <span class="en">Weekly Closure</span>
+      </div>
+
+      <div class="info-text">
+        <span class="bn">প্রতি মঙ্গলবার</span>
+        <span class="en">Every Tuesday</span>
+      </div>
+
+    </div>
+
+
+    <div class="info-box">
+
+      <div class="info-icon">
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.8">
+          <path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/>
+          <circle cx="12" cy="10" r="2"/>
+        </svg>
+      </div>
+
+      <div class="info-title">
+        <span class="bn">অবস্থান</span>
+        <span class="en">Location</span>
+      </div>
+
+      <div class="info-text">
+        Sreepur, Gazipur, Bangladesh
+      </div>
+
+    </div>
+
+
+    <div class="info-box">
+
+      <div class="info-icon">
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.8">
+          <path d="M5 20V5h14v15"/>
+          <path d="M8 9h8M8 13h8M8 17h5"/>
+        </svg>
+      </div>
+
+      <div class="info-title">
+        <span class="bn">টিকিট</span>
+        <span class="en">Tickets</span>
+      </div>
+
+      <div class="info-text">
+        <span class="bn">প্রবেশ টিকিট আলাদা</span>
+        <span class="en">Entry ticket required</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- RULES -->
+
+<section class="section reveal">
+
+  <div class="section-head">
+
+    <div>
+      <div class="section-kicker">
+        <span class="bn">দর্শনার্থী নির্দেশনা</span>
+        <span class="en">VISITOR GUIDELINES</span>
+      </div>
+
+      <div class="section-title">
+        <span class="bn">পার্কের নিয়ম</span>
+        <span class="en">Park Rules</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="rules">
+
+    <div class="rule">
+
+      <div class="rule-icon">
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.8">
+          <path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z"/>
+          <path d="M9 12l2 2 4-4"/>
+        </svg>
+      </div>
+
+      <div>
+        <strong>
+          <span class="bn">প্রকৃতি ও প্রাণীকে সম্মান করুন</span>
+          <span class="en">Respect wildlife & nature</span>
+        </strong>
+
+        <span>
+          <span class="bn">প্রাণীদের বিরক্ত বা খাবার দেওয়া থেকে বিরত থাকুন।</span>
+          <span class="en">Do not disturb or feed the animals.</span>
+        </span>
+      </div>
+
+    </div>
+
+
+    <div class="rule">
+
+      <div class="rule-icon">
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.8">
+          <path d="M4 7h16"/>
+          <path d="M6 7l1 13h10l1-13"/>
+          <path d="M9 11v5M15 11v5"/>
+        </svg>
+      </div>
+
+      <div>
+        <strong>
+          <span class="bn">ময়লা ফেলবেন না</span>
+          <span class="en">Keep the park clean</span>
+        </strong>
+
+        <span>
+          <span class="bn">নির্ধারিত ডাস্টবিন ব্যবহার করুন।</span>
+          <span class="en">Use designated waste bins.</span>
+        </span>
+      </div>
+
+    </div>
+
+
+    <div class="rule">
+
+      <div class="rule-icon">
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.8">
+          <path d="M5 12h14"/>
+          <path d="M12 5v14"/>
+          <circle cx="12" cy="12" r="9"/>
+        </svg>
+      </div>
+
+      <div>
+        <strong>
+          <span class="bn">খাবার নিয়ে প্রবেশের নিয়ম মেনে চলুন</span>
+          <span class="en">Follow food restrictions</span>
+        </strong>
+
+        <span>
+          <span class="bn">পার্ক কর্তৃপক্ষের নির্দেশনা অনুসরণ করুন।</span>
+          <span class="en">Follow park authority instructions.</span>
+        </span>
+      </div>
+
+    </div>
+
+
+    <div class="rule">
+
+      <div class="rule-icon">
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.8">
+          <path d="M4 12h16"/>
+          <path d="M12 4v16"/>
+          <circle cx="12" cy="12" r="9"/>
+        </svg>
+      </div>
+
+      <div>
+        <strong>
+          <span class="bn">নিরাপত্তা নির্দেশনা মেনে চলুন</span>
+          <span class="en">Follow safety instructions</span>
+        </strong>
+
+        <span>
+          <span class="bn">সাফারি ও নির্দিষ্ট এলাকায় কর্তৃপক্ষের নির্দেশনা অনুসরণ করুন।</span>
+          <span class="en">Follow staff instructions in safari and restricted areas.</span>
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="section reveal">
+
+  <div class="section-head">
+
+    <div>
+      <div class="section-kicker">FAQ</div>
+
+      <div class="section-title">
+        <span class="bn">সাধারণ প্রশ্ন</span>
+        <span class="en">Frequently Asked Questions</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="faq">
+
+    <div class="faq-item">
+
+      <button class="faq-question">
+
+        <span class="bn">সাফারি পার্ক কোন দিন বন্ধ থাকে?</span>
+        <span class="en">Which day is the park closed?</span>
+
+        <span class="faq-arrow">
+          <svg viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+
+          <span class="bn">
+            সাধারণত প্রতি মঙ্গলবার সাপ্তাহিক বন্ধ থাকে।
+          </span>
+
+          <span class="en">
+            The park is generally closed every Tuesday.
+          </span>
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="faq-item">
+
+      <button class="faq-question">
+
+        <span class="bn">পার্ক কতক্ষণ খোলা থাকে?</span>
+        <span class="en">What are the opening hours?</span>
+
+        <span class="faq-arrow">
+          <svg viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        <div class="faq-answer-inner">
+
+          <span class="bn">
+            সাধারণ দর্শনার্থীদের জন্য সকাল ৯টা থেকে বিকাল ৫টা পর্যন্ত সময় উল্লেখ করা হয়েছে।
+          </span>
+
+          <span class="en">
+            The listed visitor hours are generally from 9:00 AM to 5:00 PM.
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="faq-item">
+
+      <button class="faq-question">
+
+        <span class="bn">প্রবেশ টিকিটের পাশাপাশি সাফারি টিকিট লাগবে কি?</span>
+        <span class="en">Is a separate safari ticket required?</span>
+
+        <span class="faq-arrow">
+          <svg viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        <div class="faq-answer-inner">
+
+          <span class="bn">
+            সাফারি বা অতিরিক্ত কোনো আকর্ষণ ব্যবহার করলে সংশ্লিষ্ট আলাদা টিকিট/ফি প্রযোজ্য হতে পারে।
+          </span>
+
+          <span class="en">
+            Separate tickets or fees may apply for safari experiences and additional attractions.
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="faq-item">
+
+      <button class="faq-question">
+
+        <span class="bn">টিকিটের মূল্য পরিবর্তন হতে পারে?</span>
+        <span class="en">Can ticket prices change?</span>
+
+        <span class="faq-arrow">
+          <svg viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </span>
+
+      </button>
+
+      <div class="faq-answer">
+
+        <div class="faq-answer-inner">
+
+          <span class="bn">
+            হ্যাঁ। কর্তৃপক্ষ সময় অনুযায়ী মূল্য বা নিয়ম পরিবর্তন করতে পারে।
+            তাই ভ্রমণের আগে সর্বশেষ তথ্য যাচাই করুন।
+          </span>
+
+          <span class="en">
+            Yes. Prices and policies may change. Please verify the latest information before your visit.
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FINAL NOTICE -->
+
+<div class="notice reveal">
+
+  <div class="notice-icon">
+
+    <svg viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="1.8">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 7v5"/>
+      <circle cx="12" cy="16" r=".7" fill="currentColor"/>
+    </svg>
+
+  </div>
+
+  <div>
+
+    <h4>
+      <span class="bn">তথ্য যাচাই করে ভ্রমণ করুন</span>
+      <span class="en">Verify before travelling</span>
+    </h4>
+
+    <p>
+
+      <span class="bn">
+        এই পেইজটি দর্শনার্থীদের সুবিধার জন্য তথ্যসমৃদ্ধ গাইড হিসেবে তৈরি।
+        সরকারি/কর্তৃপক্ষের সর্বশেষ ঘোষণা অনুযায়ী টিকিট মূল্য, সময়সূচি ও নিয়ম পরিবর্তিত হতে পারে।
+      </span>
+
+      <span class="en">
+        This page is an informational visitor guide.
+        Ticket prices, schedules and rules may change according to the latest official announcements.
+      </span>
+
+    </p>
+
+  </div>
 
 </div>
-
-
-<div class="ticket">
-
-<div class="ticket-icon">🚌</div>
-
-<div class="ticket-info">
-
-<h3 data-en="Adult Core Safari"
-    data-bn="প্রাপ্তবয়স্ক কোর সাফারি">
-Adult Core Safari
-</h3>
-
-<p data-en="Safari vehicle ticket"
-   data-bn="সাফারি গাড়ির টিকিট">
-Safari vehicle ticket
-</p>
-
-</div>
-
-<div class="price">৳150</div>
-
-</div>
-
-
-<div class="ticket">
-
-<div class="ticket-icon">🎓</div>
-
-<div class="ticket-info">
-
-<h3 data-en="Student / Minor"
-    data-bn="শিক্ষার্থী / অপ্রাপ্তবয়স্ক">
-Student / Minor
-</h3>
-
-<p data-en="Core Safari"
-   data-bn="কোর সাফারি">
-Core Safari
-</p>
-
-</div>
-
-<div class="price">৳50</div>
-
-</div>
-
-
-<!-- OPENING -->
-
-<div class="section-title"
-data-en="🕘 Opening Hours"
-data-bn="🕘 খোলার সময়">
-🕘 Opening Hours
-</div>
-
-
-<div class="info-grid">
-
-<div class="info">
-
-<div class="icon">🕘</div>
-
-<h3 data-en="Opening Time"
-    data-bn="খোলার সময়">
-Opening Time
-</h3>
-
-<p data-en="9:00 AM – 5:00 PM"
-   data-bn="সকাল ৯টা – বিকেল ৫টা">
-9:00 AM – 5:00 PM
-</p>
-
-</div>
-
-
-<div class="info">
-
-<div class="icon">📅</div>
-
-<h3 data-en="Weekly Holiday"
-    data-bn="সাপ্তাহিক বন্ধ">
-Weekly Holiday
-</h3>
-
-<p data-en="Tuesday"
-   data-bn="মঙ্গলবার">
-Tuesday
-</p>
-
-</div>
-
-</div>
-
-
-<!-- OTHER INFO -->
-
-<div class="section-title"
-data-en="✨ Other Facilities"
-data-bn="✨ অন্যান্য সুবিধা">
-✨ Other Facilities
-</div>
-
-
-<div class="info-grid">
-
-<div class="info">
-
-<div class="icon">🦜</div>
-
-<h3 data-en="Bird Areas"
-    data-bn="পাখির এলাকা">
-Bird Areas
-</h3>
-
-<p data-en="Macaw, Parrot & Aviary areas"
-   data-bn="ম্যাকাও, প্যারট ও এভিয়ারি">
-Macaw, Parrot & Aviary areas
-</p>
-
-</div>
-
-
-<div class="info">
-
-<div class="icon">🦋</div>
-
-<h3 data-en="Butterfly Center"
-    data-bn="প্রজাপতি কেন্দ্র">
-Butterfly Center
-</h3>
-
-<p data-en="Explore butterflies and nature"
-   data-bn="প্রজাপতি ও প্রকৃতি উপভোগ করুন">
-Explore butterflies and nature
-</p>
-
-</div>
-
-
-<div class="info">
-
-<div class="icon">🐊</div>
-
-<h3 data-en="Wildlife Attractions"
-    data-bn="বন্যপ্রাণী আকর্ষণ">
-Wildlife Attractions
-</h3>
-
-<p data-en="Different animal viewing areas"
-   data-bn="বিভিন্ন প্রাণী দেখার এলাকা">
-Different animal viewing areas
-</p>
-
-</div>
-
-
-<div class="info">
-
-<div class="icon">🍽️</div>
-
-<h3 data-en="Food Facilities"
-    data-bn="খাবারের সুবিধা">
-Food Facilities
-</h3>
-
-<p data-en="Food courts and restaurants"
-   data-bn="ফুডকোর্ট ও রেস্টুরেন্ট">
-Food courts and restaurants
-</p>
-
-</div>
-
-</div>
-
-
-<!-- TIPS -->
-
-<div class="section-title"
-data-en="💡 Visitor Tips"
-data-bn="💡 দর্শনার্থীদের পরামর্শ">
-💡 Visitor Tips
-</div>
-
-
-<div class="tip">
-
-<strong data-en="Arrive early"
-        data-bn="সকালে দ্রুত পৌঁছান">
-Arrive early
-</strong>
-
-<p data-en="The park is large. Arriving early gives you more time to explore different attractions comfortably."
-   data-bn="পার্কটি অনেক বড়। সকালে পৌঁছালে আরাম করে বিভিন্ন আকর্ষণ ঘুরে দেখার জন্য বেশি সময় পাবেন।">
-The park is large. Arriving early gives you more time to explore different attractions comfortably.
-</p>
-
-</div>
-
-
-<div class="tip">
-
-<strong data-en="Keep your ticket safe"
-        data-bn="টিকিট নিরাপদে রাখুন">
-Keep your ticket safe
-</strong>
-
-<p data-en="Some attractions inside the park may require separate tickets."
-   data-bn="পার্কের কিছু আকর্ষণের জন্য আলাদা টিকিট প্রয়োজন হতে পারে।">
-Some attractions inside the park may require separate tickets.
-</p>
-
-</div>
-
-
-<div class="tip">
-
-<strong data-en="Follow wildlife safety rules"
-        data-bn="বন্যপ্রাণী নিরাপত্তা মেনে চলুন">
-Follow wildlife safety rules
-</strong>
-
-<p data-en="Never feed, disturb or approach wild animals. Follow instructions from park staff."
-   data-bn="বন্যপ্রাণীকে খাবার দেবেন না, বিরক্ত করবেন না বা কাছে যাওয়ার চেষ্টা করবেন না। পার্ক কর্তৃপক্ষের নির্দেশনা মেনে চলুন।">
-Never feed, disturb or approach wild animals. Follow instructions from park staff.
-</p>
-
-</div>
-
-
-<!-- PRICE NOTICE -->
-
-<div class="notice">
-
-⚠️
-
-<strong data-en="Important:"
-        data-bn="গুরুত্বপূর্ণ:">
-Important:
-</strong>
-
-<span data-en="Ticket prices, opening hours and attraction availability may change. Please confirm the latest price and availability at the park ticket counter before your visit."
-      data-bn="টিকিটের মূল্য, খোলার সময় এবং বিভিন্ন আকর্ষণের ব্যবস্থা পরিবর্তিত হতে পারে। ভ্রমণের আগে পার্কের টিকিট কাউন্টার থেকে সর্বশেষ তথ্য যাচাই করুন।">
-Ticket prices, opening hours and attraction availability may change. Please confirm the latest price and availability at the park ticket counter before your visit.
-</span>
-
-</div>
-
 
 </main>
 
 
-<footer class="footer">
-
-Gazipur Wildlife Guide<br>
-Explore Wildlife • Discover Nature • Travel
-
-</footer>
-
-
 <script>
 
-/* LANGUAGE */
+/* =========================
+   LANGUAGE
+========================= */
 
-let currentLanguage = "en";
+function setLanguage(lang){
 
-function toggleLanguage(){
+  if(lang === "en"){
+    document.body.classList.add("en");
 
-    currentLanguage =
-        currentLanguage === "en" ? "bn" : "en";
+    document.getElementById("enBtn")
+      .classList.add("active");
 
-    document.querySelectorAll("[data-en]").forEach(function(el){
+    document.getElementById("bnBtn")
+      .classList.remove("active");
 
-        el.innerText =
-            currentLanguage === "en"
-            ? el.getAttribute("data-en")
-            : el.getAttribute("data-bn");
+    document.documentElement.lang="en";
+
+  }else{
+
+    document.body.classList.remove("en");
+
+    document.getElementById("bnBtn")
+      .classList.add("active");
+
+    document.getElementById("enBtn")
+      .classList.remove("active");
+
+    document.documentElement.lang="bn";
+  }
+
+  localStorage.setItem("ticketLanguage",lang);
+}
+
+
+/* Restore language */
+
+const savedLanguage =
+  localStorage.getItem("ticketLanguage");
+
+if(savedLanguage){
+  setLanguage(savedLanguage);
+}
+
+
+/* =========================
+   FAQ
+========================= */
+
+document.querySelectorAll(".faq-question")
+.forEach(button => {
+
+  button.addEventListener("click",()=>{
+
+    const item =
+      button.parentElement;
+
+    document.querySelectorAll(".faq-item")
+    .forEach(other=>{
+
+      if(other !== item){
+        other.classList.remove("open");
+      }
 
     });
 
-    document.getElementById("langButton").innerText =
-        currentLanguage === "en"
-        ? "🇧🇩 বাংলা"
-        : "🇬🇧 English";
-}
+    item.classList.toggle("open");
 
-
-/* INTERNET STATUS */
-
-function updateNetworkStatus(){
-
-    const status = document.getElementById("status");
-    const text = document.getElementById("statusText");
-    const offline = document.getElementById("offlineBox");
-
-    if(navigator.onLine){
-
-        status.className = "status online";
-
-        text.innerText =
-            currentLanguage === "en"
-            ? "Online • Internet connection available"
-            : "অনলাইন • ইন্টারনেট সংযোগ পাওয়া গেছে";
-
-        offline.style.display = "none";
-
-    }else{
-
-        status.className = "status offline";
-
-        text.innerText =
-            currentLanguage === "en"
-            ? "Offline • No internet connection"
-            : "অফলাইন • ইন্টারনেট সংযোগ নেই";
-
-        offline.style.display = "block";
-    }
-}
-
-window.addEventListener("online", updateNetworkStatus);
-
-window.addEventListener("offline", updateNetworkStatus);
-
-updateNetworkStatus();
-
-
-/* PAGE ERROR MESSAGE */
-
-window.addEventListener("error", function(){
-
-    const status =
-        document.getElementById("status");
-
-    status.className = "status offline";
-
-    document.getElementById("statusText").innerText =
-        "⚠️ Some content could not be loaded.";
+  });
 
 });
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const observer =
+  new IntersectionObserver(
+    entries => {
+
+      entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+          entry.target.classList.add("show");
+
+          observer.unobserve(entry.target);
+
+        }
+
+      });
+
+    },
+    {
+      threshold:.12
+    }
+  );
+
+
+document.querySelectorAll(".reveal")
+.forEach(el => observer.observe(el));
+
+
+/* =========================
+   PREVENT DOUBLE TAP ZOOM
+========================= */
+
+let lastTouchEnd = 0;
+
+document.addEventListener(
+  "touchend",
+  function(event){
+
+    const now =
+      Date.now();
+
+    if(now-lastTouchEnd <= 300){
+      event.preventDefault();
+    }
+
+    lastTouchEnd=now;
+
+  },
+  false
+);
 
 </script>
 
