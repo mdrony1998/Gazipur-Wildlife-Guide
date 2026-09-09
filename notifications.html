@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="bn">
+
 <head>
 
 <meta charset="utf-8">
@@ -9,60 +10,72 @@ content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
 <meta name="theme-color" content="#087d59">
 
+<meta name="apple-mobile-web-app-capable" content="yes">
+
 <title>Notifications • Wildlife Explorer</title>
 
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link rel="preconnect"
 href="https://fonts.gstatic.com"
 crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
 rel="stylesheet">
+
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
 <style>
 
-/* =========================================================
+/* =====================================================
    ROOT
-========================================================= */
+===================================================== */
 
 :root{
 
  --bg:#f3f8f5;
  --card:#ffffff;
 
- --ink:#16251f;
- --muted:#74817b;
+ --ink:#15231e;
+ --ink2:#405049;
+
+ --muted:#78847e;
 
  --green:#087d59;
- --green2:#0ba978;
+ --green2:#0ca978;
 
  --soft:#e8f6f0;
 
- --line:#dfeae5;
+ --line:#dfe9e4;
 
  --blue:#3978df;
  --blueSoft:#edf3ff;
 
- --orange:#d98a24;
+ --orange:#d58a25;
  --orangeSoft:#fff3df;
 
- --red:#d65353;
- --redSoft:#ffe8e8;
+ --red:#d95353;
+ --redSoft:#ffe9e9;
 
- --shadow:0 14px 40px rgba(20,70,53,.075);
+ --shadow:
+ 0 12px 38px rgba(20,70,53,.075);
+
+ --shadow2:
+ 0 22px 65px rgba(10,50,38,.13);
 
 }
 
 
-/* =========================================================
+/* =====================================================
    RESET
-========================================================= */
+===================================================== */
 
 *{
  box-sizing:border-box;
@@ -71,43 +84,41 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 html,
 body{
-
  margin:0;
  padding:0;
-
- background:#e3ece8;
-
+ width:100%;
+ min-height:100%;
+ background:#dfe9e4;
  color:var(--ink);
-
 }
 
 body{
-
  font-family:
  Inter,
  "Hind Siliguri",
  sans-serif;
 
+ overflow-x:hidden;
 }
 
 button,
 input{
-
  font-family:inherit;
-
 }
 
 button{
-
- border:0;
  cursor:pointer;
+ border:0;
+}
 
+button:active{
+ transform:scale(.97);
 }
 
 
-/* =========================================================
+/* =====================================================
    APP
-========================================================= */
+===================================================== */
 
 .app{
 
@@ -120,94 +131,102 @@ button{
 
  background:var(--bg);
 
+ position:relative;
+
  overflow:hidden;
 
- position:relative;
+ box-shadow:
+ 0 0 60px rgba(0,0,0,.06);
 
 }
 
 
-/* =========================================================
+/* =====================================================
    HEADER
-========================================================= */
+===================================================== */
 
 .header{
 
  position:relative;
 
- padding:20px 17px 22px;
+ padding:
+ 18px
+ 16px
+ 20px;
 
  color:#fff;
-
- overflow:hidden;
 
  background:
  linear-gradient(
  135deg,
- #056b4b 0%,
- #087d59 48%,
- #0ca777 100%
+ #056b4b,
+ #087d59 52%,
+ #0ca777
  );
+
+ overflow:hidden;
 
 }
 
-.header:before,
-.header:after{
+.header::before{
 
  content:"";
 
  position:absolute;
+
+ width:230px;
+ height:230px;
+
+ right:-120px;
+ top:-145px;
 
  border-radius:50%;
 
  background:
  rgba(255,255,255,.075);
 
- pointer-events:none;
-
-}
-
-.header:before{
-
- width:220px;
- height:220px;
-
- right:-110px;
- top:-140px;
-
  animation:
- floatOne 8s ease-in-out infinite;
+ headerFloat 8s ease-in-out infinite;
 
 }
 
-.header:after{
+.header::after{
 
- width:140px;
- height:140px;
+ content:"";
+
+ position:absolute;
+
+ width:130px;
+ height:130px;
 
  left:-80px;
  bottom:-95px;
 
+ border-radius:50%;
+
+ background:
+ rgba(255,255,255,.06);
+
  animation:
- floatTwo 7s ease-in-out infinite;
+ headerFloat2 7s ease-in-out infinite;
 
 }
 
-@keyframes floatOne{
+@keyframes headerFloat{
 
  50%{
   transform:
-  translate(-10px,10px)
+  translate(-12px,10px)
   scale(1.05);
  }
 
 }
 
-@keyframes floatTwo{
+@keyframes headerFloat2{
 
  50%{
   transform:
-  translate(10px,-7px);
+  translate(12px,-8px);
  }
 
 }
@@ -221,7 +240,7 @@ button{
 }
 
 
-.brandLine{
+.brandRow{
 
  display:flex;
 
@@ -234,22 +253,24 @@ button{
 
 .brandIcon{
 
- width:43px;
- height:43px;
+ width:42px;
+ height:42px;
 
  border-radius:15px;
 
  display:grid;
+
  place-items:center;
 
  background:
  rgba(255,255,255,.14);
 
  border:
- 1px solid rgba(255,255,255,.14);
+ 1px solid
+ rgba(255,255,255,.12);
 
  box-shadow:
- 0 8px 22px rgba(0,0,0,.08);
+ 0 8px 25px rgba(0,0,0,.08);
 
  animation:
  iconFloat 3s ease-in-out infinite;
@@ -273,9 +294,9 @@ button{
 
  font-weight:800;
 
- letter-spacing:1.2px;
+ letter-spacing:1.3px;
 
- opacity:.7;
+ opacity:.68;
 
 }
 
@@ -290,7 +311,7 @@ button{
 }
 
 
-.liveBadge{
+.live{
 
  margin-left:auto;
 
@@ -304,18 +325,18 @@ button{
 
  border-radius:99px;
 
- font-size:7px;
-
- font-weight:800;
-
  background:
  rgba(255,255,255,.12);
 
  border:
- 1px solid rgba(255,255,255,.12);
+ 1px solid
+ rgba(255,255,255,.1);
+
+ font-size:7px;
+
+ font-weight:800;
 
 }
-
 
 .liveDot{
 
@@ -324,10 +345,11 @@ button{
 
  border-radius:50%;
 
- background:#b9ffda;
+ background:#baffdc;
 
  box-shadow:
- 0 0 0 4px rgba(185,255,218,.1);
+ 0 0 0 4px
+ rgba(186,255,220,.1);
 
  animation:
  livePulse 1.8s infinite;
@@ -338,8 +360,8 @@ button{
 
  50%{
   box-shadow:
-  0 0 0 7px
-  rgba(185,255,218,.03);
+  0 0 0 8px
+  rgba(186,255,220,.02);
  }
 
 }
@@ -347,9 +369,9 @@ button{
 
 .headerTitle{
 
- margin-top:20px;
+ margin-top:18px;
 
- font-size:27px;
+ font-size:26px;
 
  line-height:1.1;
 
@@ -359,34 +381,36 @@ button{
 
 }
 
-
 .headerSubtitle{
 
  margin-top:5px;
 
  font-size:9px;
 
- line-height:1.55;
+ line-height:1.6;
 
  opacity:.78;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    CONTENT
-========================================================= */
+===================================================== */
 
 .content{
 
- padding:14px 14px 35px;
+ padding:
+ 13px
+ 13px
+ 35px;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    SEARCH
-========================================================= */
+===================================================== */
 
 .utility{
 
@@ -394,10 +418,9 @@ button{
 
  gap:8px;
 
- margin-bottom:11px;
+ margin-bottom:10px;
 
 }
-
 
 .searchBox{
 
@@ -406,7 +429,6 @@ button{
  flex:1;
 
 }
-
 
 .searchBox i{
 
@@ -423,8 +445,9 @@ button{
 
  font-size:10px;
 
-}
+ pointer-events:none;
 
+}
 
 .searchBox input{
 
@@ -433,10 +456,12 @@ button{
  height:40px;
 
  padding:
- 0 12px 0 32px;
+ 0 34px
+ 0 32px;
 
  border:
- 1px solid var(--line);
+ 1px solid
+ var(--line);
 
  border-radius:14px;
 
@@ -454,7 +479,6 @@ button{
 
 }
 
-
 .searchBox input:focus{
 
  border-color:#9ad3bd;
@@ -465,14 +489,51 @@ button{
 
 }
 
+.clearSearch{
+
+ position:absolute;
+
+ right:8px;
+
+ top:50%;
+
+ transform:
+ translateY(-50%);
+
+ width:25px;
+ height:25px;
+
+ display:none;
+
+ place-items:center;
+
+ border-radius:50%;
+
+ background:#f0f4f2;
+
+ color:#77847d;
+
+ font-size:8px;
+
+}
+
+.clearSearch.show{
+
+ display:grid;
+
+}
+
 
 .refresh{
 
  width:40px;
  height:40px;
 
+ flex:none;
+
  border:
- 1px solid var(--line);
+ 1px solid
+ var(--line);
 
  border-radius:14px;
 
@@ -490,14 +551,6 @@ button{
 
 }
 
-
-.refresh:active{
-
- transform:scale(.94);
-
-}
-
-
 .refresh.loading i{
 
  animation:
@@ -505,10 +558,18 @@ button{
 
 }
 
+@keyframes spin{
 
-/* =========================================================
-   FILTERS
-========================================================= */
+ to{
+  transform:rotate(360deg);
+ }
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
 
 .filters{
 
@@ -519,28 +580,29 @@ button{
  overflow-x:auto;
 
  padding:
- 1px 1px 5px;
+ 2px
+ 1px
+ 5px;
 
  scrollbar-width:none;
 
 }
 
 .filters::-webkit-scrollbar{
-
  display:none;
-
 }
-
 
 .filter{
 
  flex:none;
 
  padding:
- 8px 12px;
+ 8px
+ 12px;
 
  border:
- 1px solid var(--line);
+ 1px solid
+ var(--line);
 
  border-radius:99px;
 
@@ -558,21 +620,17 @@ button{
 
 }
 
-
 .filter i{
-
  margin-right:4px;
-
 }
-
 
 .filter.active{
 
  background:var(--green);
 
- color:#fff;
-
  border-color:var(--green);
+
+ color:#fff;
 
  box-shadow:
  0 7px 18px
@@ -581,23 +639,24 @@ button{
 }
 
 
-/* =========================================================
+/* =====================================================
    SUMMARY
-========================================================= */
+===================================================== */
 
 .summary{
 
  display:flex;
 
- align-items:center;
-
  justify-content:space-between;
 
+ align-items:center;
+
  margin:
- 11px 0 12px;
+ 10px
+ 1px
+ 10px;
 
 }
-
 
 .summaryLeft{
 
@@ -609,11 +668,14 @@ button{
 
 }
 
-
 .summaryIcon{
 
  width:32px;
  height:32px;
+
+ display:grid;
+
+ place-items:center;
 
  border-radius:11px;
 
@@ -621,14 +683,9 @@ button{
 
  color:var(--green);
 
- display:grid;
-
- place-items:center;
-
  font-size:10px;
 
 }
-
 
 .summaryText b{
 
@@ -637,7 +694,6 @@ button{
  font-size:10px;
 
 }
-
 
 .summaryText span{
 
@@ -651,14 +707,15 @@ button{
 
 }
 
-
 .count{
 
  padding:
- 6px 9px;
+ 6px
+ 9px;
 
  border:
- 1px solid var(--line);
+ 1px solid
+ var(--line);
 
  border-radius:99px;
 
@@ -673,9 +730,9 @@ button{
 }
 
 
-/* =========================================================
+/* =====================================================
    NOTIFICATION LIST
-========================================================= */
+===================================================== */
 
 .notificationList{
 
@@ -688,111 +745,124 @@ button{
 }
 
 
-/* =========================================================
+/* =====================================================
    LIST ITEM
-========================================================= */
+===================================================== */
 
 .notificationItem{
+
+ position:relative;
 
  display:flex;
 
  gap:11px;
+
+ width:100%;
 
  padding:11px;
 
  background:#fff;
 
  border:
- 1px solid var(--line);
+ 1px solid
+ var(--line);
 
  border-radius:18px;
 
  box-shadow:
- 0 8px 26px
+ 0 8px 28px
  rgba(20,70,53,.055);
 
- cursor:pointer;
+ animation:
+ itemIn .4s
+ cubic-bezier(.2,.8,.2,1)
+ both;
 
- position:relative;
+ transition:
+ transform .2s,
+ box-shadow .2s,
+ border-color .2s;
 
  overflow:hidden;
 
- opacity:0;
-
- transform:
- translateY(12px);
-
- animation:
- listIn .42s
- cubic-bezier(.2,.8,.2,1)
- forwards;
-
- transition:
- transform .18s,
- box-shadow .18s,
- border-color .18s;
-
 }
-
-
-@keyframes listIn{
-
- to{
-
-  opacity:1;
-
-  transform:none;
-
- }
-
-}
-
 
 .notificationItem:active{
 
  transform:scale(.985);
 
- box-shadow:
- 0 4px 15px
- rgba(20,70,53,.08);
+}
+
+@keyframes itemIn{
+
+ from{
+  opacity:0;
+  transform:
+  translateY(12px);
+ }
+
+ to{
+  opacity:1;
+  transform:none;
+ }
 
 }
 
 
-.notificationItem.important{
+/* unread */
 
- border-color:#efd5a4;
+.notificationItem.unread{
+
+ border-color:#b9ddcf;
+
+ background:
+ linear-gradient(
+ 135deg,
+ #fff,
+ #f9fdfb
+ );
+
+}
+
+.notificationItem.unread::before{
+
+ content:"";
+
+ position:absolute;
+
+ left:0;
+ top:13px;
+ bottom:13px;
+
+ width:3px;
+
+ border-radius:0 5px 5px 0;
+
+ background:var(--green);
 
 }
 
 
-.notificationItem.urgent{
-
- border-color:#edbbbb;
-
-}
-
-
-/* =========================================================
-   THUMBNAIL
-========================================================= */
+/* thumbnail */
 
 .thumb{
 
- width:74px;
- height:74px;
+ position:relative;
+
+ width:72px;
+ height:72px;
 
  flex:none;
 
- border-radius:14px;
+ border-radius:15px;
 
  overflow:hidden;
 
  background:
  linear-gradient(
  135deg,
- #e8f6f0,
- #dceee7
+ #e7f4ef,
+ #d8ebe4
  );
 
  display:grid;
@@ -801,10 +871,7 @@ button{
 
  color:var(--green);
 
- position:relative;
-
 }
-
 
 .thumb img{
 
@@ -817,56 +884,62 @@ button{
 
 }
 
+.thumbIcon{
 
-.thumbPlaceholder{
-
- font-size:19px;
-
- opacity:.75;
+ font-size:18px;
 
 }
 
-
-.thumbPriority{
+.priorityMini{
 
  position:absolute;
 
- left:5px;
+ right:5px;
  bottom:5px;
 
- padding:
- 4px 6px;
+ width:19px;
+ height:19px;
 
- border-radius:99px;
+ display:grid;
+
+ place-items:center;
+
+ border-radius:50%;
 
  background:
  rgba(255,255,255,.92);
 
- backdrop-filter:blur(6px);
+ backdrop-filter:
+ blur(8px);
 
- color:var(--ink);
-
- font-size:6px;
-
- font-weight:800;
+ font-size:7px;
 
 }
 
+.priorityMini.important{
+ color:var(--orange);
+}
 
-/* =========================================================
-   LIST CONTENT
-========================================================= */
+.priorityMini.urgent{
+ color:var(--red);
+}
 
-.itemContent{
+
+/* list body */
+
+.itemBody{
 
  min-width:0;
 
  flex:1;
 
- padding-top:1px;
+ display:flex;
+
+ flex-direction:column;
+
+ justify-content:center;
 
 }
-
 
 .itemTop{
 
@@ -874,14 +947,13 @@ button{
 
  align-items:center;
 
- gap:5px;
+ gap:6px;
 
  min-width:0;
 
 }
 
-
-.categoryBadge{
+.itemCategory{
 
  display:inline-flex;
 
@@ -889,8 +961,11 @@ button{
 
  gap:4px;
 
+ max-width:120px;
+
  padding:
- 5px 7px;
+ 4px
+ 7px;
 
  border-radius:99px;
 
@@ -902,8 +977,6 @@ button{
 
  font-weight:800;
 
- max-width:100px;
-
  white-space:nowrap;
 
  overflow:hidden;
@@ -912,8 +985,7 @@ button{
 
 }
 
-
-.categoryBadge.important{
+.itemCategory.important{
 
  background:var(--orangeSoft);
 
@@ -921,8 +993,7 @@ button{
 
 }
 
-
-.categoryBadge.urgent{
+.itemCategory.urgent{
 
  background:var(--redSoft);
 
@@ -930,12 +1001,11 @@ button{
 
 }
 
-
 .itemTime{
 
  margin-left:auto;
 
- color:#87928d;
+ color:#89958f;
 
  font-size:6.5px;
 
@@ -946,16 +1016,15 @@ button{
 
 .itemTitle{
 
- margin-top:7px;
+ margin-top:6px;
 
  font-family:
  "Hind Siliguri",
- Inter,
  sans-serif;
 
- font-size:12.5px;
+ font-size:14px;
 
- line-height:1.4;
+ line-height:1.35;
 
  font-weight:700;
 
@@ -969,21 +1038,19 @@ button{
 
 }
 
-
 .itemPreview{
 
- margin-top:3px;
+ margin-top:4px;
 
  font-family:
  "Hind Siliguri",
- Inter,
  sans-serif;
 
- font-size:8px;
+ color:#74817b;
 
- line-height:1.55;
+ font-size:9px;
 
- color:var(--muted);
+ line-height:1.5;
 
  display:-webkit-box;
 
@@ -996,57 +1063,33 @@ button{
 }
 
 
-.itemBottom{
+.unreadDot{
 
- display:flex;
+ position:absolute;
 
- align-items:center;
+ right:9px;
 
- justify-content:space-between;
+ top:9px;
 
- margin-top:6px;
+ width:6px;
+ height:6px;
 
-}
+ border-radius:50%;
 
+ background:var(--green);
 
-.readMore{
-
- color:var(--green);
-
- font-size:6.5px;
-
- font-weight:800;
+ box-shadow:
+ 0 0 0 4px
+ rgba(8,125,89,.08);
 
 }
 
 
-.arrow{
-
- width:23px;
- height:23px;
-
- border-radius:8px;
-
- background:#f1f7f4;
-
- color:var(--green);
-
- display:grid;
-
- place-items:center;
-
- font-size:7px;
-
-}
-
-
-/* =========================================================
-   DETAIL VIEW
-========================================================= */
+/* =====================================================
+   DETAIL OVERLAY
+===================================================== */
 
 .detailView{
-
- display:none;
 
  position:fixed;
 
@@ -1054,61 +1097,52 @@ button{
 
  z-index:200;
 
- background:
- rgba(227,236,232,.98);
+ display:none;
+
+ background:var(--bg);
+
+ max-width:680px;
+
+ margin:auto;
+
+ overflow-y:auto;
+
+ overscroll-behavior:
+ contain;
+
+ animation:
+ detailIn .3s
+ cubic-bezier(.2,.8,.2,1);
 
 }
 
-
-.detailView.active{
+.detailView.show{
 
  display:block;
 
- animation:
- detailFade .25s ease;
-
 }
 
-
-@keyframes detailFade{
+@keyframes detailIn{
 
  from{
   opacity:0;
+  transform:
+  translateY(18px);
  }
 
  to{
   opacity:1;
+  transform:none;
  }
 
 }
 
 
-.detailShell{
+/* =====================================================
+   DETAIL HEADER
+===================================================== */
 
- width:100%;
-
- max-width:680px;
-
- height:100%;
-
- margin:auto;
-
- background:var(--bg);
-
- overflow-y:auto;
-
- overflow-x:hidden;
-
-}
-
-
-/* =========================================================
-   DETAIL TOPBAR
-========================================================= */
-
-.detailTopbar{
-
- height:58px;
+.detailHeader{
 
  position:sticky;
 
@@ -1120,186 +1154,173 @@ button{
 
  align-items:center;
 
- padding:
- 0 13px;
+ gap:8px;
 
- color:#fff;
+ padding:
+ 11px
+ 13px;
 
  background:
- linear-gradient(
- 135deg,
- #056b4b,
- #087d59,
- #0ca777
- );
+ rgba(255,255,255,.88);
 
- box-shadow:
- 0 5px 18px
- rgba(0,0,0,.08);
+ backdrop-filter:
+ blur(18px);
+
+ -webkit-backdrop-filter:
+ blur(18px);
+
+ border-bottom:
+ 1px solid
+ rgba(220,230,225,.8);
 
 }
-
 
 .backBtn{
 
  width:38px;
  height:38px;
 
- border-radius:12px;
-
- background:
- rgba(255,255,255,.12);
-
- color:#fff;
-
  display:grid;
 
  place-items:center;
 
- font-size:13px;
+ border-radius:13px;
 
-}
+ background:#f0f5f2;
 
-
-.backBtn:active{
-
- transform:scale(.93);
-
-}
-
-
-.detailTopTitle{
-
- margin-left:10px;
+ color:var(--ink);
 
  font-size:11px;
+
+}
+
+.detailHeaderTitle{
+
+ flex:1;
+
+ font-size:10px;
 
  font-weight:800;
 
 }
 
+.langSwitch{
 
-.detailTopSpacer{
+ display:flex;
 
- margin-left:auto;
+ padding:3px;
 
- width:38px;
+ border-radius:11px;
 
-}
-
-
-/* =========================================================
-   DETAIL CONTENT
-========================================================= */
-
-.detailContent{
-
- padding-bottom:35px;
+ background:#eef4f1;
 
 }
 
+.langBtn{
 
-.detailImageWrap{
-
- width:100%;
-
- background:#e9f0ed;
-
- position:relative;
-
- overflow:hidden;
-
-}
-
-
-.detailImage{
-
- width:100%;
-
- max-height:390px;
-
- min-height:180px;
-
- object-fit:cover;
-
- display:block;
-
-}
-
-
-.detailImageShade{
-
- position:absolute;
-
- left:0;
- right:0;
- bottom:0;
-
- height:100px;
-
- background:
- linear-gradient(
- transparent,
- rgba(0,0,0,.3)
- );
-
- pointer-events:none;
-
-}
-
-
-.detailPriority{
-
- position:absolute;
-
- left:15px;
- top:15px;
+ min-width:31px;
 
  padding:
- 8px 11px;
+ 6px
+ 7px;
 
- border-radius:99px;
+ border-radius:8px;
 
- background:
- rgba(255,255,255,.94);
+ background:transparent;
 
- backdrop-filter:blur(8px);
-
- color:var(--ink);
+ color:#77837d;
 
  font-size:7px;
 
  font-weight:800;
 
- box-shadow:
- 0 7px 20px
- rgba(0,0,0,.08);
-
 }
 
-
-.detailBody{
-
- padding:
- 17px 17px 30px;
+.langBtn.active{
 
  background:#fff;
 
+ color:var(--green);
+
+ box-shadow:
+ 0 3px 10px
+ rgba(0,0,0,.07);
+
 }
 
 
-.detailMeta{
+/* =====================================================
+   DETAIL CONTENT
+===================================================== */
+
+.detailContent{
+
+ padding:
+ 13px
+ 13px
+ 40px;
+
+}
+
+
+.detailHero{
+
+ position:relative;
+
+ width:100%;
+
+ overflow:hidden;
+
+ border-radius:21px;
+
+ background:#e8f0ed;
+
+}
+
+.detailHero img{
+
+ width:100%;
+
+ max-height:270px;
+
+ min-height:120px;
+
+ object-fit:cover;
+
+ display:block;
+
+ cursor:pointer;
+
+}
+
+.detailHeroFallback{
+
+ min-height:125px;
+
+ display:grid;
+
+ place-items:center;
+
+ color:var(--green);
+
+ font-size:32px;
+
+}
+
+
+.detailBadges{
 
  display:flex;
 
- align-items:center;
-
  flex-wrap:wrap;
+
+ align-items:center;
 
  gap:6px;
 
-}
+ margin-top:13px;
 
+}
 
 .detailBadge{
 
@@ -1310,7 +1331,8 @@ button{
  gap:5px;
 
  padding:
- 6px 9px;
+ 6px
+ 9px;
 
  border-radius:99px;
 
@@ -1324,7 +1346,6 @@ button{
 
 }
 
-
 .detailBadge.important{
 
  background:var(--orangeSoft);
@@ -1333,7 +1354,6 @@ button{
 
 }
 
-
 .detailBadge.urgent{
 
  background:var(--redSoft);
@@ -1341,7 +1361,6 @@ button{
  color:var(--red);
 
 }
-
 
 .detailDate{
 
@@ -1352,115 +1371,72 @@ button{
 }
 
 
+/* title */
+
 .detailTitle{
 
  margin-top:11px;
 
  font-family:
  "Hind Siliguri",
- Inter,
  sans-serif;
 
- font-size:22px;
+ font-size:23px;
 
- line-height:1.4;
+ line-height:1.38;
 
- font-weight:800;
+ font-weight:700;
 
  letter-spacing:-.2px;
 
 }
 
-
-.detailEnglishTitle{
-
- margin-top:4px;
-
- color:#74817b;
-
- font-size:10px;
-
- line-height:1.55;
-
- font-weight:600;
-
-}
-
-
-.detailDivider{
-
- height:1px;
-
- background:#edf2ef;
-
- margin:
- 16px 0;
-
-}
-
-
 .detailDescription{
+
+ margin-top:14px;
 
  font-family:
  "Hind Siliguri",
- Inter,
  sans-serif;
 
  font-size:12px;
 
  line-height:1.9;
 
- color:#405049;
+ color:#3f4d47;
 
  white-space:pre-line;
 
-}
-
-
-.detailDescription.en{
-
- margin-top:15px;
-
- padding-top:14px;
-
- border-top:1px dashed #dfe8e4;
-
- font-family:Inter,sans-serif;
-
- font-size:9.5px;
-
- line-height:1.75;
-
- color:#68756f;
+ overflow-wrap:anywhere;
 
 }
 
 
-/* =========================================================
-   LINK ACTION
-========================================================= */
+/* =====================================================
+   DETAIL ACTIONS
+===================================================== */
 
 .detailActions{
 
  display:flex;
 
- gap:8px;
+ gap:7px;
 
  margin-top:18px;
 
- padding-top:15px;
+ padding-top:14px;
 
  border-top:
- 1px solid #edf2ef;
+ 1px solid
+ #e7eeea;
 
 }
-
 
 .detailAction{
 
  flex:1;
 
- min-height:42px;
+ min-height:40px;
 
  border-radius:13px;
 
@@ -1472,28 +1448,15 @@ button{
 
 }
 
-
-.detailAction:active{
-
- transform:scale(.96);
-
-}
-
-
-.openLinkBtn{
+.detailOpen{
 
  background:var(--green);
 
  color:#fff;
 
- box-shadow:
- 0 8px 20px
- rgba(8,125,89,.15);
-
 }
 
-
-.copyLinkBtn{
+.detailCopy{
 
  background:var(--blueSoft);
 
@@ -1501,109 +1464,131 @@ button{
 
 }
 
+.detailShare{
 
-/* =========================================================
-   NO IMAGE DETAIL
-========================================================= */
+ background:#f1f5f3;
 
-.noDetailImage{
+ color:var(--ink);
 
- height:120px;
+}
+
+.detailAction i{
+
+ margin-right:4px;
+
+}
+
+
+/* =====================================================
+   IMAGE VIEWER
+===================================================== */
+
+.imageViewer{
+
+ position:fixed;
+
+ inset:0;
+
+ z-index:500;
+
+ display:none;
+
+ align-items:center;
+
+ justify-content:center;
+
+ padding:15px;
+
+ background:
+ rgba(0,0,0,.93);
+
+}
+
+.imageViewer.show{
+
+ display:flex;
+
+ animation:
+ viewerIn .2s ease;
+
+}
+
+@keyframes viewerIn{
+
+ from{
+  opacity:0;
+ }
+
+ to{
+  opacity:1;
+ }
+
+}
+
+.viewerImage{
+
+ max-width:100%;
+
+ max-height:86vh;
+
+ object-fit:contain;
+
+ border-radius:12px;
+
+}
+
+.viewerClose{
+
+ position:absolute;
+
+ right:14px;
+ top:14px;
+
+ width:40px;
+ height:40px;
+
+ border-radius:50%;
 
  display:grid;
 
  place-items:center;
 
  background:
- linear-gradient(
- 135deg,
- #e7f5ef,
- #dceee7
- );
+ rgba(255,255,255,.12);
 
- color:var(--green);
+ color:#fff;
 
- font-size:32px;
+ font-size:13px;
 
 }
 
 
-/* =========================================================
-   LOADING
-========================================================= */
-
-.loading{
-
- text-align:center;
-
- padding:65px 20px;
-
- color:var(--muted);
-
- font-size:9px;
-
-}
-
-
-.loadingIcon{
-
- width:48px;
- height:48px;
-
- margin:
- 0 auto 13px;
-
- border-radius:16px;
-
- display:grid;
-
- place-items:center;
-
- background:var(--soft);
-
- color:var(--green);
-
-}
-
-
-.loadingIcon i{
-
- animation:
- spin .8s linear infinite;
-
-}
-
-
-@keyframes spin{
-
- to{
-  transform:rotate(360deg);
- }
-
-}
-
-
-/* =========================================================
-   EMPTY / ERROR
-========================================================= */
+/* =====================================================
+   EMPTY / ERROR / LOADING
+===================================================== */
 
 .state{
 
  text-align:center;
 
  padding:
- 60px 20px;
+ 60px
+ 20px;
 
 }
 
-
 .stateIcon{
 
- width:70px;
- height:70px;
+ width:68px;
+ height:68px;
 
  margin:
- 0 auto 14px;
+ 0 auto
+ 14px;
+
+ display:grid;
+
+ place-items:center;
 
  border-radius:23px;
 
@@ -1611,17 +1596,13 @@ button{
 
  color:var(--green);
 
- display:grid;
-
- place-items:center;
-
- font-size:24px;
+ font-size:23px;
 
  animation:
- stateFloat 2.4s ease-in-out infinite;
+ stateFloat 2.3s
+ ease-in-out infinite;
 
 }
-
 
 @keyframes stateFloat{
 
@@ -1631,7 +1612,6 @@ button{
 
 }
 
-
 .state b{
 
  display:block;
@@ -1639,7 +1619,6 @@ button{
  font-size:13px;
 
 }
-
 
 .state span{
 
@@ -1658,17 +1637,15 @@ button{
 
 }
 
-
 .retry{
 
  margin-top:13px;
 
- border:0;
+ padding:
+ 10px
+ 15px;
 
  border-radius:13px;
-
- padding:
- 10px 15px;
 
  background:var(--green);
 
@@ -1680,27 +1657,70 @@ button{
 
 }
 
+.loading{
 
-/* =========================================================
+ text-align:center;
+
+ padding:
+ 60px
+ 20px;
+
+ color:var(--muted);
+
+ font-size:9px;
+
+}
+
+.loadingIcon{
+
+ width:48px;
+ height:48px;
+
+ margin:
+ 0 auto
+ 13px;
+
+ display:grid;
+
+ place-items:center;
+
+ border-radius:16px;
+
+ background:var(--soft);
+
+ color:var(--green);
+
+}
+
+.loadingIcon i{
+
+ animation:
+ spin .8s
+ linear infinite;
+
+}
+
+
+/* =====================================================
    TOAST
-========================================================= */
+===================================================== */
 
 .toast{
 
  position:fixed;
 
  left:50%;
-
  bottom:18px;
 
- z-index:500;
+ z-index:1000;
 
  width:max-content;
 
  max-width:90%;
 
  padding:
- 11px 14px;
+ 11px
+ 14px;
 
  border-radius:14px;
 
@@ -1716,19 +1736,18 @@ button{
 
  opacity:0;
 
+ pointer-events:none;
+
  transform:
  translate(-50%,18px);
-
- pointer-events:none;
 
  transition:.25s;
 
  box-shadow:
- 0 12px 30px
- rgba(0,0,0,.2);
+ 0 12px 35px
+ rgba(0,0,0,.22);
 
 }
-
 
 .toast.show{
 
@@ -1740,9 +1759,9 @@ button{
 }
 
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+/* =====================================================
+   SMALL DEVICES
+===================================================== */
 
 @media(max-width:390px){
 
@@ -1750,21 +1769,21 @@ button{
   font-size:24px;
  }
 
- .detailTitle{
-  font-size:20px;
+ .itemTitle{
+  font-size:13px;
  }
 
- .detailImage{
-  max-height:300px;
+ .itemPreview{
+  font-size:8.5px;
  }
 
  .thumb{
-  width:68px;
-  height:68px;
+  width:66px;
+  height:66px;
  }
 
- .itemTitle{
-  font-size:12px;
+ .detailTitle{
+  font-size:21px;
  }
 
 }
@@ -1777,17 +1796,18 @@ button{
 <body>
 
 
-<!-- ======================================================
-     LIST VIEW
-====================================================== -->
+<div class="app">
 
-<div class="app" id="listView">
+
+<!-- =================================================
+     MAIN HEADER
+================================================= -->
 
 <header class="header">
 
  <div class="headerContent">
 
-  <div class="brandLine">
+  <div class="brandRow">
 
    <div class="brandIcon">
     <i class="fa-solid fa-bell"></i>
@@ -1805,7 +1825,7 @@ button{
 
    </div>
 
-   <div class="liveBadge">
+   <div class="live">
 
     <span class="liveDot"></span>
 
@@ -1829,219 +1849,276 @@ button{
 </header>
 
 
+<!-- =================================================
+     LIST PAGE
+================================================= -->
+
 <main class="content">
 
 
-<!-- SEARCH -->
+ <!-- SEARCH -->
 
-<div class="utility">
+ <div class="utility">
 
- <div class="searchBox">
+  <div class="searchBox">
 
-  <i class="fa-solid fa-magnifying-glass"></i>
+   <i class="fa-solid fa-magnifying-glass"></i>
 
-  <input
-   id="search"
-   type="search"
-   placeholder="Search notifications..."
-   autocomplete="off"
-  >
-
- </div>
-
-
- <button
-  class="refresh"
-  id="refreshBtn"
-  onclick="loadNotifications(true)"
- >
-
-  <i class="fa-solid fa-rotate-right"></i>
-
- </button>
-
-</div>
-
-
-<!-- FILTERS -->
-
-<div class="filters">
-
- <button
-  class="filter active"
-  onclick="setFilter('all',this)"
- >
-
-  <i class="fa-solid fa-layer-group"></i>
-  All
-
- </button>
-
-
- <button
-  class="filter"
-  onclick="setFilter('app',this)"
- >
-
-  <i class="fa-solid fa-mobile-screen"></i>
-  App
-
- </button>
-
-
- <button
-  class="filter"
-  onclick="setFilter('park',this)"
- >
-
-  <i class="fa-solid fa-tree"></i>
-  Park
-
- </button>
-
-
- <button
-  class="filter"
-  onclick="setFilter('ticket',this)"
- >
-
-  <i class="fa-solid fa-ticket"></i>
-  Tickets
-
- </button>
-
-
- <button
-  class="filter"
-  onclick="setFilter('wildlife',this)"
- >
-
-  <i class="fa-solid fa-paw"></i>
-  Wildlife
-
- </button>
-
-
- <button
-  class="filter"
-  onclick="setFilter('travel',this)"
- >
-
-  <i class="fa-solid fa-route"></i>
-  Travel
-
- </button>
-
-
- <button
-  class="filter"
-  onclick="setFilter('important',this)"
- >
-
-  <i class="fa-solid fa-star"></i>
-  Important
-
- </button>
-
-</div>
-
-
-<!-- SUMMARY -->
-
-<div class="summary">
-
- <div class="summaryLeft">
-
-  <div class="summaryIcon">
-   <i class="fa-regular fa-bell"></i>
-  </div>
-
-  <div class="summaryText">
-
-   <b>
-    Latest Notifications
-   </b>
-
-   <span>
-    Stay updated with Wildlife Explorer
-   </span>
-
-  </div>
-
- </div>
-
-
- <div
-  class="count"
-  id="count"
- >
-  0 Updates
- </div>
-
-</div>
-
-
-<!-- LIST -->
-
-<div id="list">
-
- <div class="loading">
-
-  <div class="loadingIcon">
-   <i class="fa-solid fa-spinner"></i>
-  </div>
-
-  Loading notifications...
-
- </div>
-
-</div>
-
-
-</main>
-
-</div>
-
-
-<!-- ======================================================
-     DETAIL VIEW
-====================================================== -->
-
-<div
- class="detailView"
- id="detailView"
->
-
- <div class="detailShell">
-
-  <div class="detailTopbar">
-
-   <button
-    class="backBtn"
-    onclick="closeNotification()"
+   <input
+    id="search"
+    type="search"
+    placeholder="Search notifications..."
+    autocomplete="off"
    >
 
-    <i class="fa-solid fa-arrow-left"></i>
+   <button
+    class="clearSearch"
+    id="clearSearch"
+    aria-label="Clear search"
+   >
+
+    <i class="fa-solid fa-xmark"></i>
 
    </button>
 
+  </div>
 
-   <div class="detailTopTitle">
-    Notification Details
+
+  <button
+   class="refresh"
+   id="refreshBtn"
+   aria-label="Refresh notifications"
+  >
+
+   <i class="fa-solid fa-rotate-right"></i>
+
+  </button>
+
+ </div>
+
+
+ <!-- FILTERS -->
+
+ <div class="filters">
+
+
+  <button
+   class="filter active"
+   data-filter="all"
+  >
+   <i class="fa-solid fa-layer-group"></i>
+   All
+  </button>
+
+
+  <button
+   class="filter"
+   data-filter="app"
+  >
+   <i class="fa-solid fa-mobile-screen"></i>
+   App
+  </button>
+
+
+  <button
+   class="filter"
+   data-filter="park"
+  >
+   <i class="fa-solid fa-tree"></i>
+   Park
+  </button>
+
+
+  <button
+   class="filter"
+   data-filter="ticket"
+  >
+   <i class="fa-solid fa-ticket"></i>
+   Tickets
+  </button>
+
+
+  <button
+   class="filter"
+   data-filter="wildlife"
+  >
+   <i class="fa-solid fa-paw"></i>
+   Wildlife
+  </button>
+
+
+  <button
+   class="filter"
+   data-filter="travel"
+  >
+   <i class="fa-solid fa-route"></i>
+   Travel
+  </button>
+
+
+  <button
+   class="filter"
+   data-filter="important"
+  >
+   <i class="fa-solid fa-star"></i>
+   Important
+  </button>
+
+
+ </div>
+
+
+ <!-- SUMMARY -->
+
+ <div class="summary">
+
+  <div class="summaryLeft">
+
+   <div class="summaryIcon">
+
+    <i class="fa-regular fa-bell"></i>
+
    </div>
 
+   <div class="summaryText">
 
-   <div class="detailTopSpacer"></div>
+    <b>
+     Latest Notifications
+    </b>
+
+    <span>
+     Stay updated with Wildlife Explorer
+    </span>
+
+   </div>
 
   </div>
 
 
   <div
-   class="detailContent"
-   id="detailContent"
-  ></div>
+   class="count"
+   id="count"
+  >
+   0 Updates
+  </div>
 
  </div>
+
+
+ <!-- LIST -->
+
+ <div id="list">
+
+  <div class="loading">
+
+   <div class="loadingIcon">
+
+    <i class="fa-solid fa-spinner"></i>
+
+   </div>
+
+   Loading notifications...
+
+  </div>
+
+ </div>
+
+
+</main>
+
+
+</div>
+
+
+<!-- =================================================
+     DETAIL VIEW
+================================================= -->
+
+<section
+ id="detailView"
+ class="detailView"
+ aria-hidden="true"
+>
+
+
+ <header class="detailHeader">
+
+
+  <button
+   id="backBtn"
+   class="backBtn"
+   aria-label="Back"
+  >
+
+   <i class="fa-solid fa-arrow-left"></i>
+
+  </button>
+
+
+  <div class="detailHeaderTitle">
+   Notification
+  </div>
+
+
+  <div class="langSwitch">
+
+
+   <button
+    class="langBtn active"
+    data-lang="bn"
+   >
+    বাংলা
+   </button>
+
+
+   <button
+    class="langBtn"
+    data-lang="en"
+   >
+    EN
+   </button>
+
+
+  </div>
+
+
+ </header>
+
+
+ <div
+  id="detailContent"
+  class="detailContent"
+ ></div>
+
+
+</section>
+
+
+<!-- =================================================
+     IMAGE VIEWER
+================================================= -->
+
+<div
+ id="imageViewer"
+ class="imageViewer"
+>
+
+ <button
+  id="viewerClose"
+  class="viewerClose"
+  aria-label="Close image"
+ >
+
+  <i class="fa-solid fa-xmark"></i>
+
+ </button>
+
+
+ <img
+  id="viewerImage"
+  class="viewerImage"
+  alt=""
+ >
 
 </div>
 
@@ -2056,10 +2133,9 @@ button{
 
 <script>
 
-
-/* =========================================================
+/* =====================================================
    SUPABASE
-========================================================= */
+===================================================== */
 
 const SUPABASE_URL =
 "https://hnhphoqfylwbuptronqh.supabase.co";
@@ -2074,78 +2150,98 @@ window.supabase.createClient(
 );
 
 
-/* =========================================================
+/* =====================================================
    STATE
-========================================================= */
+===================================================== */
 
 let notifications = [];
 
 let currentFilter = "all";
 
-let searchTimer = null;
+let currentLanguage =
+localStorage.getItem(
+ "wildlife_notification_language"
+) || "bn";
 
 let currentNotification = null;
 
+let realtimeChannel = null;
 
-/* =========================================================
+
+/* =====================================================
    ICONS
-========================================================= */
+===================================================== */
 
 const ICONS = {
 
  bell:"fa-bell",
-
  tree:"fa-tree",
-
  ticket:"fa-ticket",
-
  paw:"fa-paw",
-
  route:"fa-route",
-
  app:"fa-mobile-screen",
-
  info:"fa-circle-info",
-
  warning:"fa-triangle-exclamation",
-
  calendar:"fa-calendar-days",
-
  location:"fa-location-dot",
-
  binoculars:"fa-binoculars",
-
  sparkles:"fa-sparkles",
-
  megaphone:"fa-bullhorn",
-
  download:"fa-download"
 
 };
 
 
-/* =========================================================
+/* =====================================================
    CATEGORY
-========================================================= */
+===================================================== */
 
 const CATEGORY = {
 
  app:"App",
-
  park:"Park",
-
  ticket:"Tickets",
-
  wildlife:"Wildlife",
-
  travel:"Travel"
 
 };
 
 
-/* =========================================================
-   ESCAPE
-========================================================= */
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const list =
+document.getElementById("list");
+
+const count =
+document.getElementById("count");
+
+const search =
+document.getElementById("search");
+
+const clearSearch =
+document.getElementById("clearSearch");
+
+const refreshBtn =
+document.getElementById("refreshBtn");
+
+const detailView =
+document.getElementById("detailView");
+
+const detailContent =
+document.getElementById("detailContent");
+
+const imageViewer =
+document.getElementById("imageViewer");
+
+const viewerImage =
+document.getElementById("viewerImage");
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
 function esc(value){
 
@@ -2159,22 +2255,57 @@ function esc(value){
 }
 
 
-/* =========================================================
+/* =====================================================
+   SAFE URL
+===================================================== */
+
+function safeUrl(value){
+
+ if(!value)
+  return null;
+
+ try{
+
+  const url =
+  new URL(value);
+
+  if(
+   url.protocol !== "http:" &&
+   url.protocol !== "https:"
+  ){
+   return null;
+  }
+
+  return url.href;
+
+ }catch{
+
+  return null;
+
+ }
+
+}
+
+
+/* =====================================================
    TOAST
-========================================================= */
+===================================================== */
 
 function toast(message){
 
  const box =
  document.getElementById("toast");
 
- box.textContent = message;
+ box.textContent =
+ message;
 
  box.classList.add("show");
 
- clearTimeout(window.toastTimer);
+ clearTimeout(
+  window.__toastTimer
+ );
 
- window.toastTimer =
+ window.__toastTimer =
  setTimeout(()=>{
 
   box.classList.remove("show");
@@ -2184,9 +2315,9 @@ function toast(message){
 }
 
 
-/* =========================================================
+/* =====================================================
    DATE
-========================================================= */
+===================================================== */
 
 function formatDate(value){
 
@@ -2197,7 +2328,9 @@ function formatDate(value){
   return "";
 
  return d.toLocaleDateString(
-  "bn-BD",
+  currentLanguage === "bn"
+   ? "bn-BD"
+   : "en-US",
   {
    day:"numeric",
    month:"long",
@@ -2208,9 +2341,9 @@ function formatDate(value){
 }
 
 
-/* =========================================================
+/* =====================================================
    TIME AGO
-========================================================= */
+===================================================== */
 
 function timeAgo(value){
 
@@ -2225,67 +2358,109 @@ function timeAgo(value){
   (Date.now()-d.getTime())/1000
  );
 
-
  if(diff < 60)
-  return "এইমাত্র";
+  return currentLanguage === "bn"
+   ? "এইমাত্র"
+   : "Just now";
 
+ if(diff < 3600){
 
- if(diff < 3600)
-  return Math.floor(diff/60)+" মিনিট আগে";
+  const n =
+  Math.floor(diff/60);
 
+  return currentLanguage === "bn"
+   ? `${n} মিনিট আগে`
+   : `${n} min ago`;
 
- if(diff < 86400)
-  return Math.floor(diff/3600)+" ঘণ্টা আগে";
+ }
 
+ if(diff < 86400){
 
- if(diff < 604800)
-  return Math.floor(diff/86400)+" দিন আগে";
+  const n =
+  Math.floor(diff/3600);
 
+  return currentLanguage === "bn"
+   ? `${n} ঘণ্টা আগে`
+   : `${n} hr ago`;
+
+ }
+
+ if(diff < 604800){
+
+  const n =
+  Math.floor(diff/86400);
+
+  return currentLanguage === "bn"
+   ? `${n} দিন আগে`
+   : `${n} days ago`;
+
+ }
 
  return formatDate(value);
 
 }
 
 
-/* =========================================================
-   ICON NAME
-========================================================= */
+/* =====================================================
+   ICON
+===================================================== */
 
 function iconName(value){
 
- return ICONS[value] || "fa-bell";
+ return ICONS[value] ||
+ "fa-bell";
 
 }
 
 
-/* =========================================================
+/* =====================================================
+   CATEGORY LABEL
+===================================================== */
+
+function categoryLabel(value){
+
+ return CATEGORY[value] ||
+ value ||
+ "App";
+
+}
+
+
+/* =====================================================
    PRIORITY
-========================================================= */
+===================================================== */
 
 function priorityInfo(priority){
 
- if(priority==="urgent"){
+ if(priority === "urgent"){
 
   return {
 
    cls:"urgent",
 
-   label:"Urgent",
+   label:
+    currentLanguage === "bn"
+    ? "জরুরি"
+    : "Urgent",
 
-   icon:"fa-triangle-exclamation"
+   icon:
+    "fa-triangle-exclamation"
 
   };
 
  }
 
 
- if(priority==="important"){
+ if(priority === "important"){
 
   return {
 
    cls:"important",
 
-   label:"Important",
+   label:
+    currentLanguage === "bn"
+    ? "গুরুত্বপূর্ণ"
+    : "Important",
 
    icon:"fa-star"
 
@@ -2298,7 +2473,10 @@ function priorityInfo(priority){
 
   cls:"",
 
-  label:"Update",
+  label:
+   currentLanguage === "bn"
+   ? "আপডেট"
+   : "Update",
 
   icon:"fa-circle-info"
 
@@ -2307,62 +2485,1106 @@ function priorityInfo(priority){
 }
 
 
-/* =========================================================
-   FILTER
-========================================================= */
+/* =====================================================
+   READ STATE
+===================================================== */
 
-function setFilter(value,button){
+function getReadKey(id){
 
- currentFilter =
- value;
-
- document
- .querySelectorAll(".filter")
- .forEach(el=>{
-
-  el.classList.remove("active");
-
- });
-
-
- button.classList.add("active");
-
- render();
+ return "wildlife_notification_read_" + id;
 
 }
 
 
-/* =========================================================
-   SEARCH
-========================================================= */
+function isRead(id){
+
+ return localStorage.getItem(
+  getReadKey(id)
+ ) === "1";
+
+}
+
+
+function markAsRead(id){
+
+ localStorage.setItem(
+  getReadKey(id),
+  "1"
+ );
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
 
 document
-.getElementById("search")
-.addEventListener(
+.querySelectorAll(".filter")
+.forEach(button=>{
+
+ button.addEventListener(
+  "click",
+  ()=>{
+
+   currentFilter =
+   button.dataset.filter;
+
+   document
+   .querySelectorAll(".filter")
+   .forEach(x =>
+    x.classList.remove("active")
+   );
+
+   button.classList.add("active");
+
+   renderList();
+
+  }
+ );
+
+});
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+search.addEventListener(
  "input",
  ()=>{
 
-  clearTimeout(searchTimer);
-
-  searchTimer =
-  setTimeout(
-   render,
-   120
+  clearSearch.classList.toggle(
+   "show",
+   search.value.length > 0
   );
+
+  renderList();
 
  }
 );
 
 
-/* =========================================================
-   COPY LINK
-========================================================= */
+clearSearch.addEventListener(
+ "click",
+ ()=>{
+
+  search.value = "";
+
+  clearSearch.classList.remove(
+   "show"
+  );
+
+  renderList();
+
+  search.focus();
+
+ }
+);
+
+
+/* =====================================================
+   GET FILTERED DATA
+===================================================== */
+
+function getFilteredData(){
+
+ const query =
+ search.value
+ .trim()
+ .toLowerCase();
+
+
+ return notifications.filter(item=>{
+
+
+  /* CATEGORY */
+
+  if(
+   currentFilter === "important"
+  ){
+
+   if(
+    item.priority !== "important" &&
+    item.priority !== "urgent"
+   ){
+
+    return false;
+
+   }
+
+  }
+  else if(
+   currentFilter !== "all" &&
+   item.category !== currentFilter
+  ){
+
+   return false;
+
+  }
+
+
+  /* SEARCH */
+
+  if(!query)
+   return true;
+
+
+  const text = [
+
+   item.title_bn,
+   item.title_en,
+
+   item.description_bn,
+   item.description_en,
+
+   item.category,
+   item.priority
+
+  ]
+  .join(" ")
+  .toLowerCase();
+
+
+  return text.includes(query);
+
+ });
+
+}
+
+
+/* =====================================================
+   RENDER LIST
+===================================================== */
+
+function renderList(){
+
+ const data =
+ getFilteredData();
+
+
+ count.textContent =
+ currentLanguage === "bn"
+  ? `${data.length} টি`
+  : `${data.length} Updates`;
+
+
+ if(!data.length){
+
+  list.innerHTML = `
+
+   <div class="state">
+
+    <div class="stateIcon">
+
+     <i class="fa-regular fa-bell-slash"></i>
+
+    </div>
+
+    <b>
+     ${
+      search.value
+      ? (
+       currentLanguage === "bn"
+       ? "কোনো notification পাওয়া যায়নি"
+       : "No notifications found"
+      )
+      : (
+       currentLanguage === "bn"
+       ? "কোনো notification নেই"
+       : "No notifications yet"
+      )
+     }
+    </b>
+
+    <span>
+
+     ${
+      currentLanguage === "bn"
+      ? "এই মুহূর্তে নির্বাচিত category-তে কোনো notification পাওয়া যাচ্ছে না।"
+      : "There are no notifications available in this category right now."
+     }
+
+    </span>
+
+   </div>
+
+  `;
+
+  return;
+
+ }
+
+
+ list.innerHTML = `
+
+  <div class="notificationList">
+
+   ${
+    data.map(
+     (item,index)=>
+      createListItem(item,index)
+    ).join("")
+   }
+
+  </div>
+
+ `;
+
+
+ /* EVENTS */
+
+ document
+ .querySelectorAll(".notificationItem")
+ .forEach(item=>{
+
+  item.addEventListener(
+   "click",
+   ()=>{
+    openNotification(
+     item.dataset.id
+    );
+   }
+  );
+
+ });
+
+}
+
+
+/* =====================================================
+   CREATE LIST ITEM
+===================================================== */
+
+function createListItem(item,index){
+
+ const priority =
+ priorityInfo(item.priority);
+
+ const read =
+ isRead(item.id);
+
+ const category =
+ categoryLabel(item.category);
+
+ const title =
+ currentLanguage === "bn"
+ ? (
+  item.title_bn ||
+  item.title_en ||
+  "Notification"
+ )
+ : (
+  item.title_en ||
+  item.title_bn ||
+  "Notification"
+ );
+
+
+ const description =
+ currentLanguage === "bn"
+ ? (
+  item.description_bn ||
+  item.description_en ||
+  ""
+ )
+ : (
+  item.description_en ||
+  item.description_bn ||
+  ""
+ );
+
+
+ const safeImage =
+ safeUrl(item.image_url);
+
+
+ return `
+
+  <article
+
+   class="
+    notificationItem
+    ${read ? "" : "unread"}
+   "
+
+   data-id="${esc(item.id)}"
+
+   style="
+    animation-delay:
+    ${Math.min(index*45,400)}ms
+   "
+
+  >
+
+
+   ${
+    !read
+    ? `<span class="unreadDot"></span>`
+    : ""
+   }
+
+
+   <div class="thumb">
+
+
+    ${
+     safeImage
+
+     ? `
+
+      <img
+
+       src="${esc(safeImage)}"
+
+       alt=""
+
+       loading="lazy"
+
+       onerror="this.style.display='none';
+       this.nextElementSibling.style.display='block';"
+
+      >
+
+      <i
+       class="
+        thumbIcon
+        fa-solid
+        ${iconName(item.icon)}
+       "
+       style="display:none"
+      ></i>
+
+     `
+
+     : `
+
+      <i
+       class="
+        thumbIcon
+        fa-solid
+        ${iconName(item.icon)}
+       "
+      ></i>
+
+     `
+    }
+
+
+    ${
+     item.priority === "important" ||
+     item.priority === "urgent"
+
+     ? `
+
+      <span
+       class="
+        priorityMini
+        ${priority.cls}
+       "
+      >
+
+       <i
+        class="
+         fa-solid
+         ${priority.icon}
+        "
+       ></i>
+
+      </span>
+
+     `
+
+     : ""
+
+    }
+
+   </div>
+
+
+   <div class="itemBody">
+
+
+    <div class="itemTop">
+
+
+     <span
+      class="
+       itemCategory
+       ${priority.cls}
+      "
+     >
+
+      <i
+       class="
+        fa-solid
+        ${iconName(item.icon)}
+       "
+      ></i>
+
+      ${esc(category)}
+
+     </span>
+
+
+     <span class="itemTime">
+
+      ${esc(
+       timeAgo(item.created_at)
+      )}
+
+     </span>
+
+
+    </div>
+
+
+    <div class="itemTitle">
+
+     ${esc(title)}
+
+    </div>
+
+
+    ${
+     description
+
+     ? `
+
+      <div class="itemPreview">
+
+       ${esc(
+        cleanPreview(description)
+       )}
+
+      </div>
+
+     `
+
+     : ""
+
+    }
+
+
+   </div>
+
+
+  </article>
+
+ `;
+
+}
+
+
+/* =====================================================
+   PREVIEW CLEAN
+===================================================== */
+
+function cleanPreview(text){
+
+ return String(text || "")
+ .replace(/\s+/g," ")
+ .trim();
+
+}
+
+
+/* =====================================================
+   OPEN NOTIFICATION
+===================================================== */
+
+function openNotification(id){
+
+ const item =
+ notifications.find(
+  x => String(x.id) === String(id)
+ );
+
+ if(!item)
+  return;
+
+
+ currentNotification =
+ item;
+
+
+ markAsRead(item.id);
+
+
+ renderDetail();
+
+
+ detailView.classList.add(
+  "show"
+ );
+
+ detailView.setAttribute(
+  "aria-hidden",
+  "false"
+ );
+
+
+ document.body.style.overflow =
+ "hidden";
+
+
+ history.pushState(
+  {
+   notification:true,
+   id:item.id
+  },
+  "",
+  "#notification-" + item.id
+ );
+
+
+ renderList();
+
+}
+
+
+/* =====================================================
+   DETAIL
+===================================================== */
+
+function renderDetail(){
+
+ if(!currentNotification)
+  return;
+
+
+ const item =
+ currentNotification;
+
+ const priority =
+ priorityInfo(item.priority);
+
+ const category =
+ categoryLabel(item.category);
+
+
+ const isBn =
+ currentLanguage === "bn";
+
+
+ const title =
+ isBn
+ ? (
+  item.title_bn ||
+  item.title_en ||
+  "Notification"
+ )
+ : (
+  item.title_en ||
+  item.title_bn ||
+  "Notification"
+ );
+
+
+ const description =
+ isBn
+ ? (
+  item.description_bn ||
+  item.description_en ||
+  ""
+ )
+ : (
+  item.description_en ||
+  item.description_bn ||
+  ""
+ );
+
+
+ const image =
+ safeUrl(item.image_url);
+
+ const link =
+ safeUrl(item.action_url);
+
+
+ detailContent.innerHTML = `
+
+  ${
+   image
+
+   ? `
+
+    <div class="detailHero">
+
+     <img
+      id="detailImage"
+      src="${esc(image)}"
+      alt=""
+     >
+
+    </div>
+
+   `
+
+   : `
+
+    <div class="detailHero">
+
+     <div class="detailHeroFallback">
+
+      <i
+       class="
+        fa-solid
+        ${iconName(item.icon)}
+       "
+      ></i>
+
+     </div>
+
+    </div>
+
+   `
+  }
+
+
+  <div class="detailBadges">
+
+
+   <span class="detailBadge">
+
+    <i
+     class="
+      fa-solid
+      ${iconName(item.icon)}
+     "
+    ></i>
+
+    ${esc(category)}
+
+   </span>
+
+
+   ${
+    item.priority === "important" ||
+    item.priority === "urgent"
+
+    ? `
+
+     <span
+      class="
+       detailBadge
+       ${priority.cls}
+      "
+     >
+
+      <i
+       class="
+        fa-solid
+        ${priority.icon}
+       "
+      ></i>
+
+      ${esc(priority.label)}
+
+     </span>
+
+    `
+
+    : ""
+
+   }
+
+
+   <span class="detailDate">
+
+    <i
+     class="fa-regular fa-clock"
+    ></i>
+
+    ${esc(
+     formatDate(item.created_at)
+    )}
+
+   </span>
+
+
+  </div>
+
+
+  <h1 class="detailTitle">
+
+   ${esc(title)}
+
+  </h1>
+
+
+  ${
+   description
+
+   ? `
+
+    <div class="detailDescription">
+
+     ${esc(description)}
+
+    </div>
+
+   `
+
+   : ""
+
+  }
+
+
+  ${
+   link
+
+   ? `
+
+    <div class="detailActions">
+
+
+     <button
+      class="
+       detailAction
+       detailOpen
+      "
+      id="detailOpenBtn"
+     >
+
+      <i
+       class="
+        fa-solid
+        fa-arrow-up-right-from-square
+       "
+      ></i>
+
+      ${
+       isBn
+       ? "Open Link"
+       : "Open Link"
+      }
+
+     </button>
+
+
+     <button
+      class="
+       detailAction
+       detailCopy
+      "
+      id="detailCopyBtn"
+     >
+
+      <i
+       class="fa-regular fa-copy"
+      ></i>
+
+      ${
+       isBn
+       ? "Copy Link"
+       : "Copy Link"
+      }
+
+     </button>
+
+
+     <button
+      class="
+       detailAction
+       detailShare
+      "
+      id="detailShareBtn"
+     >
+
+      <i
+       class="fa-solid fa-share-nodes"
+      ></i>
+
+      ${
+       isBn
+       ? "Share"
+       : "Share"
+      }
+
+     </button>
+
+
+    </div>
+
+   `
+
+   : ""
+
+  }
+
+ `;
+
+
+ /* IMAGE */
+
+ const detailImage =
+ document.getElementById(
+  "detailImage"
+ );
+
+ if(detailImage){
+
+  detailImage.addEventListener(
+   "click",
+   ()=>{
+    openImage(image);
+   }
+  );
+
+
+  detailImage.addEventListener(
+   "error",
+   ()=>{
+    detailImage.style.display =
+    "none";
+   }
+  );
+
+ }
+
+
+ /* OPEN */
+
+ const openBtn =
+ document.getElementById(
+  "detailOpenBtn"
+ );
+
+ if(openBtn){
+
+  openBtn.addEventListener(
+   "click",
+   ()=>{
+    openLink(link);
+   }
+  );
+
+ }
+
+
+ /* COPY */
+
+ const copyBtn =
+ document.getElementById(
+  "detailCopyBtn"
+ );
+
+ if(copyBtn){
+
+  copyBtn.addEventListener(
+   "click",
+   ()=>{
+    copyLink(link);
+   }
+  );
+
+ }
+
+
+ /* SHARE */
+
+ const shareBtn =
+ document.getElementById(
+  "detailShareBtn"
+ );
+
+ if(shareBtn){
+
+  shareBtn.addEventListener(
+   "click",
+   ()=>{
+    shareNotification(
+     item,
+     title
+    );
+   }
+  );
+
+ }
+
+}
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+document
+.querySelectorAll(".langBtn")
+.forEach(button=>{
+
+ button.addEventListener(
+  "click",
+  ()=>{
+
+   currentLanguage =
+   button.dataset.lang;
+
+
+   localStorage.setItem(
+    "wildlife_notification_language",
+    currentLanguage
+   );
+
+
+   document
+   .querySelectorAll(".langBtn")
+   .forEach(x =>
+    x.classList.remove("active")
+   );
+
+
+   button.classList.add(
+    "active"
+   );
+
+
+   renderList();
+
+
+   if(currentNotification)
+    renderDetail();
+
+  }
+ );
+
+});
+
+
+/* =====================================================
+   SET INITIAL LANGUAGE BUTTON
+===================================================== */
+
+document
+.querySelectorAll(".langBtn")
+.forEach(button=>{
+
+ button.classList.toggle(
+  "active",
+  button.dataset.lang ===
+  currentLanguage
+ );
+
+});
+
+
+/* =====================================================
+   BACK
+===================================================== */
+
+function closeDetail(
+ useHistory = true
+){
+
+ detailView.classList.remove(
+  "show"
+ );
+
+ detailView.setAttribute(
+  "aria-hidden",
+  "true"
+ );
+
+ document.body.style.overflow =
+ "";
+
+ currentNotification = null;
+
+
+ if(
+  useHistory &&
+  location.hash.startsWith(
+   "#notification-"
+  )
+ ){
+
+  history.back();
+
+ }
+
+}
+
+
+/* =====================================================
+   BACK BUTTON
+===================================================== */
+
+document
+.getElementById("backBtn")
+.addEventListener(
+ "click",
+ ()=>{
+  closeDetail(true);
+ }
+);
+
+
+/* =====================================================
+   BROWSER BACK
+===================================================== */
+
+window.addEventListener(
+ "popstate",
+ ()=>{
+
+  if(
+   detailView.classList.contains(
+    "show"
+   )
+  ){
+
+   closeDetail(false);
+
+  }
+
+ }
+);
+
+
+/* =====================================================
+   OPEN LINK
+===================================================== */
+
+function openLink(url){
+
+ const safe =
+ safeUrl(url);
+
+ if(!safe){
+
+  toast(
+   currentLanguage === "bn"
+   ? "লিংকটি সঠিক নয়"
+   : "Invalid link"
+  );
+
+  return;
+
+ }
+
+
+ window.open(
+  safe,
+  "_blank",
+  "noopener,noreferrer"
+ );
+
+}
+
+
+/* =====================================================
+   COPY
+===================================================== */
 
 async function copyLink(url){
 
- if(!url){
+ const safe =
+ safeUrl(url);
 
-  toast("No link available");
+ if(!safe){
+
+  toast("No valid link");
 
   return;
 
@@ -2376,15 +3598,20 @@ async function copyLink(url){
    window.isSecureContext
   ){
 
-   await navigator.clipboard.writeText(url);
+   await navigator.clipboard.writeText(
+    safe
+   );
 
-  }else{
+  }
+  else{
 
    const textarea =
-   document.createElement("textarea");
+   document.createElement(
+    "textarea"
+   );
 
    textarea.value =
-   url;
+   safe;
 
    textarea.style.position =
    "fixed";
@@ -2410,14 +3637,18 @@ async function copyLink(url){
 
 
   toast(
-   "Link copied successfully"
+   currentLanguage === "bn"
+   ? "লিংক কপি হয়েছে ✓"
+   : "Link copied ✓"
   );
 
 
  }catch(error){
 
   toast(
-   "Unable to copy link"
+   currentLanguage === "bn"
+   ? "লিংক কপি করা যায়নি"
+   : "Unable to copy link"
   );
 
  }
@@ -2425,905 +3656,139 @@ async function copyLink(url){
 }
 
 
-/* =========================================================
-   OPEN LINK
-========================================================= */
+/* =====================================================
+   SHARE
+===================================================== */
 
-function openLink(url){
+async function shareNotification(
+ item,
+ title
+){
 
- if(!url)
-  return;
+ const shareData = {
+
+  title:title,
+
+  text:
+   currentLanguage === "bn"
+   ? (
+    item.description_bn ||
+    title
+   )
+   : (
+    item.description_en ||
+    title
+   ),
+
+  url:
+   safeUrl(item.action_url) ||
+   location.href
+
+ };
 
 
  try{
 
-  const parsed =
-  new URL(url);
-
-
   if(
-   parsed.protocol!=="http:" &&
-   parsed.protocol!=="https:"
+   navigator.share
   ){
 
-   toast("Invalid link");
-
-   return;
-
-  }
-
-
-  window.open(
-   parsed.href,
-   "_blank",
-   "noopener,noreferrer"
-  );
-
-
- }catch{
-
-  toast("Invalid link");
-
- }
-
-}
-
-
-/* =========================================================
-   IMAGE ERROR
-========================================================= */
-
-function imageError(img){
-
- const wrap =
- img.closest(
-  ".thumb, .detailImageWrap"
- );
-
- if(!wrap)
-  return;
-
-
- if(
-  wrap.classList.contains(
-   "detailImageWrap"
-  )
- ){
-
-  wrap.innerHTML = `
-
-   <div class="noDetailImage">
-
-    <i class="fa-solid fa-image"></i>
-
-   </div>
-
-  `;
-
- }else{
-
-  wrap.innerHTML = `
-
-   <div class="thumbPlaceholder">
-
-    <i class="fa-regular fa-bell"></i>
-
-   </div>
-
-  `;
-
- }
-
-}
-
-
-/* =========================================================
-   FILTER DATA
-========================================================= */
-
-function filteredData(){
-
- const search =
- document
- .getElementById("search")
- .value
- .trim()
- .toLowerCase();
-
-
- return notifications.filter(
-  item=>{
-
-   if(
-    currentFilter==="important"
-   ){
-
-    if(
-     item.priority!=="important" &&
-     item.priority!=="urgent"
-    )
-     return false;
-
-   }
-
-   else if(
-    currentFilter!=="all" &&
-    item.category!==currentFilter
-   ){
-
-    return false;
-
-   }
-
-
-   if(!search)
-    return true;
-
-
-   const searchable = [
-
-    item.title_bn,
-
-    item.title_en,
-
-    item.description_bn,
-
-    item.description_en,
-
-    item.category,
-
-    item.priority
-
-   ]
-   .join(" ")
-   .toLowerCase();
-
-
-   return searchable.includes(
-    search
+   await navigator.share(
+    shareData
    );
 
   }
- );
+  else{
 
-}
+   await copyLink(
+    shareData.url
+   );
 
+   toast(
+    currentLanguage === "bn"
+    ? "Share link কপি হয়েছে"
+    : "Share link copied"
+   );
 
-/* =========================================================
-   RENDER LIST
-========================================================= */
+  }
 
-function render(){
+ }catch(error){
 
- const data =
- filteredData();
-
-
- document.getElementById(
-  "count"
- ).textContent =
- data.length+" Updates";
-
-
- const list =
- document.getElementById(
-  "list"
- );
-
-
- if(!data.length){
-
-  list.innerHTML = `
-
-   <div class="state">
-
-    <div class="stateIcon">
-
-     <i class="fa-regular fa-bell-slash"></i>
-
-    </div>
-
-    <b>
-     No notifications found
-    </b>
-
-    <span>
-     এই মুহূর্তে এই category-তে কোনো published notification পাওয়া যায়নি।
-    </span>
-
-   </div>
-
-  `;
-
-  return;
+  if(
+   error &&
+   error.name === "AbortError"
+  )
+   return;
 
  }
 
-
- list.innerHTML = `
-
-  <div class="notificationList">
-
-   ${data.map(
-    (item,index)=>
-    createListItem(
-     item,
-     index
-    )
-   ).join("")}
-
-  </div>
-
- `;
-
 }
 
 
-/* =========================================================
-   CREATE LIST ITEM
-========================================================= */
+/* =====================================================
+   IMAGE VIEWER
+===================================================== */
 
-function createListItem(
- item,
- index
-){
+function openImage(url){
 
- const priority =
- priorityInfo(
-  item.priority
- );
+ const safe =
+ safeUrl(url);
 
-
- const category =
- CATEGORY[item.category] ||
- item.category ||
- "App";
-
-
- const hasImage =
- !!item.image_url;
-
-
- return `
-
-  <article
-
-   class="notificationItem ${priority.cls}"
-
-   style="
-    animation-delay:
-    ${Math.min(index*45,450)}ms
-   "
-
-   onclick="
-    openNotification('${esc(item.id)}')
-   "
-
-  >
-
-
-   <div class="thumb">
-
-    ${
-     hasImage
-
-     ?
-
-     `
-
-      <img
-
-       src="${esc(item.image_url)}"
-
-       alt="${esc(
-        item.title_en ||
-        "Notification"
-       )}"
-
-       loading="lazy"
-
-       onerror="imageError(this)"
-
-      >
-
-     `
-
-     :
-
-     `
-
-      <div class="thumbPlaceholder">
-
-       <i class="fa-solid ${iconName(item.icon)}"></i>
-
-      </div>
-
-     `
-    }
-
-
-    ${
-     item.priority==="important" ||
-     item.priority==="urgent"
-
-     ?
-
-     `
-
-      <div class="thumbPriority">
-
-       <i class="fa-solid ${priority.icon}"></i>
-
-       ${esc(priority.label)}
-
-      </div>
-
-     `
-
-     :""
-
-    }
-
-   </div>
-
-
-   <div class="itemContent">
-
-
-    <div class="itemTop">
-
-     <span
-      class="categoryBadge ${priority.cls}"
-     >
-
-      <i
-       class="fa-solid ${iconName(item.icon)}"
-      ></i>
-
-      ${esc(category)}
-
-     </span>
-
-
-     <span class="itemTime">
-
-      ${esc(
-       timeAgo(item.created_at)
-      )}
-
-     </span>
-
-    </div>
-
-
-    <div class="itemTitle">
-
-     ${esc(
-      item.title_bn ||
-      item.title_en ||
-      "Notification"
-     )}
-
-    </div>
-
-
-    <div class="itemPreview">
-
-     ${esc(
-      item.description_bn ||
-      item.description_en ||
-      "Tap to view notification details."
-     )}
-
-    </div>
-
-
-    <div class="itemBottom">
-
-     <span class="readMore">
-
-      View details
-
-      <i class="fa-solid fa-arrow-right"></i>
-
-     </span>
-
-
-     <span class="arrow">
-
-      <i class="fa-solid fa-chevron-right"></i>
-
-     </span>
-
-    </div>
-
-
-   </div>
-
-  </article>
-
- `;
-
-}
-
-
-/* =========================================================
-   OPEN NOTIFICATION
-========================================================= */
-
-function openNotification(id){
-
- const item =
- notifications.find(
-  notification =>
-  String(notification.id) ===
-  String(id)
- );
-
-
- if(!item){
-
-  toast(
-   "Notification not found"
-  );
-
+ if(!safe)
   return;
 
- }
+ viewerImage.src =
+ safe;
 
-
- currentNotification =
- item;
-
-
- renderDetail(item);
-
-
- const detail =
- document.getElementById(
-  "detailView"
+ imageViewer.classList.add(
+  "show"
  );
-
-
- detail.classList.add(
-  "active"
- );
-
 
  document.body.style.overflow =
  "hidden";
 
-
- /*
-  Browser history support.
- */
-
- try{
-
-  history.pushState(
-   {
-    notification:id
-   },
-   "",
-   "#notification-"+id
-  );
-
- }catch{}
+}
 
 
- const shell =
- document.querySelector(
-  ".detailShell"
+function closeImage(){
+
+ imageViewer.classList.remove(
+  "show"
  );
 
- if(shell)
-  shell.scrollTop = 0;
+ viewerImage.src = "";
+
+ if(
+  !detailView.classList.contains(
+   "show"
+  )
+ ){
+
+  document.body.style.overflow =
+  "";
+
+ }
 
 }
 
 
-/* =========================================================
-   RENDER DETAIL
-========================================================= */
-
-function renderDetail(item){
-
- const priority =
- priorityInfo(
-  item.priority
- );
-
-
- const category =
- CATEGORY[item.category] ||
- item.category ||
- "App";
-
-
- const detail =
- document.getElementById(
-  "detailContent"
- );
-
-
- const image =
- item.image_url
-
- ?
-
- `
-
-  <div class="detailImageWrap">
-
-   <img
-
-    class="detailImage"
-
-    src="${esc(item.image_url)}"
-
-    alt="${esc(
-     item.title_en ||
-     "Notification image"
-    )}"
-
-    onerror="imageError(this)"
-
-   >
-
-
-   <div class="detailImageShade"></div>
-
-
-   ${
-    item.priority==="important" ||
-    item.priority==="urgent"
-
-    ?
-
-    `
-
-     <div class="detailPriority">
-
-      <i
-       class="fa-solid ${priority.icon}"
-      ></i>
-
-      ${esc(priority.label)}
-
-     </div>
-
-    `
-
-    :""
-
-   }
-
-  </div>
-
- `
-
- :
-
- `
-
-  <div class="detailImageWrap">
-
-   <div class="noDetailImage">
-
-    <i
-     class="fa-solid ${iconName(item.icon)}"
-    ></i>
-
-   </div>
-
-
-   ${
-    item.priority==="important" ||
-    item.priority==="urgent"
-
-    ?
-
-    `
-
-     <div class="detailPriority">
-
-      <i
-       class="fa-solid ${priority.icon}"
-      ></i>
-
-      ${esc(priority.label)}
-
-     </div>
-
-    `
-
-    :""
-
-   }
-
-  </div>
-
- `;
-
-
- const actions =
- item.action_url
-
- ?
-
- `
-
-  <div class="detailActions">
-
-   <button
-
-    class="detailAction openLinkBtn"
-
-    onclick='openLink(${JSON.stringify(
-     item.action_url
-    )})'
-
-   >
-
-    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-    Open Link
-
-   </button>
-
-
-   <button
-
-    class="detailAction copyLinkBtn"
-
-    onclick='copyLink(${JSON.stringify(
-     item.action_url
-    )})'
-
-   >
-
-    <i class="fa-regular fa-copy"></i>
-
-    Copy Link
-
-   </button>
-
-  </div>
-
- `
-
- :
-
- "";
-
-
- detail.innerHTML = `
-
-  ${image}
-
-
-  <div class="detailBody">
-
-
-   <div class="detailMeta">
-
-
-    <span class="detailBadge">
-
-     <i
-      class="fa-solid ${iconName(item.icon)}"
-     ></i>
-
-     ${esc(category)}
-
-    </span>
-
-
-    ${
-     item.priority==="important" ||
-     item.priority==="urgent"
-
-     ?
-
-     `
-
-      <span
-       class="detailBadge ${priority.cls}"
-      >
-
-       <i
-        class="fa-solid ${priority.icon}"
-       ></i>
-
-       ${esc(priority.label)}
-
-      </span>
-
-     `
-
-     :""
-
-    }
-
-
-    <span class="detailDate">
-
-     <i class="fa-regular fa-clock"></i>
-
-     ${esc(
-      timeAgo(item.created_at)
-     )}
-
-    </span>
-
-
-   </div>
-
-
-   <div class="detailTitle">
-
-    ${esc(
-     item.title_bn ||
-     item.title_en ||
-     "Notification"
-    )}
-
-   </div>
-
-
-   ${
-    item.title_en
-
-    ?
-
-    `
-
-     <div class="detailEnglishTitle">
-
-      ${esc(item.title_en)}
-
-     </div>
-
-    `
-
-    :""
-
-   }
-
-
-   <div class="detailDivider"></div>
-
-
-   ${
-    item.description_bn
-
-    ?
-
-    `
-
-     <div class="detailDescription">
-
-      ${esc(
-       item.description_bn
-      )}
-
-     </div>
-
-    `
-
-    :""
-
-   }
-
-
-   ${
-    item.description_en
-
-    ?
-
-    `
-
-     <div class="detailDescription en">
-
-      ${esc(
-       item.description_en
-      )}
-
-     </div>
-
-    `
-
-    :""
-
-   }
-
-
-   ${actions}
-
-
-  </div>
-
- `;
-
-}
-
-
-/* =========================================================
-   CLOSE DETAIL
-========================================================= */
-
-function closeNotification(){
-
- const detail =
- document.getElementById(
-  "detailView"
- );
-
-
- detail.classList.remove(
-  "active"
- );
-
-
- document.body.style.overflow =
- "";
-
-
- currentNotification =
- null;
-
-
- /*
-  Remove hash without
-  reloading page.
- */
-
- try{
+document
+.getElementById("viewerClose")
+.addEventListener(
+ "click",
+ closeImage
+);
+
+
+imageViewer.addEventListener(
+ "click",
+ event=>{
 
   if(
-   location.hash.startsWith(
-    "#notification-"
-   )
+   event.target === imageViewer
   ){
 
-   history.back();
-
-  }
-
- }catch{}
-
-}
-
-
-/* =========================================================
-   BROWSER BACK BUTTON
-========================================================= */
-
-window.addEventListener(
- "popstate",
- ()=>{
-
-  const detail =
-  document.getElementById(
-   "detailView"
-  );
-
-
-  if(
-   detail.classList.contains(
-    "active"
-   )
-  ){
-
-   detail.classList.remove(
-    "active"
-   );
-
-   document.body.style.overflow =
-   "";
-
-   currentNotification =
-   null;
+   closeImage();
 
   }
 
@@ -3331,27 +3796,52 @@ window.addEventListener(
 );
 
 
-/* =========================================================
+/* =====================================================
+   ESC KEY
+===================================================== */
+
+document.addEventListener(
+ "keydown",
+ event=>{
+
+  if(
+   event.key === "Escape"
+  ){
+
+   if(
+    imageViewer.classList.contains(
+     "show"
+    )
+   ){
+
+    closeImage();
+
+   }
+   else if(
+    detailView.classList.contains(
+     "show"
+    )
+   ){
+
+    closeDetail(true);
+
+   }
+
+  }
+
+ }
+);
+
+
+/* =====================================================
    LOAD NOTIFICATIONS
-========================================================= */
+===================================================== */
 
 async function loadNotifications(
- showToast=false
+ showToast = false
 ){
 
- const list =
- document.getElementById(
-  "list"
- );
-
-
- const refresh =
- document.getElementById(
-  "refreshBtn"
- );
-
-
- refresh.classList.add(
+ refreshBtn.classList.add(
   "loading"
  );
 
@@ -3374,6 +3864,7 @@ async function loadNotifications(
 
 
  try{
+
 
   const {
    data,
@@ -3437,13 +3928,15 @@ async function loadNotifications(
   : [];
 
 
-  render();
+  renderList();
 
 
   if(showToast){
 
    toast(
-    "Notifications refreshed"
+    currentLanguage === "bn"
+    ? "Notifications আপডেট হয়েছে ✓"
+    : "Notifications refreshed ✓"
    );
 
   }
@@ -3452,7 +3945,7 @@ async function loadNotifications(
  }catch(error){
 
   console.error(
-   "Notification loading error:",
+   "Notifications error:",
    error
   );
 
@@ -3467,27 +3960,40 @@ async function loadNotifications(
 
     </div>
 
-
     <b>
-     Unable to load notifications
+
+     ${
+      currentLanguage === "bn"
+      ? "Notification লোড করা যায়নি"
+      : "Unable to load notifications"
+     }
+
     </b>
 
-
     <span>
-     Notifications could not be loaded right now. Please check your connection and try again.
-    </span>
 
+     ${
+      currentLanguage === "bn"
+      ? "ইন্টারনেট অথবা database connection পরীক্ষা করে আবার চেষ্টা করুন।"
+      : "Please check your connection and try again."
+     }
+
+    </span>
 
     <button
      class="retry"
-     onclick="loadNotifications(true)"
+     id="retryBtn"
     >
 
      <i
       class="fa-solid fa-rotate-right"
      ></i>
 
-     Try Again
+     ${
+      currentLanguage === "bn"
+      ? "আবার চেষ্টা করুন"
+      : "Try Again"
+     }
 
     </button>
 
@@ -3495,9 +4001,17 @@ async function loadNotifications(
 
   `;
 
+
+  document
+  .getElementById("retryBtn")
+  ?.addEventListener(
+   "click",
+   ()=>loadNotifications(true)
+  );
+
  }finally{
 
-  refresh.classList.remove(
+  refreshBtn.classList.remove(
    "loading"
   );
 
@@ -3506,58 +4020,91 @@ async function loadNotifications(
 }
 
 
-/* =========================================================
+/* =====================================================
+   REFRESH
+===================================================== */
+
+refreshBtn.addEventListener(
+ "click",
+ ()=>{
+
+  loadNotifications(true);
+
+ }
+);
+
+
+/* =====================================================
    REALTIME
-========================================================= */
+===================================================== */
 
-try{
+function setupRealtime(){
 
- db
+ try{
 
- .channel(
-  "notifications-live"
- )
+  realtimeChannel =
+  db
 
- .on(
+  .channel(
+   "wildlife-notifications-live"
+  )
 
-  "postgres_changes",
+  .on(
+   "postgres_changes",
+   {
+    event:"*",
+    schema:"public",
+    table:"notifications"
+   },
+   payload=>{
 
-  {
-   event:"*",
-   schema:"public",
-   table:"notifications"
-  },
+    /*
+     Small delay prevents multiple
+     database events from causing
+     unnecessary simultaneous requests.
+    */
 
-  payload=>{
+    clearTimeout(
+     window.__reloadTimer
+    );
 
-   loadNotifications(false);
+    window.__reloadTimer =
+    setTimeout(
+     ()=>{
+      loadNotifications(false);
+     },
+     350
+    );
 
-  }
+   }
+  )
 
- )
+  .subscribe();
 
- .subscribe();
+ }catch(error){
 
-}catch(error){
+  console.warn(
+   "Realtime unavailable:",
+   error
+  );
 
- console.warn(
-  "Realtime unavailable:",
-  error
- );
+ }
 
 }
 
 
-/* =========================================================
-   ONLINE / OFFLINE
-========================================================= */
+/* =====================================================
+   ONLINE
+===================================================== */
 
 window.addEventListener(
  "online",
  ()=>{
 
   toast(
-   "Connection restored"
+   currentLanguage === "bn"
+   ? "Connection restored ✓"
+   : "Connection restored ✓"
   );
 
   loadNotifications(false);
@@ -3566,23 +4113,51 @@ window.addEventListener(
 );
 
 
+/* =====================================================
+   OFFLINE
+===================================================== */
+
 window.addEventListener(
  "offline",
  ()=>{
 
   toast(
-   "You are offline"
+   currentLanguage === "bn"
+   ? "আপনি এখন offline"
+   : "You are offline"
   );
 
  }
 );
 
 
-/* =========================================================
+/* =====================================================
    INITIAL LOAD
-========================================================= */
+===================================================== */
 
 loadNotifications(false);
+
+setupRealtime();
+
+
+/* =====================================================
+   AUTO UPDATE TIME
+===================================================== */
+
+setInterval(
+ ()=>{
+
+  if(
+   notifications.length
+  ){
+
+   renderList();
+
+  }
+
+ },
+ 60000
+);
 
 </script>
 
