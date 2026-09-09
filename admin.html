@@ -157,7 +157,9 @@ async function saveNotification(){
   category:document.getElementById("category").value,
   icon:document.getElementById("icon").value,
   priority:document.getElementById("priority").value,
-  is_published:document.getElementById("published").checked
+  is_published: id
+    ? document.getElementById("published").checked
+    : true
  };
  if(!payload.title_bn||!payload.title_en||!payload.description_bn||!payload.description_en){toast("Please fill all title and description fields.");return}
  const btn=document.getElementById("saveBtn");btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner spin"></i> Saving...';
