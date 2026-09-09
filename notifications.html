@@ -81,7 +81,9 @@ html{
 body{
  margin:0;
  padding:0;
+
  color:var(--ink);
+
  background:#dfe9e4;
 
  font-family:
@@ -90,6 +92,9 @@ body{
  sans-serif;
 
  overflow-x:hidden;
+
+ -webkit-font-smoothing:antialiased;
+ text-rendering:optimizeLegibility;
 }
 
 button,
@@ -215,7 +220,6 @@ img{
  }
 
 }
-
 
 .headerContent{
 
@@ -735,7 +739,8 @@ img{
  opacity:0;
 
  transform:
- translateY(12px);
+ translateY(12px)
+ scale(.985);
 
  animation:
  itemIn .4s
@@ -756,7 +761,8 @@ img{
   opacity:1;
 
   transform:
-  translateY(0);
+  translateY(0)
+  scale(1);
 
  }
 
@@ -765,7 +771,11 @@ img{
 .notificationItem:active{
 
  transform:
- scale(.985);
+ scale(.975);
+
+ box-shadow:
+ 0 4px 15px
+ rgba(20,70,53,.07);
 
 }
 
@@ -890,9 +900,11 @@ img{
 
  align-items:center;
 
- gap:6px;
+ gap:5px;
 
  margin-bottom:4px;
+
+ min-width:0;
 
 }
 
@@ -913,6 +925,12 @@ img{
  border-radius:99px;
 
  white-space:nowrap;
+
+ max-width:110px;
+
+ overflow:hidden;
+
+ text-overflow:ellipsis;
 
 }
 
@@ -939,6 +957,10 @@ img{
  font-size:6.5px;
 
  white-space:nowrap;
+
+ overflow:hidden;
+
+ text-overflow:ellipsis;
 
 }
 
@@ -1047,6 +1069,8 @@ img{
 
  overscroll-behavior:contain;
 
+ -webkit-overflow-scrolling:touch;
+
 }
 
 .detailView.active{
@@ -1055,7 +1079,8 @@ img{
 
  animation:
  detailIn .28s
- ease both;
+ cubic-bezier(.2,.8,.2,1)
+ both;
 
 }
 
@@ -1064,14 +1089,16 @@ img{
  from{
 
   opacity:0;
+
   transform:
-  translateY(15px);
+  translateY(18px);
 
  }
 
  to{
 
   opacity:1;
+
   transform:none;
 
  }
@@ -1079,7 +1106,9 @@ img{
 }
 
 
-/* DETAIL HEADER */
+/* =========================================================
+   DETAIL HEADER
+========================================================= */
 
 .detailHeader{
 
@@ -1139,11 +1168,16 @@ img{
 
  font-size:12px;
 
+ transition:.18s;
+
 }
 
 .backButton:active{
 
- transform:scale(.92);
+ transform:scale(.90);
+
+ background:
+ rgba(255,255,255,.20);
 
 }
 
@@ -1188,10 +1222,22 @@ img{
 
  font-weight:800;
 
+ flex:none;
+
+ transition:.18s;
+
+}
+
+.langButton:active{
+
+ transform:scale(.94);
+
 }
 
 
-/* DETAIL CONTENT */
+/* =========================================================
+   DETAIL CONTENT
+========================================================= */
 
 .detailContent{
 
@@ -1199,12 +1245,35 @@ img{
 
  margin:auto;
 
- padding-bottom:40px;
+ padding:
+ 12px
+ 0
+ 40px;
 
 }
 
 
-/* HERO */
+/*
+  IMPORTANT BUG FIX:
+
+  When there is NO hero image,
+  the old margin-top:-16px caused
+  Announcement / Urgent / time to touch
+  the sticky header.
+
+  Now normal detail body gets spacing.
+*/
+
+.detailContent.noHero{
+
+ padding-top:13px;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
 
 .detailHero{
 
@@ -1215,6 +1284,12 @@ img{
  background:#e9f0ec;
 
  overflow:hidden;
+
+ border-radius:
+ 0
+ 0
+ 22px
+ 22px;
 
 }
 
@@ -1258,7 +1333,9 @@ img{
 }
 
 
-/* DETAIL BODY */
+/* =========================================================
+   DETAIL BODY
+========================================================= */
 
 .detailBody{
 
@@ -1288,7 +1365,26 @@ img{
 }
 
 
-/* META */
+/*
+  NO HERO = NO NEGATIVE MARGIN
+*/
+
+.detailContent.noHero .detailBody{
+
+ margin-top:0;
+
+ border-radius:20px 20px 0 0;
+
+ box-shadow:
+ 0 8px 30px
+ rgba(20,70,53,.045);
+
+}
+
+
+/* =========================================================
+   META
+========================================================= */
 
 .detailMeta{
 
@@ -1298,7 +1394,7 @@ img{
 
  align-items:center;
 
- gap:6px;
+ gap:7px;
 
 }
 
@@ -1348,14 +1444,18 @@ img{
 
  font-size:7px;
 
+ padding-left:2px;
+
 }
 
 
-/* DETAIL TITLE */
+/* =========================================================
+   DETAIL TITLE
+========================================================= */
 
 .detailTitle{
 
- margin-top:11px;
+ margin-top:13px;
 
  font-family:
  "Hind Siliguri",
@@ -1369,28 +1469,50 @@ img{
 
  letter-spacing:-.2px;
 
-}
-
-.detailEnglishTitle{
-
- margin-top:5px;
-
- color:#7a8780;
-
- font-size:10px;
-
- line-height:1.55;
-
- font-weight:600;
+ animation:
+ titleReveal .35s ease both;
 
 }
 
+@keyframes titleReveal{
 
-/* LANGUAGE CONTENT */
+ from{
+
+  opacity:0;
+
+  transform:
+  translateY(6px);
+
+ }
+
+ to{
+
+  opacity:1;
+
+  transform:none;
+
+ }
+
+}
+
+
+/*
+  OLD .detailEnglishTitle REMOVED.
+
+  This was the reason Bengali + English
+  title could appear together.
+
+  Only the active language title is now shown.
+*/
+
+
+/* =========================================================
+   LANGUAGE CONTENT
+========================================================= */
 
 .languagePanel{
 
- margin-top:17px;
+ margin-top:19px;
 
 }
 
@@ -1412,7 +1534,7 @@ img{
 
  letter-spacing:.5px;
 
- margin-bottom:7px;
+ margin-bottom:9px;
 
 }
 
@@ -1442,6 +1564,9 @@ img{
 
  white-space:pre-line;
 
+ animation:
+ descriptionReveal .4s ease both;
+
 }
 
 .detailDescription.english{
@@ -1453,6 +1578,27 @@ img{
  line-height:1.75;
 
  color:#5f6d66;
+
+}
+
+@keyframes descriptionReveal{
+
+ from{
+
+  opacity:0;
+
+  transform:
+  translateY(5px);
+
+ }
+
+ to{
+
+  opacity:1;
+
+  transform:none;
+
+ }
 
 }
 
@@ -1566,8 +1712,10 @@ img{
 @keyframes stateFloat{
 
  50%{
+
   transform:
   translateY(-5px);
+
  }
 
 }
@@ -1732,8 +1880,10 @@ img{
 @keyframes spin{
 
  to{
+
   transform:
   rotate(360deg);
+
  }
 
 }
@@ -1746,21 +1896,59 @@ img{
 @media(max-width:390px){
 
  .headerTitle{
+
   font-size:24px;
+
  }
 
  .detailTitle{
+
   font-size:20px;
+
  }
 
  .itemTitle{
+
   font-size:12px;
+
  }
 
  .itemImage,
  .itemIcon{
+
   width:53px;
   height:53px;
+
+ }
+
+ .detailContent{
+
+  padding-left:0;
+  padding-right:0;
+
+ }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+ *,
+ *::before,
+ *::after{
+
+  animation-duration:.01ms !important;
+
+  animation-iteration-count:1 !important;
+
+  scroll-behavior:auto !important;
+
+  transition-duration:.01ms !important;
+
  }
 
 }
@@ -1992,7 +2180,9 @@ img{
  <div class="loading">
 
   <div class="loadingIcon">
+
    <i class="fa-solid fa-spinner"></i>
+
   </div>
 
   Loading notifications...
@@ -2105,6 +2295,10 @@ let loading = false;
 
 let realtimeTimer = null;
 
+let realtimeChannel = null;
+
+let detailOpening = false;
+
 
 /* =========================================================
    ICONS
@@ -2138,7 +2332,9 @@ const ICONS = {
 
  megaphone:"fa-bullhorn",
 
- download:"fa-download"
+ download:"fa-download",
+
+ announcement:"fa-bullhorn"
 
 };
 
@@ -2157,7 +2353,9 @@ const CATEGORY = {
 
  wildlife:"Wildlife",
 
- travel:"Travel"
+ travel:"Travel",
+
+ announcement:"Announcement"
 
 };
 
@@ -2252,8 +2450,11 @@ function timeAgo(value){
   return "";
 
  const diff =
- Math.floor(
-  (Date.now()-d.getTime())/1000
+ Math.max(
+  0,
+  Math.floor(
+   (Date.now()-d.getTime())/1000
+  )
  );
 
  if(diff < 60)
@@ -2346,7 +2547,9 @@ function setFilter(value,button){
  document
  .querySelectorAll(".filter")
  .forEach(el=>{
+
   el.classList.remove("active");
+
  });
 
  button.classList.add("active");
@@ -2564,6 +2767,7 @@ function getFilteredData(){
    }else if(
 
     currentFilter!=="all" &&
+
     item.category!==currentFilter
 
    ){
@@ -2685,7 +2889,9 @@ function renderListItem(item,index){
 
  const category =
  CATEGORY[item.category] ||
+
  item.category ||
+
  "App";
 
 
@@ -2732,6 +2938,16 @@ function renderListItem(item,index){
  `;
 
 
+ /*
+   Safer ID insertion.
+ */
+
+ const safeId =
+ JSON.stringify(
+  String(item.id)
+ );
+
+
  return `
 
   <button
@@ -2746,7 +2962,7 @@ function renderListItem(item,index){
     animation-delay:${Math.min(index*45,350)}ms
    "
 
-   onclick="openDetailById('${esc(item.id)}')"
+   onclick="openDetailById(${esc(safeId)})"
 
   >
 
@@ -2809,6 +3025,7 @@ function renderListItem(item,index){
 
      ${esc(
       item.title_bn ||
+      item.title_en ||
       "Notification"
      )}
 
@@ -2857,6 +3074,9 @@ function renderListItem(item,index){
 
 function openDetailById(id){
 
+ if(detailOpening)
+  return;
+
  const item =
  notifications.find(
   x=>String(x.id)===String(id)
@@ -2872,6 +3092,9 @@ function openDetailById(id){
   return;
 
  }
+
+
+ detailOpening=true;
 
 
  currentNotification =
@@ -2899,20 +3122,43 @@ function openDetailById(id){
  "hidden";
 
 
- /* Browser history */
+ /*
+   Scroll detail to top every time.
+ */
+
+ detail.scrollTop=0;
+
+
+ /*
+   Browser history.
+ */
 
  try{
 
-  history.pushState(
-   {
-    notification:true
-   },
-   "",
-   "#notification-"+id
-  );
+  if(
+   location.hash !==
+   "#notification-"+encodeURIComponent(String(id))
+  ){
+
+   history.pushState(
+    {
+     notification:true,
+     id:String(id)
+    },
+    "",
+    "#notification-"+encodeURIComponent(String(id))
+   );
+
+  }
 
  }catch(e){}
 
+
+ setTimeout(()=>{
+
+  detailOpening=false;
+
+ },320);
 
 }
 
@@ -2939,7 +3185,9 @@ function renderDetail(){
 
  const category =
  CATEGORY[item.category] ||
+
  item.category ||
+
  "App";
 
 
@@ -2952,6 +3200,14 @@ function renderDetail(){
  const isEnglish =
  currentLanguage==="en";
 
+
+ /*
+   IMPORTANT FIX:
+
+   Only ONE title is rendered.
+   English title is no longer displayed
+   below the Bangla title.
+ */
 
  const title =
  isEnglish
@@ -3003,11 +3259,25 @@ function renderDetail(){
  : "English";
 
 
- document
- .getElementById(
+ const detailContent =
+ document.getElementById(
   "detailContent"
- )
- .innerHTML = `
+ );
+
+
+ /*
+   Add noHero class.
+
+   This is the MAJOR spacing fix.
+ */
+
+ detailContent.classList.toggle(
+  "noHero",
+  !image
+ );
+
+
+ detailContent.innerHTML = `
 
 
   ${
@@ -3020,7 +3290,10 @@ function renderDetail(){
      <img
       src="${esc(image)}"
       alt="${esc(title)}"
-      onerror="this.parentElement.remove()"
+      onerror="
+       this.parentElement.remove();
+       document.getElementById('detailContent').classList.add('noHero');
+      "
      >
 
     </div>
@@ -3083,34 +3356,13 @@ function renderDetail(){
    </div>
 
 
+   <!-- ONLY CURRENT LANGUAGE TITLE -->
+
    <div class="detailTitle">
 
     ${esc(title)}
 
    </div>
-
-
-   ${
-    isEnglish
-
-    ? ""
-
-    : item.title_en
-
-      ? `
-
-       <div class="detailEnglishTitle">
-
-        ${esc(
-         item.title_en
-        )}
-
-       </div>
-
-      `
-
-      :""
-   }
 
 
    <div class="languagePanel">
@@ -3155,7 +3407,7 @@ function renderDetail(){
 
       <button
        class="detailAction openAction"
-       onclick='openLink(${JSON.stringify(item.action_url)})'
+       onclick='openLink(${JSON.stringify(String(item.action_url))})'
       >
 
        <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -3167,7 +3419,7 @@ function renderDetail(){
 
       <button
        class="detailAction copyAction"
-       onclick='copyLink(${JSON.stringify(item.action_url)})'
+       onclick='copyLink(${JSON.stringify(String(item.action_url))})'
       >
 
        <i class="fa-regular fa-copy"></i>
@@ -3210,6 +3462,15 @@ function toggleLanguage(){
 
  renderDetail();
 
+
+ const detail =
+ document.getElementById(
+  "detailView"
+ );
+
+
+ detail.scrollTop=0;
+
 }
 
 
@@ -3227,6 +3488,14 @@ function closeDetail(
  );
 
 
+ if(
+  !detail.classList.contains(
+   "active"
+  )
+ )
+  return;
+
+
  detail.classList.remove(
   "active"
  );
@@ -3240,16 +3509,37 @@ function closeDetail(
  null;
 
 
+ detailOpening=false;
+
+
+ /*
+   Remove hash safely.
+
+   When normal back button is clicked,
+   history.back() will trigger popstate.
+ */
+
  if(
   !fromPopState &&
-  location.hash
+  location.hash.startsWith(
+   "#notification-"
+  )
  ){
 
   try{
 
    history.back();
 
-  }catch(e){}
+  }catch(e){
+
+   history.replaceState(
+    null,
+    "",
+    location.pathname+
+    location.search
+   );
+
+  }
 
  }
 
@@ -3262,7 +3552,7 @@ function closeDetail(
 
 window.addEventListener(
  "popstate",
- ()=>{
+ event=>{
 
   const detail =
   document.getElementById(
@@ -3285,7 +3575,7 @@ window.addEventListener(
 
 
 /* =========================================================
-   ANDROID / KEYBOARD ESCAPE
+   ESCAPE
 ========================================================= */
 
 document.addEventListener(
@@ -3349,11 +3639,6 @@ async function loadNotifications(
   "loading"
  );
 
-
- /*
-  Only show full loading screen
-  when there is no existing data.
- */
 
  if(!notifications.length){
 
@@ -3521,58 +3806,87 @@ async function loadNotifications(
    REALTIME
 ========================================================= */
 
-try{
+function setupRealtime(){
 
- db
+ try{
 
- .channel(
-  "notifications-live"
- )
+  if(realtimeChannel){
 
- .on(
+   try{
 
-  "postgres_changes",
+    db.removeChannel(
+     realtimeChannel
+    );
 
-  {
-   event:"*",
-   schema:"public",
-   table:"notifications"
-  },
-
-  payload=>{
-
-   /*
-    Debounce realtime events.
-    Prevents multiple simultaneous reloads.
-   */
-
-   clearTimeout(
-    realtimeTimer
-   );
-
-
-   realtimeTimer =
-   setTimeout(
-    ()=>{
-     loadNotifications(false);
-    },
-    450
-   );
+   }catch(e){}
 
   }
 
- )
 
- .subscribe();
+  realtimeChannel =
 
-}catch(error){
+  db
 
- console.warn(
-  "Realtime unavailable:",
-  error
- );
+  .channel(
+   "notifications-live"
+  )
+
+  .on(
+
+   "postgres_changes",
+
+   {
+    event:"*",
+    schema:"public",
+    table:"notifications"
+   },
+
+   payload=>{
+
+    clearTimeout(
+     realtimeTimer
+    );
+
+
+    realtimeTimer =
+
+    setTimeout(
+     ()=>{
+
+      loadNotifications(false);
+
+     },
+     500
+    );
+
+   }
+
+  )
+
+  .subscribe(
+   status=>{
+
+    console.log(
+     "Realtime status:",
+     status
+    );
+
+   }
+  );
+
+
+ }catch(error){
+
+  console.warn(
+   "Realtime unavailable:",
+   error
+  );
+
+ }
 
 }
+
+setupRealtime();
 
 
 /* =========================================================
@@ -3610,6 +3924,37 @@ window.addEventListener(
 
 
 /* =========================================================
+   VISIBILITY
+========================================================= */
+
+document.addEventListener(
+ "visibilitychange",
+ ()=>{
+
+  if(
+   document.visibilityState==="visible"
+  ){
+
+   /*
+     Lightweight refresh when user
+     returns to the app.
+   */
+
+   if(
+    notifications.length
+   ){
+
+    loadNotifications(false);
+
+   }
+
+  }
+
+ }
+);
+
+
+/* =========================================================
    INITIAL LOAD
 ========================================================= */
 
@@ -3617,17 +3962,12 @@ loadNotifications(false);
 
 
 /* =========================================================
-   HANDLE HASH
+   HANDLE INITIAL HASH
 ========================================================= */
 
 window.addEventListener(
  "load",
  ()=>{
-
-  /*
-   Do not automatically open
-   an invalid notification hash.
-  */
 
   if(
    location.hash.startsWith(
@@ -3635,21 +3975,75 @@ window.addEventListener(
    )
   ){
 
-   const id =
+   const encodedId =
    location.hash
    .replace(
     "#notification-",
     ""
    );
 
-   const item =
-   notifications.find(
-    x=>String(x.id)===String(id)
-   );
 
-   if(item){
+   let id="";
 
-    openDetailById(id);
+   try{
+
+    id =
+    decodeURIComponent(
+     encodedId
+    );
+
+   }catch(e){
+
+    id=encodedId;
+
+   }
+
+
+   /*
+     Data may not have loaded yet.
+     Wait briefly if necessary.
+   */
+
+   const tryOpen=()=>{
+
+    const item =
+    notifications.find(
+     x=>String(x.id)===String(id)
+    );
+
+
+    if(item){
+
+     openDetailById(id);
+
+     return true;
+
+    }
+
+    return false;
+
+   };
+
+
+   if(!tryOpen()){
+
+    let attempts=0;
+
+    const timer =
+    setInterval(()=>{
+
+     attempts++;
+
+     if(
+      tryOpen() ||
+      attempts>=20
+     ){
+
+      clearInterval(timer);
+
+     }
+
+    },250);
 
    }
 
