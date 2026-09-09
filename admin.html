@@ -139,7 +139,8 @@ function openForm(row=null){
  document.getElementById("category").value=row?.category||"app";
  document.getElementById("icon").value=row?.icon||"bell";
  document.getElementById("priority").value=row?.priority||"normal";
- document.getElementById("published").checked=!!row?.is_published;
+ document.getElementById("published").checked =
+    row ? !!row.is_published : true;
  document.getElementById("formOverlay").classList.add("show");
 }
 function closeForm(){document.getElementById("formOverlay").classList.remove("show")}
