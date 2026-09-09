@@ -9,38 +9,33 @@ content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
 <meta name="theme-color" content="#087d59">
 
-<meta name="apple-mobile-web-app-capable" content="yes">
-
 <title>Notifications • Wildlife Explorer</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <style>
 
 /* =========================================================
-   WILDLIFE EXPLORER
-   PREMIUM MOBILE NOTIFICATION SYSTEM
+   ROOT
 ========================================================= */
 
 :root{
 
- --bg:#f4f8f6;
+ --bg:#f3f8f5;
  --card:#ffffff;
 
- --ink:#16251f;
- --ink2:#34453e;
-
- --muted:#78857f;
- --muted2:#9aa59f;
+ --ink:#14231d;
+ --ink2:#30423a;
+ --muted:#74827b;
 
  --green:#087d59;
  --green2:#0ba978;
@@ -50,21 +45,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
  --blue:#3978df;
  --blueSoft:#edf3ff;
 
- --orange:#d98a24;
- --orangeSoft:#fff3df;
+ --orange:#d88a24;
+ --orangeSoft:#fff2dc;
 
- --red:#d95353;
- --redSoft:#ffe9e9;
+ --red:#d95252;
+ --redSoft:#ffe8e8;
 
- --line:#e1ebe6;
+ --line:#dfeae5;
 
  --shadow:
- 0 12px 35px rgba(18,70,52,.075);
+ 0 15px 45px rgba(20,70,53,.075);
 
- --shadow2:
- 0 22px 60px rgba(18,70,52,.12);
-
- --radius:21px;
+ --shadowStrong:
+ 0 24px 70px rgba(20,70,53,.16);
 
 }
 
@@ -78,17 +71,18 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
  -webkit-tap-highlight-color:transparent;
 }
 
-html,
-body{
+html{
  margin:0;
  padding:0;
- width:100%;
- min-height:100%;
  background:#dfe9e4;
- color:var(--ink);
+ scroll-behavior:smooth;
 }
 
 body{
+ margin:0;
+ padding:0;
+ color:var(--ink);
+ background:#dfe9e4;
 
  font-family:
  Inter,
@@ -96,7 +90,6 @@ body{
  sans-serif;
 
  overflow-x:hidden;
-
 }
 
 button,
@@ -105,12 +98,11 @@ input{
 }
 
 button{
- border:0;
  cursor:pointer;
 }
 
-button:active{
- transform:scale(.97);
+img{
+ max-width:100%;
 }
 
 
@@ -147,7 +139,7 @@ button:active{
  padding:
  18px
  16px
- 19px;
+ 20px;
 
  color:#fff;
 
@@ -163,44 +155,42 @@ button:active{
 
 }
 
-.header:before{
+.header::before,
+.header::after{
 
  content:"";
 
  position:absolute;
-
- width:230px;
- height:230px;
-
- right:-120px;
- top:-150px;
 
  border-radius:50%;
 
  background:
  rgba(255,255,255,.075);
 
+ pointer-events:none;
+
+}
+
+.header::before{
+
+ width:220px;
+ height:220px;
+
+ right:-110px;
+ top:-145px;
+
  animation:
  headerFloat 8s ease-in-out infinite;
 
 }
 
-.header:after{
+.header::after{
 
- content:"";
+ width:130px;
+ height:130px;
 
- position:absolute;
-
- width:145px;
- height:145px;
-
- left:-90px;
- bottom:-105px;
-
- border-radius:50%;
-
- background:
- rgba(255,255,255,.06);
+ left:-75px;
+ bottom:-90px;
 
  animation:
  headerFloat2 7s ease-in-out infinite;
@@ -211,8 +201,8 @@ button:active{
 
  50%{
   transform:
-  translate(-12px,10px)
-  scale(1.05);
+  translate(-10px,10px)
+  scale(1.06);
  }
 
 }
@@ -227,63 +217,61 @@ button:active{
 }
 
 
-.headerInner{
+.headerContent{
 
  position:relative;
+
  z-index:2;
 
 }
 
 
-.brandRow{
+/* BRAND */
+
+.brandLine{
 
  display:flex;
+
  align-items:center;
 
  gap:10px;
 
 }
 
-
 .brandIcon{
 
  width:42px;
  height:42px;
 
+ flex:none;
+
  border-radius:15px;
 
  display:grid;
+
  place-items:center;
 
  background:
  rgba(255,255,255,.14);
 
  border:
- 1px solid
- rgba(255,255,255,.13);
+ 1px solid rgba(255,255,255,.12);
 
  box-shadow:
- 0 8px 25px rgba(0,0,0,.09);
+ 0 8px 22px rgba(0,0,0,.08);
 
  animation:
- bellFloat 3s ease-in-out infinite;
+ iconFloat 3s ease-in-out infinite;
 
 }
 
-.brandIcon i{
-
- font-size:17px;
-
-}
-
-@keyframes bellFloat{
+@keyframes iconFloat{
 
  50%{
   transform:translateY(-2px);
  }
 
 }
-
 
 .brandText small{
 
@@ -293,7 +281,7 @@ button:active{
 
  font-weight:800;
 
- letter-spacing:1.3px;
+ letter-spacing:1.2px;
 
  opacity:.68;
 
@@ -310,26 +298,27 @@ button:active{
 }
 
 
-.live{
+.liveBadge{
 
  margin-left:auto;
 
  display:flex;
+
  align-items:center;
 
  gap:6px;
 
  padding:
- 6px 9px;
+ 6px
+ 9px;
 
  border-radius:99px;
 
  background:
- rgba(255,255,255,.11);
+ rgba(255,255,255,.12);
 
  border:
- 1px solid
- rgba(255,255,255,.12);
+ 1px solid rgba(255,255,255,.12);
 
  font-size:7px;
 
@@ -344,11 +333,11 @@ button:active{
 
  border-radius:50%;
 
- background:#b9ffda;
+ background:#baffdb;
 
  box-shadow:
  0 0 0 4px
- rgba(185,255,218,.08);
+ rgba(186,255,219,.10);
 
  animation:
  livePulse 1.8s infinite;
@@ -360,26 +349,27 @@ button:active{
  50%{
   box-shadow:
   0 0 0 8px
-  rgba(185,255,218,.02);
+  rgba(186,255,219,.02);
  }
 
 }
 
 
+/* HEADER TITLE */
+
 .headerTitle{
 
  margin-top:19px;
 
- font-size:26px;
-
- font-weight:800;
-
- letter-spacing:-.6px;
+ font-size:27px;
 
  line-height:1.1;
 
-}
+ font-weight:800;
 
+ letter-spacing:-.7px;
+
+}
 
 .headerSubtitle{
 
@@ -387,9 +377,9 @@ button:active{
 
  font-size:9px;
 
- opacity:.76;
+ line-height:1.55;
 
- line-height:1.5;
+ opacity:.78;
 
 }
 
@@ -402,8 +392,8 @@ button:active{
 
  padding:
  13px
- 13px
- 30px;
+ 14px
+ 35px;
 
 }
 
@@ -418,10 +408,9 @@ button:active{
 
  gap:8px;
 
- margin-bottom:10px;
+ margin-bottom:11px;
 
 }
-
 
 .searchBox{
 
@@ -430,7 +419,6 @@ button:active{
  position:relative;
 
 }
-
 
 .searchBox i{
 
@@ -450,19 +438,14 @@ button:active{
 
 }
 
-
 .searchBox input{
 
  width:100%;
 
  height:40px;
 
- padding:
- 0 12px 0 32px;
-
  border:
- 1px solid
- var(--line);
+ 1px solid var(--line);
 
  border-radius:14px;
 
@@ -471,6 +454,10 @@ button:active{
  background:#fff;
 
  color:var(--ink);
+
+ padding:
+ 0 12px
+ 0 32px;
 
  font-size:9px;
 
@@ -482,24 +469,15 @@ button:active{
 
 }
 
-
-.searchBox input::placeholder{
-
- color:#9aa59f;
-
-}
-
-
 .searchBox input:focus{
 
- border-color:#91cdb8;
+ border-color:#98d1ba;
 
  box-shadow:
  0 0 0 3px
  rgba(11,169,120,.08);
 
 }
-
 
 .refresh{
 
@@ -509,8 +487,7 @@ button:active{
  flex:none;
 
  border:
- 1px solid
- var(--line);
+ 1px solid var(--line);
 
  border-radius:14px;
 
@@ -519,11 +496,20 @@ button:active{
  color:var(--green);
 
  display:grid;
+
  place-items:center;
 
  box-shadow:
  0 7px 20px
  rgba(20,70,53,.035);
+
+ transition:.18s;
+
+}
+
+.refresh:active{
+
+ transform:scale(.94);
 
 }
 
@@ -531,14 +517,6 @@ button:active{
 
  animation:
  spin .7s linear infinite;
-
-}
-
-@keyframes spin{
-
- to{
-  transform:rotate(360deg);
- }
 
 }
 
@@ -556,7 +534,9 @@ button:active{
  overflow-x:auto;
 
  padding:
- 1px 1px 5px;
+ 1px
+ 1px
+ 5px;
 
  scrollbar-width:none;
 
@@ -566,23 +546,22 @@ button:active{
  display:none;
 }
 
-
 .filter{
 
  flex:none;
 
- padding:
- 8px 11px;
-
  border:
- 1px solid
- var(--line);
-
- border-radius:99px;
+ 1px solid var(--line);
 
  background:#fff;
 
  color:var(--muted);
+
+ border-radius:99px;
+
+ padding:
+ 8px
+ 12px;
 
  font-size:8px;
 
@@ -594,25 +573,23 @@ button:active{
 
 }
 
-
 .filter i{
 
  margin-right:4px;
 
 }
 
-
 .filter.active{
+
+ color:#fff;
 
  background:var(--green);
 
  border-color:var(--green);
 
- color:#fff;
-
  box-shadow:
  0 7px 18px
- rgba(8,125,89,.17);
+ rgba(8,125,89,.16);
 
 }
 
@@ -623,18 +600,18 @@ button:active{
 
 .summary{
 
+ margin:
+ 11px
+ 0
+ 12px;
+
  display:flex;
 
  align-items:center;
 
  justify-content:space-between;
 
- margin:
- 12px 1px
- 10px;
-
 }
-
 
 .summaryLeft{
 
@@ -646,11 +623,10 @@ button:active{
 
 }
 
-
 .summaryIcon{
 
- width:32px;
- height:32px;
+ width:31px;
+ height:31px;
 
  border-radius:11px;
 
@@ -659,12 +635,12 @@ button:active{
  color:var(--green);
 
  display:grid;
+
  place-items:center;
 
  font-size:10px;
 
 }
-
 
 .summaryText b{
 
@@ -674,32 +650,30 @@ button:active{
 
 }
 
-
 .summaryText span{
 
  display:block;
 
  margin-top:2px;
 
- font-size:7px;
-
  color:var(--muted);
 
-}
+ font-size:7px;
 
+}
 
 .count{
 
  padding:
- 6px 9px;
+ 6px
+ 9px;
 
  border-radius:99px;
 
  background:#fff;
 
  border:
- 1px solid
- var(--line);
+ 1px solid var(--line);
 
  color:var(--green);
 
@@ -731,174 +705,184 @@ button:active{
 
 .notificationItem{
 
- position:relative;
+ width:100%;
 
- display:flex;
-
- gap:11px;
-
- padding:12px;
+ border:
+ 1px solid var(--line);
 
  background:#fff;
 
- border:
- 1px solid
- var(--line);
-
  border-radius:19px;
 
- box-shadow:var(--shadow);
+ padding:12px;
 
- cursor:pointer;
+ display:flex;
+
+ align-items:center;
+
+ gap:11px;
+
+ text-align:left;
+
+ box-shadow:
+ 0 8px 25px
+ rgba(20,70,53,.045);
+
+ position:relative;
 
  overflow:hidden;
 
+ opacity:0;
+
+ transform:
+ translateY(12px);
+
  animation:
- itemIn .42s
+ itemIn .4s
  cubic-bezier(.2,.8,.2,1)
- both;
+ forwards;
 
  transition:
  transform .2s,
- box-shadow .2s;
+ box-shadow .2s,
+ border-color .2s;
 
 }
-
-
-.notificationItem:active{
-
- transform:scale(.985);
-
- box-shadow:
- 0 8px 20px
- rgba(20,70,53,.08);
-
-}
-
 
 @keyframes itemIn{
-
- from{
-
-  opacity:0;
-
-  transform:
-  translateY(12px)
-  scale(.985);
-
- }
 
  to{
 
   opacity:1;
 
-  transform:none;
+  transform:
+  translateY(0);
 
  }
 
 }
 
+.notificationItem:active{
 
-/* unread */
-
-.notificationItem.unread{
-
- border-color:
- #cce9dc;
-
- background:
- linear-gradient(
- 135deg,
- #fff 0%,
- #fbfffd 100%
- );
+ transform:
+ scale(.985);
 
 }
 
+.notificationItem.important{
 
-.notificationItem.unread:before{
+ border-color:#f0d5a5;
+
+}
+
+.notificationItem.urgent{
+
+ border-color:#efbcbc;
+
+}
+
+.notificationItem.unread::before{
 
  content:"";
 
  position:absolute;
 
  left:0;
- top:13px;
- bottom:13px;
+
+ top:10px;
+ bottom:10px;
 
  width:3px;
 
  border-radius:0 5px 5px 0;
 
- background:
- linear-gradient(
- 180deg,
- var(--green),
- var(--green2)
- );
+ background:var(--green);
+
+}
+
+.notificationItem.urgent.unread::before{
+
+ background:var(--red);
+
+}
+
+.notificationItem.important.unread::before{
+
+ background:var(--orange);
 
 }
 
 
-/* thumbnail */
+/* ITEM IMAGE */
 
-.thumb{
+.itemImage{
 
- width:61px;
- height:61px;
+ width:57px;
+ height:57px;
 
  flex:none;
 
- border-radius:16px;
-
- overflow:hidden;
-
- background:
- linear-gradient(
- 135deg,
- #e8f6f0,
- #dcefe7
- );
-
- display:grid;
- place-items:center;
-
- color:var(--green);
-
- position:relative;
-
-}
-
-
-.thumb img{
-
- width:100%;
- height:100%;
+ border-radius:15px;
 
  object-fit:cover;
 
- display:block;
+ background:#edf3ef;
+
+ border:
+ 1px solid #e3ece8;
 
 }
 
 
-.thumbIcon{
+/* ICON BOX */
+
+.itemIcon{
+
+ width:57px;
+ height:57px;
+
+ flex:none;
+
+ border-radius:15px;
+
+ background:var(--soft);
+
+ color:var(--green);
+
+ display:grid;
+
+ place-items:center;
 
  font-size:17px;
 
 }
 
+.itemIcon.important{
 
-/* content */
+ background:var(--orangeSoft);
 
-.itemContent{
+ color:var(--orange);
+
+}
+
+.itemIcon.urgent{
+
+ background:var(--redSoft);
+
+ color:var(--red);
+
+}
+
+
+/* ITEM BODY */
+
+.itemBody{
 
  min-width:0;
 
  flex:1;
 
 }
-
 
 .itemTop{
 
@@ -908,62 +892,49 @@ button:active{
 
  gap:6px;
 
- min-width:0;
+ margin-bottom:4px;
 
 }
 
+.itemCategory{
 
-.category{
-
- display:inline-flex;
-
- align-items:center;
-
- gap:4px;
-
- padding:
- 4px 7px;
-
- border-radius:99px;
-
- background:var(--soft);
-
- color:var(--green);
-
- font-size:6.5px;
+ font-size:7px;
 
  font-weight:800;
 
+ color:var(--green);
+
+ background:var(--soft);
+
+ padding:
+ 4px
+ 7px;
+
+ border-radius:99px;
+
  white-space:nowrap;
 
 }
 
-
-.category.important{
-
- background:var(--orangeSoft);
+.itemCategory.important{
 
  color:var(--orange);
 
+ background:var(--orangeSoft);
+
 }
 
-
-.category.urgent{
-
- background:var(--redSoft);
+.itemCategory.urgent{
 
  color:var(--red);
 
+ background:var(--redSoft);
+
 }
 
+.itemTime{
 
-.time{
-
- margin-left:auto;
-
- flex:none;
-
- color:var(--muted2);
+ color:#8a9690;
 
  font-size:6.5px;
 
@@ -971,10 +942,7 @@ button:active{
 
 }
 
-
 .itemTitle{
-
- margin-top:7px;
 
  font-family:
  "Hind Siliguri",
@@ -984,10 +952,9 @@ button:active{
 
  font-weight:700;
 
- line-height:1.4;
+ line-height:1.42;
 
- display:
- -webkit-box;
+ display:-webkit-box;
 
  -webkit-line-clamp:2;
 
@@ -997,25 +964,23 @@ button:active{
 
 }
 
-
 .itemPreview{
 
- margin-top:4px;
+ margin-top:3px;
 
- color:var(--muted);
+ color:#7b8781;
 
  font-family:
  "Hind Siliguri",
  sans-serif;
 
- font-size:8.5px;
+ font-size:8px;
 
- line-height:1.55;
+ line-height:1.5;
 
- display:
- -webkit-box;
+ display:-webkit-box;
 
- -webkit-line-clamp:2;
+ -webkit-line-clamp:1;
 
  -webkit-box-orient:vertical;
 
@@ -1024,61 +989,9 @@ button:active{
 }
 
 
-.itemBottom{
+/* CHEVRON */
 
- display:flex;
-
- align-items:center;
-
- gap:6px;
-
- margin-top:7px;
-
-}
-
-
-.unreadText{
-
- font-size:6.5px;
-
- color:var(--green);
-
- font-weight:800;
-
-}
-
-
-.unreadDot{
-
- width:6px;
- height:6px;
-
- border-radius:50%;
-
- background:var(--green);
-
- box-shadow:
- 0 0 0 4px
- rgba(8,125,89,.08);
-
- animation:
- unreadPulse 2s infinite;
-
-}
-
-
-@keyframes unreadPulse{
-
- 50%{
-  box-shadow:
-  0 0 0 7px
-  rgba(8,125,89,.02);
- }
-
-}
-
-
-.arrow{
+.itemArrow{
 
  width:25px;
  height:25px;
@@ -1087,14 +1000,29 @@ button:active{
 
  border-radius:9px;
 
- background:#f3f7f5;
+ background:#f2f6f4;
 
- color:#809089;
+ color:#829089;
 
  display:grid;
+
  place-items:center;
 
  font-size:8px;
+
+ transition:.2s;
+
+}
+
+.notificationItem:active
+.itemArrow{
+
+ background:var(--soft);
+
+ color:var(--green);
+
+ transform:
+ translateX(2px);
 
 }
 
@@ -1111,166 +1039,123 @@ button:active{
 
  z-index:500;
 
- background:
- rgba(20,40,32,.34);
+ background:#f3f8f5;
 
- backdrop-filter:
- blur(9px);
+ display:none;
 
- -webkit-backdrop-filter:
- blur(9px);
+ overflow-y:auto;
 
- opacity:0;
+ overscroll-behavior:contain;
 
- visibility:hidden;
+}
 
- pointer-events:none;
+.detailView.active{
 
- transition:
- opacity .25s,
- visibility .25s;
+ display:block;
+
+ animation:
+ detailIn .28s
+ ease both;
+
+}
+
+@keyframes detailIn{
+
+ from{
+
+  opacity:0;
+  transform:
+  translateY(15px);
+
+ }
+
+ to{
+
+  opacity:1;
+  transform:none;
+
+ }
 
 }
 
 
-.detailView.open{
-
- opacity:1;
-
- visibility:visible;
-
- pointer-events:auto;
-
-}
-
-
-.detailPanel{
-
- position:absolute;
-
- left:50%;
-
- bottom:0;
-
- width:100%;
-
- max-width:680px;
-
- height:
- min(94vh,850px);
-
- transform:
- translate(-50%,105%);
-
- background:var(--bg);
-
- border-radius:
- 25px 25px 0 0;
-
- overflow:hidden;
-
- display:flex;
-
- flex-direction:column;
-
- box-shadow:
- 0 -20px 70px
- rgba(0,0,0,.20);
-
- transition:
- transform .42s
- cubic-bezier(.2,.85,.2,1);
-
-}
-
-
-.detailView.open .detailPanel{
-
- transform:
- translate(-50%,0);
-
-}
-
-
-/* detail top */
+/* DETAIL HEADER */
 
 .detailHeader{
 
- height:57px;
+ position:sticky;
 
- flex:none;
+ top:0;
+
+ z-index:10;
+
+ height:58px;
 
  display:flex;
 
  align-items:center;
 
- gap:8px;
+ gap:10px;
 
  padding:
- 8px 12px;
+ 0
+ 13px;
 
- background:#fff;
+ color:#fff;
 
- border-bottom:
- 1px solid
- var(--line);
+ background:
+ linear-gradient(
+ 135deg,
+ #056b4b,
+ #087d59,
+ #0ba978
+ );
+
+ box-shadow:
+ 0 5px 20px
+ rgba(0,0,0,.08);
 
 }
 
-
-.backBtn,
-.detailAction{
+.backButton{
 
  width:38px;
  height:38px;
 
+ flex:none;
+
+ border:0;
+
  border-radius:13px;
 
- background:#f3f7f5;
+ background:
+ rgba(255,255,255,.13);
 
- color:var(--ink);
+ color:#fff;
 
  display:grid;
+
  place-items:center;
 
- font-size:11px;
-
- flex:none;
+ font-size:12px;
 
 }
 
+.backButton:active{
 
-.detailHeading{
+ transform:scale(.92);
 
- min-width:0;
+}
+
+.detailHeaderTitle{
 
  flex:1;
 
-}
+ min-width:0;
 
-
-.detailHeading small{
-
- display:block;
-
- font-size:6.5px;
+ font-size:12px;
 
  font-weight:800;
-
- letter-spacing:.8px;
-
- color:var(--green);
-
-}
-
-
-.detailHeading b{
-
- display:block;
-
- margin-top:2px;
-
- font-size:10px;
 
  white-space:nowrap;
 
@@ -1280,98 +1165,193 @@ button:active{
 
 }
 
+.langButton{
 
-.detailActions{
+ height:35px;
 
- display:flex;
+ padding:
+ 0
+ 10px;
 
- gap:6px;
+ border:
+ 1px solid
+ rgba(255,255,255,.16);
+
+ border-radius:11px;
+
+ background:
+ rgba(255,255,255,.12);
+
+ color:#fff;
+
+ font-size:7px;
+
+ font-weight:800;
 
 }
 
 
-/* detail scroll */
+/* DETAIL CONTENT */
 
-.detailScroll{
+.detailContent{
 
- flex:1;
+ max-width:680px;
 
- overflow-y:auto;
+ margin:auto;
 
- overscroll-behavior:contain;
-
- padding-bottom:35px;
+ padding-bottom:40px;
 
 }
 
 
-.detailImageWrap{
+/* HERO */
+
+.detailHero{
 
  position:relative;
 
  width:100%;
 
- background:#e7efeb;
+ background:#e9f0ec;
+
+ overflow:hidden;
 
 }
 
-
-.detailImage{
+.detailHero img{
 
  display:block;
 
  width:100%;
 
- max-height:310px;
+ max-height:330px;
 
  object-fit:cover;
 
-}
-
-
-.detailImageShade{
-
- position:absolute;
-
- left:0;
- right:0;
- bottom:0;
-
- height:100px;
-
- background:
- linear-gradient(
- transparent,
- rgba(0,0,0,.25)
- );
-
- pointer-events:none;
+ animation:
+ heroZoom .6s
+ cubic-bezier(.2,.8,.2,1)
+ both;
 
 }
 
+@keyframes heroZoom{
+
+ from{
+
+  opacity:0;
+
+  transform:
+  scale(1.04);
+
+ }
+
+ to{
+
+  opacity:1;
+
+  transform:
+  scale(1);
+
+ }
+
+}
+
+
+/* DETAIL BODY */
 
 .detailBody{
 
  padding:
- 17px 16px 30px;
+ 18px
+ 16px
+ 35px;
 
  background:#fff;
 
+ border-radius:
+ 25px
+ 25px
+ 0
+ 0;
+
+ margin-top:-16px;
+
+ position:relative;
+
+ z-index:2;
+
+ box-shadow:
+ 0 -8px 30px
+ rgba(20,70,53,.06);
+
 }
 
+
+/* META */
 
 .detailMeta{
 
  display:flex;
 
- align-items:center;
-
  flex-wrap:wrap;
+
+ align-items:center;
 
  gap:6px;
 
 }
 
+.detailBadge{
+
+ display:inline-flex;
+
+ align-items:center;
+
+ gap:5px;
+
+ padding:
+ 6px
+ 9px;
+
+ border-radius:99px;
+
+ font-size:7px;
+
+ font-weight:800;
+
+ background:var(--soft);
+
+ color:var(--green);
+
+}
+
+.detailBadge.important{
+
+ background:var(--orangeSoft);
+
+ color:var(--orange);
+
+}
+
+.detailBadge.urgent{
+
+ background:var(--redSoft);
+
+ color:var(--red);
+
+}
+
+.detailDate{
+
+ color:var(--muted);
+
+ font-size:7px;
+
+}
+
+
+/* DETAIL TITLE */
 
 .detailTitle{
 
@@ -1383,214 +1363,156 @@ button:active{
 
  font-size:22px;
 
- line-height:1.38;
+ line-height:1.42;
 
- font-weight:800;
+ font-weight:700;
 
  letter-spacing:-.2px;
 
 }
 
+.detailEnglishTitle{
 
-/*
- IMPORTANT:
- English title is hidden by default.
-*/
+ margin-top:5px;
 
-.englishTitle{
-
- display:none;
-
- margin-top:8px;
-
- color:var(--muted);
+ color:#7a8780;
 
  font-size:10px;
 
- line-height:1.6;
+ line-height:1.55;
 
  font-weight:600;
 
 }
 
 
-.englishTitle.visible{
+/* LANGUAGE CONTENT */
 
- display:block;
+.languagePanel{
 
-}
-
-
-.languageToggle{
-
- margin-top:9px;
-
- display:none;
+ margin-top:17px;
 
 }
 
+.languageLabel{
 
-.languageToggle.show{
-
- display:inline-flex;
+ display:flex;
 
  align-items:center;
 
- gap:5px;
+ gap:6px;
 
- padding:
- 7px 10px;
-
- border-radius:99px;
-
- background:#f1f5f3;
-
- color:#66756e;
+ color:var(--green);
 
  font-size:7px;
 
  font-weight:800;
 
+ text-transform:uppercase;
+
+ letter-spacing:.5px;
+
+ margin-bottom:7px;
+
 }
 
+.languageLabel::after{
+
+ content:"";
+
+ height:1px;
+
+ flex:1;
+
+ background:#edf2ef;
+
+}
 
 .detailDescription{
-
- margin-top:15px;
 
  font-family:
  "Hind Siliguri",
  sans-serif;
 
- font-size:12px;
+ color:#3d4d45;
+
+ font-size:13px;
 
  line-height:1.9;
 
- color:#3d4e47;
-
  white-space:pre-line;
-
- word-break:break-word;
 
 }
 
-
-.detailDescription.en{
-
- display:none;
-
- margin-top:11px;
+.detailDescription.english{
 
  font-family:Inter,sans-serif;
 
- font-size:9.5px;
+ font-size:10px;
 
  line-height:1.75;
 
- color:#68756f;
-
-}
-
-
-.detailDescription.en.visible{
-
- display:block;
-
-}
-
-
-.detailDivider{
-
- height:1px;
-
- background:#edf2ef;
-
- margin:
- 17px 0
- 13px;
+ color:#5f6d66;
 
 }
 
 
 /* =========================================================
-   LINK AREA
+   ACTIONS
 ========================================================= */
 
-.linkBox{
+.detailActions{
 
- padding:12px;
+ margin-top:19px;
 
- border-radius:16px;
+ padding-top:14px;
 
- background:
- linear-gradient(
- 135deg,
- #f5faf7,
- #eef7f3
- );
-
- border:
- 1px solid
- #dcebe4;
-
-}
-
-
-.linkLabel{
-
- font-size:7px;
-
- color:var(--muted);
-
- font-weight:800;
-
- margin-bottom:8px;
-
-}
-
-
-.linkButtons{
+ border-top:
+ 1px solid #edf2ef;
 
  display:flex;
 
- gap:7px;
+ gap:8px;
 
 }
 
-
-.linkBtn{
+.detailAction{
 
  flex:1;
 
- min-height:40px;
+ min-height:42px;
 
- border-radius:12px;
+ border:0;
+
+ border-radius:13px;
 
  font-size:8px;
 
  font-weight:800;
 
- display:flex;
-
- align-items:center;
-
- justify-content:center;
-
- gap:5px;
+ transition:.18s;
 
 }
 
+.detailAction:active{
 
-.openLink{
+ transform:scale(.96);
+
+}
+
+.openAction{
 
  background:var(--green);
 
  color:#fff;
 
+ box-shadow:
+ 0 8px 18px
+ rgba(8,125,89,.16);
+
 }
 
-
-.copyLink{
+.copyAction{
 
  background:var(--blueSoft);
 
@@ -1600,41 +1522,7 @@ button:active{
 
 
 /* =========================================================
-   SHARE
-========================================================= */
-
-.shareRow{
-
- display:flex;
-
- gap:7px;
-
- margin-top:9px;
-
-}
-
-
-.shareBtn{
-
- flex:1;
-
- height:38px;
-
- border-radius:12px;
-
- background:#f3f7f5;
-
- color:#52635b;
-
- font-size:8px;
-
- font-weight:800;
-
-}
-
-
-/* =========================================================
-   EMPTY / ERROR
+   EMPTY / ERROR / LOADING
 ========================================================= */
 
 .state{
@@ -1642,10 +1530,10 @@ button:active{
  text-align:center;
 
  padding:
- 65px 22px;
+ 60px
+ 20px;
 
 }
-
 
 .stateIcon{
 
@@ -1653,7 +1541,8 @@ button:active{
  height:70px;
 
  margin:
- 0 auto
+ 0
+ auto
  14px;
 
  border-radius:23px;
@@ -1669,20 +1558,19 @@ button:active{
  font-size:23px;
 
  animation:
- stateFloat 2.5s
+ stateFloat 2.4s
  ease-in-out infinite;
 
 }
 
-
 @keyframes stateFloat{
 
  50%{
-  transform:translateY(-5px);
+  transform:
+  translateY(-5px);
  }
 
 }
-
 
 .state b{
 
@@ -1692,7 +1580,6 @@ button:active{
 
 }
 
-
 .state span{
 
  display:block;
@@ -1700,25 +1587,29 @@ button:active{
  max-width:310px;
 
  margin:
- 5px auto 0;
+ 5px
+ auto
+ 0;
 
  color:var(--muted);
 
  font-size:9px;
 
- line-height:1.7;
+ line-height:1.65;
 
 }
-
 
 .retry{
 
  margin-top:13px;
 
- padding:
- 10px 15px;
+ border:0;
 
  border-radius:13px;
+
+ padding:
+ 10px
+ 15px;
 
  background:var(--green);
 
@@ -1730,110 +1621,47 @@ button:active{
 
 }
 
+.loading{
 
-/* =========================================================
-   SKELETON
-========================================================= */
+ text-align:center;
 
-.skeleton{
+ padding:
+ 65px
+ 20px;
 
- display:flex;
+ color:var(--muted);
 
- gap:11px;
-
- padding:12px;
-
- background:#fff;
-
- border:
- 1px solid
- var(--line);
-
- border-radius:19px;
-
- overflow:hidden;
+ font-size:9px;
 
 }
 
+.loadingIcon{
 
-.skeletonBox{
+ width:48px;
+ height:48px;
 
- background:
- linear-gradient(
- 90deg,
- #edf2ef,
- #f7faf8,
- #edf2ef
- );
-
- background-size:200% 100%;
-
- animation:
- skeleton 1.3s infinite;
-
-}
-
-
-.skeletonThumb{
-
- width:61px;
- height:61px;
-
- flex:none;
+ margin:
+ 0
+ auto
+ 13px;
 
  border-radius:16px;
 
-}
+ background:var(--soft);
 
+ color:var(--green);
 
-.skeletonContent{
+ display:grid;
 
- flex:1;
-
-}
-
-
-.skeletonLine{
-
- height:8px;
-
- border-radius:5px;
-
- margin-bottom:8px;
+ place-items:center;
 
 }
 
+.loadingIcon i{
 
-.skeletonLine.short{
-
- width:42%;
-
-}
-
-
-.skeletonLine.medium{
-
- width:72%;
-
-}
-
-
-.skeletonLine.long{
-
- width:90%;
-
-}
-
-
-@keyframes skeleton{
-
- from{
-  background-position:200% 0;
- }
-
- to{
-  background-position:-200% 0;
- }
+ animation:
+ spin .8s
+ linear infinite;
 
 }
 
@@ -1847,7 +1675,8 @@ button:active{
  position:fixed;
 
  left:50%;
- bottom:19px;
+
+ bottom:18px;
 
  z-index:1000;
 
@@ -1856,7 +1685,8 @@ button:active{
  max-width:90%;
 
  padding:
- 11px 14px;
+ 11px
+ 14px;
 
  border-radius:14px;
 
@@ -1864,7 +1694,7 @@ button:active{
 
  color:#fff;
 
- font-size:8.5px;
+ font-size:9px;
 
  font-weight:700;
 
@@ -1872,19 +1702,18 @@ button:active{
 
  opacity:0;
 
- pointer-events:none;
-
  transform:
  translate(-50%,18px);
+
+ pointer-events:none;
 
  transition:.25s;
 
  box-shadow:
  0 12px 30px
- rgba(0,0,0,.20);
+ rgba(0,0,0,.2);
 
 }
-
 
 .toast.show{
 
@@ -1897,7 +1726,21 @@ button:active{
 
 
 /* =========================================================
-   MOBILE
+   ANIMATIONS
+========================================================= */
+
+@keyframes spin{
+
+ to{
+  transform:
+  rotate(360deg);
+ }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
 ========================================================= */
 
 @media(max-width:390px){
@@ -1906,31 +1749,18 @@ button:active{
   font-size:24px;
  }
 
- .itemTitle{
-  font-size:12.5px;
- }
-
  .detailTitle{
   font-size:20px;
  }
 
-}
+ .itemTitle{
+  font-size:12px;
+ }
 
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media(prefers-reduced-motion:reduce){
-
- *,
- *:before,
- *:after{
-
-  animation:none!important;
-
-  transition:none!important;
-
+ .itemImage,
+ .itemIcon{
+  width:53px;
+  height:53px;
  }
 
 }
@@ -1943,18 +1773,18 @@ button:active{
 <body>
 
 
-<div class="app">
+<!-- =======================================================
+     MAIN APP
+======================================================= -->
 
+<div class="app" id="mainApp">
 
-<!-- ======================================================
-     HEADER
-====================================================== -->
 
 <header class="header">
 
- <div class="headerInner">
+ <div class="headerContent">
 
-  <div class="brandRow">
+  <div class="brandLine">
 
    <div class="brandIcon">
     <i class="fa-solid fa-bell"></i>
@@ -1972,8 +1802,7 @@ button:active{
 
    </div>
 
-
-   <div class="live">
+   <div class="liveBadge">
 
     <span class="liveDot"></span>
 
@@ -1988,9 +1817,8 @@ button:active{
    Notifications
   </div>
 
-
   <div class="headerSubtitle">
-   Stay updated with the latest Wildlife Explorer news.
+   Stay updated with the latest information.
   </div>
 
  </div>
@@ -1998,9 +1826,6 @@ button:active{
 </header>
 
 
-<!-- ======================================================
-     MAIN
-====================================================== -->
 
 <main class="content">
 
@@ -2037,9 +1862,11 @@ button:active{
 </div>
 
 
-<!-- FILTER -->
+
+<!-- FILTERS -->
 
 <div class="filters">
+
 
  <button
   class="filter active"
@@ -2047,7 +1874,6 @@ button:active{
  >
 
   <i class="fa-solid fa-layer-group"></i>
-
   All
 
  </button>
@@ -2059,7 +1885,6 @@ button:active{
  >
 
   <i class="fa-solid fa-mobile-screen"></i>
-
   App
 
  </button>
@@ -2071,7 +1896,6 @@ button:active{
  >
 
   <i class="fa-solid fa-tree"></i>
-
   Park
 
  </button>
@@ -2083,7 +1907,6 @@ button:active{
  >
 
   <i class="fa-solid fa-ticket"></i>
-
   Tickets
 
  </button>
@@ -2095,7 +1918,6 @@ button:active{
  >
 
   <i class="fa-solid fa-paw"></i>
-
   Wildlife
 
  </button>
@@ -2107,7 +1929,6 @@ button:active{
  >
 
   <i class="fa-solid fa-route"></i>
-
   Travel
 
  </button>
@@ -2119,12 +1940,13 @@ button:active{
  >
 
   <i class="fa-solid fa-star"></i>
-
   Important
 
  </button>
 
+
 </div>
+
 
 
 <!-- SUMMARY -->
@@ -2134,11 +1956,8 @@ button:active{
  <div class="summaryLeft">
 
   <div class="summaryIcon">
-
    <i class="fa-regular fa-bell"></i>
-
   </div>
-
 
   <div class="summaryText">
 
@@ -2147,7 +1966,7 @@ button:active{
    </b>
 
    <span>
-    Tap any notification to read
+    Tap a notification to read more
    </span>
 
   </div>
@@ -2165,43 +1984,18 @@ button:active{
 </div>
 
 
+
 <!-- LIST -->
 
-<div
- id="list"
- class="notificationList"
->
+<div id="list">
 
- <div class="skeleton">
+ <div class="loading">
 
-  <div class="skeletonBox skeletonThumb"></div>
-
-  <div class="skeletonContent">
-
-   <div class="skeletonBox skeletonLine short"></div>
-
-   <div class="skeletonBox skeletonLine long"></div>
-
-   <div class="skeletonBox skeletonLine medium"></div>
-
+  <div class="loadingIcon">
+   <i class="fa-solid fa-spinner"></i>
   </div>
 
- </div>
-
-
- <div class="skeleton">
-
-  <div class="skeletonBox skeletonThumb"></div>
-
-  <div class="skeletonContent">
-
-   <div class="skeletonBox skeletonLine short"></div>
-
-   <div class="skeletonBox skeletonLine medium"></div>
-
-   <div class="skeletonBox skeletonLine long"></div>
-
-  </div>
+  Loading notifications...
 
  </div>
 
@@ -2213,77 +2007,56 @@ button:active{
 </div>
 
 
-<!-- ======================================================
+
+<!-- =======================================================
      DETAIL VIEW
-====================================================== -->
+======================================================= -->
 
 <div
- id="detailView"
  class="detailView"
+ id="detailView"
 >
 
- <section class="detailPanel">
+ <header class="detailHeader">
 
-
-  <!-- DETAIL HEADER -->
-
-  <header class="detailHeader">
-
-   <button
-    class="backBtn"
-    onclick="closeDetail()"
-    aria-label="Back"
-   >
-
-    <i class="fa-solid fa-arrow-left"></i>
-
-   </button>
-
-
-   <div class="detailHeading">
-
-    <small>
-     NOTIFICATION
-    </small>
-
-    <b id="detailHeaderTitle">
-     Notification
-    </b>
-
-   </div>
-
-
-   <div class="detailActions">
-
-    <button
-     class="detailAction"
-     onclick="shareCurrent()"
-     aria-label="Share"
-    >
-
-     <i class="fa-solid fa-share-nodes"></i>
-
-    </button>
-
-   </div>
-
-  </header>
-
-
-  <!-- DETAIL CONTENT -->
-
-  <div
-   id="detailScroll"
-   class="detailScroll"
+  <button
+   class="backButton"
+   onclick="closeDetail()"
+   aria-label="Back"
   >
 
-   <div id="detailContent"></div>
+   <i class="fa-solid fa-arrow-left"></i>
 
+  </button>
+
+
+  <div
+   class="detailHeaderTitle"
+   id="detailHeaderTitle"
+  >
+   Notification
   </div>
 
- </section>
+
+  <button
+   class="langButton"
+   id="langButton"
+   onclick="toggleLanguage()"
+  >
+   English
+  </button>
+
+ </header>
+
+
+ <div
+  class="detailContent"
+  id="detailContent"
+ >
+ </div>
 
 </div>
+
 
 
 <!-- TOAST -->
@@ -2292,6 +2065,7 @@ button:active{
  id="toast"
  class="toast"
 ></div>
+
 
 
 <script>
@@ -2323,6 +2097,8 @@ let currentFilter = "all";
 
 let currentNotification = null;
 
+let currentLanguage = "bn";
+
 let searchTimer = null;
 
 let loading = false;
@@ -2337,18 +2113,31 @@ let realtimeTimer = null;
 const ICONS = {
 
  bell:"fa-bell",
+
  tree:"fa-tree",
+
  ticket:"fa-ticket",
+
  paw:"fa-paw",
+
  route:"fa-route",
+
  app:"fa-mobile-screen",
+
  info:"fa-circle-info",
+
  warning:"fa-triangle-exclamation",
+
  calendar:"fa-calendar-days",
+
  location:"fa-location-dot",
+
  binoculars:"fa-binoculars",
+
  sparkles:"fa-sparkles",
+
  megaphone:"fa-bullhorn",
+
  download:"fa-download"
 
 };
@@ -2408,7 +2197,9 @@ function toast(message){
 
  box.classList.add("show");
 
- clearTimeout(window.toastTimer);
+ clearTimeout(
+  window.toastTimer
+ );
 
  window.toastTimer =
  setTimeout(()=>{
@@ -2422,6 +2213,32 @@ function toast(message){
 
 /* =========================================================
    DATE
+========================================================= */
+
+function formatDate(value){
+
+ const d =
+ new Date(value);
+
+ if(
+  isNaN(d.getTime())
+ )
+  return "";
+
+ return d.toLocaleDateString(
+  "bn-BD",
+  {
+   day:"numeric",
+   month:"long",
+   year:"numeric"
+  }
+ );
+
+}
+
+
+/* =========================================================
+   TIME AGO
 ========================================================= */
 
 function timeAgo(value){
@@ -2439,31 +2256,19 @@ function timeAgo(value){
   (Date.now()-d.getTime())/1000
  );
 
-
  if(diff < 60)
   return "এইমাত্র";
-
 
  if(diff < 3600)
   return Math.floor(diff/60)+" মিনিট আগে";
 
-
  if(diff < 86400)
   return Math.floor(diff/3600)+" ঘণ্টা আগে";
-
 
  if(diff < 604800)
   return Math.floor(diff/86400)+" দিন আগে";
 
-
- return d.toLocaleDateString(
-  "bn-BD",
-  {
-   day:"numeric",
-   month:"short",
-   year:"numeric"
-  }
- );
+ return formatDate(value);
 
 }
 
@@ -2530,245 +2335,10 @@ function priorityInfo(priority){
 
 
 /* =========================================================
-   READ STATE
-========================================================= */
-
-function readKey(id){
-
- return "wildlife_notification_read_"+id;
-
-}
-
-
-function isRead(id){
-
- try{
-
-  return localStorage.getItem(
-   readKey(id)
-  )==="1";
-
- }catch{
-
-  return false;
-
- }
-
-}
-
-
-function markRead(id){
-
- try{
-
-  localStorage.setItem(
-   readKey(id),
-   "1"
-  );
-
- }catch{}
-
-}
-
-
-/* =========================================================
-   VALID URL
-========================================================= */
-
-function validUrl(url){
-
- if(!url)
-  return null;
-
- try{
-
-  const u =
-  new URL(url);
-
-  if(
-   u.protocol!=="http:" &&
-   u.protocol!=="https:"
-  )
-   return null;
-
-  return u.href;
-
- }catch{
-
-  return null;
-
- }
-
-}
-
-
-/* =========================================================
-   OPEN LINK
-========================================================= */
-
-function openLink(url){
-
- const safe =
- validUrl(url);
-
- if(!safe){
-
-  toast("Invalid link");
-
-  return;
-
- }
-
- window.open(
-  safe,
-  "_blank",
-  "noopener,noreferrer"
- );
-
-}
-
-
-/* =========================================================
-   COPY LINK
-========================================================= */
-
-async function copyLink(url){
-
- const safe =
- validUrl(url);
-
- if(!safe){
-
-  toast("No valid link available");
-
-  return;
-
- }
-
-
- try{
-
-  if(
-   navigator.clipboard &&
-   window.isSecureContext
-  ){
-
-   await navigator.clipboard.writeText(
-    safe
-   );
-
-  }else{
-
-   const textarea =
-   document.createElement("textarea");
-
-   textarea.value =
-   safe;
-
-   textarea.style.position =
-   "fixed";
-
-   textarea.style.opacity =
-   "0";
-
-   document.body.appendChild(
-    textarea
-   );
-
-   textarea.focus();
-
-   textarea.select();
-
-   document.execCommand(
-    "copy"
-   );
-
-   textarea.remove();
-
-  }
-
-  toast("Link copied successfully");
-
- }catch{
-
-  toast("Unable to copy link");
-
- }
-
-}
-
-
-/* =========================================================
-   SHARE
-========================================================= */
-
-async function shareCurrent(){
-
- if(!currentNotification)
-  return;
-
-
- const item =
- currentNotification;
-
-
- const title =
- item.title_bn ||
- "Wildlife Explorer";
-
-
- const url =
- item.action_url ||
- location.href;
-
-
- try{
-
-  if(
-   navigator.share
-  ){
-
-   await navigator.share({
-
-    title:title,
-
-    text:
-    item.description_bn ||
-    title,
-
-    url:url
-
-   });
-
-   return;
-
-  }
-
-
-  await copyLink(
-   url
-  );
-
- }catch(error){
-
-  /*
-   User cancelled native share.
-   Do nothing.
-  */
-
- }
-
-}
-
-
-/* =========================================================
    FILTER
 ========================================================= */
 
-function setFilter(
- value,
- button
-){
+function setFilter(value,button){
 
  currentFilter =
  value;
@@ -2776,16 +2346,10 @@ function setFilter(
  document
  .querySelectorAll(".filter")
  .forEach(el=>{
-
-  el.classList.remove(
-   "active"
-  );
-
+  el.classList.remove("active");
  });
 
- button.classList.add(
-  "active"
- );
+ button.classList.add("active");
 
  render();
 
@@ -2817,10 +2381,161 @@ document
 
 
 /* =========================================================
-   RENDER LIST
+   IMAGE URL VALIDATION
 ========================================================= */
 
-function render(){
+function safeImage(url){
+
+ if(!url)
+  return "";
+
+ try{
+
+  const u =
+  new URL(url);
+
+  if(
+   u.protocol==="http:" ||
+   u.protocol==="https:"
+  ){
+
+   return u.href;
+
+  }
+
+ }catch(e){}
+
+ return "";
+
+}
+
+
+/* =========================================================
+   URL VALIDATION
+========================================================= */
+
+function validUrl(url){
+
+ if(!url)
+  return false;
+
+ try{
+
+  const u =
+  new URL(url);
+
+  return (
+   u.protocol==="http:" ||
+   u.protocol==="https:"
+  );
+
+ }catch{
+
+  return false;
+
+ }
+
+}
+
+
+/* =========================================================
+   COPY
+========================================================= */
+
+async function copyLink(url){
+
+ if(!validUrl(url)){
+
+  toast("No valid link available");
+
+  return;
+
+ }
+
+
+ try{
+
+  if(
+   navigator.clipboard &&
+   window.isSecureContext
+  ){
+
+   await navigator.clipboard
+   .writeText(url);
+
+  }else{
+
+   const textarea =
+   document.createElement("textarea");
+
+   textarea.value =
+   url;
+
+   textarea.style.position="fixed";
+
+   textarea.style.opacity="0";
+
+   document.body.appendChild(
+    textarea
+   );
+
+   textarea.focus();
+
+   textarea.select();
+
+   document.execCommand(
+    "copy"
+   );
+
+   textarea.remove();
+
+  }
+
+  toast(
+   "Link copied successfully"
+  );
+
+ }catch(error){
+
+  console.error(error);
+
+  toast(
+   "Unable to copy link"
+  );
+
+ }
+
+}
+
+
+/* =========================================================
+   OPEN LINK
+========================================================= */
+
+function openLink(url){
+
+ if(!validUrl(url)){
+
+  toast("Invalid link");
+
+  return;
+
+ }
+
+ window.open(
+  url,
+  "_blank",
+  "noopener,noreferrer"
+ );
+
+}
+
+
+/* =========================================================
+   GET FILTERED DATA
+========================================================= */
+
+function getFilteredData(){
 
  const search =
  document
@@ -2830,82 +2545,85 @@ function render(){
  .toLowerCase();
 
 
- let data =
- notifications.filter(
- item=>{
-
-
-  /*
-   IMPORTANT FILTER
-  */
-
-  if(
-   currentFilter==="important"
-  ){
+ return notifications.filter(
+  item=>{
 
    if(
-    item.priority!=="important" &&
-    item.priority!=="urgent"
-   )
+    currentFilter==="important"
+   ){
+
+    if(
+     item.priority!=="important" &&
+     item.priority!=="urgent"
+    ){
+
+     return false;
+
+    }
+
+   }else if(
+
+    currentFilter!=="all" &&
+    item.category!==currentFilter
+
+   ){
+
     return false;
 
+   }
+
+
+   if(!search)
+    return true;
+
+
+   const searchable = [
+
+    item.title_bn,
+
+    item.description_bn,
+
+    item.title_en,
+
+    item.description_en,
+
+    item.category,
+
+    item.priority
+
+   ]
+
+   .join(" ")
+   .toLowerCase();
+
+
+   return searchable
+   .includes(search);
+
   }
+ );
 
-  else if(
-   currentFilter!=="all" &&
-   item.category!==currentFilter
-  ){
-
-   return false;
-
-  }
+}
 
 
-  /*
-   SEARCH
-  */
+/* =========================================================
+   RENDER LIST
+========================================================= */
 
-  if(!search)
-   return true;
+function render(){
 
-
-  const searchable = [
-
-   item.title_bn,
-
-   item.description_bn,
-
-   item.title_en,
-
-   item.description_en,
-
-   item.category,
-
-   item.priority
-
-  ]
-
-  .join(" ")
-  .toLowerCase();
+ const data =
+ getFilteredData();
 
 
-  return searchable.includes(
-   search
-  );
-
- });
-
-
- document.getElementById(
-  "count"
- ).textContent =
+ document
+ .getElementById("count")
+ .textContent =
  data.length+" Updates";
 
 
  const list =
- document.getElementById(
-  "list"
- );
+ document.getElementById("list");
 
 
  if(!data.length){
@@ -2937,14 +2655,18 @@ function render(){
  }
 
 
- list.innerHTML =
- data.map(
-  (item,index)=>
-  renderItem(
-   item,
-   index
-  )
- ).join("");
+ list.innerHTML = `
+
+  <div class="notificationList">
+
+   ${data.map(
+    (item,index)=>
+    renderListItem(item,index)
+   ).join("")}
+
+  </div>
+
+ `;
 
 }
 
@@ -2953,10 +2675,7 @@ function render(){
    LIST ITEM
 ========================================================= */
 
-function renderItem(
- item,
- index
-){
+function renderListItem(item,index){
 
  const priority =
  priorityInfo(
@@ -2970,96 +2689,359 @@ function renderItem(
  "App";
 
 
- const read =
- isRead(item.id);
+ const image =
+ safeImage(
+  item.image_url
+ );
 
 
- const thumb =
- item.image_url
+ const visual =
+ image
 
- ?
-
- `
- <div class="thumb">
+ ? `
 
   <img
-   src="${esc(item.image_url)}"
+   class="itemImage"
+   src="${esc(image)}"
    alt=""
    loading="lazy"
-   onerror="this.style.display='none'"
+   onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
   >
 
- </div>
+  <div
+   class="itemIcon ${priority.cls}"
+   style="display:none"
+  >
+
+   <i class="fa-solid ${iconName(item.icon)}"></i>
+
+  </div>
+
  `
 
- :
+ : `
 
- `
- <div class="thumb">
+  <div
+   class="itemIcon ${priority.cls}"
+  >
 
-  <i
-   class="fa-solid
-   ${iconName(item.icon)}
-   thumbIcon"
-  ></i>
+   <i class="fa-solid ${iconName(item.icon)}"></i>
 
- </div>
+  </div>
+
  `;
-
-
- const preview =
- item.description_bn
- ?
-
- esc(
-  item.description_bn
- )
- .replace(/\n+/g," ")
-
- :
-
-
- "";
 
 
  return `
 
- <article
+  <button
 
-  class="notificationItem
-  ${read ? "" : "unread"}"
+   class="
+    notificationItem
+    ${priority.cls}
+    unread
+   "
 
-  style="
-   animation-delay:
-   ${Math.min(index*45,350)}ms
-  "
+   style="
+    animation-delay:${Math.min(index*45,350)}ms
+   "
 
-  onclick="
-   openNotification('${esc(item.id)}')
-  "
+   onclick="openDetailById('${esc(item.id)}')"
 
- >
+  >
 
-  ${thumb}
-
-
-  <div class="itemContent">
+   ${visual}
 
 
-   <div class="itemTop">
+   <div class="itemBody">
+
+
+    <div class="itemTop">
+
+
+     <span
+      class="itemCategory ${priority.cls}"
+     >
+
+      <i class="fa-solid ${iconName(item.icon)}"></i>
+
+      ${esc(category)}
+
+     </span>
+
+
+     ${
+      priority.cls
+
+      ? `
+
+       <span
+        class="itemCategory ${priority.cls}"
+       >
+
+        <i class="fa-solid ${priority.icon}"></i>
+
+        ${esc(priority.label)}
+
+       </span>
+
+      `
+
+      :""
+     }
+
+
+     <span class="itemTime">
+
+      ${esc(
+       timeAgo(item.created_at)
+      )}
+
+     </span>
+
+
+    </div>
+
+
+    <!-- ONLY BANGLA TITLE IN LIST -->
+
+    <div class="itemTitle">
+
+     ${esc(
+      item.title_bn ||
+      "Notification"
+     )}
+
+    </div>
+
+
+    ${
+     item.description_bn
+
+     ? `
+
+      <div class="itemPreview">
+
+       ${esc(
+        item.description_bn
+       )}
+
+      </div>
+
+     `
+
+     :""
+    }
+
+
+   </div>
+
+
+   <div class="itemArrow">
+
+    <i class="fa-solid fa-chevron-right"></i>
+
+   </div>
+
+
+  </button>
+
+ `;
+
+}
+
+
+/* =========================================================
+   OPEN DETAIL
+========================================================= */
+
+function openDetailById(id){
+
+ const item =
+ notifications.find(
+  x=>String(x.id)===String(id)
+ );
+
+
+ if(!item){
+
+  toast(
+   "Notification unavailable"
+  );
+
+  return;
+
+ }
+
+
+ currentNotification =
+ item;
+
+ currentLanguage =
+ "bn";
+
+
+ renderDetail();
+
+
+ const detail =
+ document.getElementById(
+  "detailView"
+ );
+
+
+ detail.classList.add(
+  "active"
+ );
+
+
+ document.body.style.overflow =
+ "hidden";
+
+
+ /* Browser history */
+
+ try{
+
+  history.pushState(
+   {
+    notification:true
+   },
+   "",
+   "#notification-"+id
+  );
+
+ }catch(e){}
+
+
+}
+
+
+/* =========================================================
+   RENDER DETAIL
+========================================================= */
+
+function renderDetail(){
+
+ if(!currentNotification)
+  return;
+
+
+ const item =
+ currentNotification;
+
+
+ const priority =
+ priorityInfo(
+  item.priority
+ );
+
+
+ const category =
+ CATEGORY[item.category] ||
+ item.category ||
+ "App";
+
+
+ const image =
+ safeImage(
+  item.image_url
+ );
+
+
+ const isEnglish =
+ currentLanguage==="en";
+
+
+ const title =
+ isEnglish
+
+ ? (
+   item.title_en ||
+   item.title_bn ||
+   "Notification"
+  )
+
+ : (
+   item.title_bn ||
+   item.title_en ||
+   "Notification"
+  );
+
+
+ const description =
+ isEnglish
+
+ ? (
+   item.description_en ||
+   item.description_bn ||
+   "No description available."
+  )
+
+ : (
+   item.description_bn ||
+   item.description_en ||
+   "কোনো বিস্তারিত তথ্য পাওয়া যায়নি।"
+  );
+
+
+ document
+ .getElementById(
+  "detailHeaderTitle"
+ )
+ .textContent =
+ title;
+
+
+ document
+ .getElementById(
+  "langButton"
+ )
+ .textContent =
+ isEnglish
+ ? "বাংলা"
+ : "English";
+
+
+ document
+ .getElementById(
+  "detailContent"
+ )
+ .innerHTML = `
+
+
+  ${
+   image
+
+   ? `
+
+    <div class="detailHero">
+
+     <img
+      src="${esc(image)}"
+      alt="${esc(title)}"
+      onerror="this.parentElement.remove()"
+     >
+
+    </div>
+
+   `
+
+   :""
+  }
+
+
+  <article class="detailBody">
+
+
+   <div class="detailMeta">
 
 
     <span
-     class="
-      category
-      ${priority.cls}
-     "
+     class="detailBadge ${priority.cls}"
     >
 
-     <i
-      class="fa-solid
-      ${iconName(item.icon)}"
-     ></i>
+     <i class="fa-solid ${iconName(item.icon)}"></i>
 
      ${esc(category)}
 
@@ -3067,24 +3049,15 @@ function renderItem(
 
 
     ${
-     item.priority==="important" ||
-     item.priority==="urgent"
+     priority.cls
 
-     ?
-
-     `
+     ? `
 
       <span
-       class="
-        category
-        ${priority.cls}
-       "
+       class="detailBadge ${priority.cls}"
       >
 
-       <i
-        class="fa-solid
-        ${priority.icon}"
-       ></i>
+       <i class="fa-solid ${priority.icon}"></i>
 
        ${esc(priority.label)}
 
@@ -3092,14 +3065,13 @@ function renderItem(
 
      `
 
-     :
-
-     ""
-
+     :""
     }
 
 
-    <span class="time">
+    <span class="detailDate">
+
+     <i class="fa-regular fa-clock"></i>
 
      ${esc(
       timeAgo(item.created_at)
@@ -3111,83 +3083,109 @@ function renderItem(
    </div>
 
 
-   <!-- ONLY BANGLA TITLE -->
+   <div class="detailTitle">
 
-   <div class="itemTitle">
-
-    ${esc(
-     item.title_bn ||
-     item.title_en ||
-     "Notification"
-    )}
+    ${esc(title)}
 
    </div>
 
 
    ${
-    preview
+    isEnglish
 
-    ?
+    ? ""
 
-    `
-     <div class="itemPreview">
-      ${preview}
-     </div>
-    `
+    : item.title_en
 
-    :
+      ? `
 
-    ""
+       <div class="detailEnglishTitle">
 
+        ${esc(
+         item.title_en
+        )}
+
+       </div>
+
+      `
+
+      :""
    }
 
 
-   <div class="itemBottom">
+   <div class="languagePanel">
 
 
-    ${
-     !read
+    <div class="languageLabel">
 
-     ?
+     <i class="fa-solid fa-language"></i>
 
-     `
-      <span class="unreadDot"></span>
+     ${
+      isEnglish
+      ? "English"
+      : "বাংলা"
+     }
 
-      <span class="unreadText">
-       New
-      </span>
-     `
+    </div>
 
-     :
 
-     `
-      <span
-       style="
-        font-size:6.5px;
-        color:#9aa59f;
-       "
-      >
-       Read
-      </span>
-     `
+    <div
+     class="
+      detailDescription
+      ${isEnglish?"english":""}
+     "
+    >
 
-    }
+     ${esc(description)}
+
+    </div>
 
 
    </div>
 
-  </div>
+
+   ${
+    item.action_url &&
+    validUrl(item.action_url)
+
+    ? `
+
+     <div class="detailActions">
 
 
-  <div class="arrow">
+      <button
+       class="detailAction openAction"
+       onclick='openLink(${JSON.stringify(item.action_url)})'
+      >
 
-   <i
-    class="fa-solid fa-chevron-right"
-   ></i>
+       <i class="fa-solid fa-arrow-up-right-from-square"></i>
 
-  </div>
+       Open Link
 
- </article>
+      </button>
+
+
+      <button
+       class="detailAction copyAction"
+       onclick='copyLink(${JSON.stringify(item.action_url)})'
+      >
+
+       <i class="fa-regular fa-copy"></i>
+
+       Copy Link
+
+      </button>
+
+
+     </div>
+
+    `
+
+    :""
+   }
+
+
+  </article>
 
  `;
 
@@ -3195,82 +3193,22 @@ function renderItem(
 
 
 /* =========================================================
-   OPEN NOTIFICATION
+   LANGUAGE TOGGLE
 ========================================================= */
 
-function openNotification(id){
+function toggleLanguage(){
 
- const item =
- notifications.find(
-  x=>String(x.id)===String(id)
- );
-
-
- if(!item)
+ if(!currentNotification)
   return;
 
 
- currentNotification =
- item;
+ currentLanguage =
+ currentLanguage==="bn"
+ ? "en"
+ : "bn";
 
 
- /*
-  Mark as read
- */
-
- markRead(
-  item.id
- );
-
-
- render();
-
-
- /*
-  Update hash
- */
-
- try{
-
-  history.pushState(
-   null,
-   "",
-   "#notification="+
-   encodeURIComponent(
-    item.id
-   )
-  );
-
- }catch{}
-
-
- renderDetail(
-  item
- );
-
-
- const detail =
- document.getElementById(
-  "detailView"
- );
-
-
- detail.classList.add(
-  "open"
- );
-
-
- document.body.style.overflow =
- "hidden";
-
-
- const scroll =
- document.getElementById(
-  "detailScroll"
- );
-
- if(scroll)
-  scroll.scrollTop=0;
+ renderDetail();
 
 }
 
@@ -3279,16 +3217,20 @@ function openNotification(id){
    CLOSE DETAIL
 ========================================================= */
 
-function closeDetail(){
+function closeDetail(
+ fromPopState=false
+){
 
  const detail =
  document.getElementById(
   "detailView"
  );
 
+
  detail.classList.remove(
-  "open"
+  "active"
  );
+
 
  document.body.style.overflow =
  "";
@@ -3298,543 +3240,82 @@ function closeDetail(){
  null;
 
 
- try{
+ if(
+  !fromPopState &&
+  location.hash
+ ){
 
-  if(
-   location.hash
-  ){
+  try{
 
-   history.replaceState(
-    null,
-    "",
-    location.pathname+
-    location.search
-   );
+   history.back();
 
-  }
+  }catch(e){}
 
- }catch{}
+ }
 
 }
 
 
 /* =========================================================
-   DETAIL RENDER
+   BROWSER BACK
 ========================================================= */
 
-function renderDetail(
- item
-){
+window.addEventListener(
+ "popstate",
+ ()=>{
 
- const priority =
- priorityInfo(
-  item.priority
- );
-
-
- const category =
- CATEGORY[item.category] ||
- item.category ||
- "App";
+  const detail =
+  document.getElementById(
+   "detailView"
+  );
 
 
- const detail =
- document.getElementById(
-  "detailContent"
- );
+  if(
+   detail.classList.contains(
+    "active"
+   )
+  ){
+
+   closeDetail(true);
+
+  }
+
+ }
+);
 
 
- document.getElementById(
-  "detailHeaderTitle"
- ).textContent =
- item.title_bn ||
- item.title_en ||
- "Notification";
+/* =========================================================
+   ANDROID / KEYBOARD ESCAPE
+========================================================= */
+
+document.addEventListener(
+ "keydown",
+ event=>{
+
+  if(
+   event.key==="Escape"
+  ){
+
+   const detail =
+   document.getElementById(
+    "detailView"
+   );
 
 
- const image =
- item.image_url
+   if(
+    detail.classList.contains(
+     "active"
+    )
+   ){
 
- ?
-
- `
- <div class="detailImageWrap">
-
-  <img
-
-   class="detailImage"
-
-   src="${esc(item.image_url)}"
-
-   alt="${esc(
-    item.title_bn ||
-    "Notification image"
-   )}"
-
-   onerror="
-    this.closest('.detailImageWrap').remove()
-   "
-
-  >
-
-  <div
-   class="detailImageShade"
-  ></div>
-
- </div>
- `
-
- :
-
- "";
-
-
- const actionUrl =
- validUrl(
-  item.action_url
- );
-
-
- detail.innerHTML = `
-
-
- ${image}
-
-
- <div class="detailBody">
-
-
-  <div class="detailMeta">
-
-
-   <span
-    class="
-     category
-     ${priority.cls}
-    "
-   >
-
-    <i
-     class="fa-solid
-     ${iconName(item.icon)}"
-    ></i>
-
-    ${esc(category)}
-
-   </span>
-
-
-   ${
-    item.priority==="important" ||
-    item.priority==="urgent"
-
-    ?
-
-    `
-
-     <span
-      class="
-       category
-       ${priority.cls}
-      "
-     >
-
-      <i
-       class="fa-solid
-       ${priority.icon}"
-      ></i>
-
-      ${esc(priority.label)}
-
-     </span>
-
-    `
-
-    :
-
-    ""
+    closeDetail();
 
    }
 
-
-   <span class="time">
-
-    ${esc(
-     timeAgo(item.created_at)
-    )}
-
-   </span>
-
-
-  </div>
-
-
-  <!-- BANGLA TITLE ONLY -->
-
-  <div class="detailTitle">
-
-   ${esc(
-    item.title_bn ||
-    item.title_en ||
-    "Notification"
-   )}
-
-  </div>
-
-
-  ${
-   item.title_en
-
-   ?
-
-   `
-
-    <button
-     class="languageToggle show"
-     id="languageBtn"
-     onclick="toggleEnglish()"
-    >
-
-     <i
-      class="fa-solid fa-language"
-     ></i>
-
-     English version
-
-    </button>
-
-
-    <div
-     id="englishTitle"
-     class="englishTitle"
-    >
-
-     ${esc(item.title_en)}
-
-    </div>
-
-   `
-
-   :
-
-   ""
-
   }
-
-
-  ${
-   item.description_bn
-
-   ?
-
-   `
-
-    <div
-     class="detailDescription"
-    >
-
-     ${esc(
-      item.description_bn
-     )}
-
-    </div>
-
-   `
-
-   :
-
-   ""
-
-  }
-
-
-  ${
-   item.description_en
-
-   ?
-
-   `
-
-    <div
-     id="englishDescription"
-     class="
-      detailDescription
-      en
-     "
-    >
-
-     ${esc(
-      item.description_en
-     )}
-
-    </div>
-
-   `
-
-   :
-
-   ""
-
-  }
-
-
-  ${
-   item.description_en
-
-   ?
-
-   `
-
-    <button
-     class="languageToggle show"
-     onclick="toggleEnglishDescription(this)"
-    >
-
-     <i
-      class="fa-solid fa-language"
-     ></i>
-
-     Show English description
-
-    </button>
-
-   `
-
-   :
-
-   ""
-
-  }
-
-
-  ${
-   actionUrl
-
-   ?
-
-   `
-
-    <div
-     class="detailDivider"
-    ></div>
-
-
-    <div class="linkBox">
-
-     <div class="linkLabel">
-
-      ACTION LINK
-
-     </div>
-
-
-     <div class="linkButtons">
-
-
-      <button
-       class="linkBtn openLink"
-       onclick="
-        openLink(
-         ${JSON.stringify(
-          actionUrl
-         )}
-        )
-       "
-      >
-
-       <i
-        class="fa-solid
-        fa-arrow-up-right-from-square"
-       ></i>
-
-       Open Link
-
-      </button>
-
-
-      <button
-       class="linkBtn copyLink"
-       onclick="
-        copyLink(
-         ${JSON.stringify(
-          actionUrl
-         )}
-        )
-       "
-      >
-
-       <i
-        class="fa-regular
-        fa-copy"
-       ></i>
-
-       Copy Link
-
-      </button>
-
-
-     </div>
-
-
-     <div class="shareRow">
-
-      <button
-       class="shareBtn"
-       onclick="shareCurrent()"
-      >
-
-       <i
-        class="fa-solid
-        fa-share-nodes"
-       ></i>
-
-       Share Notification
-
-      </button>
-
-     </div>
-
-
-    </div>
-
-   `
-
-   :
-
-   ""
-
-  }
-
-
- </div>
-
- `;
-
-}
-
-
-/* =========================================================
-   ENGLISH TOGGLE
-========================================================= */
-
-function toggleEnglish(){
-
- const title =
- document.getElementById(
-  "englishTitle"
- );
-
-
- const description =
- document.getElementById(
-  "englishDescription"
- );
-
-
- const button =
- document.getElementById(
-  "languageBtn"
- );
-
-
- if(title){
-
-  title.classList.toggle(
-   "visible"
-  );
 
  }
-
-
- if(description){
-
-  description.classList.toggle(
-   "visible"
-  );
-
- }
-
-
- if(button){
-
-  button.innerHTML =
-  title &&
-  title.classList.contains(
-   "visible"
-  )
-
-  ?
-
-  `
-   <i
-    class="fa-solid fa-language"
-   ></i>
-   Hide English version
-  `
-
-  :
-
-  `
-   <i
-    class="fa-solid fa-language"
-   ></i>
-   English version
-  `;
-
- }
-
-}
-
-
-/* =========================================================
-   ENGLISH DESCRIPTION TOGGLE
-========================================================= */
-
-function toggleEnglishDescription(
- button
-){
-
- const el =
- document.getElementById(
-  "englishDescription"
- );
-
-
- if(!el)
-  return;
-
-
- const visible =
- el.classList.toggle(
-  "visible"
- );
-
-
- button.innerHTML =
-
- visible
-
- ?
-
- `
-  <i
-   class="fa-solid fa-language"
-  ></i>
-
-  Hide English description
- `
-
- :
-
- `
-  <i
-   class="fa-solid fa-language"
-  ></i>
-
-  Show English description
- `;
-
-}
+);
 
 
 /* =========================================================
@@ -3869,92 +3350,24 @@ async function loadNotifications(
  );
 
 
- if(
-  !notifications.length
- ){
+ /*
+  Only show full loading screen
+  when there is no existing data.
+ */
+
+ if(!notifications.length){
 
   list.innerHTML = `
 
-   <div class="skeleton">
+   <div class="loading">
 
-    <div
-     class="
-      skeletonBox
-      skeletonThumb
-     "
-    ></div>
+    <div class="loadingIcon">
 
-    <div
-     class="skeletonContent"
-    >
-
-     <div
-      class="
-       skeletonBox
-       skeletonLine
-       short
-      "
-     ></div>
-
-     <div
-      class="
-       skeletonBox
-       skeletonLine
-       long
-      "
-     ></div>
-
-     <div
-      class="
-       skeletonBox
-       skeletonLine
-       medium
-      "
-     ></div>
+     <i class="fa-solid fa-spinner"></i>
 
     </div>
 
-   </div>
-
-
-   <div class="skeleton">
-
-    <div
-     class="
-      skeletonBox
-      skeletonThumb
-     "
-    ></div>
-
-    <div
-     class="skeletonContent"
-    >
-
-     <div
-      class="
-       skeletonBox
-       skeletonLine
-       short
-      "
-     ></div>
-
-     <div
-      class="
-       skeletonBox
-       skeletonLine
-       medium
-      "
-     ></div>
-
-     <div
-      class="
-       skeletonBox
-       skeletonLine
-       long
-      "
-     ></div>
-
-    </div>
+    Loading notifications...
 
    </div>
 
@@ -3965,16 +3378,14 @@ async function loadNotifications(
 
  try{
 
+
   const {
    data,
    error
   } =
-
   await db
 
-  .from(
-   "notifications"
-  )
+  .from("notifications")
 
   .select(`
 
@@ -4006,10 +3417,6 @@ async function loadNotifications(
 
   `)
 
-  /*
-   Only TRUE notifications
-  */
-
   .eq(
    "is_published",
    true
@@ -4036,13 +3443,6 @@ async function loadNotifications(
   render();
 
 
-  /*
-   Open notification from hash
-  */
-
-  openFromHash();
-
-
   if(showToast){
 
    toast(
@@ -4060,14 +3460,7 @@ async function loadNotifications(
   );
 
 
-  /*
-   Don't replace existing data
-   during realtime failure.
-  */
-
-  if(
-   !notifications.length
-  ){
+  if(!notifications.length){
 
    list.innerHTML = `
 
@@ -4075,37 +3468,24 @@ async function loadNotifications(
 
      <div class="stateIcon">
 
-      <i
-       class="
-        fa-solid
-        fa-cloud
-       "
-      ></i>
+      <i class="fa-solid fa-cloud"></i>
 
      </div>
-
 
      <b>
       Unable to load notifications
      </b>
 
-
      <span>
-      Notification service is temporarily unavailable. Please try again.
+      Notifications could not be loaded right now. Please check your connection and try again.
      </span>
-
 
      <button
       class="retry"
       onclick="loadNotifications(true)"
      >
 
-      <i
-       class="
-        fa-solid
-        fa-rotate-right
-       "
-      ></i>
+      <i class="fa-solid fa-rotate-right"></i>
 
       Try Again
 
@@ -4115,7 +3495,14 @@ async function loadNotifications(
 
    `;
 
+  }else{
+
+   toast(
+    "Could not refresh notifications"
+   );
+
   }
+
 
  }finally{
 
@@ -4128,112 +3515,6 @@ async function loadNotifications(
  }
 
 }
-
-
-/* =========================================================
-   HASH / DEEP LINK
-========================================================= */
-
-function openFromHash(){
-
- const hash =
- location.hash;
-
-
- if(
-  !hash.startsWith(
-   "#notification="
-  )
- )
-  return;
-
-
- const id =
- decodeURIComponent(
-  hash.replace(
-   "#notification=",
-   ""
-  )
- );
-
-
- if(!id)
-  return;
-
-
- const exists =
- notifications.some(
-  item=>
-  String(item.id)===String(id)
- );
-
-
- if(exists){
-
-  setTimeout(
-   ()=>{
-    openNotification(id);
-   },
-   80
-  );
-
- }
-
-}
-
-
-/* =========================================================
-   BROWSER BACK
-========================================================= */
-
-window.addEventListener(
- "popstate",
- ()=>{
-
-  if(
-   document
-   .getElementById(
-    "detailView"
-   )
-   .classList.contains(
-    "open"
-   )
-  ){
-
-   closeDetail();
-
-  }else{
-
-   openFromHash();
-
-  }
-
- }
-);
-
-
-/* =========================================================
-   HASH CHANGE
-========================================================= */
-
-window.addEventListener(
- "hashchange",
- ()=>{
-
-  if(
-   location.hash
-  ){
-
-   openFromHash();
-
-  }else{
-
-   closeDetail();
-
-  }
-
- }
-);
 
 
 /* =========================================================
@@ -4253,21 +3534,16 @@ try{
   "postgres_changes",
 
   {
-
    event:"*",
-
    schema:"public",
-
    table:"notifications"
-
   },
 
   payload=>{
 
    /*
     Debounce realtime events.
-    Prevents multiple simultaneous
-    reload requests.
+    Prevents multiple simultaneous reloads.
    */
 
    clearTimeout(
@@ -4278,11 +3554,9 @@ try{
    realtimeTimer =
    setTimeout(
     ()=>{
-
      loadNotifications(false);
-
     },
-    350
+    450
    );
 
   }
@@ -4294,7 +3568,7 @@ try{
 }catch(error){
 
  console.warn(
-  "Realtime unavailable",
+  "Realtime unavailable:",
   error
  );
 
@@ -4302,7 +3576,7 @@ try{
 
 
 /* =========================================================
-   ONLINE / OFFLINE
+   ONLINE
 ========================================================= */
 
 window.addEventListener(
@@ -4319,6 +3593,10 @@ window.addEventListener(
 );
 
 
+/* =========================================================
+   OFFLINE
+========================================================= */
+
 window.addEventListener(
  "offline",
  ()=>{
@@ -4332,96 +3610,52 @@ window.addEventListener(
 
 
 /* =========================================================
-   SWIPE DOWN TO CLOSE DETAIL
-========================================================= */
-
-let touchStartY=0;
-
-document
-.getElementById(
- "detailScroll"
-)
-.addEventListener(
- "touchstart",
- event=>{
-
-  touchStartY =
-  event.touches[0].clientY;
-
- },
- {
-  passive:true
- }
-);
-
-
-document
-.getElementById(
- "detailScroll"
-)
-.addEventListener(
- "touchend",
- event=>{
-
-  const endY =
-  event.changedTouches[0].clientY;
-
-  const diff =
-  endY-touchStartY;
-
-
-  /*
-   Only close when user is
-   near top and swipes down.
-  */
-
-  const scroll =
-  document.getElementById(
-   "detailScroll"
-  );
-
-
-  if(
-   scroll.scrollTop<=2 &&
-   diff>90
-  ){
-
-   closeDetail();
-
-  }
-
- },
- {
-  passive:true
- }
-);
-
-
-/* =========================================================
-   ESC KEY
-========================================================= */
-
-document.addEventListener(
- "keydown",
- event=>{
-
-  if(
-   event.key==="Escape"
-  ){
-
-   closeDetail();
-
-  }
-
- }
-);
-
-
-/* =========================================================
    INITIAL LOAD
 ========================================================= */
 
 loadNotifications(false);
+
+
+/* =========================================================
+   HANDLE HASH
+========================================================= */
+
+window.addEventListener(
+ "load",
+ ()=>{
+
+  /*
+   Do not automatically open
+   an invalid notification hash.
+  */
+
+  if(
+   location.hash.startsWith(
+    "#notification-"
+   )
+  ){
+
+   const id =
+   location.hash
+   .replace(
+    "#notification-",
+    ""
+   );
+
+   const item =
+   notifications.find(
+    x=>String(x.id)===String(id)
+   );
+
+   if(item){
+
+    openDetailById(id);
+
+   }
+
+  }
+
+ });
 
 </script>
 
