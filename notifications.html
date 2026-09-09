@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="bn">
-
 <head>
 
 <meta charset="utf-8">
@@ -14,68 +13,65 @@ content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
 <title>Notifications • Wildlife Explorer</title>
 
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
 rel="stylesheet">
-
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
 <style>
 
-/* =====================================================
-   ROOT
-===================================================== */
+/* =========================================================
+   WILDLIFE EXPLORER
+   PREMIUM MOBILE NOTIFICATION SYSTEM
+========================================================= */
 
 :root{
 
- --bg:#f3f8f5;
+ --bg:#f4f8f6;
  --card:#ffffff;
 
- --ink:#15231e;
- --ink2:#405049;
+ --ink:#16251f;
+ --ink2:#34453e;
 
- --muted:#78847e;
+ --muted:#78857f;
+ --muted2:#9aa59f;
 
  --green:#087d59;
- --green2:#0ca978;
+ --green2:#0ba978;
 
  --soft:#e8f6f0;
-
- --line:#dfe9e4;
 
  --blue:#3978df;
  --blueSoft:#edf3ff;
 
- --orange:#d58a25;
+ --orange:#d98a24;
  --orangeSoft:#fff3df;
 
  --red:#d95353;
  --redSoft:#ffe9e9;
 
+ --line:#e1ebe6;
+
  --shadow:
- 0 12px 38px rgba(20,70,53,.075);
+ 0 12px 35px rgba(18,70,52,.075);
 
  --shadow2:
- 0 22px 65px rgba(10,50,38,.13);
+ 0 22px 60px rgba(18,70,52,.12);
+
+ --radius:21px;
 
 }
 
 
-/* =====================================================
+/* =========================================================
    RESET
-===================================================== */
+========================================================= */
 
 *{
  box-sizing:border-box;
@@ -93,12 +89,14 @@ body{
 }
 
 body{
+
  font-family:
  Inter,
  "Hind Siliguri",
  sans-serif;
 
  overflow-x:hidden;
+
 }
 
 button,
@@ -107,8 +105,8 @@ input{
 }
 
 button{
- cursor:pointer;
  border:0;
+ cursor:pointer;
 }
 
 button:active{
@@ -116,9 +114,9 @@ button:active{
 }
 
 
-/* =====================================================
+/* =========================================================
    APP
-===================================================== */
+========================================================= */
 
 .app{
 
@@ -135,15 +133,12 @@ button:active{
 
  overflow:hidden;
 
- box-shadow:
- 0 0 60px rgba(0,0,0,.06);
-
 }
 
 
-/* =====================================================
+/* =========================================================
    HEADER
-===================================================== */
+========================================================= */
 
 .header{
 
@@ -152,23 +147,23 @@ button:active{
  padding:
  18px
  16px
- 20px;
+ 19px;
 
  color:#fff;
 
  background:
  linear-gradient(
  135deg,
- #056b4b,
- #087d59 52%,
- #0ca777
+ #056b4b 0%,
+ #087d59 48%,
+ #0ca777 100%
  );
 
  overflow:hidden;
 
 }
 
-.header::before{
+.header:before{
 
  content:"";
 
@@ -178,7 +173,7 @@ button:active{
  height:230px;
 
  right:-120px;
- top:-145px;
+ top:-150px;
 
  border-radius:50%;
 
@@ -190,17 +185,17 @@ button:active{
 
 }
 
-.header::after{
+.header:after{
 
  content:"";
 
  position:absolute;
 
- width:130px;
- height:130px;
+ width:145px;
+ height:145px;
 
- left:-80px;
- bottom:-95px;
+ left:-90px;
+ bottom:-105px;
 
  border-radius:50%;
 
@@ -226,13 +221,13 @@ button:active{
 
  50%{
   transform:
-  translate(12px,-8px);
+  translate(10px,-8px);
  }
 
 }
 
 
-.headerContent{
+.headerInner{
 
  position:relative;
  z-index:2;
@@ -243,7 +238,6 @@ button:active{
 .brandRow{
 
  display:flex;
-
  align-items:center;
 
  gap:10px;
@@ -259,7 +253,6 @@ button:active{
  border-radius:15px;
 
  display:grid;
-
  place-items:center;
 
  background:
@@ -267,17 +260,23 @@ button:active{
 
  border:
  1px solid
- rgba(255,255,255,.12);
+ rgba(255,255,255,.13);
 
  box-shadow:
- 0 8px 25px rgba(0,0,0,.08);
+ 0 8px 25px rgba(0,0,0,.09);
 
  animation:
- iconFloat 3s ease-in-out infinite;
+ bellFloat 3s ease-in-out infinite;
 
 }
 
-@keyframes iconFloat{
+.brandIcon i{
+
+ font-size:17px;
+
+}
+
+@keyframes bellFloat{
 
  50%{
   transform:translateY(-2px);
@@ -316,21 +315,21 @@ button:active{
  margin-left:auto;
 
  display:flex;
-
  align-items:center;
 
- gap:5px;
+ gap:6px;
 
- padding:6px 9px;
+ padding:
+ 6px 9px;
 
  border-radius:99px;
 
  background:
- rgba(255,255,255,.12);
+ rgba(255,255,255,.11);
 
  border:
  1px solid
- rgba(255,255,255,.1);
+ rgba(255,255,255,.12);
 
  font-size:7px;
 
@@ -345,11 +344,11 @@ button:active{
 
  border-radius:50%;
 
- background:#baffdc;
+ background:#b9ffda;
 
  box-shadow:
  0 0 0 4px
- rgba(186,255,220,.1);
+ rgba(185,255,218,.08);
 
  animation:
  livePulse 1.8s infinite;
@@ -361,7 +360,7 @@ button:active{
  50%{
   box-shadow:
   0 0 0 8px
-  rgba(186,255,220,.02);
+  rgba(185,255,218,.02);
  }
 
 }
@@ -369,17 +368,18 @@ button:active{
 
 .headerTitle{
 
- margin-top:18px;
+ margin-top:19px;
 
  font-size:26px;
 
- line-height:1.1;
-
  font-weight:800;
 
- letter-spacing:-.7px;
+ letter-spacing:-.6px;
+
+ line-height:1.1;
 
 }
+
 
 .headerSubtitle{
 
@@ -387,30 +387,30 @@ button:active{
 
  font-size:9px;
 
- line-height:1.6;
+ opacity:.76;
 
- opacity:.78;
+ line-height:1.5;
 
 }
 
 
-/* =====================================================
+/* =========================================================
    CONTENT
-===================================================== */
+========================================================= */
 
 .content{
 
  padding:
  13px
  13px
- 35px;
+ 30px;
 
 }
 
 
-/* =====================================================
+/* =========================================================
    SEARCH
-===================================================== */
+========================================================= */
 
 .utility{
 
@@ -422,20 +422,21 @@ button:active{
 
 }
 
-.searchBox{
 
- position:relative;
+.searchBox{
 
  flex:1;
 
+ position:relative;
+
 }
+
 
 .searchBox i{
 
  position:absolute;
 
  left:12px;
-
  top:50%;
 
  transform:
@@ -449,6 +450,7 @@ button:active{
 
 }
 
+
 .searchBox input{
 
  width:100%;
@@ -456,8 +458,7 @@ button:active{
  height:40px;
 
  padding:
- 0 34px
- 0 32px;
+ 0 12px 0 32px;
 
  border:
  1px solid
@@ -477,49 +478,25 @@ button:active{
  0 7px 20px
  rgba(20,70,53,.035);
 
+ transition:.2s;
+
 }
+
+
+.searchBox input::placeholder{
+
+ color:#9aa59f;
+
+}
+
 
 .searchBox input:focus{
 
- border-color:#9ad3bd;
+ border-color:#91cdb8;
 
  box-shadow:
  0 0 0 3px
  rgba(11,169,120,.08);
-
-}
-
-.clearSearch{
-
- position:absolute;
-
- right:8px;
-
- top:50%;
-
- transform:
- translateY(-50%);
-
- width:25px;
- height:25px;
-
- display:none;
-
- place-items:center;
-
- border-radius:50%;
-
- background:#f0f4f2;
-
- color:#77847d;
-
- font-size:8px;
-
-}
-
-.clearSearch.show{
-
- display:grid;
 
 }
 
@@ -542,7 +519,6 @@ button:active{
  color:var(--green);
 
  display:grid;
-
  place-items:center;
 
  box-shadow:
@@ -567,9 +543,9 @@ button:active{
 }
 
 
-/* =====================================================
+/* =========================================================
    FILTER
-===================================================== */
+========================================================= */
 
 .filters{
 
@@ -580,9 +556,7 @@ button:active{
  overflow-x:auto;
 
  padding:
- 2px
- 1px
- 5px;
+ 1px 1px 5px;
 
  scrollbar-width:none;
 
@@ -592,13 +566,13 @@ button:active{
  display:none;
 }
 
+
 .filter{
 
  flex:none;
 
  padding:
- 8px
- 12px;
+ 8px 11px;
 
  border:
  1px solid
@@ -620,9 +594,13 @@ button:active{
 
 }
 
+
 .filter i{
+
  margin-right:4px;
+
 }
+
 
 .filter.active{
 
@@ -634,29 +612,29 @@ button:active{
 
  box-shadow:
  0 7px 18px
- rgba(8,125,89,.16);
+ rgba(8,125,89,.17);
 
 }
 
 
-/* =====================================================
+/* =========================================================
    SUMMARY
-===================================================== */
+========================================================= */
 
 .summary{
 
  display:flex;
 
- justify-content:space-between;
-
  align-items:center;
 
+ justify-content:space-between;
+
  margin:
- 10px
- 1px
+ 12px 1px
  10px;
 
 }
+
 
 .summaryLeft{
 
@@ -668,14 +646,11 @@ button:active{
 
 }
 
+
 .summaryIcon{
 
  width:32px;
  height:32px;
-
- display:grid;
-
- place-items:center;
 
  border-radius:11px;
 
@@ -683,9 +658,13 @@ button:active{
 
  color:var(--green);
 
+ display:grid;
+ place-items:center;
+
  font-size:10px;
 
 }
+
 
 .summaryText b{
 
@@ -694,6 +673,7 @@ button:active{
  font-size:10px;
 
 }
+
 
 .summaryText span{
 
@@ -707,19 +687,19 @@ button:active{
 
 }
 
+
 .count{
 
  padding:
- 6px
- 9px;
-
- border:
- 1px solid
- var(--line);
+ 6px 9px;
 
  border-radius:99px;
 
  background:#fff;
+
+ border:
+ 1px solid
+ var(--line);
 
  color:var(--green);
 
@@ -730,9 +710,9 @@ button:active{
 }
 
 
-/* =====================================================
+/* =========================================================
    NOTIFICATION LIST
-===================================================== */
+========================================================= */
 
 .notificationList{
 
@@ -745,9 +725,9 @@ button:active{
 }
 
 
-/* =====================================================
+/* =========================================================
    LIST ITEM
-===================================================== */
+========================================================= */
 
 .notificationItem{
 
@@ -757,9 +737,7 @@ button:active{
 
  gap:11px;
 
- width:100%;
-
- padding:11px;
+ padding:12px;
 
  background:#fff;
 
@@ -767,43 +745,55 @@ button:active{
  1px solid
  var(--line);
 
- border-radius:18px;
+ border-radius:19px;
 
- box-shadow:
- 0 8px 28px
- rgba(20,70,53,.055);
+ box-shadow:var(--shadow);
+
+ cursor:pointer;
+
+ overflow:hidden;
 
  animation:
- itemIn .4s
+ itemIn .42s
  cubic-bezier(.2,.8,.2,1)
  both;
 
  transition:
  transform .2s,
- box-shadow .2s,
- border-color .2s;
-
- overflow:hidden;
+ box-shadow .2s;
 
 }
+
 
 .notificationItem:active{
 
  transform:scale(.985);
 
+ box-shadow:
+ 0 8px 20px
+ rgba(20,70,53,.08);
+
 }
+
 
 @keyframes itemIn{
 
  from{
+
   opacity:0;
+
   transform:
-  translateY(12px);
+  translateY(12px)
+  scale(.985);
+
  }
 
  to{
+
   opacity:1;
+
   transform:none;
+
  }
 
 }
@@ -813,18 +803,20 @@ button:active{
 
 .notificationItem.unread{
 
- border-color:#b9ddcf;
+ border-color:
+ #cce9dc;
 
  background:
  linear-gradient(
  135deg,
- #fff,
- #f9fdfb
+ #fff 0%,
+ #fbfffd 100%
  );
 
 }
 
-.notificationItem.unread::before{
+
+.notificationItem.unread:before{
 
  content:"";
 
@@ -838,7 +830,12 @@ button:active{
 
  border-radius:0 5px 5px 0;
 
- background:var(--green);
+ background:
+ linear-gradient(
+ 180deg,
+ var(--green),
+ var(--green2)
+ );
 
 }
 
@@ -847,31 +844,31 @@ button:active{
 
 .thumb{
 
- position:relative;
-
- width:72px;
- height:72px;
+ width:61px;
+ height:61px;
 
  flex:none;
 
- border-radius:15px;
+ border-radius:16px;
 
  overflow:hidden;
 
  background:
  linear-gradient(
  135deg,
- #e7f4ef,
- #d8ebe4
+ #e8f6f0,
+ #dcefe7
  );
 
  display:grid;
-
  place-items:center;
 
  color:var(--green);
 
+ position:relative;
+
 }
+
 
 .thumb img{
 
@@ -884,62 +881,24 @@ button:active{
 
 }
 
+
 .thumbIcon{
 
- font-size:18px;
+ font-size:17px;
 
 }
 
-.priorityMini{
 
- position:absolute;
+/* content */
 
- right:5px;
- bottom:5px;
-
- width:19px;
- height:19px;
-
- display:grid;
-
- place-items:center;
-
- border-radius:50%;
-
- background:
- rgba(255,255,255,.92);
-
- backdrop-filter:
- blur(8px);
-
- font-size:7px;
-
-}
-
-.priorityMini.important{
- color:var(--orange);
-}
-
-.priorityMini.urgent{
- color:var(--red);
-}
-
-
-/* list body */
-
-.itemBody{
+.itemContent{
 
  min-width:0;
 
  flex:1;
 
- display:flex;
-
- flex-direction:column;
-
- justify-content:center;
-
 }
+
 
 .itemTop{
 
@@ -953,7 +912,8 @@ button:active{
 
 }
 
-.itemCategory{
+
+.category{
 
  display:inline-flex;
 
@@ -961,11 +921,8 @@ button:active{
 
  gap:4px;
 
- max-width:120px;
-
  padding:
- 4px
- 7px;
+ 4px 7px;
 
  border-radius:99px;
 
@@ -979,13 +936,10 @@ button:active{
 
  white-space:nowrap;
 
- overflow:hidden;
-
- text-overflow:ellipsis;
-
 }
 
-.itemCategory.important{
+
+.category.important{
 
  background:var(--orangeSoft);
 
@@ -993,7 +947,8 @@ button:active{
 
 }
 
-.itemCategory.urgent{
+
+.category.urgent{
 
  background:var(--redSoft);
 
@@ -1001,11 +956,14 @@ button:active{
 
 }
 
-.itemTime{
+
+.time{
 
  margin-left:auto;
 
- color:#89958f;
+ flex:none;
+
+ color:var(--muted2);
 
  font-size:6.5px;
 
@@ -1016,19 +974,20 @@ button:active{
 
 .itemTitle{
 
- margin-top:6px;
+ margin-top:7px;
 
  font-family:
  "Hind Siliguri",
  sans-serif;
 
- font-size:14px;
-
- line-height:1.35;
+ font-size:13px;
 
  font-weight:700;
 
- display:-webkit-box;
+ line-height:1.4;
+
+ display:
+ -webkit-box;
 
  -webkit-line-clamp:2;
 
@@ -1037,22 +996,24 @@ button:active{
  overflow:hidden;
 
 }
+
 
 .itemPreview{
 
  margin-top:4px;
 
+ color:var(--muted);
+
  font-family:
  "Hind Siliguri",
  sans-serif;
 
- color:#74817b;
+ font-size:8.5px;
 
- font-size:9px;
+ line-height:1.55;
 
- line-height:1.5;
-
- display:-webkit-box;
+ display:
+ -webkit-box;
 
  -webkit-line-clamp:2;
 
@@ -1063,13 +1024,31 @@ button:active{
 }
 
 
+.itemBottom{
+
+ display:flex;
+
+ align-items:center;
+
+ gap:6px;
+
+ margin-top:7px;
+
+}
+
+
+.unreadText{
+
+ font-size:6.5px;
+
+ color:var(--green);
+
+ font-weight:800;
+
+}
+
+
 .unreadDot{
-
- position:absolute;
-
- right:9px;
-
- top:9px;
 
  width:6px;
  height:6px;
@@ -1082,12 +1061,47 @@ button:active{
  0 0 0 4px
  rgba(8,125,89,.08);
 
+ animation:
+ unreadPulse 2s infinite;
+
 }
 
 
-/* =====================================================
-   DETAIL OVERLAY
-===================================================== */
+@keyframes unreadPulse{
+
+ 50%{
+  box-shadow:
+  0 0 0 7px
+  rgba(8,125,89,.02);
+ }
+
+}
+
+
+.arrow{
+
+ width:25px;
+ height:25px;
+
+ flex:none;
+
+ border-radius:9px;
+
+ background:#f3f7f5;
+
+ color:#809089;
+
+ display:grid;
+ place-items:center;
+
+ font-size:8px;
+
+}
+
+
+/* =========================================================
+   DETAIL VIEW
+========================================================= */
 
 .detailView{
 
@@ -1095,60 +1109,96 @@ button:active{
 
  inset:0;
 
- z-index:200;
+ z-index:500;
 
- display:none;
+ background:
+ rgba(20,40,32,.34);
 
- background:var(--bg);
+ backdrop-filter:
+ blur(9px);
+
+ -webkit-backdrop-filter:
+ blur(9px);
+
+ opacity:0;
+
+ visibility:hidden;
+
+ pointer-events:none;
+
+ transition:
+ opacity .25s,
+ visibility .25s;
+
+}
+
+
+.detailView.open{
+
+ opacity:1;
+
+ visibility:visible;
+
+ pointer-events:auto;
+
+}
+
+
+.detailPanel{
+
+ position:absolute;
+
+ left:50%;
+
+ bottom:0;
+
+ width:100%;
 
  max-width:680px;
 
- margin:auto;
+ height:
+ min(94vh,850px);
 
- overflow-y:auto;
+ transform:
+ translate(-50%,105%);
 
- overscroll-behavior:
- contain;
+ background:var(--bg);
 
- animation:
- detailIn .3s
- cubic-bezier(.2,.8,.2,1);
+ border-radius:
+ 25px 25px 0 0;
 
-}
+ overflow:hidden;
 
-.detailView.show{
+ display:flex;
 
- display:block;
+ flex-direction:column;
 
-}
+ box-shadow:
+ 0 -20px 70px
+ rgba(0,0,0,.20);
 
-@keyframes detailIn{
-
- from{
-  opacity:0;
-  transform:
-  translateY(18px);
- }
-
- to{
-  opacity:1;
-  transform:none;
- }
+ transition:
+ transform .42s
+ cubic-bezier(.2,.85,.2,1);
 
 }
 
 
-/* =====================================================
-   DETAIL HEADER
-===================================================== */
+.detailView.open .detailPanel{
+
+ transform:
+ translate(-50%,0);
+
+}
+
+
+/* detail top */
 
 .detailHeader{
 
- position:sticky;
+ height:57px;
 
- top:0;
-
- z-index:10;
+ flex:none;
 
  display:flex;
 
@@ -1157,221 +1207,171 @@ button:active{
  gap:8px;
 
  padding:
- 11px
- 13px;
+ 8px 12px;
 
- background:
- rgba(255,255,255,.88);
-
- backdrop-filter:
- blur(18px);
-
- -webkit-backdrop-filter:
- blur(18px);
+ background:#fff;
 
  border-bottom:
  1px solid
- rgba(220,230,225,.8);
+ var(--line);
 
 }
 
-.backBtn{
+
+.backBtn,
+.detailAction{
 
  width:38px;
  height:38px;
 
- display:grid;
-
- place-items:center;
-
  border-radius:13px;
 
- background:#f0f5f2;
+ background:#f3f7f5;
 
  color:var(--ink);
 
+ display:grid;
+ place-items:center;
+
  font-size:11px;
+
+ flex:none;
 
 }
 
-.detailHeaderTitle{
+
+.detailHeading{
+
+ min-width:0;
 
  flex:1;
 
- font-size:10px;
+}
+
+
+.detailHeading small{
+
+ display:block;
+
+ font-size:6.5px;
 
  font-weight:800;
 
-}
-
-.langSwitch{
-
- display:flex;
-
- padding:3px;
-
- border-radius:11px;
-
- background:#eef4f1;
-
-}
-
-.langBtn{
-
- min-width:31px;
-
- padding:
- 6px
- 7px;
-
- border-radius:8px;
-
- background:transparent;
-
- color:#77837d;
-
- font-size:7px;
-
- font-weight:800;
-
-}
-
-.langBtn.active{
-
- background:#fff;
+ letter-spacing:.8px;
 
  color:var(--green);
 
- box-shadow:
- 0 3px 10px
- rgba(0,0,0,.07);
+}
+
+
+.detailHeading b{
+
+ display:block;
+
+ margin-top:2px;
+
+ font-size:10px;
+
+ white-space:nowrap;
+
+ overflow:hidden;
+
+ text-overflow:ellipsis;
 
 }
 
 
-/* =====================================================
-   DETAIL CONTENT
-===================================================== */
+.detailActions{
 
-.detailContent{
+ display:flex;
 
- padding:
- 13px
- 13px
- 40px;
+ gap:6px;
 
 }
 
 
-.detailHero{
+/* detail scroll */
+
+.detailScroll{
+
+ flex:1;
+
+ overflow-y:auto;
+
+ overscroll-behavior:contain;
+
+ padding-bottom:35px;
+
+}
+
+
+.detailImageWrap{
 
  position:relative;
 
  width:100%;
 
- overflow:hidden;
-
- border-radius:21px;
-
- background:#e8f0ed;
+ background:#e7efeb;
 
 }
 
-.detailHero img{
 
- width:100%;
-
- max-height:270px;
-
- min-height:120px;
-
- object-fit:cover;
+.detailImage{
 
  display:block;
 
- cursor:pointer;
+ width:100%;
 
-}
+ max-height:310px;
 
-.detailHeroFallback{
-
- min-height:125px;
-
- display:grid;
-
- place-items:center;
-
- color:var(--green);
-
- font-size:32px;
+ object-fit:cover;
 
 }
 
 
-.detailBadges{
+.detailImageShade{
+
+ position:absolute;
+
+ left:0;
+ right:0;
+ bottom:0;
+
+ height:100px;
+
+ background:
+ linear-gradient(
+ transparent,
+ rgba(0,0,0,.25)
+ );
+
+ pointer-events:none;
+
+}
+
+
+.detailBody{
+
+ padding:
+ 17px 16px 30px;
+
+ background:#fff;
+
+}
+
+
+.detailMeta{
 
  display:flex;
 
- flex-wrap:wrap;
-
  align-items:center;
+
+ flex-wrap:wrap;
 
  gap:6px;
 
- margin-top:13px;
-
 }
 
-.detailBadge{
-
- display:inline-flex;
-
- align-items:center;
-
- gap:5px;
-
- padding:
- 6px
- 9px;
-
- border-radius:99px;
-
- background:var(--soft);
-
- color:var(--green);
-
- font-size:7px;
-
- font-weight:800;
-
-}
-
-.detailBadge.important{
-
- background:var(--orangeSoft);
-
- color:var(--orange);
-
-}
-
-.detailBadge.urgent{
-
- background:var(--redSoft);
-
- color:var(--red);
-
-}
-
-.detailDate{
-
- color:var(--muted);
-
- font-size:7px;
-
-}
-
-
-/* title */
 
 .detailTitle{
 
@@ -1381,19 +1381,82 @@ button:active{
  "Hind Siliguri",
  sans-serif;
 
- font-size:23px;
+ font-size:22px;
 
  line-height:1.38;
 
- font-weight:700;
+ font-weight:800;
 
  letter-spacing:-.2px;
 
 }
 
+
+/*
+ IMPORTANT:
+ English title is hidden by default.
+*/
+
+.englishTitle{
+
+ display:none;
+
+ margin-top:8px;
+
+ color:var(--muted);
+
+ font-size:10px;
+
+ line-height:1.6;
+
+ font-weight:600;
+
+}
+
+
+.englishTitle.visible{
+
+ display:block;
+
+}
+
+
+.languageToggle{
+
+ margin-top:9px;
+
+ display:none;
+
+}
+
+
+.languageToggle.show{
+
+ display:inline-flex;
+
+ align-items:center;
+
+ gap:5px;
+
+ padding:
+ 7px 10px;
+
+ border-radius:99px;
+
+ background:#f1f5f3;
+
+ color:#66756e;
+
+ font-size:7px;
+
+ font-weight:800;
+
+}
+
+
 .detailDescription{
 
- margin-top:14px;
+ margin-top:15px;
 
  font-family:
  "Hind Siliguri",
@@ -1403,52 +1466,122 @@ button:active{
 
  line-height:1.9;
 
- color:#3f4d47;
+ color:#3d4e47;
 
  white-space:pre-line;
 
- overflow-wrap:anywhere;
+ word-break:break-word;
 
 }
 
 
-/* =====================================================
-   DETAIL ACTIONS
-===================================================== */
+.detailDescription.en{
 
-.detailActions{
+ display:none;
+
+ margin-top:11px;
+
+ font-family:Inter,sans-serif;
+
+ font-size:9.5px;
+
+ line-height:1.75;
+
+ color:#68756f;
+
+}
+
+
+.detailDescription.en.visible{
+
+ display:block;
+
+}
+
+
+.detailDivider{
+
+ height:1px;
+
+ background:#edf2ef;
+
+ margin:
+ 17px 0
+ 13px;
+
+}
+
+
+/* =========================================================
+   LINK AREA
+========================================================= */
+
+.linkBox{
+
+ padding:12px;
+
+ border-radius:16px;
+
+ background:
+ linear-gradient(
+ 135deg,
+ #f5faf7,
+ #eef7f3
+ );
+
+ border:
+ 1px solid
+ #dcebe4;
+
+}
+
+
+.linkLabel{
+
+ font-size:7px;
+
+ color:var(--muted);
+
+ font-weight:800;
+
+ margin-bottom:8px;
+
+}
+
+
+.linkButtons{
 
  display:flex;
 
  gap:7px;
 
- margin-top:18px;
-
- padding-top:14px;
-
- border-top:
- 1px solid
- #e7eeea;
-
 }
 
-.detailAction{
+
+.linkBtn{
 
  flex:1;
 
  min-height:40px;
 
- border-radius:13px;
+ border-radius:12px;
 
  font-size:8px;
 
  font-weight:800;
 
- transition:.18s;
+ display:flex;
+
+ align-items:center;
+
+ justify-content:center;
+
+ gap:5px;
 
 }
 
-.detailOpen{
+
+.openLink{
 
  background:var(--green);
 
@@ -1456,7 +1589,8 @@ button:active{
 
 }
 
-.detailCopy{
+
+.copyLink{
 
  background:var(--blueSoft);
 
@@ -1464,131 +1598,63 @@ button:active{
 
 }
 
-.detailShare{
 
- background:#f1f5f3;
+/* =========================================================
+   SHARE
+========================================================= */
 
- color:var(--ink);
-
-}
-
-.detailAction i{
-
- margin-right:4px;
-
-}
-
-
-/* =====================================================
-   IMAGE VIEWER
-===================================================== */
-
-.imageViewer{
-
- position:fixed;
-
- inset:0;
-
- z-index:500;
-
- display:none;
-
- align-items:center;
-
- justify-content:center;
-
- padding:15px;
-
- background:
- rgba(0,0,0,.93);
-
-}
-
-.imageViewer.show{
+.shareRow{
 
  display:flex;
 
- animation:
- viewerIn .2s ease;
+ gap:7px;
+
+ margin-top:9px;
 
 }
 
-@keyframes viewerIn{
 
- from{
-  opacity:0;
- }
+.shareBtn{
 
- to{
-  opacity:1;
- }
+ flex:1;
 
-}
-
-.viewerImage{
-
- max-width:100%;
-
- max-height:86vh;
-
- object-fit:contain;
+ height:38px;
 
  border-radius:12px;
 
-}
+ background:#f3f7f5;
 
-.viewerClose{
+ color:#52635b;
 
- position:absolute;
+ font-size:8px;
 
- right:14px;
- top:14px;
-
- width:40px;
- height:40px;
-
- border-radius:50%;
-
- display:grid;
-
- place-items:center;
-
- background:
- rgba(255,255,255,.12);
-
- color:#fff;
-
- font-size:13px;
+ font-weight:800;
 
 }
 
 
-/* =====================================================
-   EMPTY / ERROR / LOADING
-===================================================== */
+/* =========================================================
+   EMPTY / ERROR
+========================================================= */
 
 .state{
 
  text-align:center;
 
  padding:
- 60px
- 20px;
+ 65px 22px;
 
 }
 
+
 .stateIcon{
 
- width:68px;
- height:68px;
+ width:70px;
+ height:70px;
 
  margin:
  0 auto
  14px;
-
- display:grid;
-
- place-items:center;
 
  border-radius:23px;
 
@@ -1596,13 +1662,18 @@ button:active{
 
  color:var(--green);
 
+ display:grid;
+
+ place-items:center;
+
  font-size:23px;
 
  animation:
- stateFloat 2.3s
+ stateFloat 2.5s
  ease-in-out infinite;
 
 }
+
 
 @keyframes stateFloat{
 
@@ -1612,6 +1683,7 @@ button:active{
 
 }
 
+
 .state b{
 
  display:block;
@@ -1619,6 +1691,7 @@ button:active{
  font-size:13px;
 
 }
+
 
 .state span{
 
@@ -1633,17 +1706,17 @@ button:active{
 
  font-size:9px;
 
- line-height:1.65;
+ line-height:1.7;
 
 }
+
 
 .retry{
 
  margin-top:13px;
 
  padding:
- 10px
- 15px;
+ 10px 15px;
 
  border-radius:13px;
 
@@ -1657,60 +1730,124 @@ button:active{
 
 }
 
-.loading{
 
- text-align:center;
+/* =========================================================
+   SKELETON
+========================================================= */
 
- padding:
- 60px
- 20px;
+.skeleton{
 
- color:var(--muted);
+ display:flex;
 
- font-size:9px;
+ gap:11px;
+
+ padding:12px;
+
+ background:#fff;
+
+ border:
+ 1px solid
+ var(--line);
+
+ border-radius:19px;
+
+ overflow:hidden;
 
 }
 
-.loadingIcon{
 
- width:48px;
- height:48px;
+.skeletonBox{
 
- margin:
- 0 auto
- 13px;
+ background:
+ linear-gradient(
+ 90deg,
+ #edf2ef,
+ #f7faf8,
+ #edf2ef
+ );
 
- display:grid;
+ background-size:200% 100%;
 
- place-items:center;
+ animation:
+ skeleton 1.3s infinite;
+
+}
+
+
+.skeletonThumb{
+
+ width:61px;
+ height:61px;
+
+ flex:none;
 
  border-radius:16px;
 
- background:var(--soft);
-
- color:var(--green);
-
 }
 
-.loadingIcon i{
 
- animation:
- spin .8s
- linear infinite;
+.skeletonContent{
+
+ flex:1;
 
 }
 
 
-/* =====================================================
+.skeletonLine{
+
+ height:8px;
+
+ border-radius:5px;
+
+ margin-bottom:8px;
+
+}
+
+
+.skeletonLine.short{
+
+ width:42%;
+
+}
+
+
+.skeletonLine.medium{
+
+ width:72%;
+
+}
+
+
+.skeletonLine.long{
+
+ width:90%;
+
+}
+
+
+@keyframes skeleton{
+
+ from{
+  background-position:200% 0;
+ }
+
+ to{
+  background-position:-200% 0;
+ }
+
+}
+
+
+/* =========================================================
    TOAST
-===================================================== */
+========================================================= */
 
 .toast{
 
  position:fixed;
 
  left:50%;
- bottom:18px;
+ bottom:19px;
 
  z-index:1000;
 
@@ -1719,8 +1856,7 @@ button:active{
  max-width:90%;
 
  padding:
- 11px
- 14px;
+ 11px 14px;
 
  border-radius:14px;
 
@@ -1728,7 +1864,7 @@ button:active{
 
  color:#fff;
 
- font-size:9px;
+ font-size:8.5px;
 
  font-weight:700;
 
@@ -1744,10 +1880,11 @@ button:active{
  transition:.25s;
 
  box-shadow:
- 0 12px 35px
- rgba(0,0,0,.22);
+ 0 12px 30px
+ rgba(0,0,0,.20);
 
 }
+
 
 .toast.show{
 
@@ -1759,9 +1896,9 @@ button:active{
 }
 
 
-/* =====================================================
-   SMALL DEVICES
-===================================================== */
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:390px){
 
@@ -1770,20 +1907,30 @@ button:active{
  }
 
  .itemTitle{
-  font-size:13px;
- }
-
- .itemPreview{
-  font-size:8.5px;
- }
-
- .thumb{
-  width:66px;
-  height:66px;
+  font-size:12.5px;
  }
 
  .detailTitle{
-  font-size:21px;
+  font-size:20px;
+ }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+ *,
+ *:before,
+ *:after{
+
+  animation:none!important;
+
+  transition:none!important;
+
  }
 
 }
@@ -1799,13 +1946,13 @@ button:active{
 <div class="app">
 
 
-<!-- =================================================
-     MAIN HEADER
-================================================= -->
+<!-- ======================================================
+     HEADER
+====================================================== -->
 
 <header class="header">
 
- <div class="headerContent">
+ <div class="headerInner">
 
   <div class="brandRow">
 
@@ -1825,6 +1972,7 @@ button:active{
 
    </div>
 
+
    <div class="live">
 
     <span class="liveDot"></span>
@@ -1840,8 +1988,9 @@ button:active{
    Notifications
   </div>
 
+
   <div class="headerSubtitle">
-   Latest updates, announcements & useful information.
+   Stay updated with the latest Wildlife Explorer news.
   </div>
 
  </div>
@@ -1849,276 +1998,290 @@ button:active{
 </header>
 
 
-<!-- =================================================
-     LIST PAGE
-================================================= -->
+<!-- ======================================================
+     MAIN
+====================================================== -->
 
 <main class="content">
 
 
- <!-- SEARCH -->
+<!-- SEARCH -->
 
- <div class="utility">
+<div class="utility">
 
-  <div class="searchBox">
+ <div class="searchBox">
 
-   <i class="fa-solid fa-magnifying-glass"></i>
+  <i class="fa-solid fa-magnifying-glass"></i>
 
-   <input
-    id="search"
-    type="search"
-    placeholder="Search notifications..."
-    autocomplete="off"
-   >
-
-   <button
-    class="clearSearch"
-    id="clearSearch"
-    aria-label="Clear search"
-   >
-
-    <i class="fa-solid fa-xmark"></i>
-
-   </button>
-
-  </div>
-
-
-  <button
-   class="refresh"
-   id="refreshBtn"
-   aria-label="Refresh notifications"
+  <input
+   id="search"
+   type="search"
+   placeholder="Search notifications..."
+   autocomplete="off"
   >
-
-   <i class="fa-solid fa-rotate-right"></i>
-
-  </button>
 
  </div>
 
 
- <!-- FILTERS -->
+ <button
+  class="refresh"
+  id="refreshBtn"
+  onclick="loadNotifications(true)"
+  aria-label="Refresh notifications"
+ >
 
- <div class="filters">
+  <i class="fa-solid fa-rotate-right"></i>
 
-
-  <button
-   class="filter active"
-   data-filter="all"
-  >
-   <i class="fa-solid fa-layer-group"></i>
-   All
-  </button>
-
-
-  <button
-   class="filter"
-   data-filter="app"
-  >
-   <i class="fa-solid fa-mobile-screen"></i>
-   App
-  </button>
-
-
-  <button
-   class="filter"
-   data-filter="park"
-  >
-   <i class="fa-solid fa-tree"></i>
-   Park
-  </button>
-
-
-  <button
-   class="filter"
-   data-filter="ticket"
-  >
-   <i class="fa-solid fa-ticket"></i>
-   Tickets
-  </button>
-
-
-  <button
-   class="filter"
-   data-filter="wildlife"
-  >
-   <i class="fa-solid fa-paw"></i>
-   Wildlife
-  </button>
-
-
-  <button
-   class="filter"
-   data-filter="travel"
-  >
-   <i class="fa-solid fa-route"></i>
-   Travel
-  </button>
-
-
-  <button
-   class="filter"
-   data-filter="important"
-  >
-   <i class="fa-solid fa-star"></i>
-   Important
-  </button>
-
-
- </div>
-
-
- <!-- SUMMARY -->
-
- <div class="summary">
-
-  <div class="summaryLeft">
-
-   <div class="summaryIcon">
-
-    <i class="fa-regular fa-bell"></i>
-
-   </div>
-
-   <div class="summaryText">
-
-    <b>
-     Latest Notifications
-    </b>
-
-    <span>
-     Stay updated with Wildlife Explorer
-    </span>
-
-   </div>
-
-  </div>
-
-
-  <div
-   class="count"
-   id="count"
-  >
-   0 Updates
-  </div>
-
- </div>
-
-
- <!-- LIST -->
-
- <div id="list">
-
-  <div class="loading">
-
-   <div class="loadingIcon">
-
-    <i class="fa-solid fa-spinner"></i>
-
-   </div>
-
-   Loading notifications...
-
-  </div>
-
- </div>
-
-
-</main>
-
+ </button>
 
 </div>
 
 
-<!-- =================================================
-     DETAIL VIEW
-================================================= -->
+<!-- FILTER -->
 
-<section
- id="detailView"
- class="detailView"
- aria-hidden="true"
->
-
-
- <header class="detailHeader">
-
-
-  <button
-   id="backBtn"
-   class="backBtn"
-   aria-label="Back"
-  >
-
-   <i class="fa-solid fa-arrow-left"></i>
-
-  </button>
-
-
-  <div class="detailHeaderTitle">
-   Notification
-  </div>
-
-
-  <div class="langSwitch">
-
-
-   <button
-    class="langBtn active"
-    data-lang="bn"
-   >
-    বাংলা
-   </button>
-
-
-   <button
-    class="langBtn"
-    data-lang="en"
-   >
-    EN
-   </button>
-
-
-  </div>
-
-
- </header>
-
-
- <div
-  id="detailContent"
-  class="detailContent"
- ></div>
-
-
-</section>
-
-
-<!-- =================================================
-     IMAGE VIEWER
-================================================= -->
-
-<div
- id="imageViewer"
- class="imageViewer"
->
+<div class="filters">
 
  <button
-  id="viewerClose"
-  class="viewerClose"
-  aria-label="Close image"
+  class="filter active"
+  onclick="setFilter('all',this)"
  >
 
-  <i class="fa-solid fa-xmark"></i>
+  <i class="fa-solid fa-layer-group"></i>
+
+  All
 
  </button>
 
 
- <img
-  id="viewerImage"
-  class="viewerImage"
-  alt=""
+ <button
+  class="filter"
+  onclick="setFilter('app',this)"
  >
+
+  <i class="fa-solid fa-mobile-screen"></i>
+
+  App
+
+ </button>
+
+
+ <button
+  class="filter"
+  onclick="setFilter('park',this)"
+ >
+
+  <i class="fa-solid fa-tree"></i>
+
+  Park
+
+ </button>
+
+
+ <button
+  class="filter"
+  onclick="setFilter('ticket',this)"
+ >
+
+  <i class="fa-solid fa-ticket"></i>
+
+  Tickets
+
+ </button>
+
+
+ <button
+  class="filter"
+  onclick="setFilter('wildlife',this)"
+ >
+
+  <i class="fa-solid fa-paw"></i>
+
+  Wildlife
+
+ </button>
+
+
+ <button
+  class="filter"
+  onclick="setFilter('travel',this)"
+ >
+
+  <i class="fa-solid fa-route"></i>
+
+  Travel
+
+ </button>
+
+
+ <button
+  class="filter"
+  onclick="setFilter('important',this)"
+ >
+
+  <i class="fa-solid fa-star"></i>
+
+  Important
+
+ </button>
+
+</div>
+
+
+<!-- SUMMARY -->
+
+<div class="summary">
+
+ <div class="summaryLeft">
+
+  <div class="summaryIcon">
+
+   <i class="fa-regular fa-bell"></i>
+
+  </div>
+
+
+  <div class="summaryText">
+
+   <b>
+    Latest Notifications
+   </b>
+
+   <span>
+    Tap any notification to read
+   </span>
+
+  </div>
+
+ </div>
+
+
+ <div
+  class="count"
+  id="count"
+ >
+  0 Updates
+ </div>
+
+</div>
+
+
+<!-- LIST -->
+
+<div
+ id="list"
+ class="notificationList"
+>
+
+ <div class="skeleton">
+
+  <div class="skeletonBox skeletonThumb"></div>
+
+  <div class="skeletonContent">
+
+   <div class="skeletonBox skeletonLine short"></div>
+
+   <div class="skeletonBox skeletonLine long"></div>
+
+   <div class="skeletonBox skeletonLine medium"></div>
+
+  </div>
+
+ </div>
+
+
+ <div class="skeleton">
+
+  <div class="skeletonBox skeletonThumb"></div>
+
+  <div class="skeletonContent">
+
+   <div class="skeletonBox skeletonLine short"></div>
+
+   <div class="skeletonBox skeletonLine medium"></div>
+
+   <div class="skeletonBox skeletonLine long"></div>
+
+  </div>
+
+ </div>
+
+</div>
+
+
+</main>
+
+</div>
+
+
+<!-- ======================================================
+     DETAIL VIEW
+====================================================== -->
+
+<div
+ id="detailView"
+ class="detailView"
+>
+
+ <section class="detailPanel">
+
+
+  <!-- DETAIL HEADER -->
+
+  <header class="detailHeader">
+
+   <button
+    class="backBtn"
+    onclick="closeDetail()"
+    aria-label="Back"
+   >
+
+    <i class="fa-solid fa-arrow-left"></i>
+
+   </button>
+
+
+   <div class="detailHeading">
+
+    <small>
+     NOTIFICATION
+    </small>
+
+    <b id="detailHeaderTitle">
+     Notification
+    </b>
+
+   </div>
+
+
+   <div class="detailActions">
+
+    <button
+     class="detailAction"
+     onclick="shareCurrent()"
+     aria-label="Share"
+    >
+
+     <i class="fa-solid fa-share-nodes"></i>
+
+    </button>
+
+   </div>
+
+  </header>
+
+
+  <!-- DETAIL CONTENT -->
+
+  <div
+   id="detailScroll"
+   class="detailScroll"
+  >
+
+   <div id="detailContent"></div>
+
+  </div>
+
+ </section>
 
 </div>
 
@@ -2133,9 +2296,9 @@ button:active{
 
 <script>
 
-/* =====================================================
+/* =========================================================
    SUPABASE
-===================================================== */
+========================================================= */
 
 const SUPABASE_URL =
 "https://hnhphoqfylwbuptronqh.supabase.co";
@@ -2150,27 +2313,26 @@ window.supabase.createClient(
 );
 
 
-/* =====================================================
+/* =========================================================
    STATE
-===================================================== */
+========================================================= */
 
 let notifications = [];
 
 let currentFilter = "all";
 
-let currentLanguage =
-localStorage.getItem(
- "wildlife_notification_language"
-) || "bn";
-
 let currentNotification = null;
 
-let realtimeChannel = null;
+let searchTimer = null;
+
+let loading = false;
+
+let realtimeTimer = null;
 
 
-/* =====================================================
+/* =========================================================
    ICONS
-===================================================== */
+========================================================= */
 
 const ICONS = {
 
@@ -2192,104 +2354,49 @@ const ICONS = {
 };
 
 
-/* =====================================================
+/* =========================================================
    CATEGORY
-===================================================== */
+========================================================= */
 
 const CATEGORY = {
 
  app:"App",
+
  park:"Park",
+
  ticket:"Tickets",
+
  wildlife:"Wildlife",
+
  travel:"Travel"
 
 };
 
 
-/* =====================================================
-   ELEMENTS
-===================================================== */
-
-const list =
-document.getElementById("list");
-
-const count =
-document.getElementById("count");
-
-const search =
-document.getElementById("search");
-
-const clearSearch =
-document.getElementById("clearSearch");
-
-const refreshBtn =
-document.getElementById("refreshBtn");
-
-const detailView =
-document.getElementById("detailView");
-
-const detailContent =
-document.getElementById("detailContent");
-
-const imageViewer =
-document.getElementById("imageViewer");
-
-const viewerImage =
-document.getElementById("viewerImage");
-
-
-/* =====================================================
+/* =========================================================
    ESCAPE HTML
-===================================================== */
+========================================================= */
 
 function esc(value){
 
  return String(value ?? "")
+
  .replace(/&/g,"&amp;")
+
  .replace(/</g,"&lt;")
+
  .replace(/>/g,"&gt;")
+
  .replace(/"/g,"&quot;")
+
  .replace(/'/g,"&#039;");
 
 }
 
 
-/* =====================================================
-   SAFE URL
-===================================================== */
-
-function safeUrl(value){
-
- if(!value)
-  return null;
-
- try{
-
-  const url =
-  new URL(value);
-
-  if(
-   url.protocol !== "http:" &&
-   url.protocol !== "https:"
-  ){
-   return null;
-  }
-
-  return url.href;
-
- }catch{
-
-  return null;
-
- }
-
-}
-
-
-/* =====================================================
+/* =========================================================
    TOAST
-===================================================== */
+========================================================= */
 
 function toast(message){
 
@@ -2301,11 +2408,9 @@ function toast(message){
 
  box.classList.add("show");
 
- clearTimeout(
-  window.__toastTimer
- );
+ clearTimeout(window.toastTimer);
 
- window.__toastTimer =
+ window.toastTimer =
  setTimeout(()=>{
 
   box.classList.remove("show");
@@ -2315,42 +2420,18 @@ function toast(message){
 }
 
 
-/* =====================================================
+/* =========================================================
    DATE
-===================================================== */
-
-function formatDate(value){
-
- const d =
- new Date(value);
-
- if(isNaN(d.getTime()))
-  return "";
-
- return d.toLocaleDateString(
-  currentLanguage === "bn"
-   ? "bn-BD"
-   : "en-US",
-  {
-   day:"numeric",
-   month:"long",
-   year:"numeric"
-  }
- );
-
-}
-
-
-/* =====================================================
-   TIME AGO
-===================================================== */
+========================================================= */
 
 function timeAgo(value){
 
  const d =
  new Date(value);
 
- if(isNaN(d.getTime()))
+ if(
+  isNaN(d.getTime())
+ )
   return "";
 
  const diff =
@@ -2358,52 +2439,38 @@ function timeAgo(value){
   (Date.now()-d.getTime())/1000
  );
 
+
  if(diff < 60)
-  return currentLanguage === "bn"
-   ? "এইমাত্র"
-   : "Just now";
+  return "এইমাত্র";
 
- if(diff < 3600){
 
-  const n =
-  Math.floor(diff/60);
+ if(diff < 3600)
+  return Math.floor(diff/60)+" মিনিট আগে";
 
-  return currentLanguage === "bn"
-   ? `${n} মিনিট আগে`
-   : `${n} min ago`;
 
- }
+ if(diff < 86400)
+  return Math.floor(diff/3600)+" ঘণ্টা আগে";
 
- if(diff < 86400){
 
-  const n =
-  Math.floor(diff/3600);
+ if(diff < 604800)
+  return Math.floor(diff/86400)+" দিন আগে";
 
-  return currentLanguage === "bn"
-   ? `${n} ঘণ্টা আগে`
-   : `${n} hr ago`;
 
- }
-
- if(diff < 604800){
-
-  const n =
-  Math.floor(diff/86400);
-
-  return currentLanguage === "bn"
-   ? `${n} দিন আগে`
-   : `${n} days ago`;
-
- }
-
- return formatDate(value);
+ return d.toLocaleDateString(
+  "bn-BD",
+  {
+   day:"numeric",
+   month:"short",
+   year:"numeric"
+  }
+ );
 
 }
 
 
-/* =====================================================
+/* =========================================================
    ICON
-===================================================== */
+========================================================= */
 
 function iconName(value){
 
@@ -2413,54 +2480,34 @@ function iconName(value){
 }
 
 
-/* =====================================================
-   CATEGORY LABEL
-===================================================== */
-
-function categoryLabel(value){
-
- return CATEGORY[value] ||
- value ||
- "App";
-
-}
-
-
-/* =====================================================
+/* =========================================================
    PRIORITY
-===================================================== */
+========================================================= */
 
 function priorityInfo(priority){
 
- if(priority === "urgent"){
+ if(priority==="urgent"){
 
   return {
 
    cls:"urgent",
 
-   label:
-    currentLanguage === "bn"
-    ? "জরুরি"
-    : "Urgent",
+   label:"Urgent",
 
-   icon:
-    "fa-triangle-exclamation"
+   icon:"fa-triangle-exclamation"
 
   };
 
  }
 
 
- if(priority === "important"){
+ if(priority==="important"){
 
   return {
 
    cls:"important",
 
-   label:
-    currentLanguage === "bn"
-    ? "গুরুত্বপূর্ণ"
-    : "Important",
+   label:"Important",
 
    icon:"fa-star"
 
@@ -2473,10 +2520,7 @@ function priorityInfo(priority){
 
   cls:"",
 
-  label:
-   currentLanguage === "bn"
-   ? "আপডেট"
-   : "Update",
+  label:"Update",
 
   icon:"fa-circle-info"
 
@@ -2485,1084 +2529,95 @@ function priorityInfo(priority){
 }
 
 
-/* =====================================================
+/* =========================================================
    READ STATE
-===================================================== */
+========================================================= */
 
-function getReadKey(id){
+function readKey(id){
 
- return "wildlife_notification_read_" + id;
+ return "wildlife_notification_read_"+id;
 
 }
 
 
 function isRead(id){
 
- return localStorage.getItem(
-  getReadKey(id)
- ) === "1";
+ try{
+
+  return localStorage.getItem(
+   readKey(id)
+  )==="1";
+
+ }catch{
+
+  return false;
+
+ }
 
 }
 
 
-function markAsRead(id){
+function markRead(id){
 
- localStorage.setItem(
-  getReadKey(id),
-  "1"
- );
+ try{
+
+  localStorage.setItem(
+   readKey(id),
+   "1"
+  );
+
+ }catch{}
 
 }
 
 
-/* =====================================================
-   FILTER
-===================================================== */
+/* =========================================================
+   VALID URL
+========================================================= */
 
-document
-.querySelectorAll(".filter")
-.forEach(button=>{
+function validUrl(url){
 
- button.addEventListener(
-  "click",
-  ()=>{
+ if(!url)
+  return null;
 
-   currentFilter =
-   button.dataset.filter;
+ try{
 
-   document
-   .querySelectorAll(".filter")
-   .forEach(x =>
-    x.classList.remove("active")
-   );
-
-   button.classList.add("active");
-
-   renderList();
-
-  }
- );
-
-});
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-search.addEventListener(
- "input",
- ()=>{
-
-  clearSearch.classList.toggle(
-   "show",
-   search.value.length > 0
-  );
-
-  renderList();
-
- }
-);
-
-
-clearSearch.addEventListener(
- "click",
- ()=>{
-
-  search.value = "";
-
-  clearSearch.classList.remove(
-   "show"
-  );
-
-  renderList();
-
-  search.focus();
-
- }
-);
-
-
-/* =====================================================
-   GET FILTERED DATA
-===================================================== */
-
-function getFilteredData(){
-
- const query =
- search.value
- .trim()
- .toLowerCase();
-
-
- return notifications.filter(item=>{
-
-
-  /* CATEGORY */
+  const u =
+  new URL(url);
 
   if(
-   currentFilter === "important"
-  ){
-
-   if(
-    item.priority !== "important" &&
-    item.priority !== "urgent"
-   ){
-
-    return false;
-
-   }
-
-  }
-  else if(
-   currentFilter !== "all" &&
-   item.category !== currentFilter
-  ){
-
-   return false;
-
-  }
-
-
-  /* SEARCH */
-
-  if(!query)
-   return true;
-
-
-  const text = [
-
-   item.title_bn,
-   item.title_en,
-
-   item.description_bn,
-   item.description_en,
-
-   item.category,
-   item.priority
-
-  ]
-  .join(" ")
-  .toLowerCase();
-
-
-  return text.includes(query);
-
- });
-
-}
-
-
-/* =====================================================
-   RENDER LIST
-===================================================== */
-
-function renderList(){
-
- const data =
- getFilteredData();
-
-
- count.textContent =
- currentLanguage === "bn"
-  ? `${data.length} টি`
-  : `${data.length} Updates`;
-
-
- if(!data.length){
-
-  list.innerHTML = `
-
-   <div class="state">
-
-    <div class="stateIcon">
-
-     <i class="fa-regular fa-bell-slash"></i>
-
-    </div>
-
-    <b>
-     ${
-      search.value
-      ? (
-       currentLanguage === "bn"
-       ? "কোনো notification পাওয়া যায়নি"
-       : "No notifications found"
-      )
-      : (
-       currentLanguage === "bn"
-       ? "কোনো notification নেই"
-       : "No notifications yet"
-      )
-     }
-    </b>
-
-    <span>
-
-     ${
-      currentLanguage === "bn"
-      ? "এই মুহূর্তে নির্বাচিত category-তে কোনো notification পাওয়া যাচ্ছে না।"
-      : "There are no notifications available in this category right now."
-     }
-
-    </span>
-
-   </div>
-
-  `;
-
-  return;
-
- }
-
-
- list.innerHTML = `
-
-  <div class="notificationList">
-
-   ${
-    data.map(
-     (item,index)=>
-      createListItem(item,index)
-    ).join("")
-   }
-
-  </div>
-
- `;
-
-
- /* EVENTS */
-
- document
- .querySelectorAll(".notificationItem")
- .forEach(item=>{
-
-  item.addEventListener(
-   "click",
-   ()=>{
-    openNotification(
-     item.dataset.id
-    );
-   }
-  );
-
- });
-
-}
-
-
-/* =====================================================
-   CREATE LIST ITEM
-===================================================== */
-
-function createListItem(item,index){
-
- const priority =
- priorityInfo(item.priority);
-
- const read =
- isRead(item.id);
-
- const category =
- categoryLabel(item.category);
-
- const title =
- currentLanguage === "bn"
- ? (
-  item.title_bn ||
-  item.title_en ||
-  "Notification"
- )
- : (
-  item.title_en ||
-  item.title_bn ||
-  "Notification"
- );
-
-
- const description =
- currentLanguage === "bn"
- ? (
-  item.description_bn ||
-  item.description_en ||
-  ""
- )
- : (
-  item.description_en ||
-  item.description_bn ||
-  ""
- );
-
-
- const safeImage =
- safeUrl(item.image_url);
-
-
- return `
-
-  <article
-
-   class="
-    notificationItem
-    ${read ? "" : "unread"}
-   "
-
-   data-id="${esc(item.id)}"
-
-   style="
-    animation-delay:
-    ${Math.min(index*45,400)}ms
-   "
-
-  >
-
-
-   ${
-    !read
-    ? `<span class="unreadDot"></span>`
-    : ""
-   }
-
-
-   <div class="thumb">
-
-
-    ${
-     safeImage
-
-     ? `
-
-      <img
-
-       src="${esc(safeImage)}"
-
-       alt=""
-
-       loading="lazy"
-
-       onerror="this.style.display='none';
-       this.nextElementSibling.style.display='block';"
-
-      >
-
-      <i
-       class="
-        thumbIcon
-        fa-solid
-        ${iconName(item.icon)}
-       "
-       style="display:none"
-      ></i>
-
-     `
-
-     : `
-
-      <i
-       class="
-        thumbIcon
-        fa-solid
-        ${iconName(item.icon)}
-       "
-      ></i>
-
-     `
-    }
-
-
-    ${
-     item.priority === "important" ||
-     item.priority === "urgent"
-
-     ? `
-
-      <span
-       class="
-        priorityMini
-        ${priority.cls}
-       "
-      >
-
-       <i
-        class="
-         fa-solid
-         ${priority.icon}
-        "
-       ></i>
-
-      </span>
-
-     `
-
-     : ""
-
-    }
-
-   </div>
-
-
-   <div class="itemBody">
-
-
-    <div class="itemTop">
-
-
-     <span
-      class="
-       itemCategory
-       ${priority.cls}
-      "
-     >
-
-      <i
-       class="
-        fa-solid
-        ${iconName(item.icon)}
-       "
-      ></i>
-
-      ${esc(category)}
-
-     </span>
-
-
-     <span class="itemTime">
-
-      ${esc(
-       timeAgo(item.created_at)
-      )}
-
-     </span>
-
-
-    </div>
-
-
-    <div class="itemTitle">
-
-     ${esc(title)}
-
-    </div>
-
-
-    ${
-     description
-
-     ? `
-
-      <div class="itemPreview">
-
-       ${esc(
-        cleanPreview(description)
-       )}
-
-      </div>
-
-     `
-
-     : ""
-
-    }
-
-
-   </div>
-
-
-  </article>
-
- `;
-
-}
-
-
-/* =====================================================
-   PREVIEW CLEAN
-===================================================== */
-
-function cleanPreview(text){
-
- return String(text || "")
- .replace(/\s+/g," ")
- .trim();
-
-}
-
-
-/* =====================================================
-   OPEN NOTIFICATION
-===================================================== */
-
-function openNotification(id){
-
- const item =
- notifications.find(
-  x => String(x.id) === String(id)
- );
-
- if(!item)
-  return;
-
-
- currentNotification =
- item;
-
-
- markAsRead(item.id);
-
-
- renderDetail();
-
-
- detailView.classList.add(
-  "show"
- );
-
- detailView.setAttribute(
-  "aria-hidden",
-  "false"
- );
-
-
- document.body.style.overflow =
- "hidden";
-
-
- history.pushState(
-  {
-   notification:true,
-   id:item.id
-  },
-  "",
-  "#notification-" + item.id
- );
-
-
- renderList();
-
-}
-
-
-/* =====================================================
-   DETAIL
-===================================================== */
-
-function renderDetail(){
-
- if(!currentNotification)
-  return;
-
-
- const item =
- currentNotification;
-
- const priority =
- priorityInfo(item.priority);
-
- const category =
- categoryLabel(item.category);
-
-
- const isBn =
- currentLanguage === "bn";
-
-
- const title =
- isBn
- ? (
-  item.title_bn ||
-  item.title_en ||
-  "Notification"
- )
- : (
-  item.title_en ||
-  item.title_bn ||
-  "Notification"
- );
-
-
- const description =
- isBn
- ? (
-  item.description_bn ||
-  item.description_en ||
-  ""
- )
- : (
-  item.description_en ||
-  item.description_bn ||
-  ""
- );
-
-
- const image =
- safeUrl(item.image_url);
-
- const link =
- safeUrl(item.action_url);
-
-
- detailContent.innerHTML = `
-
-  ${
-   image
-
-   ? `
-
-    <div class="detailHero">
-
-     <img
-      id="detailImage"
-      src="${esc(image)}"
-      alt=""
-     >
-
-    </div>
-
-   `
-
-   : `
-
-    <div class="detailHero">
-
-     <div class="detailHeroFallback">
-
-      <i
-       class="
-        fa-solid
-        ${iconName(item.icon)}
-       "
-      ></i>
-
-     </div>
-
-    </div>
-
-   `
-  }
-
-
-  <div class="detailBadges">
-
-
-   <span class="detailBadge">
-
-    <i
-     class="
-      fa-solid
-      ${iconName(item.icon)}
-     "
-    ></i>
-
-    ${esc(category)}
-
-   </span>
-
-
-   ${
-    item.priority === "important" ||
-    item.priority === "urgent"
-
-    ? `
-
-     <span
-      class="
-       detailBadge
-       ${priority.cls}
-      "
-     >
-
-      <i
-       class="
-        fa-solid
-        ${priority.icon}
-       "
-      ></i>
-
-      ${esc(priority.label)}
-
-     </span>
-
-    `
-
-    : ""
-
-   }
-
-
-   <span class="detailDate">
-
-    <i
-     class="fa-regular fa-clock"
-    ></i>
-
-    ${esc(
-     formatDate(item.created_at)
-    )}
-
-   </span>
-
-
-  </div>
-
-
-  <h1 class="detailTitle">
-
-   ${esc(title)}
-
-  </h1>
-
-
-  ${
-   description
-
-   ? `
-
-    <div class="detailDescription">
-
-     ${esc(description)}
-
-    </div>
-
-   `
-
-   : ""
-
-  }
-
-
-  ${
-   link
-
-   ? `
-
-    <div class="detailActions">
-
-
-     <button
-      class="
-       detailAction
-       detailOpen
-      "
-      id="detailOpenBtn"
-     >
-
-      <i
-       class="
-        fa-solid
-        fa-arrow-up-right-from-square
-       "
-      ></i>
-
-      ${
-       isBn
-       ? "Open Link"
-       : "Open Link"
-      }
-
-     </button>
-
-
-     <button
-      class="
-       detailAction
-       detailCopy
-      "
-      id="detailCopyBtn"
-     >
-
-      <i
-       class="fa-regular fa-copy"
-      ></i>
-
-      ${
-       isBn
-       ? "Copy Link"
-       : "Copy Link"
-      }
-
-     </button>
-
-
-     <button
-      class="
-       detailAction
-       detailShare
-      "
-      id="detailShareBtn"
-     >
-
-      <i
-       class="fa-solid fa-share-nodes"
-      ></i>
-
-      ${
-       isBn
-       ? "Share"
-       : "Share"
-      }
-
-     </button>
-
-
-    </div>
-
-   `
-
-   : ""
-
-  }
-
- `;
-
-
- /* IMAGE */
-
- const detailImage =
- document.getElementById(
-  "detailImage"
- );
-
- if(detailImage){
-
-  detailImage.addEventListener(
-   "click",
-   ()=>{
-    openImage(image);
-   }
-  );
-
-
-  detailImage.addEventListener(
-   "error",
-   ()=>{
-    detailImage.style.display =
-    "none";
-   }
-  );
-
- }
-
-
- /* OPEN */
-
- const openBtn =
- document.getElementById(
-  "detailOpenBtn"
- );
-
- if(openBtn){
-
-  openBtn.addEventListener(
-   "click",
-   ()=>{
-    openLink(link);
-   }
-  );
-
- }
-
-
- /* COPY */
-
- const copyBtn =
- document.getElementById(
-  "detailCopyBtn"
- );
-
- if(copyBtn){
-
-  copyBtn.addEventListener(
-   "click",
-   ()=>{
-    copyLink(link);
-   }
-  );
-
- }
-
-
- /* SHARE */
-
- const shareBtn =
- document.getElementById(
-  "detailShareBtn"
- );
-
- if(shareBtn){
-
-  shareBtn.addEventListener(
-   "click",
-   ()=>{
-    shareNotification(
-     item,
-     title
-    );
-   }
-  );
-
- }
-
-}
-
-
-/* =====================================================
-   LANGUAGE
-===================================================== */
-
-document
-.querySelectorAll(".langBtn")
-.forEach(button=>{
-
- button.addEventListener(
-  "click",
-  ()=>{
-
-   currentLanguage =
-   button.dataset.lang;
-
-
-   localStorage.setItem(
-    "wildlife_notification_language",
-    currentLanguage
-   );
-
-
-   document
-   .querySelectorAll(".langBtn")
-   .forEach(x =>
-    x.classList.remove("active")
-   );
-
-
-   button.classList.add(
-    "active"
-   );
-
-
-   renderList();
-
-
-   if(currentNotification)
-    renderDetail();
-
-  }
- );
-
-});
-
-
-/* =====================================================
-   SET INITIAL LANGUAGE BUTTON
-===================================================== */
-
-document
-.querySelectorAll(".langBtn")
-.forEach(button=>{
-
- button.classList.toggle(
-  "active",
-  button.dataset.lang ===
-  currentLanguage
- );
-
-});
-
-
-/* =====================================================
-   BACK
-===================================================== */
-
-function closeDetail(
- useHistory = true
-){
-
- detailView.classList.remove(
-  "show"
- );
-
- detailView.setAttribute(
-  "aria-hidden",
-  "true"
- );
-
- document.body.style.overflow =
- "";
-
- currentNotification = null;
-
-
- if(
-  useHistory &&
-  location.hash.startsWith(
-   "#notification-"
+   u.protocol!=="http:" &&
+   u.protocol!=="https:"
   )
- ){
+   return null;
 
-  history.back();
+  return u.href;
+
+ }catch{
+
+  return null;
 
  }
 
 }
 
 
-/* =====================================================
-   BACK BUTTON
-===================================================== */
-
-document
-.getElementById("backBtn")
-.addEventListener(
- "click",
- ()=>{
-  closeDetail(true);
- }
-);
-
-
-/* =====================================================
-   BROWSER BACK
-===================================================== */
-
-window.addEventListener(
- "popstate",
- ()=>{
-
-  if(
-   detailView.classList.contains(
-    "show"
-   )
-  ){
-
-   closeDetail(false);
-
-  }
-
- }
-);
-
-
-/* =====================================================
+/* =========================================================
    OPEN LINK
-===================================================== */
+========================================================= */
 
 function openLink(url){
 
  const safe =
- safeUrl(url);
+ validUrl(url);
 
  if(!safe){
 
-  toast(
-   currentLanguage === "bn"
-   ? "লিংকটি সঠিক নয়"
-   : "Invalid link"
-  );
+  toast("Invalid link");
 
   return;
 
  }
-
 
  window.open(
   safe,
@@ -3573,18 +2628,18 @@ function openLink(url){
 }
 
 
-/* =====================================================
-   COPY
-===================================================== */
+/* =========================================================
+   COPY LINK
+========================================================= */
 
 async function copyLink(url){
 
  const safe =
- safeUrl(url);
+ validUrl(url);
 
  if(!safe){
 
-  toast("No valid link");
+  toast("No valid link available");
 
   return;
 
@@ -3602,13 +2657,10 @@ async function copyLink(url){
     safe
    );
 
-  }
-  else{
+  }else{
 
    const textarea =
-   document.createElement(
-    "textarea"
-   );
+   document.createElement("textarea");
 
    textarea.value =
    safe;
@@ -3635,56 +2687,39 @@ async function copyLink(url){
 
   }
 
+  toast("Link copied successfully");
 
-  toast(
-   currentLanguage === "bn"
-   ? "লিংক কপি হয়েছে ✓"
-   : "Link copied ✓"
-  );
+ }catch{
 
-
- }catch(error){
-
-  toast(
-   currentLanguage === "bn"
-   ? "লিংক কপি করা যায়নি"
-   : "Unable to copy link"
-  );
+  toast("Unable to copy link");
 
  }
 
 }
 
 
-/* =====================================================
+/* =========================================================
    SHARE
-===================================================== */
+========================================================= */
 
-async function shareNotification(
- item,
- title
-){
+async function shareCurrent(){
 
- const shareData = {
+ if(!currentNotification)
+  return;
 
-  title:title,
 
-  text:
-   currentLanguage === "bn"
-   ? (
-    item.description_bn ||
-    title
-   )
-   : (
-    item.description_en ||
-    title
-   ),
+ const item =
+ currentNotification;
 
-  url:
-   safeUrl(item.action_url) ||
-   location.href
 
- };
+ const title =
+ item.title_bn ||
+ "Wildlife Explorer";
+
+
+ const url =
+ item.action_url ||
+ location.href;
 
 
  try{
@@ -3693,178 +2728,1242 @@ async function shareNotification(
    navigator.share
   ){
 
-   await navigator.share(
-    shareData
-   );
+   await navigator.share({
+
+    title:title,
+
+    text:
+    item.description_bn ||
+    title,
+
+    url:url
+
+   });
+
+   return;
 
   }
-  else{
 
-   await copyLink(
-    shareData.url
-   );
 
-   toast(
-    currentLanguage === "bn"
-    ? "Share link কপি হয়েছে"
-    : "Share link copied"
-   );
-
-  }
+  await copyLink(
+   url
+  );
 
  }catch(error){
 
-  if(
-   error &&
-   error.name === "AbortError"
-  )
-   return;
+  /*
+   User cancelled native share.
+   Do nothing.
+  */
 
  }
 
 }
 
 
-/* =====================================================
-   IMAGE VIEWER
-===================================================== */
+/* =========================================================
+   FILTER
+========================================================= */
 
-function openImage(url){
+function setFilter(
+ value,
+ button
+){
 
- const safe =
- safeUrl(url);
+ currentFilter =
+ value;
 
- if(!safe)
+ document
+ .querySelectorAll(".filter")
+ .forEach(el=>{
+
+  el.classList.remove(
+   "active"
+  );
+
+ });
+
+ button.classList.add(
+  "active"
+ );
+
+ render();
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+document
+.getElementById("search")
+.addEventListener(
+ "input",
+ ()=>{
+
+  clearTimeout(
+   searchTimer
+  );
+
+  searchTimer =
+  setTimeout(
+   render,
+   120
+  );
+
+ }
+);
+
+
+/* =========================================================
+   RENDER LIST
+========================================================= */
+
+function render(){
+
+ const search =
+ document
+ .getElementById("search")
+ .value
+ .trim()
+ .toLowerCase();
+
+
+ let data =
+ notifications.filter(
+ item=>{
+
+
+  /*
+   IMPORTANT FILTER
+  */
+
+  if(
+   currentFilter==="important"
+  ){
+
+   if(
+    item.priority!=="important" &&
+    item.priority!=="urgent"
+   )
+    return false;
+
+  }
+
+  else if(
+   currentFilter!=="all" &&
+   item.category!==currentFilter
+  ){
+
+   return false;
+
+  }
+
+
+  /*
+   SEARCH
+  */
+
+  if(!search)
+   return true;
+
+
+  const searchable = [
+
+   item.title_bn,
+
+   item.description_bn,
+
+   item.title_en,
+
+   item.description_en,
+
+   item.category,
+
+   item.priority
+
+  ]
+
+  .join(" ")
+  .toLowerCase();
+
+
+  return searchable.includes(
+   search
+  );
+
+ });
+
+
+ document.getElementById(
+  "count"
+ ).textContent =
+ data.length+" Updates";
+
+
+ const list =
+ document.getElementById(
+  "list"
+ );
+
+
+ if(!data.length){
+
+  list.innerHTML = `
+
+   <div class="state">
+
+    <div class="stateIcon">
+
+     <i class="fa-regular fa-bell-slash"></i>
+
+    </div>
+
+    <b>
+     No notifications found
+    </b>
+
+    <span>
+     এই মুহূর্তে আপনার নির্বাচিত category-তে কোনো notification পাওয়া যায়নি।
+    </span>
+
+   </div>
+
+  `;
+
   return;
 
- viewerImage.src =
- safe;
+ }
 
- imageViewer.classList.add(
-  "show"
+
+ list.innerHTML =
+ data.map(
+  (item,index)=>
+  renderItem(
+   item,
+   index
+  )
+ ).join("");
+
+}
+
+
+/* =========================================================
+   LIST ITEM
+========================================================= */
+
+function renderItem(
+ item,
+ index
+){
+
+ const priority =
+ priorityInfo(
+  item.priority
  );
+
+
+ const category =
+ CATEGORY[item.category] ||
+ item.category ||
+ "App";
+
+
+ const read =
+ isRead(item.id);
+
+
+ const thumb =
+ item.image_url
+
+ ?
+
+ `
+ <div class="thumb">
+
+  <img
+   src="${esc(item.image_url)}"
+   alt=""
+   loading="lazy"
+   onerror="this.style.display='none'"
+  >
+
+ </div>
+ `
+
+ :
+
+ `
+ <div class="thumb">
+
+  <i
+   class="fa-solid
+   ${iconName(item.icon)}
+   thumbIcon"
+  ></i>
+
+ </div>
+ `;
+
+
+ const preview =
+ item.description_bn
+ ?
+
+ esc(
+  item.description_bn
+ )
+ .replace(/\n+/g," ")
+
+ :
+
+
+ "";
+
+
+ return `
+
+ <article
+
+  class="notificationItem
+  ${read ? "" : "unread"}"
+
+  style="
+   animation-delay:
+   ${Math.min(index*45,350)}ms
+  "
+
+  onclick="
+   openNotification('${esc(item.id)}')
+  "
+
+ >
+
+  ${thumb}
+
+
+  <div class="itemContent">
+
+
+   <div class="itemTop">
+
+
+    <span
+     class="
+      category
+      ${priority.cls}
+     "
+    >
+
+     <i
+      class="fa-solid
+      ${iconName(item.icon)}"
+     ></i>
+
+     ${esc(category)}
+
+    </span>
+
+
+    ${
+     item.priority==="important" ||
+     item.priority==="urgent"
+
+     ?
+
+     `
+
+      <span
+       class="
+        category
+        ${priority.cls}
+       "
+      >
+
+       <i
+        class="fa-solid
+        ${priority.icon}"
+       ></i>
+
+       ${esc(priority.label)}
+
+      </span>
+
+     `
+
+     :
+
+     ""
+
+    }
+
+
+    <span class="time">
+
+     ${esc(
+      timeAgo(item.created_at)
+     )}
+
+    </span>
+
+
+   </div>
+
+
+   <!-- ONLY BANGLA TITLE -->
+
+   <div class="itemTitle">
+
+    ${esc(
+     item.title_bn ||
+     item.title_en ||
+     "Notification"
+    )}
+
+   </div>
+
+
+   ${
+    preview
+
+    ?
+
+    `
+     <div class="itemPreview">
+      ${preview}
+     </div>
+    `
+
+    :
+
+    ""
+
+   }
+
+
+   <div class="itemBottom">
+
+
+    ${
+     !read
+
+     ?
+
+     `
+      <span class="unreadDot"></span>
+
+      <span class="unreadText">
+       New
+      </span>
+     `
+
+     :
+
+     `
+      <span
+       style="
+        font-size:6.5px;
+        color:#9aa59f;
+       "
+      >
+       Read
+      </span>
+     `
+
+    }
+
+
+   </div>
+
+  </div>
+
+
+  <div class="arrow">
+
+   <i
+    class="fa-solid fa-chevron-right"
+   ></i>
+
+  </div>
+
+ </article>
+
+ `;
+
+}
+
+
+/* =========================================================
+   OPEN NOTIFICATION
+========================================================= */
+
+function openNotification(id){
+
+ const item =
+ notifications.find(
+  x=>String(x.id)===String(id)
+ );
+
+
+ if(!item)
+  return;
+
+
+ currentNotification =
+ item;
+
+
+ /*
+  Mark as read
+ */
+
+ markRead(
+  item.id
+ );
+
+
+ render();
+
+
+ /*
+  Update hash
+ */
+
+ try{
+
+  history.pushState(
+   null,
+   "",
+   "#notification="+
+   encodeURIComponent(
+    item.id
+   )
+  );
+
+ }catch{}
+
+
+ renderDetail(
+  item
+ );
+
+
+ const detail =
+ document.getElementById(
+  "detailView"
+ );
+
+
+ detail.classList.add(
+  "open"
+ );
+
 
  document.body.style.overflow =
  "hidden";
 
-}
 
-
-function closeImage(){
-
- imageViewer.classList.remove(
-  "show"
+ const scroll =
+ document.getElementById(
+  "detailScroll"
  );
 
- viewerImage.src = "";
-
- if(
-  !detailView.classList.contains(
-   "show"
-  )
- ){
-
-  document.body.style.overflow =
-  "";
-
- }
+ if(scroll)
+  scroll.scrollTop=0;
 
 }
 
 
-document
-.getElementById("viewerClose")
-.addEventListener(
- "click",
- closeImage
-);
+/* =========================================================
+   CLOSE DETAIL
+========================================================= */
 
+function closeDetail(){
 
-imageViewer.addEventListener(
- "click",
- event=>{
-
-  if(
-   event.target === imageViewer
-  ){
-
-   closeImage();
-
-  }
-
- }
-);
-
-
-/* =====================================================
-   ESC KEY
-===================================================== */
-
-document.addEventListener(
- "keydown",
- event=>{
-
-  if(
-   event.key === "Escape"
-  ){
-
-   if(
-    imageViewer.classList.contains(
-     "show"
-    )
-   ){
-
-    closeImage();
-
-   }
-   else if(
-    detailView.classList.contains(
-     "show"
-    )
-   ){
-
-    closeDetail(true);
-
-   }
-
-  }
-
- }
-);
-
-
-/* =====================================================
-   LOAD NOTIFICATIONS
-===================================================== */
-
-async function loadNotifications(
- showToast = false
-){
-
- refreshBtn.classList.add(
-  "loading"
+ const detail =
+ document.getElementById(
+  "detailView"
  );
 
+ detail.classList.remove(
+  "open"
+ );
 
- list.innerHTML = `
+ document.body.style.overflow =
+ "";
 
-  <div class="loading">
 
-   <div class="loadingIcon">
-
-    <i class="fa-solid fa-spinner"></i>
-
-   </div>
-
-   Loading notifications...
-
-  </div>
-
- `;
+ currentNotification =
+ null;
 
 
  try{
 
+  if(
+   location.hash
+  ){
+
+   history.replaceState(
+    null,
+    "",
+    location.pathname+
+    location.search
+   );
+
+  }
+
+ }catch{}
+
+}
+
+
+/* =========================================================
+   DETAIL RENDER
+========================================================= */
+
+function renderDetail(
+ item
+){
+
+ const priority =
+ priorityInfo(
+  item.priority
+ );
+
+
+ const category =
+ CATEGORY[item.category] ||
+ item.category ||
+ "App";
+
+
+ const detail =
+ document.getElementById(
+  "detailContent"
+ );
+
+
+ document.getElementById(
+  "detailHeaderTitle"
+ ).textContent =
+ item.title_bn ||
+ item.title_en ||
+ "Notification";
+
+
+ const image =
+ item.image_url
+
+ ?
+
+ `
+ <div class="detailImageWrap">
+
+  <img
+
+   class="detailImage"
+
+   src="${esc(item.image_url)}"
+
+   alt="${esc(
+    item.title_bn ||
+    "Notification image"
+   )}"
+
+   onerror="
+    this.closest('.detailImageWrap').remove()
+   "
+
+  >
+
+  <div
+   class="detailImageShade"
+  ></div>
+
+ </div>
+ `
+
+ :
+
+ "";
+
+
+ const actionUrl =
+ validUrl(
+  item.action_url
+ );
+
+
+ detail.innerHTML = `
+
+
+ ${image}
+
+
+ <div class="detailBody">
+
+
+  <div class="detailMeta">
+
+
+   <span
+    class="
+     category
+     ${priority.cls}
+    "
+   >
+
+    <i
+     class="fa-solid
+     ${iconName(item.icon)}"
+    ></i>
+
+    ${esc(category)}
+
+   </span>
+
+
+   ${
+    item.priority==="important" ||
+    item.priority==="urgent"
+
+    ?
+
+    `
+
+     <span
+      class="
+       category
+       ${priority.cls}
+      "
+     >
+
+      <i
+       class="fa-solid
+       ${priority.icon}"
+      ></i>
+
+      ${esc(priority.label)}
+
+     </span>
+
+    `
+
+    :
+
+    ""
+
+   }
+
+
+   <span class="time">
+
+    ${esc(
+     timeAgo(item.created_at)
+    )}
+
+   </span>
+
+
+  </div>
+
+
+  <!-- BANGLA TITLE ONLY -->
+
+  <div class="detailTitle">
+
+   ${esc(
+    item.title_bn ||
+    item.title_en ||
+    "Notification"
+   )}
+
+  </div>
+
+
+  ${
+   item.title_en
+
+   ?
+
+   `
+
+    <button
+     class="languageToggle show"
+     id="languageBtn"
+     onclick="toggleEnglish()"
+    >
+
+     <i
+      class="fa-solid fa-language"
+     ></i>
+
+     English version
+
+    </button>
+
+
+    <div
+     id="englishTitle"
+     class="englishTitle"
+    >
+
+     ${esc(item.title_en)}
+
+    </div>
+
+   `
+
+   :
+
+   ""
+
+  }
+
+
+  ${
+   item.description_bn
+
+   ?
+
+   `
+
+    <div
+     class="detailDescription"
+    >
+
+     ${esc(
+      item.description_bn
+     )}
+
+    </div>
+
+   `
+
+   :
+
+   ""
+
+  }
+
+
+  ${
+   item.description_en
+
+   ?
+
+   `
+
+    <div
+     id="englishDescription"
+     class="
+      detailDescription
+      en
+     "
+    >
+
+     ${esc(
+      item.description_en
+     )}
+
+    </div>
+
+   `
+
+   :
+
+   ""
+
+  }
+
+
+  ${
+   item.description_en
+
+   ?
+
+   `
+
+    <button
+     class="languageToggle show"
+     onclick="toggleEnglishDescription(this)"
+    >
+
+     <i
+      class="fa-solid fa-language"
+     ></i>
+
+     Show English description
+
+    </button>
+
+   `
+
+   :
+
+   ""
+
+  }
+
+
+  ${
+   actionUrl
+
+   ?
+
+   `
+
+    <div
+     class="detailDivider"
+    ></div>
+
+
+    <div class="linkBox">
+
+     <div class="linkLabel">
+
+      ACTION LINK
+
+     </div>
+
+
+     <div class="linkButtons">
+
+
+      <button
+       class="linkBtn openLink"
+       onclick="
+        openLink(
+         ${JSON.stringify(
+          actionUrl
+         )}
+        )
+       "
+      >
+
+       <i
+        class="fa-solid
+        fa-arrow-up-right-from-square"
+       ></i>
+
+       Open Link
+
+      </button>
+
+
+      <button
+       class="linkBtn copyLink"
+       onclick="
+        copyLink(
+         ${JSON.stringify(
+          actionUrl
+         )}
+        )
+       "
+      >
+
+       <i
+        class="fa-regular
+        fa-copy"
+       ></i>
+
+       Copy Link
+
+      </button>
+
+
+     </div>
+
+
+     <div class="shareRow">
+
+      <button
+       class="shareBtn"
+       onclick="shareCurrent()"
+      >
+
+       <i
+        class="fa-solid
+        fa-share-nodes"
+       ></i>
+
+       Share Notification
+
+      </button>
+
+     </div>
+
+
+    </div>
+
+   `
+
+   :
+
+   ""
+
+  }
+
+
+ </div>
+
+ `;
+
+}
+
+
+/* =========================================================
+   ENGLISH TOGGLE
+========================================================= */
+
+function toggleEnglish(){
+
+ const title =
+ document.getElementById(
+  "englishTitle"
+ );
+
+
+ const description =
+ document.getElementById(
+  "englishDescription"
+ );
+
+
+ const button =
+ document.getElementById(
+  "languageBtn"
+ );
+
+
+ if(title){
+
+  title.classList.toggle(
+   "visible"
+  );
+
+ }
+
+
+ if(description){
+
+  description.classList.toggle(
+   "visible"
+  );
+
+ }
+
+
+ if(button){
+
+  button.innerHTML =
+  title &&
+  title.classList.contains(
+   "visible"
+  )
+
+  ?
+
+  `
+   <i
+    class="fa-solid fa-language"
+   ></i>
+   Hide English version
+  `
+
+  :
+
+  `
+   <i
+    class="fa-solid fa-language"
+   ></i>
+   English version
+  `;
+
+ }
+
+}
+
+
+/* =========================================================
+   ENGLISH DESCRIPTION TOGGLE
+========================================================= */
+
+function toggleEnglishDescription(
+ button
+){
+
+ const el =
+ document.getElementById(
+  "englishDescription"
+ );
+
+
+ if(!el)
+  return;
+
+
+ const visible =
+ el.classList.toggle(
+  "visible"
+ );
+
+
+ button.innerHTML =
+
+ visible
+
+ ?
+
+ `
+  <i
+   class="fa-solid fa-language"
+  ></i>
+
+  Hide English description
+ `
+
+ :
+
+ `
+  <i
+   class="fa-solid fa-language"
+  ></i>
+
+  Show English description
+ `;
+
+}
+
+
+/* =========================================================
+   LOAD NOTIFICATIONS
+========================================================= */
+
+async function loadNotifications(
+ showToast=false
+){
+
+ if(loading)
+  return;
+
+
+ loading=true;
+
+
+ const list =
+ document.getElementById(
+  "list"
+ );
+
+
+ const refresh =
+ document.getElementById(
+  "refreshBtn"
+ );
+
+
+ refresh.classList.add(
+  "loading"
+ );
+
+
+ if(
+  !notifications.length
+ ){
+
+  list.innerHTML = `
+
+   <div class="skeleton">
+
+    <div
+     class="
+      skeletonBox
+      skeletonThumb
+     "
+    ></div>
+
+    <div
+     class="skeletonContent"
+    >
+
+     <div
+      class="
+       skeletonBox
+       skeletonLine
+       short
+      "
+     ></div>
+
+     <div
+      class="
+       skeletonBox
+       skeletonLine
+       long
+      "
+     ></div>
+
+     <div
+      class="
+       skeletonBox
+       skeletonLine
+       medium
+      "
+     ></div>
+
+    </div>
+
+   </div>
+
+
+   <div class="skeleton">
+
+    <div
+     class="
+      skeletonBox
+      skeletonThumb
+     "
+    ></div>
+
+    <div
+     class="skeletonContent"
+    >
+
+     <div
+      class="
+       skeletonBox
+       skeletonLine
+       short
+      "
+     ></div>
+
+     <div
+      class="
+       skeletonBox
+       skeletonLine
+       medium
+      "
+     ></div>
+
+     <div
+      class="
+       skeletonBox
+       skeletonLine
+       long
+      "
+     ></div>
+
+    </div>
+
+   </div>
+
+  `;
+
+ }
+
+
+ try{
 
   const {
    data,
@@ -3873,7 +3972,9 @@ async function loadNotifications(
 
   await db
 
-  .from("notifications")
+  .from(
+   "notifications"
+  )
 
   .select(`
 
@@ -3905,6 +4006,10 @@ async function loadNotifications(
 
   `)
 
+  /*
+   Only TRUE notifications
+  */
+
   .eq(
    "is_published",
    true
@@ -3928,15 +4033,20 @@ async function loadNotifications(
   : [];
 
 
-  renderList();
+  render();
+
+
+  /*
+   Open notification from hash
+  */
+
+  openFromHash();
 
 
   if(showToast){
 
    toast(
-    currentLanguage === "bn"
-    ? "Notifications আপডেট হয়েছে ✓"
-    : "Notifications refreshed ✓"
+    "Notifications refreshed"
    );
 
   }
@@ -3945,73 +4055,73 @@ async function loadNotifications(
  }catch(error){
 
   console.error(
-   "Notifications error:",
+   "Notification error:",
    error
   );
 
 
-  list.innerHTML = `
+  /*
+   Don't replace existing data
+   during realtime failure.
+  */
 
-   <div class="state">
+  if(
+   !notifications.length
+  ){
 
-    <div class="stateIcon">
+   list.innerHTML = `
 
-     <i class="fa-solid fa-cloud"></i>
+    <div class="state">
+
+     <div class="stateIcon">
+
+      <i
+       class="
+        fa-solid
+        fa-cloud
+       "
+      ></i>
+
+     </div>
+
+
+     <b>
+      Unable to load notifications
+     </b>
+
+
+     <span>
+      Notification service is temporarily unavailable. Please try again.
+     </span>
+
+
+     <button
+      class="retry"
+      onclick="loadNotifications(true)"
+     >
+
+      <i
+       class="
+        fa-solid
+        fa-rotate-right
+       "
+      ></i>
+
+      Try Again
+
+     </button>
 
     </div>
 
-    <b>
+   `;
 
-     ${
-      currentLanguage === "bn"
-      ? "Notification লোড করা যায়নি"
-      : "Unable to load notifications"
-     }
-
-    </b>
-
-    <span>
-
-     ${
-      currentLanguage === "bn"
-      ? "ইন্টারনেট অথবা database connection পরীক্ষা করে আবার চেষ্টা করুন।"
-      : "Please check your connection and try again."
-     }
-
-    </span>
-
-    <button
-     class="retry"
-     id="retryBtn"
-    >
-
-     <i
-      class="fa-solid fa-rotate-right"
-     ></i>
-
-     ${
-      currentLanguage === "bn"
-      ? "আবার চেষ্টা করুন"
-      : "Try Again"
-     }
-
-    </button>
-
-   </div>
-
-  `;
-
-
-  document
-  .getElementById("retryBtn")
-  ?.addEventListener(
-   "click",
-   ()=>loadNotifications(true)
-  );
+  }
 
  }finally{
 
-  refreshBtn.classList.remove(
+  loading=false;
+
+  refresh.classList.remove(
    "loading"
   );
 
@@ -4020,72 +4130,51 @@ async function loadNotifications(
 }
 
 
-/* =====================================================
-   REFRESH
-===================================================== */
+/* =========================================================
+   HASH / DEEP LINK
+========================================================= */
 
-refreshBtn.addEventListener(
- "click",
- ()=>{
+function openFromHash(){
 
-  loadNotifications(true);
-
- }
-);
+ const hash =
+ location.hash;
 
 
-/* =====================================================
-   REALTIME
-===================================================== */
-
-function setupRealtime(){
-
- try{
-
-  realtimeChannel =
-  db
-
-  .channel(
-   "wildlife-notifications-live"
+ if(
+  !hash.startsWith(
+   "#notification="
   )
+ )
+  return;
 
-  .on(
-   "postgres_changes",
-   {
-    event:"*",
-    schema:"public",
-    table:"notifications"
+
+ const id =
+ decodeURIComponent(
+  hash.replace(
+   "#notification=",
+   ""
+  )
+ );
+
+
+ if(!id)
+  return;
+
+
+ const exists =
+ notifications.some(
+  item=>
+  String(item.id)===String(id)
+ );
+
+
+ if(exists){
+
+  setTimeout(
+   ()=>{
+    openNotification(id);
    },
-   payload=>{
-
-    /*
-     Small delay prevents multiple
-     database events from causing
-     unnecessary simultaneous requests.
-    */
-
-    clearTimeout(
-     window.__reloadTimer
-    );
-
-    window.__reloadTimer =
-    setTimeout(
-     ()=>{
-      loadNotifications(false);
-     },
-     350
-    );
-
-   }
-  )
-
-  .subscribe();
-
- }catch(error){
-
-  console.warn(
-   "Realtime unavailable:",
-   error
+   80
   );
 
  }
@@ -4093,18 +4182,135 @@ function setupRealtime(){
 }
 
 
-/* =====================================================
-   ONLINE
-===================================================== */
+/* =========================================================
+   BROWSER BACK
+========================================================= */
+
+window.addEventListener(
+ "popstate",
+ ()=>{
+
+  if(
+   document
+   .getElementById(
+    "detailView"
+   )
+   .classList.contains(
+    "open"
+   )
+  ){
+
+   closeDetail();
+
+  }else{
+
+   openFromHash();
+
+  }
+
+ }
+);
+
+
+/* =========================================================
+   HASH CHANGE
+========================================================= */
+
+window.addEventListener(
+ "hashchange",
+ ()=>{
+
+  if(
+   location.hash
+  ){
+
+   openFromHash();
+
+  }else{
+
+   closeDetail();
+
+  }
+
+ }
+);
+
+
+/* =========================================================
+   REALTIME
+========================================================= */
+
+try{
+
+ db
+
+ .channel(
+  "notifications-live"
+ )
+
+ .on(
+
+  "postgres_changes",
+
+  {
+
+   event:"*",
+
+   schema:"public",
+
+   table:"notifications"
+
+  },
+
+  payload=>{
+
+   /*
+    Debounce realtime events.
+    Prevents multiple simultaneous
+    reload requests.
+   */
+
+   clearTimeout(
+    realtimeTimer
+   );
+
+
+   realtimeTimer =
+   setTimeout(
+    ()=>{
+
+     loadNotifications(false);
+
+    },
+    350
+   );
+
+  }
+
+ )
+
+ .subscribe();
+
+}catch(error){
+
+ console.warn(
+  "Realtime unavailable",
+  error
+ );
+
+}
+
+
+/* =========================================================
+   ONLINE / OFFLINE
+========================================================= */
 
 window.addEventListener(
  "online",
  ()=>{
 
   toast(
-   currentLanguage === "bn"
-   ? "Connection restored ✓"
-   : "Connection restored ✓"
+   "Connection restored"
   );
 
   loadNotifications(false);
@@ -4113,51 +4319,109 @@ window.addEventListener(
 );
 
 
-/* =====================================================
-   OFFLINE
-===================================================== */
-
 window.addEventListener(
  "offline",
  ()=>{
 
   toast(
-   currentLanguage === "bn"
-   ? "আপনি এখন offline"
-   : "You are offline"
+   "You are offline"
   );
 
  }
 );
 
 
-/* =====================================================
-   INITIAL LOAD
-===================================================== */
+/* =========================================================
+   SWIPE DOWN TO CLOSE DETAIL
+========================================================= */
 
-loadNotifications(false);
+let touchStartY=0;
 
-setupRealtime();
+document
+.getElementById(
+ "detailScroll"
+)
+.addEventListener(
+ "touchstart",
+ event=>{
+
+  touchStartY =
+  event.touches[0].clientY;
+
+ },
+ {
+  passive:true
+ }
+);
 
 
-/* =====================================================
-   AUTO UPDATE TIME
-===================================================== */
+document
+.getElementById(
+ "detailScroll"
+)
+.addEventListener(
+ "touchend",
+ event=>{
 
-setInterval(
- ()=>{
+  const endY =
+  event.changedTouches[0].clientY;
+
+  const diff =
+  endY-touchStartY;
+
+
+  /*
+   Only close when user is
+   near top and swipes down.
+  */
+
+  const scroll =
+  document.getElementById(
+   "detailScroll"
+  );
+
 
   if(
-   notifications.length
+   scroll.scrollTop<=2 &&
+   diff>90
   ){
 
-   renderList();
+   closeDetail();
 
   }
 
  },
- 60000
+ {
+  passive:true
+ }
 );
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+ "keydown",
+ event=>{
+
+  if(
+   event.key==="Escape"
+  ){
+
+   closeDetail();
+
+  }
+
+ }
+);
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+loadNotifications(false);
 
 </script>
 
