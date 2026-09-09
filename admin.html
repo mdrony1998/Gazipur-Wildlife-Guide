@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#087d59">
+<title>Admin • Wildlife Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--bg:#f4f8f6;--card:#fff;--ink:#17251f;--muted:#718078;--line:#e0eae5;--green:#087d59;--green2:#0baa79;--soft:#e8f6f0;--red:#d65353;--orange:#e5962f;--blue:#3978df;--shadow:0 12px 35px rgba(20,70,53,.07)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:#e8efeb;color:var(--ink)}body{font-family:Inter,"Hind Siliguri",sans-serif}.bn{font-family:"Hind Siliguri",Inter,sans-serif}
+.app{max-width:620px;min-height:100vh;margin:auto;background:var(--bg);position:relative;overflow:hidden}.hidden{display:none!important}
+.header{padding:20px 18px 14px;background:linear-gradient(135deg,#087d59,#0b9469);color:white;position:relative;overflow:hidden}.header:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-80px;top:-95px;background:rgba(255,255,255,.09)}.headrow{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}.brand{display:flex;gap:11px;align-items:center}.logo{width:42px;height:42px;border-radius:15px;background:rgba(255,255,255,.15);display:grid;place-items:center;font-size:17px}.brand small{font-size:8px;font-weight:800;opacity:.75;letter-spacing:1px}.brand strong{display:block;font-size:15px;margin-top:2px}.logout{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.10);color:#fff;border-radius:12px;padding:9px 11px;font-size:9px;font-weight:800}.welcome{margin-top:18px;font-size:22px;font-weight:800;position:relative;z-index:2}.welcome-sub{font-size:9px;opacity:.78;margin-top:3px;position:relative;z-index:2}
+.content{padding:15px 16px 35px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px 11px;box-shadow:var(--shadow)}.stat i{font-size:12px;color:var(--green)}.stat b{display:block;font-size:19px;margin-top:7px}.stat span{font-size:8px;color:var(--muted);font-weight:700}
+.actions{display:flex;gap:8px;margin:13px 0}.primary,.secondary{border:0;border-radius:14px;padding:12px 14px;font-size:9px;font-weight:800}.primary{background:var(--green);color:#fff;flex:1}.secondary{background:#fff;border:1px solid var(--line);color:var(--ink)}button:active{transform:scale(.96)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:var(--shadow);margin-top:10px}.panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.panel-title{font-size:12px;font-weight:800}.search{width:145px;border:1px solid var(--line);border-radius:11px;padding:8px 9px;font-size:9px;outline:none;background:#fafcfb}
+.item{display:flex;align-items:center;gap:10px;padding:11px 0;border-top:1px solid #eef2ef}.item:first-child{border-top:0}.itemicon{width:38px;height:38px;border-radius:13px;background:var(--soft);color:var(--green);display:grid;place-items:center;font-size:12px}.itembody{min-width:0;flex:1}.itemtitle{font-size:10px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.itemmeta{font-size:7px;color:var(--muted);margin-top:3px}.status{font-size:7px;font-weight:800;padding:5px 7px;border-radius:100px;background:#e9f7f0;color:var(--green)}.status.draft{background:#fff3df;color:#b97816}.itembuttons{display:flex;gap:5px}.ib{width:30px;height:30px;border:0;border-radius:10px;background:#f2f6f4;color:var(--muted)}.ib.delete{color:var(--red)}
+.overlay{position:fixed;inset:0;background:rgba(9,26,19,.36);backdrop-filter:blur(5px);display:none;align-items:flex-end;justify-content:center;z-index:30}.overlay.show{display:flex}.sheet{width:100%;max-width:620px;max-height:92vh;overflow:auto;background:#fff;border-radius:27px 27px 0 0;padding:10px 18px 28px;animation:up .3s ease}@keyframes up{from{transform:translateY(100%)}to{transform:none}}.handle{width:38px;height:4px;border-radius:9px;background:#dbe4df;margin:0 auto 17px}.sheethead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.sheettitle{font-size:17px;font-weight:800}.x{width:32px;height:32px;border:0;border-radius:10px;background:#f0f5f2;color:var(--muted)}
+label{display:block;font-size:8px;font-weight:800;color:#526159;margin:11px 0 6px}input,textarea,select{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px;font:inherit;font-size:10px;outline:none;background:#fbfdfc;color:var(--ink)}textarea{min-height:85px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:#8acdb5;box-shadow:0 0 0 3px rgba(11,170,121,.08)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}.checkrow{display:flex;align-items:center;gap:8px;margin-top:13px;padding:11px;background:#f5f9f7;border-radius:13px}.checkrow input{width:16px}.checkrow label{margin:0;font-size:9px}.save{width:100%;margin-top:15px;border:0;border-radius:14px;padding:13px;background:var(--green);color:#fff;font-size:10px;font-weight:800}
+.login{min-height:100vh;display:flex;align-items:center;padding:20px;background:radial-gradient(circle at 100% 0,rgba(11,170,121,.12),transparent 35%),var(--bg)}.loginbox{width:100%;background:#fff;border:1px solid var(--line);border-radius:25px;padding:24px 20px;box-shadow:var(--shadow)}.loginlogo{width:58px;height:58px;border-radius:19px;background:var(--soft);color:var(--green);display:grid;place-items:center;font-size:22px;margin-bottom:17px}.login h1{font-size:23px;margin:0}.login p{font-size:10px;color:var(--muted);line-height:1.6}.login button{width:100%;border:0;border-radius:14px;padding:13px;background:var(--green);color:#fff;font-weight:800;font-size:10px;margin-top:12px}.error{color:var(--red);font-size:9px;margin-top:9px}.toast{position:fixed;left:50%;bottom:18px;transform:translate(-50%,20px);opacity:0;z-index:60;background:#18251f;color:#fff;border-radius:13px;padding:11px 14px;font-size:9px;font-weight:700;transition:.25s;max-width:90%;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
+.empty{text-align:center;padding:28px 10px;color:var(--muted);font-size:9px}.spin{animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div id="loginView" class="login">
+ <div class="loginbox">
+  <div class="loginlogo"><i class="fa-solid fa-shield-halved"></i></div>
+  <h1>Admin Control</h1>
+  <p>Wildlife Explorer notifications management. Sign in with your authorized Supabase account.</p>
+  <label>Email</label><input id="email" type="email" autocomplete="username" placeholder="Admin email">
+  <label>Password</label><input id="password" type="password" autocomplete="current-password" placeholder="Password">
+  <button onclick="login()"><i class="fa-solid fa-right-to-bracket"></i> Sign in</button>
+  <div id="loginError" class="error"></div>
+ </div>
+</div>
+
+<div id="adminView" class="app hidden">
+ <header class="header">
+  <div class="headrow">
+   <div class="brand"><div class="logo"><i class="fa-solid fa-leaf"></i></div><div><small>WILDLIFE EXPLORER</small><strong>Admin Control</strong></div></div>
+   <button class="logout" onclick="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
+  </div>
+  <div class="welcome">Notification Center</div>
+  <div class="welcome-sub">Create, publish and manage app notifications.</div>
+ </header>
+
+ <main class="content">
+  <section class="stats">
+   <div class="stat"><i class="fa-solid fa-layer-group"></i><b id="total">0</b><span>Total</span></div>
+   <div class="stat"><i class="fa-solid fa-circle-check"></i><b id="published">0</b><span>Published</span></div>
+   <div class="stat"><i class="fa-solid fa-file-pen"></i><b id="draft">0</b><span>Draft</span></div>
+  </section>
+  <div class="actions"><button class="primary" onclick="openForm()"><i class="fa-solid fa-plus"></i> New Notification</button><button class="secondary" onclick="loadData()"><i class="fa-solid fa-rotate-right"></i></button></div>
+  <section class="panel">
+   <div class="panel-head"><div class="panel-title">Notifications</div><input class="search" id="search" oninput="render()" placeholder="Search..."></div>
+   <div id="items"><div class="empty"><i class="fa-solid fa-spinner spin"></i><br>Loading...</div></div>
+  </section>
+ </main>
+</div>
+
+<div id="formOverlay" class="overlay" onclick="outsideClose(event)">
+ <div class="sheet">
+  <div class="handle"></div>
+  <div class="sheethead"><div class="sheettitle" id="formTitle">New Notification</div><button class="x" onclick="closeForm()"><i class="fa-solid fa-xmark"></i></button></div>
+  <input id="editId" type="hidden">
+  <label>বাংলা Title</label><input id="title_bn" maxlength="180" placeholder="বাংলা শিরোনাম">
+  <label>English Title</label><input id="title_en" maxlength="180" placeholder="English title">
+  <label>বাংলা Description</label><textarea id="description_bn" maxlength="3000" placeholder="বাংলা বিস্তারিত"></textarea>
+  <label>English Description</label><textarea id="description_en" maxlength="3000" placeholder="English description"></textarea>
+  <div class="grid2">
+   <div><label>Category</label><select id="category"><option value="app">App</option><option value="park">Park</option><option value="ticket">Tickets</option><option value="wildlife">Wildlife</option><option value="travel">Travel</option></select></div>
+   <div><label>Icon</label><select id="icon"><option value="bell">Bell</option><option value="tree">Tree</option><option value="ticket">Ticket</option><option value="paw">Paw</option><option value="route">Route</option><option value="app">App</option><option value="info">Info</option><option value="warning">Warning</option><option value="calendar">Calendar</option><option value="location">Location</option><option value="binoculars">Binoculars</option><option value="sparkles">Sparkles</option></select></div>
+  </div>
+  <label>Priority</label><select id="priority"><option value="normal">Normal</option><option value="important">Important</option></select>
+  <div class="checkrow"><input id="published" type="checkbox"><label for="published">Publish this notification immediately</label></div>
+  <button class="save" id="saveBtn" onclick="saveNotification()"><i class="fa-solid fa-cloud-arrow-up"></i> Save Notification</button>
+ </div>
+</div>
+<div id="toast" class="toast"></div>
+
+<script>
+const SUPABASE_URL="https://hnhphoqfylwbuptronqh.supabase.co";
+const SUPABASE_KEY="sb_publishable_ZBJhCw5h6JKGRD29loq4bw_OV1G_Fz0";
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+let rows=[];
+
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2500)}
+function iconName(v){return({bell:"fa-bell",tree:"fa-tree",ticket:"fa-ticket",paw:"fa-paw",route:"fa-route",app:"fa-mobile-screen",info:"fa-circle-info",warning:"fa-triangle-exclamation",calendar:"fa-calendar-days",location:"fa-location-dot",binoculars:"fa-binoculars",sparkles:"fa-sparkles"})[v]||"fa-bell"}
+function esc(v){return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+function loginError(msg){document.getElementById("loginError").textContent=msg}
+async function login(){
+ loginError("");
+ const email=document.getElementById("email").value.trim(),password=document.getElementById("password").value;
+ if(!email||!password){loginError("Email and password are required.");return}
+ const {error}=await db.auth.signInWithPassword({email,password});
+ if(error){loginError(error.message);return}
+ showAdmin();
+}
+async function showAdmin(){document.getElementById("loginView").classList.add("hidden");document.getElementById("adminView").classList.remove("hidden");await loadData()}
+async function logout(){await db.auth.signOut();location.reload()}
+
+async function loadData(){
+ document.getElementById("items").innerHTML='<div class="empty"><i class="fa-solid fa-spinner spin"></i><br>Loading...</div>';
+ const {data,error}=await db.from("notifications").select("*").order("created_at",{ascending:false});
+ if(error){document.getElementById("items").innerHTML='<div class="empty">Unable to load data.<br>'+esc(error.message)+'</div>';return}
+ rows=data||[];render();
+}
+function render(){
+ const q=document.getElementById("search").value.trim().toLowerCase();
+ const data=rows.filter(x=>!q||[x.title_bn,x.title_en,x.description_bn,x.description_en,x.category].join(" ").toLowerCase().includes(q));
+ document.getElementById("total").textContent=rows.length;
+ document.getElementById("published").textContent=rows.filter(x=>x.is_published).length;
+ document.getElementById("draft").textContent=rows.filter(x=>!x.is_published).length;
+ if(!data.length){document.getElementById("items").innerHTML='<div class="empty"><i class="fa-regular fa-bell-slash"></i><br>No notifications found.</div>';return}
+ document.getElementById("items").innerHTML=data.map(x=>`
+ <div class="item">
+  <div class="itemicon"><i class="fa-solid ${iconName(x.icon)}"></i></div>
+  <div class="itembody"><div class="itemtitle">${esc(x.title_bn||x.title_en)}</div><div class="itemmeta">${esc(x.category)} • ${new Date(x.created_at).toLocaleDateString()}</div></div>
+  <span class="status ${x.is_published?"":"draft"}">${x.is_published?"LIVE":"DRAFT"}</span>
+  <div class="itembuttons">
+   <button class="ib" onclick="editNotification(${x.id})"><i class="fa-solid fa-pen"></i></button>
+   <button class="ib delete" onclick="deleteNotification(${x.id})"><i class="fa-solid fa-trash"></i></button>
+  </div>
+ </div>`).join("");
+}
+
+function openForm(row=null){
+ document.getElementById("editId").value=row?row.id:"";
+ document.getElementById("formTitle").textContent=row?"Edit Notification":"New Notification";
+ document.getElementById("title_bn").value=row?.title_bn||"";
+ document.getElementById("title_en").value=row?.title_en||"";
+ document.getElementById("description_bn").value=row?.description_bn||"";
+ document.getElementById("description_en").value=row?.description_en||"";
+ document.getElementById("category").value=row?.category||"app";
+ document.getElementById("icon").value=row?.icon||"bell";
+ document.getElementById("priority").value=row?.priority||"normal";
+ document.getElementById("published").checked=!!row?.is_published;
+ document.getElementById("formOverlay").classList.add("show");
+}
+function closeForm(){document.getElementById("formOverlay").classList.remove("show")}
+function outsideClose(e){if(e.target.id==="formOverlay")closeForm()}
+function editNotification(id){const row=rows.find(x=>Number(x.id)===Number(id));if(row)openForm(row)}
+
+async function saveNotification(){
+ const id=document.getElementById("editId").value;
+ const payload={
+  title_bn:document.getElementById("title_bn").value.trim(),
+  title_en:document.getElementById("title_en").value.trim(),
+  description_bn:document.getElementById("description_bn").value.trim(),
+  description_en:document.getElementById("description_en").value.trim(),
+  category:document.getElementById("category").value,
+  icon:document.getElementById("icon").value,
+  priority:document.getElementById("priority").value,
+  is_published:document.getElementById("published").checked
+ };
+ if(!payload.title_bn||!payload.title_en||!payload.description_bn||!payload.description_en){toast("Please fill all title and description fields.");return}
+ const btn=document.getElementById("saveBtn");btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner spin"></i> Saving...';
+ try{
+  let result;
+  if(id) result=await db.from("notifications").update(payload).eq("id",id);
+  else result=await db.from("notifications").insert(payload);
+  if(result.error)throw result.error;
+  closeForm();toast(id?"Notification updated":"Notification created");await loadData();
+ }catch(e){toast("Save failed: "+e.message)}
+ finally{btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-cloud-arrow-up"></i> Save Notification'}
+}
+async function deleteNotification(id){
+ const row=rows.find(x=>Number(x.id)===Number(id));
+ if(!row||!confirm("Delete this notification?"))return;
+ const {error}=await db.from("notifications").delete().eq("id",id);
+ if(error){toast("Delete failed: "+error.message);return}
+ toast("Notification deleted");await loadData();
+}
+
+db.auth.getSession().then(({data})=>{if(data.session)showAdmin()});
+</script>
+</body>
+</html>
